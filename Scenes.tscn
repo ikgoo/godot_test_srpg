@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://djnoag6iy023t"]
+[gd_scene load_steps=3 format=3 uid="uid://djnoag6iy023t"]
+
+[ext_resource type="Texture2D" uid="uid://v8kxmgco7itg" path="res://Art/UI/HeartUIEmpty.png" id="1_02kdw"]
+[ext_resource type="PackedScene" uid="uid://cgouq7avfwgxt" path="res://Player/player.tscn" id="2_jae1h"]
 
 [node name="Scenes" type="Node2D"]
+
+[node name="HeartUiEmpty" type="Sprite2D" parent="."]
+position = Vector2(12, 7)
+texture = ExtResource("1_02kdw")
+
+[node name="Player" parent="." instance=ExtResource("2_jae1h")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(4, 32, 39, 40, 67, 106, 131, 133, 190, 99, 257, 161, 272, 53, 215, 10, 280, 10, 310, 90, 300, 175, 57, 202, 3, 147)
