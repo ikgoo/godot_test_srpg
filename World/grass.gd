@@ -1,14 +1,13 @@
 extends Node2D
 
 
-func _ready():
-	pass # Replace with function body.
 
 
-func _process(delta):
-	if Input.is_action_pressed("Attack"):
-		var GrassEffect = load("res://World/grass_effect.tscn")
-		var grassEffect = GrassEffect.instance()
-		var world = get_tree().current_scene
-		world.add_child(grassEffect)
-		queue_free()
+func _on_hurt_box_area_entered(area):
+	var GrassEffect : Resource = load("res://World/grass_effect.tscn")
+	var grassEffect : Node2D = GrassEffect.instantiate()
+	var parentNode = get_node(".").get_parent()
+	grassEffect.global_transform = global_transform
+	parentNode.add_child(grassEffect)
+	#world.add_child(grassEffect)
+	queue_free()

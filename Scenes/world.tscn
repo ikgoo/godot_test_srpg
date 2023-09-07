@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://k7xqy4j8pntj"]
+[gd_scene load_steps=14 format=3 uid="uid://k7xqy4j8pntj"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_6kgk5"]
 [ext_resource type="PackedScene" uid="uid://cgouq7avfwgxt" path="res://Player/player.tscn" id="2_ngcut"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cfkj2gjkedrwn" path="res://World/bush.tscn" id="3_k77ii"]
 [ext_resource type="Texture2D" uid="uid://hud1tj6redc" path="res://Art/World/DirtTileset.png" id="5_a5e78"]
 [ext_resource type="Texture2D" uid="uid://bcnmvrkfs0bft" path="res://Art/World/CliffTileset.png" id="6_pva8k"]
+[ext_resource type="PackedScene" uid="uid://bc4miv5kb8ldi" path="res://World/grass.tscn" id="8_6xts6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1anig"]
 texture = ExtResource("3_7vs3f")
@@ -922,7 +923,8 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_4qrfx"]
 tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "DirtCliff"
 terrain_set_0/terrain_0/color = Color(0.956863, 0.129412, 0, 1)
@@ -984,3 +986,32 @@ position = Vector2(160, 143)
 
 [node name="Bush7" parent="Bushs" instance=ExtResource("3_k77ii")]
 position = Vector2(92, 196)
+
+[node name="Grass" parent="." instance=ExtResource("8_6xts6")]
+position = Vector2(80, 96)
+
+[node name="Grass2" parent="." instance=ExtResource("8_6xts6")]
+position = Vector2(96, 96)
+
+[node name="Grass3" parent="." instance=ExtResource("8_6xts6")]
+position = Vector2(112, 96)
+
+[node name="Grass4" parent="." instance=ExtResource("8_6xts6")]
+position = Vector2(128, 96)
+
+[node name="Grass5" parent="." instance=ExtResource("8_6xts6")]
+position = Vector2(80, 112)
+
+[node name="Grass6" parent="." instance=ExtResource("8_6xts6")]
+position = Vector2(96, 112)
+
+[node name="Grass7" parent="." instance=ExtResource("8_6xts6")]
+position = Vector2(112, 112)
+
+[node name="Grass8" parent="." instance=ExtResource("8_6xts6")]
+position = Vector2(128, 112)
+
+[editable path="Grass"]
+[editable path="Grass/HurtBox"]
+[editable path="Grass2"]
+[editable path="Grass2/HurtBox"]
