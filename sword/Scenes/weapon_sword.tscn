@@ -1,0 +1,80 @@
+[gd_scene load_steps=14 format=3 uid="uid://boiwhatnkkm08"]
+
+[ext_resource type="Texture2D" uid="uid://cax8yq5j0janv" path="res://sword/sword_ice.png" id="1_byoec"]
+[ext_resource type="Script" path="res://Scenes/weapon_sword.gd" id="1_lh18a"]
+[ext_resource type="Texture2D" uid="uid://duih1i5hjntun" path="res://sword/trail.png" id="2_yhscx"]
+[ext_resource type="Texture2D" uid="uid://lt10kctfcsbp" path="res://sword/ice_2.png" id="3_2mu37"]
+[ext_resource type="AudioStream" uid="uid://dm1clqrgrtnks" path="res://sword/mixkit-sword-slash-swoosh-1476.mp3" id="5_byorc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdba7"]
+size = Vector2(78.5, 52)
+
+[sub_resource type="Gradient" id="Gradient_tb3e0"]
+offsets = PackedFloat32Array(0, 0.295566, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.647664, 0.884847, 0.877722, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5c0f8"]
+gradient = SubResource("Gradient_tb3e0")
+
+[sub_resource type="Curve" id="Curve_c38cy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wycax"]
+curve = SubResource("Curve_c38cy")
+
+[sub_resource type="Curve" id="Curve_rxgxc"]
+_data = [Vector2(0, 0), 0.0, 1.99194, 0, 0, Vector2(0.502024, 1), 0.0, 0.0, 0, 0, Vector2(0.995952, 0.0106761), -2.00297, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lfgnu"]
+curve = SubResource("Curve_rxgxc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_it1u0"]
+emission_shape = 2
+emission_sphere_radius = 1.0
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 25.0
+gravity = Vector3(0, 200, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_curve = SubResource("CurveTexture_wycax")
+scale_curve = SubResource("CurveTexture_lfgnu")
+color_ramp = SubResource("GradientTexture1D_5c0f8")
+
+[node name="WeaponSword" type="Node2D"]
+script = ExtResource("1_lh18a")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
+texture = ExtResource("1_byoec")
+offset = Vector2(40, 0)
+
+[node name="Trail" type="Sprite2D" parent="Marker2D/Sprite2D"]
+show_behind_parent = true
+position = Vector2(55, -31)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_yhscx")
+
+[node name="HitBox" type="Area2D" parent="Marker2D/Sprite2D"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/Sprite2D/HitBox"]
+visible = false
+position = Vector2(70, 0)
+shape = SubResource("RectangleShape2D_fdba7")
+disabled = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Marker2D"]
+show_behind_parent = true
+position = Vector2(69, 1)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_it1u0")
+texture = ExtResource("3_2mu37")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_byorc")
+volume_db = -22.4
+pitch_scale = 2.2
