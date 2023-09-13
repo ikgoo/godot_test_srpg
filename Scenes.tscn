@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://djnoag6iy023t"]
+[gd_scene load_steps=3 format=3 uid="uid://0gh0nbxksn1y"]
 
 [ext_resource type="Texture2D" uid="uid://v8kxmgco7itg" path="res://Art/UI/HeartUIEmpty.png" id="1_02kdw"]
 [ext_resource type="PackedScene" uid="uid://cgouq7avfwgxt" path="res://Player/player.tscn" id="2_jae1h"]
