@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://be235ud4p3wg8"]
+[gd_scene load_steps=15 format=3 uid="uid://be235ud4p3wg8"]
 
 [ext_resource type="Script" path="res://Enemles/Bat.gd" id="1_6me0j"]
 [ext_resource type="Texture2D" uid="uid://vgshxta31onu" path="res://Art/Enemies/Bat.png" id="1_6pygy"]
 [ext_resource type="Texture2D" uid="uid://c41i18edlxir7" path="res://Art/Shadows/SmallShadow.png" id="2_uqq1h"]
 [ext_resource type="PackedScene" uid="uid://gnd1wq8lr7cm" path="res://Areas/hurt_box.tscn" id="3_r5ly0"]
+[ext_resource type="PackedScene" uid="uid://bsproxm53ey13" path="res://Resource/state.tscn" id="5_7pqou"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tyyqa"]
 atlas = ExtResource("1_6pygy")
@@ -55,10 +56,14 @@ radius = 4.0
 radius = 6.0
 height = 20.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2xthv"]
+radius = 4.0
+height = 8.0
+
 [node name="Bat" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 8
-collision_mask = 66
+collision_mask = 2
 script = ExtResource("1_6me0j")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
@@ -86,6 +91,17 @@ position = Vector2(0, -14)
 rotation = -3.14159
 shape = SubResource("CapsuleShape2D_lf4qy")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CapsuleShape2D_2xthv")
+
+[node name="state" parent="." instance=ExtResource("5_7pqou")]
+max_health = 2
+
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="no_health" from="state" to="." method="_on_state_no_health"]
 
 [editable path="HurtBox"]

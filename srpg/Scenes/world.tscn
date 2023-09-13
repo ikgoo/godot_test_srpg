@@ -1014,7 +1014,15 @@ position = Vector2(128, 112)
 
 [node name="Bat" parent="." instance=ExtResource("9_cxexh")]
 y_sort_enabled = true
-position = Vector2(132, 88)
+position = Vector2(128, 80)
+
+[node name="Bat2" parent="." instance=ExtResource("9_cxexh")]
+y_sort_enabled = true
+position = Vector2(160, 80)
+
+[node name="Bat3" parent="." instance=ExtResource("9_cxexh")]
+y_sort_enabled = true
+position = Vector2(80, 64)
 
 [editable path="Grass"]
 [editable path="Grass/HurtBox"]
