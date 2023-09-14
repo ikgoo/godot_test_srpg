@@ -15,6 +15,8 @@ var inputDirection = Vector2.DOWN
 var lastDirection = Vector2.DOWN
 var rollDirection = Vector2.ZERO
 
+var stats = PlayerStats
+
 enum PlayerState {
 	MOVE,
 	ROLL,
@@ -55,6 +57,7 @@ func change_state(chg_state : PlayerState) -> void:
 
 
 func _ready():
+	stats.connect("no_health", queue_free)
 	animationTree.active = true
 	hit_box.knockback_vector = lastDirection
 
@@ -109,3 +112,7 @@ func roll_animation_finished():
 	
 func attack_animation_finished():
 	change_state(PlayerState.IDLE)
+
+
+func _on_hurt_box_hurt_event():
+	stats.health -= 1

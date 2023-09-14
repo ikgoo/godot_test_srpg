@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://k7xqy4j8pntj"]
+[gd_scene load_steps=16 format=3 uid="uid://k7xqy4j8pntj"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_6kgk5"]
 [ext_resource type="PackedScene" uid="uid://cgouq7avfwgxt" path="res://Player/player.tscn" id="2_ngcut"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bcnmvrkfs0bft" path="res://Art/World/CliffTileset.png" id="6_pva8k"]
 [ext_resource type="PackedScene" uid="uid://bc4miv5kb8ldi" path="res://World/grass.tscn" id="8_6xts6"]
 [ext_resource type="PackedScene" uid="uid://be235ud4p3wg8" path="res://Enemles/Bat.tscn" id="9_cxexh"]
+[ext_resource type="PackedScene" uid="uid://bd0lvjfli3bpw" path="res://GUI/health_ui.tscn" id="10_w6642"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1anig"]
 texture = ExtResource("3_7vs3f")
@@ -1014,15 +1015,18 @@ position = Vector2(128, 112)
 
 [node name="Bat" parent="." instance=ExtResource("9_cxexh")]
 y_sort_enabled = true
-position = Vector2(128, 80)
+position = Vector2(105, 168)
 
 [node name="Bat2" parent="." instance=ExtResource("9_cxexh")]
 y_sort_enabled = true
-position = Vector2(160, 80)
+position = Vector2(164, 160)
 
 [node name="Bat3" parent="." instance=ExtResource("9_cxexh")]
 y_sort_enabled = true
-position = Vector2(80, 64)
+position = Vector2(38, 160)
+
+[node name="HealthUI" parent="." instance=ExtResource("10_w6642")]
+z_index = 1
 
 [editable path="Grass"]
 [editable path="Grass/HurtBox"]

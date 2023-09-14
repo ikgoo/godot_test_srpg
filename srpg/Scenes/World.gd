@@ -4,7 +4,9 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+#	var img = load("res://Art/Enemies/Bat.png")
+#	Input.set_custom_mouse_cursor(img, Input.CURSOR_ARROW, Vector2(img.get_width() / 2, img.get_height() / 2))
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
