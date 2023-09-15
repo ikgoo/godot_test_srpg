@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg0ul5eo15140"]
+
+[ext_resource type="Script" path="res://Scenes/find_group.gd" id="1_glxua"]
+[ext_resource type="PackedScene" uid="uid://bp3ye8k7ejfo0" path="res://Scenes/find_image.tscn" id="2_sa60f"]
+[ext_resource type="Texture2D" uid="uid://c0as3kpmtncb7" path="res://icon.svg" id="3_ion4i"]
+
+[node name="FindGroup" type="Node2D"]
+script = ExtResource("1_glxua")
+
+[node name="FindImage" parent="." instance=ExtResource("2_sa60f")]
+offset_left = 54.0
+offset_top = 187.0
+offset_right = 182.0
+offset_bottom = 315.0
+texture = ExtResource("3_ion4i")
+
+[node name="FindImage3" parent="." instance=ExtResource("2_sa60f")]
+offset_left = 19.0
+offset_right = 147.0
+offset_bottom = 128.0
+texture = ExtResource("3_ion4i")
+
+[node name="FindImage2" parent="." instance=ExtResource("2_sa60f")]
+offset_left = 271.0
+offset_right = 399.0
+offset_bottom = 128.0
+texture = ExtResource("3_ion4i")
+
+[node name="FindImage4" parent="." instance=ExtResource("2_sa60f")]
+offset_left = 250.0
+offset_top = 187.0
+offset_right = 378.0
+offset_bottom = 315.0
+texture = ExtResource("3_ion4i")
+
+[node name="FindImage5" parent="." instance=ExtResource("2_sa60f")]
+offset_left = 434.0
+offset_top = 187.0
+offset_right = 562.0
+offset_bottom = 315.0
+texture = ExtResource("3_ion4i")

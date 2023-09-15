@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp3ye8k7ejfo0"]
+
+[ext_resource type="Script" path="res://Scenes/find_image.gd" id="2_d8h37"]
+
+[node name="FindImage" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_d8h37")
