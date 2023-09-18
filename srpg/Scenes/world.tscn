@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://k7xqy4j8pntj"]
+[gd_scene load_steps=17 format=3 uid="uid://k7xqy4j8pntj"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_6kgk5"]
 [ext_resource type="PackedScene" uid="uid://cgouq7avfwgxt" path="res://Player/player.tscn" id="2_ngcut"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bc4miv5kb8ldi" path="res://World/grass.tscn" id="8_6xts6"]
 [ext_resource type="PackedScene" uid="uid://be235ud4p3wg8" path="res://Enemles/Bat.tscn" id="9_cxexh"]
 [ext_resource type="PackedScene" uid="uid://bd0lvjfli3bpw" path="res://GUI/health_ui.tscn" id="10_w6642"]
+[ext_resource type="Texture2D" uid="uid://bd5spsy6o3w2o" path="res://Art/UI/HeartUIFull.png" id="11_46h42"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1anig"]
 texture = ExtResource("3_7vs3f")
@@ -1027,6 +1028,44 @@ position = Vector2(38, 160)
 
 [node name="HealthUI" parent="." instance=ExtResource("10_w6642")]
 z_index = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(0, 11)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(22, 15)
+layout_mode = 2
+texture = ExtResource("11_46h42")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+text = "100"
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("11_46h42")
+
+[node name="Label2" type="Label" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+text = "200"
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("11_46h42")
+
+[node name="Label3" type="Label" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+text = "300"
 
 [editable path="Grass"]
 [editable path="Grass/HurtBox"]
