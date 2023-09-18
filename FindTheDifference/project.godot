@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="FindTheDifference"
-run/main_scene="res://Scenes/select_image.tscn"
+run/main_scene="res://Scenes/main.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="DiffUserData"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Singleton="*res://SubScenes/singleton.tscn"
 
 [display]
 
