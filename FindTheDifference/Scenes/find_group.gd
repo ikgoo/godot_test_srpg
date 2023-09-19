@@ -3,7 +3,7 @@ extends Node2D
 @export var maxFindCount = 5;
 @export var findCount : int = 0 : set = setFindCount;
 
-signal stageEnd
+signal StageEnd
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,7 +20,7 @@ func setFindCount(value):
 	print(findCount)
 	if(findCount == maxFindCount):
 		print('게임 끝')
-		emit_signal("stageEnd")
+		emit_signal("StageEnd")
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

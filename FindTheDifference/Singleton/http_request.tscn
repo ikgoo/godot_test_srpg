@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhdy8ox1vm2vn"]
+
+[ext_resource type="Script" path="res://Singleton/http_request.gd" id="1_yum1w"]
+
+[node name="HttpRequest" type="Node"]
+script = ExtResource("1_yum1w")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="HTTPRequest_GetDate" type="HTTPRequest" parent="."]
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="HTTPRequest_GetDate" to="." method="_on_http_request_get_date_request_completed"]

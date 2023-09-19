@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://cqtj6ha2ehx6s"]
+
+[ext_resource type="FontFile" uid="uid://b5gxrju4xpxo3" path="res://Fonts/cukirun.ttf" id="1_frvlm"]
+
+[resource]
+base_font = ExtResource("1_frvlm")

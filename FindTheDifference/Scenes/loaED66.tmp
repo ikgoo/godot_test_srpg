@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6e1b8aymfobt"]
+
+[ext_resource type="Script" path="res://Scenes/loading.gd" id="1_25uow"]
+[ext_resource type="FontVariation" uid="uid://cqtj6ha2ehx6s" path="res://Fonts/cukirun.tres" id="2_5nlvb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hk0qx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phob1"]
+bg_color = Color(0.929412, 0.298039, 0.815686, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ygnsi"]
+font = ExtResource("2_5nlvb")
+font_size = 76
+outline_size = 10
+outline_color = Color(1, 0.0666667, 0.0980392, 1)
+shadow_size = 26
+shadow_color = Color(0.113725, 0, 0, 1)
+shadow_offset = Vector2(4.63, 5.815)
+
+[node name="Loading" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_25uow")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 47.0
+offset_top = 9.0
+offset_right = -49.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hk0qx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_phob1")
+step = 1.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -118.615
+offset_bottom = -11.615
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOADING..."
+label_settings = SubResource("LabelSettings_ygnsi")
+horizontal_alignment = 1
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="MoveSceneWait" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="timeout" from="MoveSceneWait" to="." method="_on_move_scene_wait_timeout"]

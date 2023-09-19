@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3ckosbgfliym"]
+
+[ext_resource type="Script" path="res://Singleton/texture_rect.gd" id="1_xrsjh"]
+
+[node name="TextureRect" type="TextureRect"]
+size_flags_horizontal = 3
+expand_mode = 4
+script = ExtResource("1_xrsjh")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
