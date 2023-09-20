@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfkj2gjkedrwn"]
+[gd_scene load_steps=4 format=3 uid="uid://cfkj2gjkedrwn"]
 
+[ext_resource type="Texture2D" uid="uid://chuwaffi81nh4" path="res://Art/Shadows/MediumShadow.png" id="1_if20h"]
 [ext_resource type="Texture2D" uid="uid://blderi2k3oe5d" path="res://Art/World/Bush.png" id="1_n4pof"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kiw1l"]
@@ -8,9 +9,14 @@ height = 26.0
 
 [node name="Bush" type="StaticBody2D"]
 z_index = 1
-y_sort_enabled = true
+position = Vector2(0, 1)
 collision_layer = 2
 collision_mask = 0
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, 7)
+scale = Vector2(2.125, 2.15625)
+texture = ExtResource("1_if20h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 1)

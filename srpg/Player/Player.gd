@@ -9,6 +9,10 @@ extends CharacterBody2D
 @onready var animationTree : AnimationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var hit_box = $Marker2D/HitBox
+@onready var blick_animation_player = $BlickAnimationPlayer
+@onready var hurt_box = $HurtBox
+
+const PlayerHurtSound = preload("res://Player/player_hurt_sound.tscn")
 
 # 입력 방향
 var inputDirection = Vector2.DOWN
@@ -57,6 +61,7 @@ func change_state(chg_state : PlayerState) -> void:
 
 
 func _ready():
+	randomize()
 	stats.connect("no_health", queue_free)
 	animationTree.active = true
 	hit_box.knockback_vector = lastDirection
@@ -69,9 +74,9 @@ func _process(delta):
 		PlayerState.IDLE:
 			move_state(delta)
 		PlayerState.ATTACK:
-			attack_state(delta)
+			attack_state()
 		PlayerState.ROLL:
-			roll_state(delta)
+			roll_state()
 		
 func move_state(delta : float):	
 	inputDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -97,10 +102,10 @@ func move_state(delta : float):
 	
 	move_and_slide()
 
-func attack_state(delta : float):
+func attack_state():
 	velocity = Vector2.ZERO
 
-func roll_state(delta : float):
+func roll_state():
 	velocity = rollDirection * ROLL_SPEED
 	move_and_slide()
 	
@@ -114,5 +119,16 @@ func attack_animation_finished():
 	change_state(PlayerState.IDLE)
 
 
-func _on_hurt_box_hurt_event():
-	stats.health -= 1
+func _on_hurt_box_hurt_event(area):		# 피격 되었을때
+	stats.health -= area.damage
+	hurt_box.create_hit_effect()
+	hurt_box.start_invicibility(1.5)
+	var playerHurtSounds = PlayerHurtSound.instantiate()
+	get_tree().current_scene.add_child(playerHurtSounds)
+
+func _on_hurt_box_invincibility_started(area):
+	blick_animation_player.play("Start")
+
+
+func _on_hurt_box_invincibility_ended():
+	blick_animation_player.play("Stop")

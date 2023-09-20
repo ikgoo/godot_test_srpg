@@ -4,6 +4,12 @@ extends Control
 #	JSON으로 데이터를 받아와 정보 등록
 ###
 
+@onready var animation_player = $AnimationPlayer
+@onready var http_request = $HTTPRequest
+@onready var progress_bar = $ProgressBar
+@onready var timer_main_data = $TimerMainData
+@onready var move_scene_wait = $MoveSceneWait
+
 # 전체 다운로드 해야할 날짜 리스트
 var dateList : Array
 # 현재 일자를 가져와 다운로드에 활용
@@ -43,14 +49,11 @@ var downloadJsonData : Variant = {		# 내부 데이터는 참고용
 	}
 }
 
-@onready var http_request = $HTTPRequest
-@onready var progress_bar = $ProgressBar
-@onready var timer_main_data = $TimerMainData
-@onready var move_scene_wait = $MoveSceneWait
 
 var tagetDateList = []
 
 func _ready():
+	animation_player.play("loading")
 	progress_bar.value = 0
 	var b : bool = SingletonMainData.InitMainData()			# 로컬 스토리지에 메인 데이터 가져오기
 
@@ -83,23 +86,12 @@ func Change_Prograss_Value(val, rate):
 	progress_bar.value = rate
 
 func Finsh_Download():
+	progress_bar.value = 100
 	SingletonMainData.GetAndSortDateList()		# 날짜 리스트 생성 및 정렬
 	SingletonImageDown.disconnect("Change_Prograss_Value", Change_Prograss_Value)
 	SingletonImageDown.disconnect("Finsh_Download", Finsh_Download)
 	
-	move_scene_wait.start()
+	animation_player.play("RESET")
+	SceneTransition.change_scene(SceneTransition.SceneName.selectImage, 0.5)
 	
-
-#var url = "https://example.com"
-#var custom_headers = {"Content-Type": "application/json"}
-#var ssl_validate_domain = true
-#var method = HTTPClient.METHOD_POST
-#var request_data = "{&quot;name&quot;: &quot;Godot&quot;, &quot;version&quot;: &quot;4.1.1&quot;}"
-#http_request.request(url, custom_headers, ssl_validate_domain, method, request_data)
-
-
-# 잠시 기다린 후 이미지 선택 화면으로 이동
-func _on_move_scene_wait_timeout():
-	get_tree().change_scene_to_file("res://Scenes/select_image.tscn")
-
 

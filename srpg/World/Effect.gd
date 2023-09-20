@@ -2,6 +2,7 @@ extends AnimatedSprite2D
 
 func _ready():
 	connect("animation_finished", _on_animated_sprite_2d_animation_finished)
+	frame = 0
 	play("Animate")
 
 

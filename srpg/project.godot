@@ -82,6 +82,7 @@ roll={
 2d_physics/layer_6="EmeyHurtBox"
 2d_physics/layer_7="PlayerHitBox"
 2d_physics/layer_8="EmeyHitBox"
+2d_physics/layer_9="SoftCollisions"
 
 [rendering]
 

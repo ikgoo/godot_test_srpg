@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://b2xsq66shvaq0"]
+[gd_scene load_steps=15 format=3 uid="uid://b2xsq66shvaq0"]
 
 [ext_resource type="Texture2D" uid="uid://dyg0dr04lgrhl" path="res://Art/Effects/EnemyDeathEffect.png" id="1_572k7"]
 [ext_resource type="Script" path="res://World/Effect.gd" id="1_ff1w2"]
+[ext_resource type="AudioStream" uid="uid://b8varu62ttjs7" path="res://Art/Music and Sounds/EnemyDie.wav" id="3_8xh1w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnuqm"]
 atlas = ExtResource("1_572k7")
@@ -86,3 +87,7 @@ z_index = 1
 sprite_frames = SubResource("SpriteFrames_7s4x8")
 animation = &"Animate"
 script = ExtResource("1_ff1w2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8xh1w")
+autoplay = true

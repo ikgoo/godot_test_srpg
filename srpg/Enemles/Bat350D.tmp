@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://be235ud4p3wg8"]
+[gd_scene load_steps=22 format=3 uid="uid://be235ud4p3wg8"]
 
 [ext_resource type="Script" path="res://Enemles/Bat.gd" id="1_6me0j"]
 [ext_resource type="Texture2D" uid="uid://vgshxta31onu" path="res://Art/Enemies/Bat.png" id="1_6pygy"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c8j3kggnlk3qg" path="res://Areas/hit_box.tscn" id="7_kww1j"]
 [ext_resource type="PackedScene" uid="uid://bbjna1esfionc" path="res://Areas/soft_collision.tscn" id="8_ehjib"]
 [ext_resource type="PackedScene" uid="uid://c1ry1wogblfn0" path="res://Enemles/wander_controller.tscn" id="9_rt088"]
+[ext_resource type="Texture2D" uid="uid://vd7npsxjioqo" path="res://Art/Shadows/LargeShadow.png" id="10_7ibo4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tyyqa"]
 atlas = ExtResource("1_6pygy")
@@ -124,6 +125,9 @@ shape = SubResource("CircleShape2D_1j3jb")
 shape = SubResource("CircleShape2D_f1fyl")
 
 [node name="WanderController" parent="." instance=ExtResource("9_rt088")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("10_7ibo4")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="no_health" from="states" to="." method="_on_state_no_health"]
