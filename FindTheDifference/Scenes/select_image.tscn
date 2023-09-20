@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://clec16xcelhp6"]
+[gd_scene load_steps=5 format=3 uid="uid://clec16xcelhp6"]
 
 [ext_resource type="Script" path="res://Scenes/select_image.gd" id="1_4yuw7"]
 [ext_resource type="PackedScene" uid="uid://d3ckosbgfliym" path="res://Singleton/texture_rect.tscn" id="1_xsgyx"]
 [ext_resource type="Texture2D" uid="uid://de1jwqej2oll8" path="res://Art/sub_20230919_01.jpg" id="3_l1v06"]
+[ext_resource type="AudioStream" uid="uid://uy8pc8565wbx" path="res://Sounds/Music/former-102685.mp3" id="4_vi156"]
 
 [node name="SelectImage" type="Control"]
 layout_mode = 3
@@ -31,3 +32,9 @@ columns = 5
 [node name="TextureRect" parent="ScrollContainer/GridContainer" instance=ExtResource("1_xsgyx")]
 layout_mode = 2
 texture = ExtResource("3_l1v06")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vi156")
+
+[node name="AudioDelayPlay" type="Timer" parent="."]
+wait_time = 0.5

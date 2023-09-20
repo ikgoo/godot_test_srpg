@@ -1,11 +1,19 @@
 extends Node2D
 
+@export var backMusicList : Array[AudioStream]
+
 @onready var http_request = $HTTPRequest
 @onready var find_group = $FindGroup
+@onready var random_audio_player = $RandomAudioPlayer
+
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
 	find_group.connect("StageEnd", StageEnd)
+	randomize()
+	random_audio_player.stream = backMusicList[randi_range(0, backMusicList.size()-1)]
+	random_audio_player.play()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -4,6 +4,9 @@ extends Control
 #	JSON으로 데이터를 받아와 정보 등록
 ###
 
+@export var musicStart : AudioStream
+@export var musicEnd : AudioStream
+
 @onready var animation_player = $AnimationPlayer
 @onready var http_request = $HTTPRequest
 @onready var progress_bar = $ProgressBar
@@ -53,6 +56,7 @@ var downloadJsonData : Variant = {		# 내부 데이터는 참고용
 var tagetDateList = []
 
 func _ready():
+	#SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.GAMEBONUS, 0)
 	animation_player.play("loading")
 	progress_bar.value = 0
 	var b : bool = SingletonMainData.InitMainData()			# 로컬 스토리지에 메인 데이터 가져오기
@@ -92,6 +96,8 @@ func Finsh_Download():
 	SingletonImageDown.disconnect("Finsh_Download", Finsh_Download)
 	
 	animation_player.play("RESET")
-	SceneTransition.change_scene(SceneTransition.SceneName.selectImage, 0.5)
+
+	SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.LEVELPASSED, 0)
+	SceneTransition.change_scene(SceneTransition.SceneName.SELECTIMAGE, 1.0)
 	
 

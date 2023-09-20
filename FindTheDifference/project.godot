@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 SingletonMainData="*res://Singleton/singleton.tscn"
 SingletonImageDown="*res://Singleton/http_request.tscn"
 SceneTransition="*res://Singleton/scene_transition.tscn"
+SceneAudioPlayer="*res://Singleton/scene_audio_player.tscn"
 
 [display]
 

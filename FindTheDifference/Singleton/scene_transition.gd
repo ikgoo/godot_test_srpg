@@ -1,6 +1,10 @@
 extends CanvasLayer
 
-enum SceneName { loading, selectImage, main }
+enum SceneName { 
+	LOADING, 
+	SELECTIMAGE,
+	MAIN,
+}
 
 var scenesList : Array = [ 
 	"res://Scenes/loading.tscn",

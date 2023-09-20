@@ -1,6 +1,7 @@
 extends Control
 
 @onready var grid_container = $ScrollContainer/GridContainer
+@onready var audio_delay_play = $AudioDelayPlay
 
 @onready var texture_rect = preload("res://Singleton/texture_rect.tscn")
 
@@ -29,16 +30,22 @@ func _ready():
 		selectImageList.append(tmptr)
 		grid_container.add_child(tmptr)
 	
-	print(SingletonMainData.dateList)
+	audio_delay_play.start(0.5)
+	await audio_delay_play.timeout
+	$AudioStreamPlayer.play()
 	
 	
 	
 
 func SelectImage(curDate):
+	$AudioStreamPlayer.stop()
+	
 	# 연결 시그널을 모두 끊음
 	for i in range(selectImageList.size()):
 		selectImageList[i].disconnect("SelectImage", SelectImage)
 		
 	selectImageList.clear()
 	
-	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.CLICK, 0)
+	SceneTransition.change_scene(SceneTransition.SceneName.MAIN, 1.5)
+	

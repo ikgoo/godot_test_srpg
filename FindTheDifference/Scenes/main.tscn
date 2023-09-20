@@ -1,10 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr8ielv7bkeg3"]
+[gd_scene load_steps=11 format=3 uid="uid://cr8ielv7bkeg3"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_s0b6o"]
 [ext_resource type="PackedScene" uid="uid://cg0ul5eo15140" path="res://Scenes/find_group.tscn" id="2_42ed6"]
+[ext_resource type="AudioStream" uid="uid://cqfxf7j44wjyy" path="res://Sounds/Music/cottagecore-17463.mp3" id="2_163fb"]
+[ext_resource type="AudioStream" uid="uid://dnr6gtwdaq4wa" path="res://Sounds/Music/drama-stringsmp3-14627.mp3" id="3_016da"]
+[ext_resource type="AudioStream" uid="uid://dfk2r5o0l8gxg" path="res://Sounds/Music/funny-dancing-kids-158822.mp3" id="5_fg5ob"]
+[ext_resource type="AudioStream" uid="uid://dk4pgtttesj76" path="res://Sounds/Music/happy-swing-164932.mp3" id="6_wsjsd"]
+[ext_resource type="AudioStream" uid="uid://e2ysdfrl4c4j" path="res://Sounds/Music/positive-days-157222.mp3" id="7_a5qbb"]
+[ext_resource type="AudioStream" uid="uid://coqhg162f4qoa" path="res://Sounds/Music/upbeat-fun-loop-164631.mp3" id="8_3b17n"]
+[ext_resource type="AudioStream" uid="uid://7fv2gxaoqdb8" path="res://Sounds/Music/upbeat-funky-retro-131297.mp3" id="9_tjano"]
+[ext_resource type="AudioStream" uid="uid://cd6imus0fy8jd" path="res://Sounds/Music/jolly-farmer-163815.mp3" id="10_jabo3"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_s0b6o")
+backMusicList = Array[AudioStream]([ExtResource("2_163fb"), ExtResource("3_016da"), ExtResource("5_fg5ob"), ExtResource("6_wsjsd"), ExtResource("7_a5qbb"), ExtResource("8_3b17n"), ExtResource("9_tjano"), ExtResource("10_jabo3")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
@@ -19,5 +28,7 @@ offset_right = 533.0
 offset_bottom = 625.0
 
 [node name="FindGroup" parent="." instance=ExtResource("2_42ed6")]
+
+[node name="RandomAudioPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]
