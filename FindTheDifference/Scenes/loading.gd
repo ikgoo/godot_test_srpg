@@ -22,32 +22,38 @@ var act_date_index : int = 0
 
 # 현재 다운로드 하고 있는 JSON 데이터
 var downloadJsonData : Variant = {		# 내부 데이터는 참고용
-	"main_img_url" : "https://websheet.noligo.co.kr/OIG._cHk4EfL4dH6PeT.bfeQ.jpg",
+	"main_img_url01" : "https://websheet.noligo.co.kr/OIG._cHk4EfL4dH6PeT.bfeQ.jpg",
+	"main_img_url02" : "https://websheet.noligo.co.kr/RJi8DqfqoC7agmkaWvJi.jpg",
 	"data" : {
 		"diff01" : {
-			"diff_img_url" : "https://websheet.noligo.co.kr/OIG._cHk4EfL4dH6PeT.bfeQ.jpg",
 			"x" : 100,
-			"y" : 100
+			"y" : 100,
+			"width" : 50,
+			"height" : 50,
 		},
 		"diff02" : {
-			"diff_img_url" : "https://websheet.noligo.co.kr/OIG._cHk4EfL4dH6PeT.bfeQ.jpg",
 			"x" : 100,
-			"y" : 100
+			"y" : 100,
+			"width" : 50,
+			"height" : 50,
 		},
 		"diff03" : {
-			"diff_img_url" : "https://websheet.noligo.co.kr/OIG._cHk4EfL4dH6PeT.bfeQ.jpg",
 			"x" : 100,
-			"y" : 100
+			"y" : 100,
+			"width" : 50,
+			"height" : 50,
 		},
 		"diff04" : {
-			"diff_img_url" : "https://websheet.noligo.co.kr/OIG._cHk4EfL4dH6PeT.bfeQ.jpg",
 			"x" : 100,
-			"y" : 100
+			"y" : 100,
+			"width" : 50,
+			"height" : 50,
 		},
 		"diff05" : {
-			"diff_img_url" : "https://websheet.noligo.co.kr/OIG._cHk4EfL4dH6PeT.bfeQ.jpg",
 			"x" : 100,
-			"y" : 100
+			"y" : 100,
+			"width" : 50,
+			"height" : 50,
 		}
 	}
 }

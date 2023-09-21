@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cr8ielv7bkeg3"]
+[gd_scene load_steps=12 format=3 uid="uid://cr8ielv7bkeg3"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_s0b6o"]
 [ext_resource type="PackedScene" uid="uid://cg0ul5eo15140" path="res://Scenes/find_group.tscn" id="2_42ed6"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://coqhg162f4qoa" path="res://Sounds/Music/upbeat-fun-loop-164631.mp3" id="8_3b17n"]
 [ext_resource type="AudioStream" uid="uid://7fv2gxaoqdb8" path="res://Sounds/Music/upbeat-funky-retro-131297.mp3" id="9_tjano"]
 [ext_resource type="AudioStream" uid="uid://cd6imus0fy8jd" path="res://Sounds/Music/jolly-farmer-163815.mp3" id="10_jabo3"]
+[ext_resource type="PackedScene" uid="uid://db6fief5iki75" path="res://SubScenes/options.tscn" id="11_pq570"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_s0b6o")
@@ -29,6 +30,10 @@ offset_bottom = 625.0
 
 [node name="FindGroup" parent="." instance=ExtResource("2_42ed6")]
 
-[node name="RandomAudioPlayer" type="AudioStreamPlayer" parent="."]
+[node name="RandomMusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="Options" parent="." instance=ExtResource("11_pq570")]
+visible = false
 
 [connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]

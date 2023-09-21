@@ -4,15 +4,15 @@ extends Node2D
 
 @onready var http_request = $HTTPRequest
 @onready var find_group = $FindGroup
-@onready var random_audio_player = $RandomAudioPlayer
+@onready var random_music_player = $RandomMusicPlayer
 
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
 	find_group.connect("StageEnd", StageEnd)
 	randomize()
-	random_audio_player.stream = backMusicList[randi_range(0, backMusicList.size()-1)]
-	random_audio_player.play()
+	random_music_player.stream = backMusicList[randi_range(0, backMusicList.size()-1)]
+	random_music_player.play()
 	
 
 

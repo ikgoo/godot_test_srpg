@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Singleton/scene_audio_player.gd" id="1_tw33d"]
 
 [node name="SceneAudioPlayer" type="AudioStreamPlayer"]
+bus = &"SFX"
 script = ExtResource("1_tw33d")
 
 [node name="Timer" type="Timer" parent="."]

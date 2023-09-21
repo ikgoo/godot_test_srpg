@@ -19,9 +19,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SceneTransition="*res://Singleton/scene_transition.tscn"
+SceneParticles="*res://Singleton/scene_particles.tscn"
 SingletonMainData="*res://Singleton/singleton.tscn"
 SingletonImageDown="*res://Singleton/http_request.tscn"
-SceneTransition="*res://Singleton/scene_transition.tscn"
 SceneAudioPlayer="*res://Singleton/scene_audio_player.tscn"
 
 [display]

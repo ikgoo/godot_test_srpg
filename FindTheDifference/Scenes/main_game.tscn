@@ -1,0 +1,161 @@
+[gd_scene load_steps=13 format=3 uid="uid://emtla374ynow"]
+
+[ext_resource type="Script" path="res://Scenes/main_game.gd" id="1_nut0g"]
+[ext_resource type="AudioStream" uid="uid://cqfxf7j44wjyy" path="res://Sounds/Music/cottagecore-17463.mp3" id="2_1h0ca"]
+[ext_resource type="PackedScene" uid="uid://db6fief5iki75" path="res://SubScenes/options.tscn" id="2_8dl5c"]
+[ext_resource type="AudioStream" uid="uid://dnr6gtwdaq4wa" path="res://Sounds/Music/drama-stringsmp3-14627.mp3" id="3_hv3su"]
+[ext_resource type="AudioStream" uid="uid://dfk2r5o0l8gxg" path="res://Sounds/Music/funny-dancing-kids-158822.mp3" id="4_tlnkf"]
+[ext_resource type="AudioStream" uid="uid://dk4pgtttesj76" path="res://Sounds/Music/happy-swing-164932.mp3" id="5_pu624"]
+[ext_resource type="AudioStream" uid="uid://e2ysdfrl4c4j" path="res://Sounds/Music/positive-days-157222.mp3" id="6_83qh1"]
+[ext_resource type="AudioStream" uid="uid://coqhg162f4qoa" path="res://Sounds/Music/upbeat-fun-loop-164631.mp3" id="7_sltt0"]
+[ext_resource type="AudioStream" uid="uid://7fv2gxaoqdb8" path="res://Sounds/Music/upbeat-funky-retro-131297.mp3" id="8_nhvsk"]
+[ext_resource type="AudioStream" uid="uid://cd6imus0fy8jd" path="res://Sounds/Music/jolly-farmer-163815.mp3" id="9_2tbny"]
+[ext_resource type="PackedScene" uid="uid://d3ckosbgfliym" path="res://SubScenes/texture_rect.tscn" id="10_svt4d"]
+[ext_resource type="Texture2D" uid="uid://c0as3kpmtncb7" path="res://icon.svg" id="12_0mh6h"]
+
+[node name="MainGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nut0g")
+backMusicList = Array[AudioStream]([ExtResource("2_1h0ca"), ExtResource("3_hv3su"), ExtResource("4_tlnkf"), ExtResource("5_pu624"), ExtResource("6_83qh1"), ExtResource("7_sltt0"), ExtResource("8_nhvsk"), ExtResource("9_2tbny")])
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.894118, 0.933333, 1, 1)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "test"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 66.0
+offset_right = -27.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options" parent="." instance=ExtResource("2_8dl5c")]
+visible = false
+layout_mode = 1
+
+[node name="RandomMusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="LeftImage" parent="." instance=ExtResource("10_svt4d")]
+layout_mode = 2
+offset_left = 18.0
+offset_top = 65.0
+offset_right = 568.0
+offset_bottom = 635.0
+texture = ExtResource("12_0mh6h")
+expand_mode = 1
+
+[node name="Diff01" type="TextureRect" parent="LeftImage"]
+layout_mode = 0
+offset_left = 97.0
+offset_right = 97.0
+texture = ExtResource("12_0mh6h")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Diff02" type="TextureRect" parent="LeftImage"]
+layout_mode = 0
+offset_left = 52.0
+offset_right = 52.0
+texture = ExtResource("12_0mh6h")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Diff03" type="TextureRect" parent="LeftImage"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 32.0
+offset_right = 43.0
+offset_bottom = 32.0
+texture = ExtResource("12_0mh6h")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Diff04" type="TextureRect" parent="LeftImage"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 64.0
+offset_right = 66.0
+offset_bottom = 64.0
+texture = ExtResource("12_0mh6h")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Diff05" type="TextureRect" parent="LeftImage"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 140.0
+offset_right = 53.0
+offset_bottom = 140.0
+texture = ExtResource("12_0mh6h")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="RightImage" parent="." instance=ExtResource("10_svt4d")]
+layout_mode = 2
+offset_left = 583.0
+offset_top = 66.0
+offset_right = 1133.0
+offset_bottom = 636.0
+texture = ExtResource("12_0mh6h")
+expand_mode = 1
+
+[node name="Diff01" type="TextureRect" parent="RightImage"]
+layout_mode = 0
+texture = ExtResource("12_0mh6h")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Diff02" type="TextureRect" parent="RightImage"]
+layout_mode = 0
+texture = ExtResource("12_0mh6h")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Diff03" type="TextureRect" parent="RightImage"]
+layout_mode = 0
+texture = ExtResource("12_0mh6h")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Diff04" type="TextureRect" parent="RightImage"]
+layout_mode = 0
+texture = ExtResource("12_0mh6h")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Diff05" type="TextureRect" parent="RightImage"]
+layout_mode = 0
+texture = ExtResource("12_0mh6h")
+expand_mode = 1
+stretch_mode = 1
+
+[connection signal="gui_input" from="Background" to="." method="_on_background_gui_input"]

@@ -9,7 +9,7 @@ enum SceneName {
 var scenesList : Array = [ 
 	"res://Scenes/loading.tscn",
 	"res://Scenes/select_image.tscn",
-	"res://Scenes/main.tscn",
+	"res://Scenes/main_game.tscn",
 ]
 
 func _ready():

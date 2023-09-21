@@ -18,7 +18,7 @@ var maxDownloadStep : int = 0
 var downloadJsonData : Variant
 
 var downloadSubStep : int = 0
-var downloadMaxSubStep : int = 6
+var downloadMaxSubStep : int = 2
 
 @onready var http_request = $HTTPRequest
 @onready var http_request_get_date = $HTTPRequest_GetDate
@@ -86,18 +86,11 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 		
 		# 해당일의 메인 이미지 호출
 		downloadSubStep = 2
-		var last_three = str(downloadJsonData[currentDate]["main_img_url"]).right(3)
-		http_request.download_file = "user://main_" + currentDate + "." + last_three
-		#print(baseUrl + downloadJsonData[procDate]["main_img_url"])
-		http_request.request(baseUrl + downloadJsonData[currentDate]["main_img_url"])		# 메인 이미지 호출
+		CallDownImage(1)
 	elif downloadSubStep >= 2:
 		if downloadSubStep <= downloadMaxSubStep:
 			downloadSubStep += 1
-			var img_cnt : String = "0" + str(downloadSubStep-2)
-			var last_three = str(downloadJsonData[currentDate]["data"]["diff" + img_cnt]["diff_img_url"]).right(3)
-			http_request.download_file = "user://sub_" + currentDate + "_" + img_cnt + "." + last_three
-			#print(baseUrl + downloadJsonData[currentDate]["data"]["diff" + img_cnt]["diff_img_url"])
-			http_request.request(baseUrl + downloadJsonData[currentDate]["data"]["diff" + img_cnt]["diff_img_url"])		# 메인 이미지 호출
+			CallDownImage(2)
 		else:
 			if currentDateIdx == maxDownloadStep-1:
 				emit_signal("Change_Prograss_Value", currentDateIdx+1, 100)
@@ -112,3 +105,10 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 				StartFistDownload()
 				
 
+# dlalwl ekdnsfhem
+func CallDownImage(idx : int):
+	var tmpUrl = str(downloadJsonData[currentDate]["main_img_url0" + str(idx)])
+	var last_three = tmpUrl.right(3)
+	http_request.download_file = "user://main_" + currentDate + "_0" + str(idx) + "." + last_three
+	http_request.request(baseUrl + tmpUrl)		# 메인 이미지 호출
+	

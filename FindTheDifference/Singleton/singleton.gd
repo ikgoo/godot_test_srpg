@@ -10,7 +10,29 @@ var dateList : Array
 # 게임 메인 데이터 위치
 var mainDataFilePath = "user://mainJsonData.json"
 
-var userInfo : Variant
+@onready var texture_rect = preload("res://SubScenes/texture_rect.tscn")
+
+# 유저 정보
+var userInfo : Variant = {
+	"left" : 5,			# 생명
+	"help" : 5,			# 도움
+}
+
+# 음향 기본값
+var music_default_volumn = 0.2
+var sfx_default_value = 0.1
+
+# 메인 게임에 사용될 날짜
+var sctDate = ""
+
+# 개발 여부
+var isDev = true
+
+func _ready() -> void:
+	var bus_index1 = AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_db(bus_index1, linear_to_db(music_default_volumn))
+	var bus_index2 = AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_db(bus_index2, linear_to_db(music_default_volumn))
 
 # 게임 메인 데이터 가져오기
 func InitMainData() -> bool:
@@ -39,13 +61,16 @@ func LoadMainData() -> bool:
 	var b : bool = true
 	
 	var mainData : FileAccess = FileAccess.open(mainDataFilePath, FileAccess.READ)
+	
 	if mainData == null:
 		b = false
 	else:
 		var tmpMainData : Variant = mainData.get_var()
 		self.lastDate = tmpMainData['lastDate']
 		self.mainJsonData = tmpMainData['mainJsonData']
-		self.userInfo = tmpMainData['userInfo']
+		if tmpMainData['userInfo'] != null:
+			self.userInfo = tmpMainData['userInfo']
+			
 		mainData.close()
 		b = true
 	
@@ -64,3 +89,18 @@ func SaveMainData():
 func GetAndSortDateList():
 	dateList = mainJsonData["datas"].keys()
 	dateList.sort()
+
+
+# 다운받은 이미지 불러오기(ImageTexture 로)
+func LoadDownloadImage(curDate : String, idx : int) -> ImageTexture:
+	var path = "user://main_" + curDate + "_0" + str(idx) + ".jpg"
+
+	var img = Image.new()
+	var tex = ImageTexture.new()
+	var file : FileAccess = FileAccess.open(path, FileAccess.READ)
+	var img_buffer = file.get_buffer(file.get_length())
+	img.load_jpg_from_buffer(img_buffer)
+	tex.set_image(img)	
+	
+	
+	return tex
