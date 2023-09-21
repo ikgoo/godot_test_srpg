@@ -18,6 +18,7 @@ func _ready():
 		var tex : ImageTexture = SingletonMainData.LoadDownloadImage(curDate, 1)
 		
 		tmptr.texture = tex
+		var tttt = SingletonMainData.mainJsonData["datas"][curDate]["data"]
 		tmptr.curData = SingletonMainData.mainJsonData["datas"][curDate]["data"]
 		tmptr.curDate = curDate
 		tmptr.connect("SelectImage", SelectImage)
@@ -27,12 +28,18 @@ func _ready():
 	
 	audio_delay_play.start(0.5)
 	await audio_delay_play.timeout
+	$AudioStreamPlayer.autoplay = true
 	$AudioStreamPlayer.play()
 	
 
 func SelectImage(img_type, curDate, gPosition, lPosition, event):
+	var tmpData = SingletonMainData.mainJsonData["datas"][curDate]
+	if ("Success" in tmpData) == true and tmpData["Success"] == true:
+		return
+
 	SingletonMainData.sctDate = curDate		# 선택된 날짜 등록
 	
+	$AudioStreamPlayer.autoplay = false
 	$AudioStreamPlayer.stop()
 	SceneParticles.emit_signal("ParticleEvent", SceneParticles.ParticleName.CLICKHEART, gPosition, 0)
 	

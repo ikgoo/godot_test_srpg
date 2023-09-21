@@ -57,13 +57,6 @@ offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Options" parent="." instance=ExtResource("2_8dl5c")]
-visible = false
-layout_mode = 1
-
-[node name="RandomMusicPlayer" type="AudioStreamPlayer" parent="."]
-bus = &"Music"
-
 [node name="LeftImage" parent="." instance=ExtResource("10_svt4d")]
 layout_mode = 2
 offset_left = 18.0
@@ -157,5 +150,12 @@ layout_mode = 0
 texture = ExtResource("12_0mh6h")
 expand_mode = 1
 stretch_mode = 1
+
+[node name="Options" parent="." instance=ExtResource("2_8dl5c")]
+visible = false
+layout_mode = 1
+
+[node name="RandomMusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
 
 [connection signal="gui_input" from="Background" to="." method="_on_background_gui_input"]

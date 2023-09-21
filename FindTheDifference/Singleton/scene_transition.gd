@@ -17,8 +17,10 @@ func _ready():
 	
 
 func change_scene(target: SceneName, duration : float) -> void:
-	$Timer.start(duration)
-	await $Timer.timeout
+	if duration != 0:
+		$Timer.start(duration)
+		await $Timer.timeout
+		
 	$AnimationPlayer.play("dissolve")
 	await $AnimationPlayer.animation_finished
 	get_tree().change_scene_to_file(scenesList[target])

@@ -9,9 +9,11 @@ extends Control
 
 @onready var animation_player = $AnimationPlayer
 @onready var http_request = $HTTPRequest
-@onready var progress_bar = $ProgressBar
 @onready var timer_main_data = $TimerMainData
 @onready var move_scene_wait = $MoveSceneWait
+
+#@onready var progress_bar = $ProgressBar
+@onready var progress_bar = $Control/TextureProgressBar
 
 # 전체 다운로드 해야할 날짜 리스트
 var dateList : Array

@@ -64,29 +64,19 @@ horizontal_alignment = 1
 layout_mode = 2
 bus_name = "SFX"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="ButtonBack" type="Button" parent="Panel"]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 39.0
-offset_top = -43.0
-offset_right = -39.0
-offset_bottom = -12.0
+offset_left = -22.5
+offset_top = -56.5
+offset_right = 22.5
+offset_bottom = -25.5
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 15
-
-[node name="GoMain" type="Button" parent="Panel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Go Main"
-
-[node name="ButtonBack" type="Button" parent="Panel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
 text = "Back"
 
-[connection signal="pressed" from="Panel/HBoxContainer/GoMain" to="." method="_on_go_main_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/ButtonBack" to="." method="_on_button_back_pressed"]
+[connection signal="pressed" from="Panel/ButtonBack" to="." method="_on_button_back_pressed"]

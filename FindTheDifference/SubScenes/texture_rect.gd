@@ -12,7 +12,8 @@ var img_type : String = "NONE"
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT :
-		var gPosition = get_global_transform_with_canvas().affine_inverse().basis_xform(event.global_position)
+		#var gPosition = get_global_transform_with_canvas().affine_inverse().basis_xform(event.global_position)
+		var gPosition = get_global_transform() * event.position
 
 
 		emit_signal("SelectImage", img_type, curDate, gPosition, event.position, event)
