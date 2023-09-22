@@ -8,38 +8,32 @@ extends Control
 var selectImageList = []
 
 func _ready():
-	
 	# 정상 이미지를 가져와 화면 출력
 	for i in range(SingletonMainData.dateList.size()):
 		var curDate = SingletonMainData.dateList[i]
-		
-		var tmptr : TextureRect = texture_rect.instantiate() as TextureRect
-		
-		var tex : ImageTexture = SingletonMainData.LoadDownloadImage(curDate, 1)
-		
-		tmptr.texture = tex
+
+		var tmptr : TextureButton = texture_rect.instantiate() as TextureButton
+
+		var tex : ImageTexture = SingletonMainData.LoadDownloadImage("main", curDate, 1)
+
+		tmptr.texture_normal = tex
 		var tttt = SingletonMainData.mainJsonData["datas"][curDate]["data"]
 		tmptr.curData = SingletonMainData.mainJsonData["datas"][curDate]["data"]
 		tmptr.curDate = curDate
 		tmptr.connect("SelectImage", SelectImage)
-		
+
 		selectImageList.append(tmptr)
 		grid_container.add_child(tmptr)
-	
-	audio_delay_play.start(0.5)
-	await audio_delay_play.timeout
-	$AudioStreamPlayer.autoplay = true
-	$AudioStreamPlayer.play()
-	
 
-func SelectImage(img_type, curDate, gPosition, lPosition, event):
+	MainMusicDelayPlay()
+
+func SelectImage(img_name, curDate, gPosition, lPosition):
 	var tmpData = SingletonMainData.mainJsonData["datas"][curDate]
 	if ("Success" in tmpData) == true and tmpData["Success"] == true:
 		return
 
 	SingletonMainData.sctDate = curDate		# 선택된 날짜 등록
 	
-	$AudioStreamPlayer.autoplay = false
 	$AudioStreamPlayer.stop()
 	SceneParticles.emit_signal("ParticleEvent", SceneParticles.ParticleName.CLICKHEART, gPosition, 0)
 	
@@ -52,3 +46,14 @@ func SelectImage(img_type, curDate, gPosition, lPosition, event):
 	SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.CLICK, 0)
 	SceneTransition.change_scene(SceneTransition.SceneName.MAIN, 1.1)
 	
+
+# 메인 음악 딜레이 플레이
+func MainMusicDelayPlay():
+	audio_delay_play.start(0.5)
+	await audio_delay_play.timeout
+	$AudioStreamPlayer.play()
+	
+
+
+func _on_audio_stream_player_finished():
+	MainMusicDelayPlay()

@@ -12,8 +12,8 @@ extends Control
 @onready var timer_main_data = $TimerMainData
 @onready var move_scene_wait = $MoveSceneWait
 
-#@onready var progress_bar = $ProgressBar
-@onready var progress_bar = $Control/TextureProgressBar
+@onready var progress_bar = $ProgressBar
+@onready var persent_label = $PersentLabel
 
 # 전체 다운로드 해야할 날짜 리스트
 var dateList : Array
@@ -63,10 +63,13 @@ var downloadJsonData : Variant = {		# 내부 데이터는 참고용
 
 var tagetDateList = []
 
+# progress bar 속도를 위해 사용
+var tween : Tween = null
 func _ready():
+	
 	#SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.GAMEBONUS, 0)
 	animation_player.play("loading")
-	progress_bar.value = 0
+	progress_bar.texture_progress_bar.value = 0
 	var b : bool = SingletonMainData.InitMainData()			# 로컬 스토리지에 메인 데이터 가져오기
 
 	SingletonImageDown.connect("Change_Prograss_Value", Change_Prograss_Value)
@@ -90,22 +93,36 @@ func _on_timer_main_data_timeout():
 	
 	if SingletonImageDown.StartDownloadRangeDate(act_date_str, 3) == false:
 		# 다운 대상이 없으면 바로 종료하고 다음화면으로 이동
-		progress_bar.value = 100
+		progress_bar.texture_progress_bar.value = 100
 		move_scene_wait.start()
 	
 
 func Change_Prograss_Value(val, rate):
-	progress_bar.value = rate
+	if tween != null and tween.is_running():
+		tween.kill()
+	
+	tween = create_tween()
+	tween.tween_property(progress_bar.texture_progress_bar, "value", rate, 0.5)
 
 func Finsh_Download():
-	progress_bar.value = 100
-	SingletonMainData.GetAndSortDateList()		# 날짜 리스트 생성 및 정렬
-	SingletonImageDown.disconnect("Change_Prograss_Value", Change_Prograss_Value)
-	SingletonImageDown.disconnect("Finsh_Download", Finsh_Download)
+	if tween != null and tween.is_running():
+		tween.kill()
 	
-	animation_player.play("RESET")
+	tween = create_tween()
+	tween.tween_property(progress_bar.texture_progress_bar, "value", 100, 0.5)
+	tween.tween_callback(GoMainGame)
 
-	SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.LEVELPASSED, 0)
-	SceneTransition.change_scene(SceneTransition.SceneName.SELECTIMAGE, 1.0)
+func GoMainGame():
+	if progress_bar.texture_progress_bar.value == 100:
+		SingletonMainData.GetAndSortDateList()		# 날짜 리스트 생성 및 정렬
+		SingletonImageDown.disconnect("Change_Prograss_Value", Change_Prograss_Value)
+		SingletonImageDown.disconnect("Finsh_Download", Finsh_Download)
+
+		animation_player.play("RESET")
+
+		SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.LEVELPASSED, 0)
+		SceneTransition.change_scene(SceneTransition.SceneName.SELECTIMAGE, 1.0)
 	
 
+func _on_texture_progress_bar_value_changed(value):
+	persent_label.text = str(value) + "%"

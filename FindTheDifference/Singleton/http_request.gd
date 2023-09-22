@@ -17,8 +17,10 @@ var downloadStep : int = 0
 var maxDownloadStep : int = 0
 var downloadJsonData : Variant
 
+# 일별 다운로드 스탭 == 1 : JSON / 2 : 메인 이미지 / 3 : 틀린 부분 이미지(배열의 끝까지 반복다운로드)
 var downloadSubStep : int = 0
-var downloadMaxSubStep : int = 2
+# 틀린 부분 이미지의 현재 다운로드 한 순번
+var downloadSubStep3Idx : int = 0
 
 @onready var http_request = $HTTPRequest
 @onready var http_request_get_date = $HTTPRequest_GetDate
@@ -69,6 +71,7 @@ func StartDownload(tmpDateList : Array) -> bool:
 
 func StartFistDownload():
 	downloadSubStep = 1		# 하나의 날짜별 세부스탭 초기화
+	downloadSubStep3Idx = 0
 
 	self.currentDate = self.dateList[self.currentDateIdx]
 	
@@ -77,20 +80,27 @@ func StartFistDownload():
 	
 
 # JSON데이터 및 이미지 가져오기
+# [downloadSubStep] 일별 다운로드 스탭 == 1 : JSON / 2 : 메인 이미지 / 3 : 틀린 부분 이미지(배열의 끝까지 반복다운로드)
 func _on_http_request_request_completed(result, response_code, headers, body):
-	if downloadSubStep == 1:
+	if downloadSubStep == 1:		# JSON 파일 다운로드 이후
+		# JSON 파일 파싱
 		var strData = body.get_string_from_utf8()
 		downloadJsonData = JSON.parse_string(strData)
 		SingletonMainData.mainJsonData["datas"][self.currentDate] = downloadJsonData[self.currentDate]
 		
-		
 		# 해당일의 메인 이미지 호출
 		downloadSubStep = 2
-		CallDownImage(1)
-	elif downloadSubStep >= 2:
-		if downloadSubStep <= downloadMaxSubStep:
-			downloadSubStep += 1
-			CallDownImage(2)
+		CallDownImage("main", -1)
+	elif downloadSubStep == 2:
+		# 해당일의 틀린 부분 이미지 호출
+		downloadSubStep = 3
+		CallDownImage("diff", downloadSubStep3Idx)
+	else:
+		print(downloadSubStep3Idx)
+		print(downloadJsonData[currentDate]["data"].size())
+		if downloadSubStep3Idx + 1 < downloadJsonData[currentDate]["data"].size():
+			downloadSubStep3Idx += 1
+			CallDownImage("diff", downloadSubStep3Idx)
 		else:
 			if currentDateIdx == maxDownloadStep-1:
 				emit_signal("Change_Prograss_Value", currentDateIdx+1, 100)
@@ -106,9 +116,19 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 				
 
 # dlalwl ekdnsfhem
-func CallDownImage(idx : int):
-	var tmpUrl = str(downloadJsonData[currentDate]["main_img_url0" + str(idx)])
-	var last_three = tmpUrl.right(3)
-	http_request.download_file = "user://main_" + currentDate + "_0" + str(idx) + "." + last_three
+func CallDownImage(type : String, idx : int):
+	var tmpUrl : String = ""
+	var last_three : String = ""
+	var tmpFileName : String = ""
+	if type == "main":
+		tmpUrl = str(downloadJsonData[currentDate][type + "_img_url"])
+		last_three = tmpUrl.right(3)
+		tmpFileName = "user://" + type + "_" + currentDate + "." + last_three
+	else:
+		tmpUrl = str(downloadJsonData[currentDate]["data"][idx][type + "_img_url"])
+		last_three = tmpUrl.right(3)
+		tmpFileName = "user://" + type + "_" + currentDate + "_0" + str(idx) + "." + last_three
+	
+	http_request.download_file = tmpFileName
 	http_request.request(baseUrl + tmpUrl)		# 메인 이미지 호출
 	

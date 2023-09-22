@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bohvhssv21tal"]
+
+[ext_resource type="Script" path="res://TestScenes/controlButton.gd" id="1_bk1kc"]
+[ext_resource type="PackedScene" uid="uid://cj1ryurp50cfh" path="res://TestScenes/texture_button.tscn" id="2_qqucl"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bk1kc")
+
+[node name="TextureButton" parent="." instance=ExtResource("2_qqucl")]
+layout_mode = 0
+
+[node name="TextureButton2" parent="." instance=ExtResource("2_qqucl")]
+layout_mode = 0
+offset_top = 243.0
+offset_right = 1024.0
+offset_bottom = 1267.0
+
+[node name="TextureButton3" parent="." instance=ExtResource("2_qqucl")]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 166.0
+offset_right = 1553.0
+offset_bottom = 1190.0
+
+[connection signal="ImageClick" from="TextureButton" to="." method="_on_image_click"]
+[connection signal="ImageClick" from="TextureButton2" to="." method="_on_image_click"]
+[connection signal="ImageClick" from="TextureButton3" to="." method="_on_image_click"]

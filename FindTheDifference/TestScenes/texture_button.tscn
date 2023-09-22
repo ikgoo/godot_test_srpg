@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj1ryurp50cfh"]
+
+[ext_resource type="Texture2D" uid="uid://de1jwqej2oll8" path="res://Art/sub_20230919_01.jpg" id="1_7xojq"]
+[ext_resource type="Script" path="res://TestScenes/TextureButton.gd" id="2_fmwws"]
+
+[node name="TextureButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_7xojq")
+script = ExtResource("2_fmwws")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -92,8 +92,13 @@ func GetAndSortDateList():
 
 
 # 다운받은 이미지 불러오기(ImageTexture 로)
-func LoadDownloadImage(curDate : String, idx : int) -> ImageTexture:
-	var path = "user://main_" + curDate + "_0" + str(idx) + ".jpg"
+# type : main, diff
+func LoadDownloadImage(type : String, curDate : String, idx : int) -> ImageTexture:
+	var path = ""
+	if type == "main":
+		path = "user://" + type + "_" + curDate + ".jpg"
+	else:
+		path = "user://" + type + "_" + curDate + "_0" + str(idx) + ".jpg"
 
 	var img = Image.new()
 	var tex = ImageTexture.new()

@@ -1,28 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6e1b8aymfobt"]
+[gd_scene load_steps=15 format=3 uid="uid://b6e1b8aymfobt"]
 
 [ext_resource type="Script" path="res://Scenes/loading.gd" id="1_25uow"]
 [ext_resource type="FontVariation" uid="uid://cqtj6ha2ehx6s" path="res://Fonts/cukirun.tres" id="2_5nlvb"]
 [ext_resource type="AudioStream" uid="uid://cmuqcyedyjvfa" path="res://Sounds/game-bonus-144751.mp3" id="3_1472l"]
-[ext_resource type="Texture2D" uid="uid://ck8itbpikujct" path="res://Art/LoadingBar/meter_bar_holder_left_edge_red.png" id="4_eeeb1"]
-[ext_resource type="Texture2D" uid="uid://b217fc24hgsps" path="res://Art/LoadingBar/meter_bar_holder_right_edge_red.png" id="5_yasn0"]
-[ext_resource type="Texture2D" uid="uid://mg7kfib5bewv" path="res://Art/LoadingBar/meter_bar_holder_center-repeating_red.png" id="6_5bb1f"]
-[ext_resource type="Texture2D" uid="uid://33or4trcy8na" path="res://Art/LoadingBar/meter_bar_center-repeating_red.png" id="7_0thas"]
+[ext_resource type="Shader" path="res://Scenes/image_rolling.gdshader" id="3_h7d26"]
+[ext_resource type="Texture2D" uid="uid://dp5n0djapogop" path="res://Art/free-icon-star-616490.png" id="4_0r4no"]
+[ext_resource type="Texture2D" uid="uid://c0as3kpmtncb7" path="res://icon.svg" id="5_ea7ep"]
+[ext_resource type="PackedScene" uid="uid://bmqc3b6v8c1qf" path="res://SubScenes/progress_bar.tscn" id="6_g27x4"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ygnsi"]
-font = ExtResource("2_5nlvb")
-font_size = 76
-outline_size = 10
-outline_color = Color(1, 0.0666667, 0.0980392, 1)
-shadow_size = 26
-shadow_color = Color(0.113725, 0, 0, 1)
-shadow_offset = Vector2(4.63, 5.815)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m5ag4"]
+shader = ExtResource("3_h7d26")
 
 [sub_resource type="Animation" id="Animation_fcl08"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Label:text")
+tracks/0/path = NodePath("LabelLoading:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -40,7 +34,7 @@ step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Label:text")
+tracks/0/path = NodePath("LabelLoading:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -56,6 +50,28 @@ _data = {
 "loading": SubResource("Animation_b1eff")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_nnv2g"]
+font = ExtResource("2_5nlvb")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+outline_size = 9
+
+[sub_resource type="LabelSettings" id="LabelSettings_ygnsi"]
+resource_local_to_scene = true
+font = ExtResource("2_5nlvb")
+font_size = 26
+outline_color = Color(1, 0.0666667, 0.0980392, 1)
+shadow_size = 26
+shadow_color = Color(0.113725, 0, 0, 1)
+shadow_offset = Vector2(4.63, 5.815)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lsu0r"]
+font = ExtResource("2_5nlvb")
+font_size = 79
+font_color = Color(0.0705882, 1, 1, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Loading" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -66,19 +82,31 @@ grow_vertical = 2
 script = ExtResource("1_25uow")
 musicEnd = ExtResource("3_1472l")
 
-[node name="Label" type="Label" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_m5ag4")
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -118.615
-offset_bottom = -11.615
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "LOADING..."
-label_settings = SubResource("LabelSettings_ygnsi")
-horizontal_alignment = 1
+texture = ExtResource("4_0r4no")
+stretch_mode = 1
+
+[node name="FrontImage01" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -244.0
+offset_right = 244.0
+offset_bottom = 244.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_ea7ep")
 
 [node name="TimerMainData" type="Timer" parent="."]
 one_shot = true
@@ -88,55 +116,52 @@ libraries = {
 "": SubResource("AnimationLibrary_i6sp8")
 }
 
-[node name="Control" type="Control" parent="."]
-anchors_preset = 0
-offset_left = -3.0
-offset_top = -62.0
-offset_right = -3.0
-offset_bottom = -62.0
-metadata/_edit_group_ = true
-
-[node name="Left" type="NinePatchRect" parent="Control"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
+[node name="ProgressBar" parent="." instance=ExtResource("6_g27x4")]
 offset_left = 40.0
-offset_top = 397.0
-offset_right = 80.0
-offset_bottom = 448.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("4_eeeb1")
-patch_margin_bottom = 1
+offset_top = 549.0
+offset_right = 40.0
+offset_bottom = 549.0
 
-[node name="Right" type="NinePatchRect" parent="Control"]
+[node name="PersentLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1067.0
+offset_top = 550.0
+offset_right = 1119.0
+offset_bottom = 597.0
+text = "0%"
+label_settings = SubResource("LabelSettings_nnv2g")
+horizontal_alignment = 1
+
+[node name="LabelLoading" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 1063.0
-offset_top = 397.0
-offset_right = 1103.0
-offset_bottom = 448.0
-grow_horizontal = 0
+offset_top = 180.0
+offset_bottom = 223.0
+grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_yasn0")
-patch_margin_bottom = 1
+text = "LOADING..."
+label_settings = SubResource("LabelSettings_ygnsi")
+horizontal_alignment = 1
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 397.0
-offset_right = 1078.0
-offset_bottom = 447.0
-fill_mode = 5
-nine_patch_stretch = true
-texture_under = ExtResource("6_5bb1f")
-texture_progress = ExtResource("7_0thas")
+[node name="LabelTitleName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -238.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Noligo
+틀린 그림 찾기"
+label_settings = SubResource("LabelSettings_lsu0r")
+horizontal_alignment = 1
 
 [connection signal="timeout" from="TimerMainData" to="." method="_on_timer_main_data_timeout"]
+[connection signal="value_changed" from="ProgressBar/TextureProgressBar" to="." method="_on_texture_progress_bar_value_changed"]
+
+[editable path="ProgressBar"]

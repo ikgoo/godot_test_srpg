@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://emtla374ynow"]
+[gd_scene load_steps=22 format=3 uid="uid://emtla374ynow"]
 
 [ext_resource type="Script" path="res://Scenes/main_game.gd" id="1_nut0g"]
 [ext_resource type="AudioStream" uid="uid://cqfxf7j44wjyy" path="res://Sounds/Music/cottagecore-17463.mp3" id="2_1h0ca"]
@@ -11,7 +11,222 @@
 [ext_resource type="AudioStream" uid="uid://7fv2gxaoqdb8" path="res://Sounds/Music/upbeat-funky-retro-131297.mp3" id="8_nhvsk"]
 [ext_resource type="AudioStream" uid="uid://cd6imus0fy8jd" path="res://Sounds/Music/jolly-farmer-163815.mp3" id="9_2tbny"]
 [ext_resource type="PackedScene" uid="uid://d3ckosbgfliym" path="res://SubScenes/texture_rect.tscn" id="10_svt4d"]
-[ext_resource type="Texture2D" uid="uid://c0as3kpmtncb7" path="res://icon.svg" id="12_0mh6h"]
+[ext_resource type="PackedScene" uid="uid://bmqc3b6v8c1qf" path="res://SubScenes/progress_bar.tscn" id="13_nutgh"]
+[ext_resource type="Texture2D" uid="uid://dwi6fctjhmrso" path="res://Art/HeartUIFull.png" id="14_3jgnq"]
+[ext_resource type="FontVariation" uid="uid://cqtj6ha2ehx6s" path="res://Fonts/cukirun.tres" id="14_cd1oj"]
+[ext_resource type="Texture2D" uid="uid://mo8ty8qej3ft" path="res://Art/HeartUIEmpty.png" id="14_wljyt"]
+
+[sub_resource type="Animation" id="Animation_mpv2v"]
+resource_name = "CountDown"
+length = 3.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HUDCount/CountDown3:label_settings:font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [250, 250, 520]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUDCount/CountDown2:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.1, 1.9, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HUDCount/CountDown2:label_settings:font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.9, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [250, 250, 520]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HUDCount/CountDown1:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 2.1, 3, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HUDCount/CountDown1:label_settings:font_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [250, 250, 520]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"GameStart"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HUDCount/CountDown3:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HUDCount:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1, 3.2, 3.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_l41ou"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HUDCount/CountDown3:label_settings:font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [250]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUDCount/CountDown2:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HUDCount/CountDown2:label_settings:font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [250]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HUDCount/CountDown1:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HUDCount/CountDown1:label_settings:font_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [250]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HUDCount/CountDown3:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HUDCount:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jvrkd"]
+_data = {
+"CountDown": SubResource("Animation_mpv2v"),
+"RESET": SubResource("Animation_l41ou")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_8nyio"]
+font_size = 250
+font_color = Color(1, 0, 0, 1)
+outline_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_vo44h"]
+font = ExtResource("14_cd1oj")
+font_size = 250
+font_color = Color(1, 0, 0, 1)
+outline_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_dcerd"]
+font = ExtResource("14_cd1oj")
+font_size = 250
+font_color = Color(1, 0, 0, 1)
+outline_size = 40
 
 [node name="MainGame" type="Control"]
 layout_mode = 3
@@ -32,19 +247,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.894118, 0.933333, 1, 1)
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 50.0
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "test"
-
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -63,54 +265,6 @@ offset_left = 18.0
 offset_top = 65.0
 offset_right = 568.0
 offset_bottom = 635.0
-texture = ExtResource("12_0mh6h")
-expand_mode = 1
-
-[node name="Diff01" type="TextureRect" parent="LeftImage"]
-layout_mode = 0
-offset_left = 97.0
-offset_right = 97.0
-texture = ExtResource("12_0mh6h")
-expand_mode = 1
-stretch_mode = 1
-
-[node name="Diff02" type="TextureRect" parent="LeftImage"]
-layout_mode = 0
-offset_left = 52.0
-offset_right = 52.0
-texture = ExtResource("12_0mh6h")
-expand_mode = 1
-stretch_mode = 1
-
-[node name="Diff03" type="TextureRect" parent="LeftImage"]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 32.0
-offset_right = 43.0
-offset_bottom = 32.0
-texture = ExtResource("12_0mh6h")
-expand_mode = 1
-stretch_mode = 1
-
-[node name="Diff04" type="TextureRect" parent="LeftImage"]
-layout_mode = 0
-offset_left = 66.0
-offset_top = 64.0
-offset_right = 66.0
-offset_bottom = 64.0
-texture = ExtResource("12_0mh6h")
-expand_mode = 1
-stretch_mode = 1
-
-[node name="Diff05" type="TextureRect" parent="LeftImage"]
-layout_mode = 0
-offset_left = 53.0
-offset_top = 140.0
-offset_right = 53.0
-offset_bottom = 140.0
-texture = ExtResource("12_0mh6h")
-expand_mode = 1
-stretch_mode = 1
 
 [node name="RightImage" parent="." instance=ExtResource("10_svt4d")]
 layout_mode = 2
@@ -118,38 +272,21 @@ offset_left = 583.0
 offset_top = 66.0
 offset_right = 1133.0
 offset_bottom = 636.0
-texture = ExtResource("12_0mh6h")
-expand_mode = 1
 
-[node name="Diff01" type="TextureRect" parent="RightImage"]
+[node name="Diff00" parent="RightImage" instance=ExtResource("10_svt4d")]
 layout_mode = 0
-texture = ExtResource("12_0mh6h")
-expand_mode = 1
-stretch_mode = 1
 
-[node name="Diff02" type="TextureRect" parent="RightImage"]
+[node name="Diff01" parent="RightImage" instance=ExtResource("10_svt4d")]
 layout_mode = 0
-texture = ExtResource("12_0mh6h")
-expand_mode = 1
-stretch_mode = 1
 
-[node name="Diff03" type="TextureRect" parent="RightImage"]
+[node name="Diff02" parent="RightImage" instance=ExtResource("10_svt4d")]
 layout_mode = 0
-texture = ExtResource("12_0mh6h")
-expand_mode = 1
-stretch_mode = 1
 
-[node name="Diff04" type="TextureRect" parent="RightImage"]
+[node name="Diff03" parent="RightImage" instance=ExtResource("10_svt4d")]
 layout_mode = 0
-texture = ExtResource("12_0mh6h")
-expand_mode = 1
-stretch_mode = 1
 
-[node name="Diff05" type="TextureRect" parent="RightImage"]
+[node name="Diff04" parent="RightImage" instance=ExtResource("10_svt4d")]
 layout_mode = 0
-texture = ExtResource("12_0mh6h")
-expand_mode = 1
-stretch_mode = 1
 
 [node name="Options" parent="." instance=ExtResource("2_8dl5c")]
 visible = false
@@ -158,4 +295,144 @@ layout_mode = 1
 [node name="RandomMusicPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
 
+[node name="HUD" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -589.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerEmptyHeart" type="TextureRect" parent="HUD"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 11.0
+offset_right = -155.0
+offset_bottom = 22.0
+grow_horizontal = 0
+scale = Vector2(4, 4)
+texture = ExtResource("14_wljyt")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="PlayerFullHeart" type="TextureRect" parent="HUD"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 13.0
+offset_right = -155.0
+offset_bottom = 24.0
+grow_horizontal = 0
+scale = Vector2(4, 4)
+texture = ExtResource("14_3jgnq")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="ProgressBar" parent="." instance=ExtResource("13_nutgh")]
+offset_left = 40.0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 8.0
+
+[node name="Right" parent="ProgressBar" index="1"]
+offset_left = 836.0
+offset_right = 876.0
+
+[node name="TextureProgressBar" parent="ProgressBar" index="2"]
+offset_right = 850.0
+
+[node name="GameMainPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jvrkd")
+}
+
+[node name="HUDCount" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CountDown3" type="Label" parent="HUDCount"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.5
+offset_top = -356.0
+offset_right = 148.5
+offset_bottom = 356.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+label_settings = SubResource("LabelSettings_8nyio")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountDown2" type="Label" parent="HUDCount"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -355.5
+offset_right = 147.0
+offset_bottom = 355.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "2"
+label_settings = SubResource("LabelSettings_vo44h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountDown1" type="Label" parent="HUDCount"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.0
+offset_top = -355.5
+offset_right = 109.0
+offset_bottom = 355.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_dcerd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameEndSFXPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
 [connection signal="gui_input" from="Background" to="." method="_on_background_gui_input"]
+[connection signal="SelectImage" from="LeftImage" to="." method="SelectImage"]
+[connection signal="SelectImage" from="RightImage" to="." method="SelectImage"]
+[connection signal="SelectImage" from="RightImage/Diff00" to="." method="SelectImage"]
+[connection signal="SelectImage" from="RightImage/Diff01" to="." method="SelectImage"]
+[connection signal="SelectImage" from="RightImage/Diff02" to="." method="SelectImage"]
+[connection signal="SelectImage" from="RightImage/Diff03" to="." method="SelectImage"]
+[connection signal="SelectImage" from="RightImage/Diff04" to="." method="SelectImage"]
+[connection signal="finished" from="RandomMusicPlayer" to="." method="_on_random_music_player_finished"]
+[connection signal="value_changed" from="ProgressBar/TextureProgressBar" to="." method="_on_texture_progress_bar_value_changed"]
+[connection signal="finished" from="GameEndSFXPlayer" to="." method="GameOver"]
+
+[editable path="ProgressBar"]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmqc3b6v8c1qf"]
+
+[ext_resource type="Script" path="res://SubScenes/progress_bar.gd" id="1_675bk"]
+[ext_resource type="Texture2D" uid="uid://ck8itbpikujct" path="res://Art/LoadingBar/meter_bar_holder_left_edge_red.png" id="1_u2f6x"]
+[ext_resource type="Texture2D" uid="uid://b217fc24hgsps" path="res://Art/LoadingBar/meter_bar_holder_right_edge_red.png" id="2_6tn5o"]
+[ext_resource type="Texture2D" uid="uid://mg7kfib5bewv" path="res://Art/LoadingBar/meter_bar_holder_center-repeating_red.png" id="3_kyahb"]
+[ext_resource type="Texture2D" uid="uid://33or4trcy8na" path="res://Art/LoadingBar/meter_bar_center-repeating_red.png" id="4_tvgif"]
+
+[node name="ProgressBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_675bk")
+
+[node name="Left" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_right = 40.0
+offset_bottom = 51.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_u2f6x")
+patch_margin_bottom = 1
+
+[node name="Right" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 968.0
+offset_right = 1008.0
+offset_bottom = 51.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_6tn5o")
+patch_margin_bottom = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 981.0
+offset_bottom = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_kyahb")
+texture_progress = ExtResource("4_tvgif")
