@@ -10,9 +10,15 @@ var curData : Variant = null
 # 메인 게임중이면 이미지의 타입을 넘겨줌
 var img_type : String = "NONE"
 
+# 틀린 그림의 경우 해당 번호 정보
+var diff_idx : int = -1
+
 
 func _on_pressed():
-	emit_signal("SelectImage", name, curDate, get_global_mouse_position(), get_local_mouse_position())
+	if name.find("Diff") >= 0:
+		emit_signal("SelectImage", name + str(diff_idx), curDate, get_global_mouse_position(), get_parent().get_local_mouse_position())
+	else:
+		emit_signal("SelectImage", name, curDate, get_global_mouse_position(), get_local_mouse_position())
 	
 
 #func _on_gui_input(event):

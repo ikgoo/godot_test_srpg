@@ -8,12 +8,14 @@ extends Control
 @export var musicEnd : AudioStream
 
 @onready var animation_player = $AnimationPlayer
-@onready var http_request = $HTTPRequest
 @onready var timer_main_data = $TimerMainData
-@onready var move_scene_wait = $MoveSceneWait
 
 @onready var progress_bar = $ProgressBar
 @onready var persent_label = $PersentLabel
+
+var arrow = load("res://Art/cursor_pointer3D.png")
+var beam = load("res://Art/cursor_pointerFlat_shadow.png")
+
 
 # 전체 다운로드 해야할 날짜 리스트
 var dateList : Array
@@ -66,6 +68,8 @@ var tagetDateList = []
 # progress bar 속도를 위해 사용
 var tween : Tween = null
 func _ready():
+	Input.set_custom_mouse_cursor(arrow)
+	Input.set_custom_mouse_cursor(beam, Input.CURSOR_IBEAM)
 	
 	#SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.GAMEBONUS, 0)
 	animation_player.play("loading")
@@ -91,10 +95,7 @@ func _on_timer_main_data_timeout():
 	var tmpDate = Time.get_datetime_dict_from_system()
 	act_date_str = "%04d%02d%02d" % [tmpDate["year"], tmpDate["month"], tmpDate["day"]]
 	
-	if SingletonImageDown.StartDownloadRangeDate(act_date_str, 3) == false:
-		# 다운 대상이 없으면 바로 종료하고 다음화면으로 이동
-		progress_bar.texture_progress_bar.value = 100
-		move_scene_wait.start()
+	SingletonImageDown.StartDownloadRangeDate(act_date_str, 3)
 	
 
 func Change_Prograss_Value(val, rate):

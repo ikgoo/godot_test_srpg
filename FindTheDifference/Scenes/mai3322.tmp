@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://emtla374ynow"]
+[gd_scene load_steps=23 format=3 uid="uid://emtla374ynow"]
 
 [ext_resource type="Script" path="res://Scenes/main_game.gd" id="1_nut0g"]
 [ext_resource type="AudioStream" uid="uid://cqfxf7j44wjyy" path="res://Sounds/Music/cottagecore-17463.mp3" id="2_1h0ca"]
@@ -16,9 +16,6 @@
 [ext_resource type="FontVariation" uid="uid://cqtj6ha2ehx6s" path="res://Fonts/cukirun.tres" id="14_cd1oj"]
 [ext_resource type="Texture2D" uid="uid://mo8ty8qej3ft" path="res://Art/HeartUIEmpty.png" id="14_wljyt"]
 [ext_resource type="PackedScene" uid="uid://cxjplnruhmxfq" path="res://SubScenes/main_frame.tscn" id="16_tykcs"]
-[ext_resource type="AudioStream" uid="uid://sk1sx8v6inf2" path="res://Sounds/TimeLate.wav" id="17_0nl4o"]
-[ext_resource type="Texture2D" uid="uid://bgexw7fg7jfrl" path="res://Art/glassPanel.png" id="18_cs5dq"]
-[ext_resource type="Texture2D" uid="uid://c854k0jcksshd" path="res://Art/squareBlue.png" id="19_d7mlo"]
 
 [sub_resource type="Animation" id="Animation_mpv2v"]
 resource_name = "CountDown"
@@ -279,63 +276,79 @@ offset_top = 66.0
 offset_right = 1133.0
 offset_bottom = 636.0
 
+[node name="Diff00" parent="RightImage" instance=ExtResource("10_svt4d")]
+layout_mode = 0
+
+[node name="Diff01" parent="RightImage" instance=ExtResource("10_svt4d")]
+layout_mode = 0
+
+[node name="Diff02" parent="RightImage" instance=ExtResource("10_svt4d")]
+layout_mode = 0
+
+[node name="Diff03" parent="RightImage" instance=ExtResource("10_svt4d")]
+layout_mode = 0
+
+[node name="Diff04" parent="RightImage" instance=ExtResource("10_svt4d")]
+layout_mode = 0
+
 [node name="LeftMainFrame" parent="." instance=ExtResource("16_tykcs")]
-offset_left = 3.0
-offset_top = 58.0
-offset_right = 573.0
-offset_bottom = 645.0
-metadata/_edit_group_ = true
 
 [node name="RightMainFrame" parent="." instance=ExtResource("16_tykcs")]
-offset_left = 579.0
-offset_top = 58.0
-offset_right = 1149.0
-offset_bottom = 645.0
-metadata/_edit_group_ = true
 
-[node name="Diff00" parent="RightMainFrame/FrameImage" index="0" instance=ExtResource("10_svt4d")]
-layout_mode = 0
-offset_left = 573.0
-offset_top = 58.0
-offset_right = 755.0
-offset_bottom = 240.0
-
-[node name="Diff01" parent="RightMainFrame/FrameImage" index="1" instance=ExtResource("10_svt4d")]
-layout_mode = 0
-offset_left = 573.0
-offset_top = 58.0
-offset_right = 755.0
-offset_bottom = 240.0
-
-[node name="Diff02" parent="RightMainFrame/FrameImage" index="2" instance=ExtResource("10_svt4d")]
-layout_mode = 0
-offset_left = 573.0
-offset_top = 58.0
-offset_right = 755.0
-offset_bottom = 240.0
-
-[node name="Diff03" parent="RightMainFrame/FrameImage" index="3" instance=ExtResource("10_svt4d")]
-layout_mode = 0
-offset_left = 573.0
-offset_top = 58.0
-offset_right = 755.0
-offset_bottom = 240.0
-
-[node name="Diff04" parent="RightMainFrame/FrameImage" index="4" instance=ExtResource("10_svt4d")]
-layout_mode = 0
-offset_left = 573.0
-offset_top = 58.0
-offset_right = 755.0
-offset_bottom = 240.0
+[node name="Options" parent="." instance=ExtResource("2_8dl5c")]
+visible = false
+layout_mode = 1
 
 [node name="RandomMusicPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
 
+[node name="HUD" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -589.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerEmptyHeart" type="TextureRect" parent="HUD"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 11.0
+offset_right = -155.0
+offset_bottom = 22.0
+grow_horizontal = 0
+scale = Vector2(4, 4)
+texture = ExtResource("14_wljyt")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="PlayerFullHeart" type="TextureRect" parent="HUD"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 13.0
+offset_right = -155.0
+offset_bottom = 24.0
+grow_horizontal = 0
+scale = Vector2(4, 4)
+texture = ExtResource("14_3jgnq")
+expand_mode = 1
+stretch_mode = 1
+
 [node name="ProgressBar" parent="." instance=ExtResource("13_nutgh")]
 offset_left = 40.0
-offset_top = -72.0
+offset_top = 8.0
 offset_right = 40.0
-offset_bottom = -72.0
+offset_bottom = 8.0
 
 [node name="Right" parent="ProgressBar" index="1"]
 offset_left = 836.0
@@ -354,8 +367,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -1.0
-offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -416,85 +427,20 @@ label_settings = SubResource("LabelSettings_dcerd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HUD" type="Panel" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -589.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PlayerEmptyHeart" type="TextureRect" parent="HUD"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -200.0
-offset_top = 11.0
-offset_right = -155.0
-offset_bottom = 22.0
-grow_horizontal = 0
-scale = Vector2(4, 4)
-texture = ExtResource("14_wljyt")
-expand_mode = 1
-stretch_mode = 1
-
-[node name="PlayerFullHeart" type="TextureRect" parent="HUD"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -199.0
-offset_top = 10.0
-offset_right = -154.0
-offset_bottom = 21.0
-grow_horizontal = 0
-scale = Vector2(4, 4)
-texture = ExtResource("14_3jgnq")
-expand_mode = 1
-stretch_mode = 1
-
 [node name="GameEndSFXPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
-
-[node name="TimeLateSFXPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_0nl4o")
-
-[node name="Options" parent="." instance=ExtResource("2_8dl5c")]
-visible = false
-layout_mode = 1
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-texture_filter = 1
-layout_mode = 0
-offset_left = 10.0
-offset_top = 15.0
-offset_right = 942.0
-offset_bottom = 45.0
-nine_patch_stretch = true
-stretch_margin_left = 5
-stretch_margin_top = 5
-stretch_margin_right = 5
-stretch_margin_bottom = 5
-texture_under = ExtResource("18_cs5dq")
-texture_progress = ExtResource("19_d7mlo")
 
 [connection signal="gui_input" from="Background" to="." method="_on_background_gui_input"]
 [connection signal="SelectImage" from="LeftImage" to="." method="SelectImage"]
 [connection signal="SelectImage" from="RightImage" to="." method="SelectImage"]
-[connection signal="SelectImage" from="RightMainFrame/FrameImage/Diff00" to="." method="SelectImage"]
-[connection signal="SelectImage" from="RightMainFrame/FrameImage/Diff01" to="." method="SelectImage"]
-[connection signal="SelectImage" from="RightMainFrame/FrameImage/Diff02" to="." method="SelectImage"]
-[connection signal="SelectImage" from="RightMainFrame/FrameImage/Diff03" to="." method="SelectImage"]
-[connection signal="SelectImage" from="RightMainFrame/FrameImage/Diff04" to="." method="SelectImage"]
+[connection signal="SelectImage" from="RightImage/Diff00" to="." method="SelectImage"]
+[connection signal="SelectImage" from="RightImage/Diff01" to="." method="SelectImage"]
+[connection signal="SelectImage" from="RightImage/Diff02" to="." method="SelectImage"]
+[connection signal="SelectImage" from="RightImage/Diff03" to="." method="SelectImage"]
+[connection signal="SelectImage" from="RightImage/Diff04" to="." method="SelectImage"]
 [connection signal="finished" from="RandomMusicPlayer" to="." method="_on_random_music_player_finished"]
 [connection signal="value_changed" from="ProgressBar/TextureProgressBar" to="." method="_on_texture_progress_bar_value_changed"]
 [connection signal="finished" from="GameEndSFXPlayer" to="." method="GameOver"]
-[connection signal="value_changed" from="TextureProgressBar" to="." method="_on_texture_progress_bar_value_changed"]
 
 [editable path="LeftMainFrame"]
 [editable path="RightMainFrame"]

@@ -29,8 +29,9 @@ func _ready():
 
 func SelectImage(img_name, curDate, gPosition, lPosition):
 	var tmpData = SingletonMainData.mainJsonData["datas"][curDate]
-	if ("Success" in tmpData) == true and tmpData["Success"] == true:
-		return
+	# 완료된 경우 어떻게 처리할지 고민 해봐야 함
+#	if ("Success" in tmpData) == true and tmpData["Success"] == true:
+#		return
 
 	SingletonMainData.sctDate = curDate		# 선택된 날짜 등록
 	

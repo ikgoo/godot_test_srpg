@@ -4,15 +4,17 @@ extends Control
 
 @onready var random_music_player = $RandomMusicPlayer
 
-@onready var left_image = $LeftImage
-@onready var right_image = $RightImage
+@onready var left_main_frame = $LeftMainFrame
+@onready var right_main_frame = $RightMainFrame
 
-@onready var texture_rect = preload("res://SubScenes/texture_rect.tscn")
+
 
 @onready var circle = preload("res://Art/circle.jpg")
 @onready var options = $Options
 # 프로그래스바
-@onready var progress_bar = $ProgressBar
+#@onready var progress_bar = $ProgressBar
+@onready var texture_progress_bar = $TextureProgressBar
+
 # 메인 게임내 애니메이션(카운트다운)
 @onready var game_main_player = $GameMainPlayer
 # 플레이어 생명력(UI)
@@ -22,8 +24,12 @@ extends Control
 @onready var game_end_sfx_player = $GameEndSFXPlayer
 @onready var gameFail = preload("res://Sounds/kl-peach-game-over-i-132096.mp3")			# 게임 실패
 @onready var gameSuccess = preload("res://Sounds/success-fanfare-trumpets-6185.mp3")	# 게임 성공
+@onready var time_late_sfx_player = $TimeLateSFXPlayer
 
-@onready var crossAct = preload("res://SubScenes/cross.tscn")	# 틀렸을때 이미지
+#맞췄을때 이미지&소리
+@onready var OKAct = preload("res://SubScenes/OK.tscn")
+# 틀렸을때 이미지&소리
+@onready var crossAct = preload("res://SubScenes/cross.tscn")	
 
 # 맞춘수
 var score : int = 0
@@ -52,16 +58,16 @@ func _ready():
 		currentGameData[i]["checked"] = false
 		
 	var tex_main : ImageTexture = SingletonMainData.LoadDownloadImage("main", curDate, -1)
-	left_image.texture_normal = tex_main
-	left_image.curData = currentGameData
-	left_image.curDate = curDate
-	left_image.img_type = "background"
-	left_image.connect("SelectImage", SelectImage)
-	right_image.texture_normal = tex_main
-	right_image.curData = SingletonMainData.mainJsonData["datas"][curDate]["data"]
-	right_image.curDate = curDate
-	right_image.img_type = "background"
-	right_image.connect("SelectImage", SelectImage)
+	left_main_frame.frame_image.texture_normal = tex_main
+	left_main_frame.frame_image.curData = currentGameData
+	left_main_frame.frame_image.curDate = curDate
+	left_main_frame.frame_image.img_type = "background"
+	left_main_frame.frame_image.connect("SelectImage", SelectImage)
+	right_main_frame.frame_image.texture_normal = tex_main
+	right_main_frame.frame_image.curData = SingletonMainData.mainJsonData["datas"][curDate]["data"]
+	right_main_frame.frame_image.curDate = curDate
+	right_main_frame.frame_image.img_type = "background"
+	right_main_frame.frame_image.connect("SelectImage", SelectImage)
 
 	
 	# 랜덤하게 5개 틀린부분 가져오기
@@ -75,9 +81,10 @@ func _ready():
 		# 선택 된 날짜의 메인 이미지
 		var tex_diff : ImageTexture = SingletonMainData.LoadDownloadImage("diff", curDate, diff_idx)
 #		# 오른쪽 틀리부분 위치 사이즈 조정
-		var tmpImg = right_image.get_child(i) as TextureButton
+		var tmpImg = right_main_frame.frame_image.get_child(i) as TextureButton
 		var tmpD = currentGameData[diff_idx]
 		tmpImg.curDate = curDate
+		tmpImg.diff_idx = diff_idx
 		tmpImg.texture_normal = tex_diff
 		tmpImg.position.x = tmpD["x"]
 		tmpImg.position.y = tmpD["y"]
@@ -98,15 +105,16 @@ func GameStart():
 		tween.kill()
 	
 	tween = create_tween()
-	tween.tween_property(progress_bar.texture_progress_bar, "value", 100, 10)
+	tween.tween_property(texture_progress_bar, "value", 100, 10)
 	tween.tween_callback(TimeOverGameOver)
 	return
 
 var gameState = "None"	
 func _on_texture_progress_bar_value_changed(value):
-	if progress_bar.texture_progress_bar.value > 70 and gameState == "None":
+	if texture_progress_bar.value > 70 and gameState == "None":
 		# 시간이 얼마 남지 않아 긴장 상태의 음악으로 전환
 		print("긴장상태 음악")
+		time_late_sfx_player.play()
 		gameState = "LAST"
 		return
 	
@@ -145,8 +153,10 @@ func SelectImage(img_type, curDate, gPosition, lPosition):
 	# 충돌 체크
 	var checkData = SingletonMainData.mainJsonData["datas"][curDate]["data"]
 	var ok_yn = false
+	var chk_idx = -1
 	if img_type.find("Diff") >= 0:
 		ok_yn = true
+		chk_idx = int(img_type.right(1))
 	else:
 		for j in range(currentGameDiffList.size()):
 			var d = checkData[currentGameDiffList[j]]
@@ -157,27 +167,31 @@ func SelectImage(img_type, curDate, gPosition, lPosition):
 				# 정식 충돌 체크
 				if d["x"] <= lPosition.x and (d["x"] + d["width"]) >= lPosition.x and d["y"] <= lPosition.y and (d["y"] + d["height"]) >= lPosition.y:
 					ok_yn = true
-					checkData[currentGameDiffList[j]]["checked"] = true
+					chk_idx = currentGameDiffList[j]
+					d["checked"] = true
 					break
 		
-	if ok_yn == true:	# 틀린부분을 맞춘 경우
+	if ok_yn == true:	# 맞춘 경우
+		checkData[chk_idx]
 		score += 1
-		var txr = texture_rect.instantiate()
-		txr.texture_normal = circle
-		#txr.global_position = gPosition
-		txr.global_position = gPosition
-		txr.size = Vector2(100, 100)
-		get_tree().current_scene.add_child(txr)
+		var ok01 = OKAct.instantiate()
+		ok01.init(checkData[chk_idx])
+		left_main_frame.frame_image.add_child(ok01)
+		var ok02 = OKAct.instantiate()
+		ok02.init(checkData[chk_idx])
+		right_main_frame.frame_image.add_child(ok02)
+		var t = 0
+		
 	else:			# 잘못 선택한 경우
 		print("틀렸음")
 		playerLife -= 1
 		player_full_heart.size.x -= 15
 		var ca01 = crossAct.instantiate()
 		ca01.position = lPosition
-		left_image.add_child(ca01)
+		left_main_frame.frame_image.add_child(ca01)
 		var ca02 = crossAct.instantiate()
 		ca02.position = lPosition
-		right_image.add_child(ca02)
+		right_main_frame.frame_image.add_child(ca02)
 
 		if playerLife == 0:		# 게임 오버(라이프 오버)
 			print("라이프 0 게임 오버")
@@ -199,8 +213,8 @@ func GoMain(duration):
 	if tween != null and tween.is_running():
 		tween.kill()
 	
-	left_image.disconnect("SelectImage", SelectImage)
-	right_image.disconnect("SelectImage", SelectImage)
+	left_main_frame.frame_image.disconnect("SelectImage", SelectImage)
+	right_main_frame.frame_image.disconnect("SelectImage", SelectImage)
 	options.disconnect("GoMain", GoMain)
 	random_music_player.stop()
 	SceneTransition.change_scene(SceneTransition.SceneName.SELECTIMAGE, duration)

@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://db6fief5iki75"]
+[gd_scene load_steps=8 format=3 uid="uid://db6fief5iki75"]
 
 [ext_resource type="Script" path="res://SubScenes/options.gd" id="1_v1o1j"]
+[ext_resource type="FontVariation" uid="uid://b2yt1q3r57s2o" path="res://Fonts/BaseFont.tres" id="2_dxrjl"]
 [ext_resource type="PackedScene" uid="uid://c8au2jai7ic1" path="res://SubScenes/volumn_slider.tscn" id="2_l8rjj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aaoyb"]
+font = ExtResource("2_dxrjl")
+
+[sub_resource type="LabelSettings" id="LabelSettings_5bjot"]
+font = ExtResource("2_dxrjl")
+
+[sub_resource type="Theme" id="Theme_qxmyu"]
+default_font = ExtResource("2_dxrjl")
+
+[sub_resource type="Theme" id="Theme_lsdhm"]
+default_font = ExtResource("2_dxrjl")
 
 [node name="Options" type="Control"]
 process_mode = 3
@@ -47,6 +60,7 @@ custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Music Volumn"
+label_settings = SubResource("LabelSettings_aaoyb")
 horizontal_alignment = 1
 
 [node name="MusicVolumnSlider" parent="Panel/VBoxContainer" instance=ExtResource("2_l8rjj")]
@@ -58,6 +72,7 @@ custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "SFX Volumn"
+label_settings = SubResource("LabelSettings_5bjot")
 horizontal_alignment = 1
 
 [node name="SFXVolumnSlider" parent="Panel/VBoxContainer" instance=ExtResource("2_l8rjj")]
@@ -81,11 +96,13 @@ theme_override_constants/separation = 15
 [node name="GoMain" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = SubResource("Theme_qxmyu")
 text = "Go Main"
 
 [node name="ButtonBack" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = SubResource("Theme_lsdhm")
 text = "Back"
 
 [connection signal="pressed" from="Panel/HBoxContainer/GoMain" to="." method="_on_go_main_pressed"]

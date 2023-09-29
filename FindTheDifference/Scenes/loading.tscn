@@ -1,12 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6e1b8aymfobt"]
+[gd_scene load_steps=16 format=3 uid="uid://b6e1b8aymfobt"]
 
 [ext_resource type="Script" path="res://Scenes/loading.gd" id="1_25uow"]
 [ext_resource type="FontVariation" uid="uid://cqtj6ha2ehx6s" path="res://Fonts/cukirun.tres" id="2_5nlvb"]
 [ext_resource type="AudioStream" uid="uid://cmuqcyedyjvfa" path="res://Sounds/game-bonus-144751.mp3" id="3_1472l"]
 [ext_resource type="Shader" path="res://Scenes/image_rolling.gdshader" id="3_h7d26"]
 [ext_resource type="Texture2D" uid="uid://dp5n0djapogop" path="res://Art/free-icon-star-616490.png" id="4_0r4no"]
-[ext_resource type="Texture2D" uid="uid://c0as3kpmtncb7" path="res://icon.svg" id="5_ea7ep"]
+[ext_resource type="Texture2D" uid="uid://cxmeb7sd1gl6m" path="res://Art/00027-2822628408-__Create_an_imaginative_and_whimsical_illustration_inside_the_circle._-removebg-preview.png" id="5_h1n5y"]
 [ext_resource type="PackedScene" uid="uid://bmqc3b6v8c1qf" path="res://SubScenes/progress_bar.tscn" id="6_g27x4"]
+[ext_resource type="FontVariation" uid="uid://b2yt1q3r57s2o" path="res://Fonts/BaseFont.tres" id="7_1g3lr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m5ag4"]
 shader = ExtResource("3_h7d26")
@@ -51,7 +52,7 @@ _data = {
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_nnv2g"]
-font = ExtResource("2_5nlvb")
+font = ExtResource("7_1g3lr")
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 outline_size = 9
@@ -61,16 +62,19 @@ resource_local_to_scene = true
 font = ExtResource("2_5nlvb")
 font_size = 26
 outline_color = Color(1, 0.0666667, 0.0980392, 1)
-shadow_size = 26
+shadow_size = 10
 shadow_color = Color(0.113725, 0, 0, 1)
-shadow_offset = Vector2(4.63, 5.815)
+shadow_offset = Vector2(2, 2)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lsu0r"]
-font = ExtResource("2_5nlvb")
-font_size = 79
+font = ExtResource("7_1g3lr")
+font_size = 85
 font_color = Color(0.0705882, 1, 1, 1)
-outline_size = 5
+outline_size = 75
 outline_color = Color(0, 0, 0, 1)
+shadow_size = 36
+shadow_color = Color(0.258824, 0.258824, 0.258824, 1)
+shadow_offset = Vector2(20, 20)
 
 [node name="Loading" type="Control"]
 layout_mode = 3
@@ -94,19 +98,21 @@ texture = ExtResource("4_0r4no")
 stretch_mode = 1
 
 [node name="FrontImage01" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 0.516
 anchor_bottom = 0.5
-offset_left = -244.0
-offset_top = -244.0
-offset_right = 244.0
-offset_bottom = 244.0
+offset_left = -614.0
+offset_top = -503.0
+offset_right = 575.568
+offset_bottom = 1309.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_ea7ep")
+texture = ExtResource("5_h1n5y")
+expand_mode = 1
 
 [node name="TimerMainData" type="Timer" parent="."]
 one_shot = true
@@ -118,16 +124,16 @@ libraries = {
 
 [node name="ProgressBar" parent="." instance=ExtResource("6_g27x4")]
 offset_left = 40.0
-offset_top = 549.0
+offset_top = 524.0
 offset_right = 40.0
-offset_bottom = 549.0
+offset_bottom = 524.0
 
 [node name="PersentLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1067.0
-offset_top = 550.0
-offset_right = 1119.0
-offset_bottom = 597.0
+offset_left = 1057.0
+offset_top = 532.0
+offset_right = 1138.0
+offset_bottom = 567.0
 text = "0%"
 label_settings = SubResource("LabelSettings_nnv2g")
 horizontal_alignment = 1
@@ -138,8 +144,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = 180.0
-offset_bottom = 223.0
+offset_top = 155.0
+offset_bottom = 198.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "LOADING..."
@@ -152,11 +158,14 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -238.0
-offset_bottom = -16.0
+offset_left = 6.0
+offset_top = -213.0
+offset_right = 6.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Noligo
+
 틀린 그림 찾기"
 label_settings = SubResource("LabelSettings_lsu0r")
 horizontal_alignment = 1

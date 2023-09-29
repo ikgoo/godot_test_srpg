@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://b2yt1q3r57s2o"]
+
+[ext_resource type="FontFile" uid="uid://qs1m74egrj7" path="res://Fonts/Ramche.ttf" id="1_qm2m7"]
+
+[resource]
+base_font = ExtResource("1_qm2m7")

@@ -1,20 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://lhd1iuxxnucw"]
+[gd_scene load_steps=3 format=3 uid="uid://lhd1iuxxnucw"]
 
-[ext_resource type="Texture2D" uid="uid://bbwbwdh5g02jw" path="res://Art/cross-296507_640.png" id="1_klwd6"]
+[ext_resource type="Texture2D" uid="uid://cscjii82cwuwk" path="res://Art/face_on_cross.png" id="1_urfyq"]
+[ext_resource type="AudioStream" uid="uid://bd67sm3poy4jf" path="res://Sounds/Wrong Sound Effect.wav" id="2_3ntpo"]
 
 [node name="Control" type="Control"]
+self_modulate = Color(1, 0, 1, 1)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 
 [node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 0, 1)
 layout_mode = 0
 offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
-texture = ExtResource("1_klwd6")
+texture = ExtResource("1_urfyq")
 expand_mode = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3ntpo")
+autoplay = true
