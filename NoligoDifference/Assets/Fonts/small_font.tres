@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://5m06ufhdiu2k"]
+
+[ext_resource type="FontFile" uid="uid://byaes1ck8qf8c" path="res://Assets/Fonts/LilitaOne-Regular.ttf" id="1_etnid"]
+
+[resource]
+base_font = ExtResource("1_etnid")

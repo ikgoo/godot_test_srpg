@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://bim8j60hihsk0"]
+
+[ext_resource type="Script" path="res://Common/Singleton/scene_transition.gd" id="1_ddify"]
+
+[sub_resource type="Animation" id="Animation_wd4lp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DissolveRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_404jj"]
+resource_name = "downin"
+length = 0.2
+
+[sub_resource type="Animation" id="Animation_3607x"]
+resource_name = "fadeinout"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DissolveRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s5st7"]
+resource_name = "upout"
+length = 0.2
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8xcrm"]
+_data = {
+"RESET": SubResource("Animation_wd4lp"),
+"downin": SubResource("Animation_404jj"),
+"fadeinout": SubResource("Animation_3607x"),
+"upout": SubResource("Animation_s5st7")
+}
+
+[node name="SceneTransition" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_ddify")
+
+[node name="DissolveRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0.278431, 0.278431, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8xcrm")
+}

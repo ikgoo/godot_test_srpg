@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://uk7eby8elgb8"]
+
+[ext_resource type="PackedScene" uid="uid://box3vcvo6gmta" path="res://Entity/player.tscn" id="1_r2v42"]
+[ext_resource type="Texture2D" uid="uid://d2pin5cxar1nb" path="res://icon.svg" id="2_cevvd"]
+
+[node name="MinaGame" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cevvd")
+
+[node name="Player" parent="." instance=ExtResource("1_r2v42")]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[editable path="Player"]

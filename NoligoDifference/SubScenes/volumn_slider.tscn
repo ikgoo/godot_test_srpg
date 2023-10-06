@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkur80v6e5f78"]
+
+[ext_resource type="Script" path="res://SubScenes/volumn_slider.gd" id="1_ow3r4"]
+
+[node name="VolumnSlider" type="HSlider"]
+script = ExtResource("1_ow3r4")

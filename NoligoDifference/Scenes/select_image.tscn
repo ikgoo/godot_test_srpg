@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dalxyv7w1w8if"]
+
+[ext_resource type="Script" path="res://Scenes/select_image.gd" id="1_d1prc"]
+[ext_resource type="AudioStream" uid="uid://p25mx42m8pf" path="res://Assets/Sounds/Musics/former-102685.mp3" id="2_jwgqu"]
+[ext_resource type="PackedScene" uid="uid://bcuvfg5ys2hkn" path="res://SubScenes/options.tscn" id="2_yu0la"]
+
+[node name="SelectImage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d1prc")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jwgqu")
+
+[node name="AudioDelayPlay" type="Timer" parent="."]
+
+[node name="Options" parent="." instance=ExtResource("2_yu0la")]
+visible = false
+layout_mode = 1
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

@@ -1,0 +1,107 @@
+[gd_scene load_steps=8 format=3 uid="uid://bcuvfg5ys2hkn"]
+
+[ext_resource type="Script" path="res://SubScenes/options.gd" id="1_vl5mp"]
+[ext_resource type="FontVariation" uid="uid://5m06ufhdiu2k" path="res://Assets/Fonts/small_font.tres" id="1_w1ely"]
+[ext_resource type="PackedScene" uid="uid://bkur80v6e5f78" path="res://SubScenes/volumn_slider.tscn" id="2_gtjlt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0pdu1"]
+font = ExtResource("1_w1ely")
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_5djii"]
+font = ExtResource("1_w1ely")
+font_size = 14
+
+[sub_resource type="Theme" id="Theme_j0gqg"]
+default_font = ExtResource("1_w1ely")
+default_font_size = 14
+
+[sub_resource type="Theme" id="Theme_b0v8s"]
+default_font = ExtResource("1_w1ely")
+default_font_size = 14
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vl5mp")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -120.0
+offset_right = 182.5
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -81.5
+offset_right = 147.0
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LalMusicVolumn" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Music Volumn"
+label_settings = SubResource("LabelSettings_0pdu1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolumnSlider" parent="Panel/VBoxContainer" instance=ExtResource("2_gtjlt")]
+layout_mode = 2
+
+[node name="LalSFX Volumn" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "SFX Volumn"
+label_settings = SubResource("LabelSettings_5djii")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXVolumnSlider" parent="Panel/VBoxContainer" instance=ExtResource("2_gtjlt")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 39.0
+offset_top = -43.0
+offset_right = -39.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 15
+
+[node name="GoMain" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_j0gqg")
+text = "Go Main"
+
+[node name="ButtonBack" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_b0v8s")
+text = "Back"
+
+[connection signal="pressed" from="Panel/HBoxContainer/GoMain" to="." method="_on_go_main_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/ButtonBack" to="." method="_on_button_back_pressed"]
