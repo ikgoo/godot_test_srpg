@@ -1,0 +1,1 @@
+extends Class_Mob

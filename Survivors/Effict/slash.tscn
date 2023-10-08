@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://6q8qnqpt4o3v"]
+
+[ext_resource type="Texture2D" uid="uid://4fir4tthsgsj" path="res://Assets/Effict/slash_effect_anim_spritesheet.png" id="1_px3le"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aibh5"]
+atlas = ExtResource("1_px3le")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqqv0"]
+atlas = ExtResource("1_px3le")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqpav"]
+atlas = ExtResource("1_px3le")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogpnn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aibh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqqv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqpav")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Slash" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ogpnn")
+frame_progress = 0.637884

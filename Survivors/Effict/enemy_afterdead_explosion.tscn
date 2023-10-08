@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4d6pi08q2kst"]
+
+[ext_resource type="Texture2D" uid="uid://bofxmbq5f15tm" path="res://Assets/Effict/enemy_afterdead_explosion_anim_spritesheet.png" id="1_3mgiw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b4yo"]
+atlas = ExtResource("1_3mgiw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1qtp"]
+atlas = ExtResource("1_3mgiw")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rf57"]
+atlas = ExtResource("1_3mgiw")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j71jy"]
+atlas = ExtResource("1_3mgiw")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8y0dq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b4yo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1qtp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rf57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j71jy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyAfterdeadExplosion" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8y0dq")
+frame_progress = 0.886744

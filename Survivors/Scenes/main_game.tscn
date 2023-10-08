@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://uk7eby8elgb8"]
+[gd_scene load_steps=4 format=3 uid="uid://uk7eby8elgb8"]
 
 [ext_resource type="PackedScene" uid="uid://box3vcvo6gmta" path="res://Entity/player.tscn" id="1_r2v42"]
 [ext_resource type="Texture2D" uid="uid://d2pin5cxar1nb" path="res://icon.svg" id="2_cevvd"]
+[ext_resource type="PackedScene" uid="uid://bav72kqn2mqwp" path="res://Spawner/mob_spawner.tscn" id="3_xjgb6"]
 
 [node name="MinaGame" type="Node2D"]
 
@@ -14,5 +15,8 @@ texture = ExtResource("2_cevvd")
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MobSpawner" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_xjgb6")]
+camera = NodePath("../Camera2D")
 
 [editable path="Player"]

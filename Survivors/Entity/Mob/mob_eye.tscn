@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1suplsved3xg"]
+
+[ext_resource type="Script" path="res://Entity/Mob/mob_eye.gd" id="1_duvc8"]
+[ext_resource type="Texture2D" uid="uid://di3chlhwl7hdg" path="res://Assets/Mob/fly_anim_spritesheet.png" id="1_vnqiq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0prnb"]
+atlas = ExtResource("1_vnqiq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0adhn"]
+atlas = ExtResource("1_vnqiq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdjvl"]
+atlas = ExtResource("1_vnqiq")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clgw3"]
+atlas = ExtResource("1_vnqiq")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b5efl"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0prnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0adhn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdjvl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clgw3")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_niojh"]
+radius = 4.0
+height = 8.0
+
+[node name="MobEye" type="Area2D" node_paths=PackedStringArray("mob")]
+script = ExtResource("1_duvc8")
+mob = NodePath("FlyEye")
+
+[node name="FlyEye" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_b5efl")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_niojh")

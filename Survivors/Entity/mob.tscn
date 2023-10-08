@@ -1,10 +1,31 @@
-[gd_scene load_steps=36 format=3 uid="uid://ba8f2x5bldrts"]
+[gd_scene load_steps=59 format=3 uid="uid://ba8f2x5bldrts"]
 
+[ext_resource type="Texture2D" uid="uid://cdtqntbwwm37d" path="res://Assets/Mob/angel/angel_idle_anim_f0.png" id="2_de2bq"]
 [ext_resource type="Texture2D" uid="uid://dlqbtexardwis" path="res://Assets/Mob/goblin_idle_spritesheet.png" id="2_ndv8h"]
+[ext_resource type="Texture2D" uid="uid://dt60do1po0vv" path="res://Assets/Mob/angel/angel_idle_anim_f1.png" id="3_r2v4s"]
 [ext_resource type="Texture2D" uid="uid://cqo3jx3m4tinf" path="res://Assets/Mob/slime_idle_spritesheet.png" id="4_4p5c3"]
+[ext_resource type="Texture2D" uid="uid://cfcxgeofx40ur" path="res://Assets/Mob/angel/angel_idle_anim_f2.png" id="4_bnvsv"]
+[ext_resource type="Texture2D" uid="uid://c1r0wo1b5t40q" path="res://Assets/Mob/angel/angel_idle_anim_f3.png" id="5_bku6n"]
 [ext_resource type="Texture2D" uid="uid://di3chlhwl7hdg" path="res://Assets/Mob/fly_anim_spritesheet.png" id="5_xgcrf"]
+[ext_resource type="Texture2D" uid="uid://cypudrfuf7ceh" path="res://Assets/Mob/angel/angel_run_anim_f0.png" id="6_j68st"]
+[ext_resource type="Texture2D" uid="uid://ro8vsoj14afu" path="res://Assets/Mob/angel/angel_run_anim_f1.png" id="7_itwdi"]
+[ext_resource type="Texture2D" uid="uid://cc6i3ob0fgy34" path="res://Assets/Mob/angel/angel_run_anim_f2.png" id="8_w6k6a"]
+[ext_resource type="Texture2D" uid="uid://cl27w6m0tdr2q" path="res://Assets/Mob/angel/angel_run_anim_f3.png" id="9_fxsc3"]
 [ext_resource type="Texture2D" uid="uid://80nqq8u6cnf1" path="res://Assets/Mob/goblin_run_spritesheet.png" id="10_c71v2"]
+[ext_resource type="Texture2D" uid="uid://jwfonv01b8e" path="res://Assets/Mob/bomb/bomb_f0.png" id="10_grtk7"]
+[ext_resource type="Texture2D" uid="uid://d4ih6fjo7bik0" path="res://Assets/Mob/bomb/bomb_f1.png" id="11_bh7nm"]
 [ext_resource type="Texture2D" uid="uid://ttmldpdxvqf2" path="res://Assets/Mob/slime_run_spritesheeet.png" id="11_hdn07"]
+[ext_resource type="Texture2D" uid="uid://wofmoa00fajp" path="res://Assets/Mob/big_demon/big_demon_idle_anim_f0.png" id="12_80sdn"]
+[ext_resource type="Texture2D" uid="uid://q8q3b44xc22q" path="res://Assets/Mob/bomb/bomb_f2.png" id="12_t6aie"]
+[ext_resource type="Texture2D" uid="uid://dshuxo87t33cd" path="res://Assets/Mob/big_demon/big_demon_idle_anim_f1.png" id="13_8acva"]
+[ext_resource type="Texture2D" uid="uid://b3syprvrfj47d" path="res://Assets/Mob/big_demon/big_demon_idle_anim_f2.png" id="14_nai1l"]
+[ext_resource type="Texture2D" uid="uid://blpdq0n4ri0gs" path="res://Assets/Mob/big_demon/big_demon_idle_anim_f3.png" id="15_3rnhg"]
+[ext_resource type="Texture2D" uid="uid://vtpu58eapowy" path="res://Assets/Mob/big_demon/big_demon_run_anim_f0.png" id="16_5ewyg"]
+[ext_resource type="Texture2D" uid="uid://d4ioq3134ydyo" path="res://Assets/Mob/big_demon/big_demon_run_anim_f1.png" id="17_mcrxi"]
+[ext_resource type="Texture2D" uid="uid://bidh4641qoajr" path="res://Assets/Mob/big_demon/big_demon_run_anim_f2.png" id="18_4nd2s"]
+[ext_resource type="Texture2D" uid="uid://divfaotj7c08m" path="res://Assets/Mob/big_demon/big_demon_run_anim_f3.png" id="19_7c50t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pybm7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0prnb"]
 atlas = ExtResource("5_xgcrf")
@@ -40,6 +61,60 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_imxoy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_de2bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r2v4s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bnvsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bku6n")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_j68st")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_itwdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_w6k6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fxsc3")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7b0uv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_grtk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bh7nm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_t6aie")
+}],
+"loop": true,
+"name": &"Bomb",
 "speed": 5.0
 }]
 
@@ -141,6 +216,43 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_2iapf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_80sdn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8acva")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_nai1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_3rnhg")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_5ewyg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_mcrxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_4nd2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_7c50t")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ye5r"]
 atlas = ExtResource("4_4p5c3")
 region = Rect2(0, 0, 16, 16)
@@ -232,25 +344,41 @@ animations = [{
 }]
 
 [node name="Mob" type="CharacterBody2D"]
-position = Vector2(31, -1)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_pybm7")
 
-[node name="fly_anim" type="AnimatedSprite2D" parent="."]
-position = Vector2(38, 0)
+[node name="FlyEye" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_x8be3")
 animation = &"Idle"
 frame_progress = 0.307993
 
-[node name="goblin" type="AnimatedSprite2D" parent="."]
+[node name="Angel" type="AnimatedSprite2D" parent="."]
+position = Vector2(38, 20)
+sprite_frames = SubResource("SpriteFrames_imxoy")
+animation = &"Idle"
+frame_progress = 0.855069
+
+[node name="Bomb" type="AnimatedSprite2D" parent="."]
+position = Vector2(60, 20)
+sprite_frames = SubResource("SpriteFrames_7b0uv")
+animation = &"Bomb"
+frame_progress = 0.267309
+
+[node name="Goblin" type="AnimatedSprite2D" parent="."]
 position = Vector2(57, 0)
 sprite_frames = SubResource("SpriteFrames_rnla6")
 animation = &"Run"
 frame_progress = 0.705121
 
-[node name="slime" type="AnimatedSprite2D" parent="."]
+[node name="BigDemon" type="AnimatedSprite2D" parent="."]
+position = Vector2(113, -2)
+sprite_frames = SubResource("SpriteFrames_2iapf")
+animation = &"Run"
+frame_progress = 0.4223
+
+[node name="Slime" type="AnimatedSprite2D" parent="."]
 position = Vector2(78, 0)
 sprite_frames = SubResource("SpriteFrames_y346b")
 animation = &"Idle"
