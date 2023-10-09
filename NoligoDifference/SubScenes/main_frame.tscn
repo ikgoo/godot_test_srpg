@@ -1,0 +1,134 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvcu63k0mvtt7"]
+
+[ext_resource type="Script" path="res://SubScenes/main_frame.gd" id="1_6fkj5"]
+[ext_resource type="PackedScene" uid="uid://84cfo2rbo3cl" path="res://SubScenes/texture_rect.tscn" id="1_e5xd4"]
+[ext_resource type="Texture2D" uid="uid://bs14hunol76p6" path="res://Assets/Frame/framelefttop.png" id="3_2ud2k"]
+[ext_resource type="Texture2D" uid="uid://bi35eiidl3a47" path="res://Assets/Frame/frameleftbottom.png" id="4_w8pm5"]
+[ext_resource type="Texture2D" uid="uid://c0clk4etc65u5" path="res://Assets/Frame/framerighttop.png" id="5_cki8v"]
+[ext_resource type="Texture2D" uid="uid://dhqgxlvkwqeeo" path="res://Assets/Frame/framerightbottom.png" id="6_fnrtv"]
+[ext_resource type="Texture2D" uid="uid://beuqhv13a1rib" path="res://Assets/Frame/width.png" id="7_h28qq"]
+[ext_resource type="Texture2D" uid="uid://1uguqpfhlfes" path="res://Assets/Frame/height.png" id="8_tm54n"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lah7y"]
+
+[node name="MainFrame" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 570.0
+offset_bottom = 587.0
+script = ExtResource("1_6fkj5")
+
+[node name="FrameImage" parent="." instance=ExtResource("1_e5xd4")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 560.0
+offset_bottom = 578.0
+texture_normal = SubResource("CompressedTexture2D_lah7y")
+
+[node name="lefttop" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_2ud2k")
+expand_mode = 2
+
+[node name="leftbottom" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_top = 555.0
+offset_right = 16.0
+offset_bottom = 571.0
+scale = Vector2(2, 2)
+texture = ExtResource("4_w8pm5")
+
+[node name="righttop" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_left = 539.0
+offset_right = 555.0
+offset_bottom = 16.0
+scale = Vector2(2, 2)
+texture = ExtResource("5_cki8v")
+
+[node name="rightbottom" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_left = 539.0
+offset_top = 555.0
+offset_right = 555.0
+offset_bottom = 571.0
+scale = Vector2(2, 2)
+texture = ExtResource("6_fnrtv")
+
+[node name="top" type="NinePatchRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 30.0
+offset_right = 286.0
+offset_bottom = 5.0
+scale = Vector2(2, 2)
+texture = ExtResource("7_h28qq")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="bottom" type="NinePatchRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 577.0
+offset_right = 286.0
+offset_bottom = 582.0
+scale = Vector2(2, 2)
+texture = ExtResource("7_h28qq")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="left" type="NinePatchRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_top = 30.0
+offset_right = 5.0
+offset_bottom = 294.0
+scale = Vector2(2, 2)
+texture = ExtResource("8_tm54n")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="right" type="NinePatchRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 561.0
+offset_top = 30.0
+offset_right = 566.0
+offset_bottom = 294.0
+scale = Vector2(2, 2)
+texture = ExtResource("8_tm54n")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

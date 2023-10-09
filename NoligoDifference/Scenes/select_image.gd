@@ -45,7 +45,7 @@ func SelectImage(img_name, curDate, gPosition, lPosition):
 	selectImageList.clear()
 
 	SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.CLICK, 0)
-	SceneTransition.change_scene(SceneTransition.SceneName.MAIN, 1.1)
+	SceneTransition.change_scene(SceneTransition.SceneName.MAIN, SceneTransition.TransType.Fade)
 	
 
 # 메인 음악 딜레이 플레이

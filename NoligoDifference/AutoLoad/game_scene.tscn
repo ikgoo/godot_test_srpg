@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://6ig4sy7g4bs5"]
+
+[ext_resource type="Script" path="res://AutoLoad/game_scene.gd" id="1_ta1os"]
+[ext_resource type="PackedScene" uid="uid://84cfo2rbo3cl" path="res://SubScenes/texture_rect.tscn" id="2_x8yhk"]
+[ext_resource type="PackedScene" uid="uid://cvcu63k0mvtt7" path="res://SubScenes/main_frame.tscn" id="3_seis5"]
+[ext_resource type="PackedScene" uid="uid://b76b24fm0b1uj" path="res://SubScenes/progress_bar.tscn" id="4_xneea"]
+
+[node name="GameScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ta1os")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeftImage" parent="." instance=ExtResource("2_x8yhk")]
+layout_mode = 0
+offset_right = 182.0
+offset_bottom = 182.0
+
+[node name="RightImage" parent="." instance=ExtResource("2_x8yhk")]
+layout_mode = 0
+offset_right = 182.0
+offset_bottom = 182.0
+
+[node name="LeftMainFrame" parent="." instance=ExtResource("3_seis5")]
+offset_left = 1246.0
+offset_top = 150.0
+offset_right = 1816.0
+offset_bottom = 737.0
+
+[node name="RightMainFrame" parent="." instance=ExtResource("3_seis5")]
+offset_left = 13.0
+offset_top = 153.0
+offset_right = 583.0
+offset_bottom = 740.0
+
+[node name="RandomMusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="ProgressBar" parent="." instance=ExtResource("4_xneea")]
+layout_mode = 1
+offset_left = 25.0
+offset_top = 28.0
+offset_right = -59.0
+offset_bottom = 96.0

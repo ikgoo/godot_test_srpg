@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://do47t1656i8p1"]
+
+[ext_resource type="Texture2D" uid="uid://bok3r0mpv3is8" path="res://Assets/LoadingScene/loadingbar_on.png" id="1_2vbst"]
+[ext_resource type="Script" path="res://SubScenes/progress_bar_front.gd" id="2_5hhjq"]
+
+[node name="ProgressBar_Front" type="NinePatchRect"]
+offset_right = 50.0
+offset_bottom = 66.0
+texture = ExtResource("1_2vbst")
+patch_margin_left = 35
+patch_margin_top = 1
+patch_margin_right = 35
+patch_margin_bottom = 1
+script = ExtResource("2_5hhjq")

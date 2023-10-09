@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://AutoLoad/global.tscn"
+SceneParticles="*res://AutoLoad/scene_particles.tscn"
 SceneTransition="*res://AutoLoad/scene_transition.tscn"
 SceneAudioPlayer="*res://AutoLoad/scene_audio_player.tscn"
 SingletonImageDown="*res://AutoLoad/http_request.tscn"

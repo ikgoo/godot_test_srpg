@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://b76b24fm0b1uj"]
+
+[ext_resource type="Script" path="res://SubScenes/progress_bar.gd" id="1_aw2ij"]
+[ext_resource type="Texture2D" uid="uid://u5rl75snosiu" path="res://Assets/LoadingScene/loadingbar_off.png" id="1_mbdlx"]
+[ext_resource type="Texture2D" uid="uid://bok3r0mpv3is8" path="res://Assets/LoadingScene/loadingbar_on.png" id="2_olg6p"]
+
+[node name="ProgressBar" type="Control"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 68.0
+grow_horizontal = 2
+script = ExtResource("1_aw2ij")
+max_value = 100.0
+
+[node name="ProgressBar_Back" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 68.0
+grow_horizontal = 2
+texture = ExtResource("1_mbdlx")
+patch_margin_left = 35
+patch_margin_top = 15
+patch_margin_right = 35
+patch_margin_bottom = 15
+
+[node name="ProgressBar_Front" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 78.0
+offset_bottom = 66.0
+texture = ExtResource("2_olg6p")
+patch_margin_left = 35
+patch_margin_top = 15
+patch_margin_right = 35
+patch_margin_bottom = 15

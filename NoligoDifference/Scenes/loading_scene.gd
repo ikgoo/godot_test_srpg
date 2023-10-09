@@ -10,7 +10,12 @@ extends Control
 @onready var timer_main_data = $TimerMainData
 
 @onready var progress_bar : TextureProgressBar = $Progressbar/ProgressBar
-@onready var persent_label = $Progressbar/ProgressBar/PersentLabel
+#@onready var persent_label = $Progressbar/ProgressBar/PersentLabel
+@onready var persent_label = $Progressbar/ProgressBar_Back/PersentLabel
+
+@onready var progress_bar_back = $Progressbar/ProgressBar_Back
+@onready var progress_bar_front = $Progressbar/ProgressBar_Back/ProgressBar_Front
+
 
 var arrow = load("res://Assets/Cursor/cursor_pointer3D.png")
 var beam = load("res://Assets/Cursor/cursor_pointerFlat_shadow.png")
@@ -96,32 +101,42 @@ func _on_timer_main_data_timeout():
 	SingletonImageDown.StartDownloadRangeDate(act_date_str, 3)
 	
 
+var currentPer = 70
+var maxPer : float = (1066 - currentPer) * 1.0
+
 func Change_Prograss_Value(val, rate):
 	if tween != null and tween.is_running():
 		tween.kill()
 	
 	tween = create_tween()
-	tween.tween_property(progress_bar, "value", rate, 0.5)
+#	tween.tween_property(progress_bar, "value", rate, 0.5)
+	
+	var p : float = maxPer * rate / 100
+	var p2 : float = p + currentPer
+	print(p)
+	print(progress_bar_front.size)
+	tween.tween_property(progress_bar_front, "value", p2, 0.5)
 
 func Finsh_Download():
 	if tween != null and tween.is_running():
 		tween.kill()
 	
 	tween = create_tween()
-	tween.tween_property(progress_bar, "value", 100, 0.5)
+#	tween.tween_property(progress_bar, "value", 100, 0.5)
+	tween.tween_property(progress_bar_front, "value", maxPer+currentPer , 0.5)
 	tween.tween_callback(GoMainGame)
 
 func GoMainGame():
-	if progress_bar.value == 100:
-		Global.GetAndSortDateList()		# 날짜 리스트 생성 및 정렬
-		SingletonImageDown.disconnect("Change_Prograss_Value", Change_Prograss_Value)
-		SingletonImageDown.disconnect("Finsh_Download", Finsh_Download)
+	Global.GetAndSortDateList()		# 날짜 리스트 생성 및 정렬
+	SingletonImageDown.disconnect("Change_Prograss_Value", Change_Prograss_Value)
+	SingletonImageDown.disconnect("Finsh_Download", Finsh_Download)
 
-		SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.LEVELPASSED, 0)
-		$WaitTimer.start(1.5)
-		await $WaitTimer.timeout
-		SceneTransition.change_scene(SceneTransition.SceneName.SELECTIMAGE, SceneTransition.TransType.Fade)
+	SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.LEVELPASSED, 0)
+	$WaitTimer.start(1.5)
+	await $WaitTimer.timeout
+	SceneTransition.change_scene(SceneTransition.SceneName.SELECTIMAGE, SceneTransition.TransType.Fade)
 	
 
-func _on_texture_progress_bar_value_changed(value):
-	persent_label.text = "LOADING " + str(value) + "%"
+func _on_progress_bar_front_change_size_x(val):
+	var p = int((val-currentPer) / maxPer * 100)
+	persent_label.text = "LOADING " + str(p) + "%"

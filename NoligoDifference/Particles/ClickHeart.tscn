@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://drhgt3yoj01cy"]
+
+[ext_resource type="Texture2D" uid="uid://oooat2q82tkd" path="res://Assets/free-icon-star-616490.png" id="1_1pprj"]
+[ext_resource type="Script" path="res://Particles/ClickHeart.gd" id="2_t8bce"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bcv52"]
+
+[sub_resource type="Curve" id="Curve_b6xq7"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_k8moa"]
+curve = SubResource("Curve_b6xq7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rd5fm"]
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 611.3
+initial_velocity_max = 700.0
+angular_velocity_min = -121.12
+angular_velocity_max = 94.21
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 5000.0
+damping_max = 5000.0
+damping_curve = SubResource("CurveTexture_k8moa")
+scale_min = 0.01
+scale_max = 0.05
+hue_variation_min = -0.08
+hue_variation_max = 0.22
+
+[node name="ClickHeart" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_bcv52")
+emitting = false
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_rd5fm")
+texture = ExtResource("1_1pprj")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+script = ExtResource("2_t8bce")

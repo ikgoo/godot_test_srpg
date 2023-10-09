@@ -21,7 +21,7 @@ enum SceneName {
 
 # Scene 리소스 리스트
 var scenesList : Array = [ 
-	"res://Scenes/main_menu.tscn",
+	"res://Scenes/select_image.tscn",
 	"res://Scenes/game_scene.tscn",
 ]
 
