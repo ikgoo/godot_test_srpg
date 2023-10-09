@@ -106,9 +106,10 @@ animations = [{
 radius = 2.0
 height = 12.0
 
-[node name="MobGoblin" type="Area2D" node_paths=PackedStringArray("mob")]
+[node name="MobGoblin" type="CharacterBody2D" node_paths=PackedStringArray("mob")]
 script = ExtResource("1_f7b04")
 mob = NodePath("Goblin")
+speed = null
 
 [node name="Goblin" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -6)

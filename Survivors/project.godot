@@ -22,8 +22,8 @@ SceneTransition="*res://Common/Singleton/scene_transition.tscn"
 
 [display]
 
-window/size/viewport_width=384
-window/size/viewport_height=216
+window/size/viewport_width=480
+window/size/viewport_height=270
 window/size/mode=3
 window/size/window_width_override=1920
 window/size/window_height_override=1080

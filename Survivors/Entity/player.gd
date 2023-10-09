@@ -31,11 +31,17 @@ func setState(value):
 
 # =========== 케릭저 정보 : Start ==========
 var hp = 10;
-var speed = 20;
+var speed = 40;
+var damege = 2;
 # =========== 케릭저 정보 : End ==========
+
+@onready var slash = $Slash
 
 func _ready():
 	animation_tree.active = true
+	
+	slash.init(self)
+	
 
 func _physics_process(delta):
 	
@@ -52,7 +58,6 @@ func _physics_process(delta):
 	
 func state_run(delta):
 	velocity = input_vector * speed
-	print(input_vector)
 	move_and_slide()
 
 

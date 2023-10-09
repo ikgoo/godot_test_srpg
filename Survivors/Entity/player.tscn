@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://box3vcvo6gmta"]
+[gd_scene load_steps=24 format=3 uid="uid://box3vcvo6gmta"]
 
 [ext_resource type="Script" path="res://Entity/player.gd" id="1_gq2ra"]
 [ext_resource type="Texture2D" uid="uid://cgmmslldpye21" path="res://Assets/Player/knight_idle_spritesheet.png" id="1_rw5w3"]
 [ext_resource type="Texture2D" uid="uid://b0wjvn01wtl21" path="res://Assets/Player/knight_run_spritesheet.png" id="2_hk38i"]
+[ext_resource type="PackedScene" uid="uid://by18kbxli773y" path="res://Attacks/slash.tscn" id="4_t5oqg"]
 
 [sub_resource type="Animation" id="Animation_ls17n"]
 resource_name = "Idle"
@@ -226,3 +227,8 @@ parameters/conditions/is_idle = false
 parameters/conditions/is_run = false
 parameters/Idle/blend_position = Vector2(-0.264244, -0.48374)
 parameters/Run/blend_position = Vector2(0, 0)
+
+[node name="Attacks" type="Node" parent="."]
+
+[node name="Slash" parent="." instance=ExtResource("4_t5oqg")]
+position = Vector2(0, -6)

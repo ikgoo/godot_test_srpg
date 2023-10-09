@@ -98,15 +98,14 @@ animations = [{
 radius = 3.0
 height = 12.0
 
-[node name="MobSlime" type="Area2D" node_paths=PackedStringArray("mob")]
+[node name="MobSlime" type="CharacterBody2D" node_paths=PackedStringArray("mob")]
 script = ExtResource("1_fjxps")
 mob = NodePath("Slime")
 
 [node name="Slime" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_1jqk0")
-animation = &"Idle"
-autoplay = "Run"
+animation = &"Run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
