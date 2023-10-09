@@ -15,6 +15,9 @@ var mob_size = [
 	Rect2(-20, -20, 20, 20),
 ]
 
+// 스폰 방향
+var spawnerDirection : Array = ["TOP", "LEFT", "RIGHT", "BOTTOM"]
+
 var mob_keys : Array = []
 var mob_count : int = 0
 
@@ -39,6 +42,11 @@ func RunSpawner(mob_name : String):
 		visible_on_screen_notifier_2d.rect = mob_size[1]
 	else:
 		visible_on_screen_notifier_2d.rect = mob_size[0]
+	
+	var spawnerDir = randi_range(0, spawnerDirection.size()-1)
+	match spawnerDirection[spawnerDir]:
+		
+	
 	
 	# 생성한 위치가 카메라의 범위 안이면 다시 생성합니다.
 	while visible_on_screen_notifier_2d.global_position == Vector2.ZERO or visible_on_screen_notifier_2d.is_on_screen():
