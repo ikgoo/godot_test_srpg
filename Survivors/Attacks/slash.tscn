@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://by18kbxli773y"]
+[gd_scene load_steps=8 format=3 uid="uid://by18kbxli773y"]
 
 [ext_resource type="Texture2D" uid="uid://4fir4tthsgsj" path="res://Assets/Effict/slash_effect_anim_spritesheet.png" id="1_ui40i"]
 [ext_resource type="Script" path="res://Attacks/slash.gd" id="1_vgaq6"]
+[ext_resource type="PackedScene" uid="uid://0mr77cnnc14s" path="res://Area/hit_box.tscn" id="3_cnsnk"]
 
 [sub_resource type="Animation" id="Animation_if5hn"]
 resource_name = "Attack"
@@ -47,7 +48,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/3/path = NodePath("HitBox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -86,7 +87,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -102,9 +103,8 @@ _data = {
 "RESET": SubResource("Animation_we3o1")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ccfqu"]
-radius = 5.0
-height = 28.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3pkn3"]
+radius = 6.0
 
 [node name="Slash" type="Node2D"]
 script = ExtResource("1_vgaq6")
@@ -122,16 +122,20 @@ texture = ExtResource("1_ui40i")
 hframes = 3
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.0
 one_shot = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HitBox" parent="." instance=ExtResource("3_cnsnk")]
+collision_layer = 4
+collision_mask = 64
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(21, 0)
-rotation = -1.57079
-shape = SubResource("CapsuleShape2D_ccfqu")
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(20, 0)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_3pkn3")
 disabled = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+
+[editable path="HitBox"]

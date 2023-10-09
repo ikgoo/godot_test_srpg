@@ -28,6 +28,6 @@ func _on_timer_timeout():
 func attack_end():
 	timer.start()
 
-func _on_area_2d_area_entered(area):
-	print('공')
-	pass # Replace with function body.
+
+func _on_hit_box_area_entered(area):
+	area.queue_free()

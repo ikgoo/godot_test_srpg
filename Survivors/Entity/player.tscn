@@ -228,7 +228,7 @@ parameters/conditions/is_run = false
 parameters/Idle/blend_position = Vector2(-0.264244, -0.48374)
 parameters/Run/blend_position = Vector2(0, 0)
 
-[node name="Attacks" type="Node" parent="."]
+[node name="Attacks" type="Node2D" parent="."]
 
-[node name="Slash" parent="." instance=ExtResource("4_t5oqg")]
+[node name="Slash" parent="Attacks" instance=ExtResource("4_t5oqg")]
 position = Vector2(0, -6)
