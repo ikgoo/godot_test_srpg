@@ -41,7 +41,7 @@ var damege = 2;
 func _ready():
 	animation_tree.active = true
 	
-	slash.init(self)
+#	slash.init(self)
 	
 
 func _physics_process(delta):

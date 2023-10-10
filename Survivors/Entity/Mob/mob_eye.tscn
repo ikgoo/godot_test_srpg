@@ -83,6 +83,7 @@ radius = 5.0
 height = 12.0
 
 [node name="MobEye" type="CharacterBody2D" node_paths=PackedStringArray("mob")]
+collision_layer = 16
 script = ExtResource("1_duvc8")
 mob = NodePath("FlyEye")
 

@@ -1,9 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://box3vcvo6gmta"]
+[gd_scene load_steps=23 format=3 uid="uid://box3vcvo6gmta"]
 
 [ext_resource type="Script" path="res://Entity/player.gd" id="1_gq2ra"]
 [ext_resource type="Texture2D" uid="uid://cgmmslldpye21" path="res://Assets/Player/knight_idle_spritesheet.png" id="1_rw5w3"]
 [ext_resource type="Texture2D" uid="uid://b0wjvn01wtl21" path="res://Assets/Player/knight_run_spritesheet.png" id="2_hk38i"]
-[ext_resource type="PackedScene" uid="uid://by18kbxli773y" path="res://Attacks/slash.tscn" id="4_t5oqg"]
 
 [sub_resource type="Animation" id="Animation_ls17n"]
 resource_name = "Idle"
@@ -203,6 +202,7 @@ states/Start/position = Vector2(232.667, 82.2222)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_88ac0"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_e4oqr"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_slab8")]
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_gq2ra")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -229,6 +229,3 @@ parameters/Idle/blend_position = Vector2(-0.264244, -0.48374)
 parameters/Run/blend_position = Vector2(0, 0)
 
 [node name="Attacks" type="Node2D" parent="."]
-
-[node name="Slash" parent="Attacks" instance=ExtResource("4_t5oqg")]
-position = Vector2(0, -6)

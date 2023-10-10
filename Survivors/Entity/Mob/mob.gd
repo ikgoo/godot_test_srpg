@@ -6,7 +6,7 @@ class_name Class_Mob
 @export var isBoss : bool = false
 
 @export var ACCELERATION = 300
-@export var MAX_SPEED = 15
+@export var MAX_SPEED = 1000
 
 @export var target : CharacterBody2D
 
@@ -16,12 +16,17 @@ func spawn(target):
 
 func _process(delta):
 	var posi = target.global_position
-	var direction = global_position.direction_to(posi)
-	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
-	
-	if velocity.x > 0:
-		mob.flip_h = false
+	if global_position.distance_to(posi) < 1:
+		velocity = Vector2.ZERO
 	else:
-		mob.flip_h = true
+		var direction = global_position.direction_to(posi)
+#		velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+		velocity = direction * MAX_SPEED * delta
+		
+		if velocity.x > 0:
+			mob.flip_h = false
+		else:
+			mob.flip_h = true
+	
 		
 	move_and_slide()

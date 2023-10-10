@@ -30,4 +30,4 @@ func attack_end():
 
 
 func _on_hit_box_area_entered(area):
-	area.queue_free()
+	area.get_parent().queue_free()
