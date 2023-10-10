@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var sprite_2d = $Sprite2D
 @onready var animation_tree = $AnimationTree
+@onready var attack_point = $AttackPoint
 
 var input_vector = Vector2.ZERO
 var last_flip_h : bool = false

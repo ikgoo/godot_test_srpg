@@ -228,4 +228,5 @@ parameters/conditions/is_run = false
 parameters/Idle/blend_position = Vector2(-0.264244, -0.48374)
 parameters/Run/blend_position = Vector2(0, 0)
 
-[node name="Attacks" type="Node2D" parent="."]
+[node name="AttackPoint" type="Marker2D" parent="."]
+position = Vector2(0, -6)

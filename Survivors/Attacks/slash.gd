@@ -10,11 +10,11 @@ var player : CharacterBody2D
 
 func init(player : CharacterBody2D) -> void:
 	self.player = player
-	timer.start()
 
 
 
 func _on_timer_timeout():
+	global_position = player.attack_point.global_position
 	var player_sprite : Sprite2D = player.get_node("Sprite2D") as Sprite2D
 	if player_sprite.flip_h == false:
 		scale.x = 1
