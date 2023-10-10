@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://box3vcvo6gmta"]
+[gd_scene load_steps=28 format=3 uid="uid://box3vcvo6gmta"]
 
 [ext_resource type="Script" path="res://Entity/player.gd" id="1_gq2ra"]
 [ext_resource type="Texture2D" uid="uid://cgmmslldpye21" path="res://Assets/Player/knight_idle_spritesheet.png" id="1_rw5w3"]
 [ext_resource type="Texture2D" uid="uid://b0wjvn01wtl21" path="res://Assets/Player/knight_run_spritesheet.png" id="2_hk38i"]
+[ext_resource type="PackedScene" uid="uid://4sffraeffxu4" path="res://Area/hurt_box.tscn" id="4_kvyeb"]
 
 [sub_resource type="Animation" id="Animation_ls17n"]
 resource_name = "Idle"
@@ -201,14 +202,89 @@ states/Run/position = Vector2(588.667, 131.333)
 states/Start/position = Vector2(232.667, 82.2222)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_88ac0"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_e4oqr"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_slab8")]
 
+[sub_resource type="Animation" id="Animation_4m1l2"]
+resource_name = "Hurt"
+length = 0.4
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.870588, 0, 0, 0.529412), Color(0.870588, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4jqr5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.870588, 0, 0, 0.776471)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nydn6"]
+_data = {
+"Hurt": SubResource("Animation_4m1l2"),
+"RESET": SubResource("Animation_4jqr5")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qj8kc"]
+radius = 4.0
+height = 12.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_gq2ra")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+clip_children = 2
 position = Vector2(0, -7)
 texture = ExtResource("1_rw5w3")
 hframes = 6
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+visible = false
+self_modulate = Color(0.870588, 0, 0, 0.776471)
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 8.0
+offset_bottom = 8.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -230,3 +306,21 @@ parameters/Run/blend_position = Vector2(0, 0)
 
 [node name="AttackPoint" type="Marker2D" parent="."]
 position = Vector2(0, -6)
+
+[node name="HurtEffect" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nydn6")
+}
+
+[node name="HurtBox" parent="." instance=ExtResource("4_kvyeb")]
+collision_layer = 8
+collision_mask = 32
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_qj8kc")
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
+
+[editable path="HurtBox"]

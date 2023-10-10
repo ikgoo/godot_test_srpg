@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var sprite_2d = $Sprite2D
 @onready var animation_tree = $AnimationTree
 @onready var attack_point = $AttackPoint
+@onready var hurt_effect = $HurtEffect
+@onready var hurt_box = $HurtBox
 
 var input_vector = Vector2.ZERO
 var last_flip_h : bool = false
@@ -57,6 +59,9 @@ func _physics_process(delta):
 	if state == STATE.RUN:
 		state_run(delta)
 		
+func _process(delta):
+	if check_hurt():
+		GameManager.Demage(0.1)
 	
 func state_run(delta):
 	velocity = input_vector * speed
@@ -66,3 +71,23 @@ func state_run(delta):
 func key_input():
 	input_vector = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
+
+
+func _on_hurt_box_area_entered(area):
+	pass
+
+
+func _on_hurt_box_area_exited(area):
+	pass
+
+func check_hurt() -> bool:
+	print(hurt_effect.is_playing())
+	if hurt_effect.current_animation == "Hurt" and hurt_box.get_overlapping_areas().size() == 0:
+		hurt_effect.play("RESET")
+	elif hurt_effect.is_playing() == false and hurt_box.get_overlapping_areas().size() != 0:
+		hurt_effect.play("Hurt")
+		
+	if hurt_effect.current_animation == "Hurt":
+		return true
+	else:
+		return false

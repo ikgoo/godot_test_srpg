@@ -6,12 +6,11 @@ class_name calss_attack
 @onready var sprite_2d = $Sprite2D
 @onready var timer = $Timer
 
+
 var player : CharacterBody2D
 
 func init(player : CharacterBody2D) -> void:
 	self.player = player
-
-
 
 func _on_timer_timeout():
 	global_position = player.attack_point.global_position

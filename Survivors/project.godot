@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://Common/Singleton/Global.gd"
 SceneTransition="*res://Common/Singleton/scene_transition.tscn"
+GameManager="*res://Singleton/game_manager.tscn"
 
 [display]
 

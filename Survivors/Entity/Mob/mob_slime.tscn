@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://f1av30akeg7c"]
+[gd_scene load_steps=21 format=3 uid="uid://f1av30akeg7c"]
 
 [ext_resource type="Texture2D" uid="uid://cqo3jx3m4tinf" path="res://Assets/Mob/slime_idle_spritesheet.png" id="1_5t4ab"]
 [ext_resource type="Script" path="res://Entity/Mob/mob_slime.gd" id="1_fjxps"]
 [ext_resource type="Texture2D" uid="uid://ttmldpdxvqf2" path="res://Assets/Mob/slime_run_spritesheeet.png" id="2_ditlj"]
 [ext_resource type="PackedScene" uid="uid://4sffraeffxu4" path="res://Area/hurt_box.tscn" id="4_pgccr"]
+[ext_resource type="PackedScene" uid="uid://0mr77cnnc14s" path="res://Area/hit_box.tscn" id="5_tfcqb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ye5r"]
 atlas = ExtResource("1_5t4ab")
@@ -96,17 +97,23 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fw87m"]
-radius = 3.0
+radius = 5.0
 height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2k23"]
 radius = 7.0
 height = 14.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3fkhp"]
+radius = 6.0
+height = 12.0
+
 [node name="MobSlime" type="CharacterBody2D" node_paths=PackedStringArray("mob")]
 collision_layer = 16
+collision_mask = 17
 script = ExtResource("1_fjxps")
 mob = NodePath("Slime")
+MAX_SPEED = 400
 
 [node name="Slime" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
@@ -114,7 +121,7 @@ sprite_frames = SubResource("SpriteFrames_1jqk0")
 animation = &"Run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(0, -5)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_fw87m")
 
@@ -126,4 +133,13 @@ collision_mask = 4
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_a2k23")
 
+[node name="HitBox" parent="." instance=ExtResource("5_tfcqb")]
+collision_layer = 32
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_3fkhp")
+
 [editable path="HurtBox"]
+[editable path="HitBox"]
