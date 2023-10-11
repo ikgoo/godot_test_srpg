@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var attack_point = $AttackPoint
 @onready var hurt_effect = $HurtEffect
 @onready var hurt_box = $HurtBox
+@onready var hp_bar = $Node2D/HPBar
 
 var input_vector = Vector2.ZERO
 var last_flip_h : bool = false
@@ -43,6 +44,10 @@ var damege = 2;
 
 func _ready():
 	animation_tree.active = true
+	
+	GameManager.connect("ChangeMaxHP", ChangeMaxHP)
+	GameManager.connect("InitHP", InitHP)
+	GameManager.connect("ChangeHp", ChangeHp)
 	
 #	slash.init(self)
 	
@@ -91,3 +96,14 @@ func check_hurt() -> bool:
 		return true
 	else:
 		return false
+		
+		
+
+func ChangeMaxHP(max_hp):
+	hp_bar.max_value = max_hp
+	
+func InitHP(hp):
+	hp_bar.value = hp
+	
+func ChangeHp(change_hp, demage):
+	hp_bar.value = change_hp
