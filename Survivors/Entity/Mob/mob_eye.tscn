@@ -1,9 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://c1suplsved3xg"]
+[gd_scene load_steps=15 format=3 uid="uid://c1suplsved3xg"]
 
 [ext_resource type="Script" path="res://Entity/Mob/mob_eye.gd" id="1_duvc8"]
 [ext_resource type="Texture2D" uid="uid://di3chlhwl7hdg" path="res://Assets/Mob/fly_anim_spritesheet.png" id="1_vnqiq"]
 [ext_resource type="PackedScene" uid="uid://4sffraeffxu4" path="res://Area/hurt_box.tscn" id="3_mmh7j"]
-[ext_resource type="PackedScene" uid="uid://0mr77cnnc14s" path="res://Area/hit_box.tscn" id="4_k2cqq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0prnb"]
 atlas = ExtResource("1_vnqiq")
@@ -83,13 +82,9 @@ height = 12.0
 radius = 5.0
 height = 12.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abb37"]
-radius = 5.0
-height = 10.0
-
 [node name="MobEye" type="CharacterBody2D" node_paths=PackedStringArray("mob")]
 collision_layer = 16
-collision_mask = 17
+collision_mask = 29
 script = ExtResource("1_duvc8")
 mob = NodePath("FlyEye")
 MAX_SPEED = 400
@@ -106,19 +101,12 @@ shape = SubResource("CapsuleShape2D_niojh")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_mmh7j")]
 collision_layer = 64
-collision_mask = 4
+collision_mask = 12
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_h0qhj")
 
-[node name="HitBox" parent="." instance=ExtResource("4_k2cqq")]
-collision_layer = 32
-collision_mask = 8
-
-[node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(0, -8)
-shape = SubResource("CapsuleShape2D_abb37")
-
 [editable path="HurtBox"]
-[editable path="HitBox"]

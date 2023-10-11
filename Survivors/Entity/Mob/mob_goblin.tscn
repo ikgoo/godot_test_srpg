@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dnkyufrshopuc"]
+[gd_scene load_steps=20 format=3 uid="uid://dnkyufrshopuc"]
 
 [ext_resource type="Texture2D" uid="uid://dlqbtexardwis" path="res://Assets/Mob/goblin_idle_spritesheet.png" id="1_5c2h0"]
 [ext_resource type="Script" path="res://Entity/Mob/mob_goblin.gd" id="1_f7b04"]
 [ext_resource type="Texture2D" uid="uid://80nqq8u6cnf1" path="res://Assets/Mob/goblin_run_spritesheet.png" id="2_plr6w"]
 [ext_resource type="PackedScene" uid="uid://4sffraeffxu4" path="res://Area/hurt_box.tscn" id="4_dk5bv"]
-[ext_resource type="PackedScene" uid="uid://0mr77cnnc14s" path="res://Area/hit_box.tscn" id="5_m6yus"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k324u"]
 atlas = ExtResource("1_5c2h0")
@@ -112,13 +111,9 @@ height = 12.0
 radius = 6.0
 height = 14.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5r5px"]
-radius = 6.0
-height = 12.0
-
 [node name="MobGoblin" type="CharacterBody2D" node_paths=PackedStringArray("mob")]
 collision_layer = 16
-collision_mask = 17
+collision_mask = 29
 script = ExtResource("1_f7b04")
 mob = NodePath("Goblin")
 MAX_SPEED = 400
@@ -135,19 +130,12 @@ shape = SubResource("CapsuleShape2D_pa3rv")
 
 [node name="HurtBox" parent="." instance=ExtResource("4_dk5bv")]
 collision_layer = 64
-collision_mask = 4
+collision_mask = 12
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_ddlhp")
 
-[node name="HitBox" parent="." instance=ExtResource("5_m6yus")]
-collision_layer = 32
-collision_mask = 8
-
-[node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(0, -6)
-shape = SubResource("CapsuleShape2D_5r5px")
-
 [editable path="HurtBox"]
-[editable path="HitBox"]

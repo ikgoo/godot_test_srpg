@@ -25,6 +25,8 @@ var spawnPoint : Vector2 = Vector2.ZERO
 var mob_keys : Array = []
 var mob_count : int = 0
 
+@export var mob_spawn_count : int = 0
+
 func _ready():
 	randomize()
 	
@@ -59,6 +61,8 @@ func RunSpawner(mob_name : String):
 	ins.global_position = spawnPoint
 	ins.spawn(player)
 	get_tree().current_scene.add_child(ins)
+	mob_spawn_count = mob_spawn_count + 1
+	print(mob_spawn_count)
 
 func _on_timer_timeout() -> void:
 	var pick_number = randi_range(0, mob_count-1)

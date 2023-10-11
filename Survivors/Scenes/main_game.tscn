@@ -16,20 +16,19 @@ z_index = -1
 texture = ExtResource("2_cevvd")
 
 [node name="Player" parent="." instance=ExtResource("1_r2v42")]
-scale = Vector2(0.25, 0.25)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 10
-scale = Vector2(0.25, 0.25)
 
 [node name="MobSpawner" parent="." node_paths=PackedStringArray("player", "camera") instance=ExtResource("3_xjgb6")]
 player = NodePath("../Player")
 camera = NodePath("../Camera2D")
 
 [node name="WeaponManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_ppjdm")]
+visible = false
 position = Vector2(0, -6)
 player = NodePath("../Player")
 

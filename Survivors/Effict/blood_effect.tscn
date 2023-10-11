@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://blg6luxgj8uw8"]
+
+[sub_resource type="Gradient" id="Gradient_b25se"]
+offsets = PackedFloat32Array(0, 0.518459, 1)
+colors = PackedColorArray(1, 0.566169, 0.503585, 1, 0.826509, 3.73013e-06, 6.73831e-07, 1, 1, 0.21268, 0.159696, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gssq4"]
+gradient = SubResource("Gradient_b25se")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8c1b7"]
+emission_shape = 3
+emission_box_extents = Vector3(8, 2, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 35.0
+gravity = Vector3(0, 18, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 15.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.5
+scale_max = 2.5
+color = Color(1, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_gssq4")
+
+[node name="BloodEffect" type="GPUParticles2D"]
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_8c1b7")
+lifetime = 1.5

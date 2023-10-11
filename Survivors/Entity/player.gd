@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var hurt_effect = $HurtEffect
 @onready var hurt_box = $HurtBox
 @onready var hp_bar = $Node2D/HPBar
+@onready var blood_effect = $BloodEffect
 
 var input_vector = Vector2.ZERO
 var last_flip_h : bool = false
@@ -86,11 +87,12 @@ func _on_hurt_box_area_exited(area):
 	pass
 
 func check_hurt() -> bool:
-	print(hurt_effect.is_playing())
 	if hurt_effect.current_animation == "Hurt" and hurt_box.get_overlapping_areas().size() == 0:
 		hurt_effect.play("RESET")
+		blood_effect.emitting = false
 	elif hurt_effect.is_playing() == false and hurt_box.get_overlapping_areas().size() != 0:
 		hurt_effect.play("Hurt")
+		blood_effect.emitting = true
 		
 	if hurt_effect.current_animation == "Hurt":
 		return true

@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://box3vcvo6gmta"]
+[gd_scene load_steps=31 format=3 uid="uid://box3vcvo6gmta"]
 
 [ext_resource type="Script" path="res://Entity/player.gd" id="1_gq2ra"]
 [ext_resource type="Texture2D" uid="uid://cgmmslldpye21" path="res://Assets/Player/knight_idle_spritesheet.png" id="1_rw5w3"]
 [ext_resource type="Texture2D" uid="uid://b0wjvn01wtl21" path="res://Assets/Player/knight_run_spritesheet.png" id="2_hk38i"]
 [ext_resource type="PackedScene" uid="uid://4sffraeffxu4" path="res://Area/hurt_box.tscn" id="4_kvyeb"]
+[ext_resource type="PackedScene" uid="uid://blg6luxgj8uw8" path="res://Effict/blood_effect.tscn" id="5_0g5lg"]
 
 [sub_resource type="Animation" id="Animation_ls17n"]
 resource_name = "Idle"
@@ -134,8 +135,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_34i3s"]
-radius = 4.0
-height = 20.0
+radius = 2.0
+height = 7.99999
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pqtfx"]
 animation = &"Idle"
@@ -265,8 +266,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qj8kc"]
-radius = 14.0
-height = 38.0
+radius = 4.0
+height = 12.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slgpk"]
 bg_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
@@ -280,8 +281,7 @@ script = ExtResource("1_gq2ra")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 clip_children = 2
-position = Vector2(0, -21)
-scale = Vector2(3, 3)
+position = Vector2(0, -7)
 texture = ExtResource("1_rw5w3")
 hframes = 6
 
@@ -299,7 +299,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(0, -2)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_34i3s")
 
@@ -321,10 +321,10 @@ libraries = {
 
 [node name="HurtBox" parent="." instance=ExtResource("4_kvyeb")]
 collision_layer = 8
-collision_mask = 32
+collision_mask = 16
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(0, -19)
+position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_qj8kc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -333,15 +333,20 @@ shape = SubResource("CapsuleShape2D_qj8kc")
 
 [node name="HPBar" type="ProgressBar" parent="Node2D"]
 texture_filter = 1
-offset_left = -23.0
-offset_top = 5.0
-offset_right = 23.0
-offset_bottom = 9.0
+offset_left = -8.0
+offset_top = 2.0
+offset_right = 8.0
+offset_bottom = 4.0
 theme_override_styles/background = SubResource("StyleBoxFlat_slgpk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4usmm")
 step = 0.001
 value = 100.0
 show_percentage = false
+
+[node name="Node2D2" type="Node2D" parent="."]
+
+[node name="BloodEffect" parent="." instance=ExtResource("5_0g5lg")]
+position = Vector2(0, -12)
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
