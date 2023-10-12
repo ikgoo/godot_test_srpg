@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://br8r5i70pp3db"]
+
+[ext_resource type="Script" path="res://Bullet/Gud.gd" id="1_2eaio"]
+[ext_resource type="Script" path="res://Bullet/BulletShower.gd" id="1_ucwpo"]
+
+[node name="BulletShower" type="Node2D"]
+position = Vector2(251, 128)
+script = ExtResource("1_ucwpo")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+script = ExtResource("1_2eaio")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmj7dbunee2fm"]
+
+[ext_resource type="Script" path="res://Bullet/bullet_with_server.gd" id="1_8gopx"]
+[ext_resource type="Texture2D" uid="uid://cdtqntbwwm37d" path="res://Assets/Mob/angel/angel_idle_anim_f0.png" id="1_ixcsb"]
+
+[node name="BulletSprite" type="Sprite2D"]
+texture = ExtResource("1_ixcsb")
+script = ExtResource("1_8gopx")
