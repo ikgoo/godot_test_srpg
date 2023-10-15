@@ -22,7 +22,7 @@ enum SceneName {
 # Scene 리소스 리스트
 var scenesList : Array = [ 
 	"res://Scenes/select_image.tscn",
-	"res://Scenes/game_scene.tscn",
+	"res://Scenes/main_game.tscn",
 ]
 
 #  Fade 방식

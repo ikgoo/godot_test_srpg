@@ -102,8 +102,16 @@ func LoadDownloadImage(type : String, curDate : String, idx : int) -> ImageTextu
 	var tex = ImageTexture.new()
 	var file : FileAccess = FileAccess.open(path, FileAccess.READ)
 	var img_buffer = file.get_buffer(file.get_length())
-	img.load_jpg_from_buffer(img_buffer)
-	tex.set_image(img)	
+	
+	match path.get_extension():
+		"png":
+			img.load_png_from_buffer(img_buffer)
+		"jpg":
+			img.load_jpg_from_buffer(img_buffer)
+
+	tex.set_image(img)
+	file.close()
+	
 	
 	
 	return tex

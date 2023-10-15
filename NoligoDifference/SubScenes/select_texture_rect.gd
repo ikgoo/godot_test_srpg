@@ -2,6 +2,7 @@ extends TextureButton
 
 signal SelectImage(name, sctDate, globalPosition, localPosition)
 
+
 # 현재 날짜
 var curDate : String = ""
 #현재 날짜의 정보
@@ -13,6 +14,12 @@ var img_type : String = "NONE"
 # 틀린 그림의 경우 해당 번호 정보
 var diff_idx : int = -1
 
+var is_clear : bool = false : set = SetIsClear
+func SetIsClear(value):
+	is_clear = value
+
+func _ready():
+	pass
 
 func _on_pressed():
 	if name.find("Diff") >= 0:

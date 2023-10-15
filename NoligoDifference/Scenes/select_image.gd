@@ -3,7 +3,7 @@ extends Control
 @onready var grid_container = $ScrollContainer/GridContainer
 @onready var audio_delay_play = $AudioDelayPlay
 
-@onready var texture_rect = preload("res://SubScenes/texture_rect.tscn")
+@onready var texture_rect = preload("res://SubScenes/select_texture_rect.tscn")
 
 var selectImageList = []
 
@@ -45,6 +45,8 @@ func SelectImage(img_name, curDate, gPosition, lPosition):
 	selectImageList.clear()
 
 	SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.CLICK, 0)
+	audio_delay_play.start(1)
+	await audio_delay_play.timeout	
 	SceneTransition.change_scene(SceneTransition.SceneName.MAIN, SceneTransition.TransType.Fade)
 	
 

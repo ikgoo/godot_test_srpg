@@ -1,0 +1,176 @@
+[gd_scene load_steps=11 format=3 uid="uid://lfkd6sw50ypf"]
+
+[ext_resource type="Texture2D" uid="uid://ygs5sxu3fdw5" path="res://Assets/MainScene/page01.jpg" id="1_7tcur"]
+[ext_resource type="Script" path="res://Scenes/main_game.gd" id="1_d3w3v"]
+[ext_resource type="PackedScene" uid="uid://linjqsvygnni" path="res://SubScenes/MainFrame.tscn" id="3_1t37r"]
+[ext_resource type="PackedScene" uid="uid://b76b24fm0b1uj" path="res://SubScenes/progress_bar.tscn" id="4_rsnba"]
+[ext_resource type="PackedScene" uid="uid://dioa8rtytujo" path="res://SubScenes/main_texture_rect.tscn" id="4_xi6lw"]
+[ext_resource type="PackedScene" uid="uid://bcuvfg5ys2hkn" path="res://SubScenes/options.tscn" id="5_2ndyx"]
+[ext_resource type="FontVariation" uid="uid://5m06ufhdiu2k" path="res://Assets/Fonts/small_font.tres" id="6_3hl7n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iw463"]
+font = ExtResource("6_3hl7n")
+font_size = 50
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sxmsr"]
+font = ExtResource("6_3hl7n")
+font_size = 50
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vvxog"]
+font = ExtResource("6_3hl7n")
+font_size = 50
+font_color = Color(1, 0, 0, 1)
+
+[node name="MainGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d3w3v")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7tcur")
+
+[node name="MainFrame" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -647.0
+offset_top = -392.0
+offset_right = 680.0
+offset_bottom = 358.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="LeftMainFrame" parent="Control/HBoxContainer" instance=ExtResource("3_1t37r")]
+layout_mode = 2
+
+[node name="RightMainFrame" parent="Control/HBoxContainer" instance=ExtResource("3_1t37r")]
+layout_mode = 2
+
+[node name="Diff00" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("4_xi6lw")]
+layout_mode = 0
+offset_right = 144.0
+offset_bottom = 137.0
+
+[node name="Diff01" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("4_xi6lw")]
+layout_mode = 0
+offset_right = 144.0
+offset_bottom = 137.0
+
+[node name="Diff02" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("4_xi6lw")]
+layout_mode = 0
+offset_right = 144.0
+offset_bottom = 137.0
+
+[node name="Diff03" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("4_xi6lw")]
+layout_mode = 0
+offset_right = 144.0
+offset_bottom = 137.0
+
+[node name="Diff04" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("4_xi6lw")]
+layout_mode = 0
+offset_right = 144.0
+offset_bottom = 137.0
+
+[node name="RandomMusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="ProgressBar" parent="." instance=ExtResource("4_rsnba")]
+layout_mode = 1
+offset_left = 314.0
+offset_top = 21.0
+offset_right = -189.0
+offset_bottom = 77.0
+
+[node name="GameMainPlayer" type="AnimationPlayer" parent="."]
+
+[node name="HUD" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerEmptyHeart" type="TextureRect" parent="HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerFullHeart" type="TextureRect" parent="HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameEndSFXPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="TimeLateSFXPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="HUDCount" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CountDown3" type="Label" parent="HUDCount"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "3"
+label_settings = SubResource("LabelSettings_iw463")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountDown2" type="Label" parent="HUDCount"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "2"
+label_settings = SubResource("LabelSettings_sxmsr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountDown1" type="Label" parent="HUDCount"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "1"
+label_settings = SubResource("LabelSettings_vvxog")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" parent="." instance=ExtResource("5_2ndyx")]
+visible = false
+layout_mode = 1
