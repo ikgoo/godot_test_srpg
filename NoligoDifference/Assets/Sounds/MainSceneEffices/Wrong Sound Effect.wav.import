@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://shji8rb5r26x"
+path="res://.godot/imported/Wrong Sound Effect.wav-2c4a5ad0ef9862dfa64ee04008b753c0.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/MainSceneEffices/Wrong Sound Effect.wav"
+dest_files=["res://.godot/imported/Wrong Sound Effect.wav-2c4a5ad0ef9862dfa64ee04008b753c0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -16,6 +16,7 @@ extends Control
 
 # 메인 게임내 애니메이션(카운트다운)
 @onready var game_main_player = $GameMainPlayer
+
 # 플레이어 생명력(UI)
 @onready var player_full_heart = $HUD/PlayerFullHeart
 
@@ -29,6 +30,8 @@ extends Control
 @onready var OKAct = preload("res://SubScenes/OK.tscn")
 # 틀렸을때 이미지&소리
 @onready var crossAct = preload("res://SubScenes/cross.tscn")	
+
+@onready var timer = $Timer
 
 # 맞춘수
 var score : int = 0
@@ -104,13 +107,14 @@ func GameStart():
 	if tween != null and tween.is_running():
 		tween.kill()
 	
+	print(texture_progress_bar.value)
 	tween = create_tween()
 	tween.tween_property(texture_progress_bar, "value", 100, 10)
 	tween.tween_callback(TimeOverGameOver)
 	return
 
 var gameState = "None"	
-func _on_texture_progress_bar_value_changed(value):
+func _on_progress_bar_change_value(value):
 	if texture_progress_bar.value > 70 and gameState == "None":
 		# 시간이 얼마 남지 않아 긴장 상태의 음악으로 전환
 		print("긴장상태 음악")
@@ -176,22 +180,22 @@ func SelectImage(img_type, curDate, gPosition, lPosition):
 		score += 1
 		var ok01 = OKAct.instantiate()
 		ok01.init(checkData[chk_idx])
-		left_main_frame.frame_image.add_child(ok01)
+		left_main_frame.add_child(ok01)
 		var ok02 = OKAct.instantiate()
 		ok02.init(checkData[chk_idx])
-		right_main_frame.frame_image.add_child(ok02)
+		right_main_frame.add_child(ok02)
 		var t = 0
 		
 	else:			# 잘못 선택한 경우
 		print("틀렸음")
 		playerLife -= 1
-		player_full_heart.size.x -= 15
+		player_full_heart.size.x -= 53
 		var ca01 = crossAct.instantiate()
 		ca01.position = lPosition
-		left_main_frame.frame_image.add_child(ca01)
+		left_main_frame.add_child(ca01)
 		var ca02 = crossAct.instantiate()
 		ca02.position = lPosition
-		right_main_frame.frame_image.add_child(ca02)
+		right_main_frame.add_child(ca02)
 
 		if playerLife == 0:		# 게임 오버(라이프 오버)
 			print("라이프 0 게임 오버")
@@ -217,7 +221,10 @@ func GoMain(duration):
 	right_main_frame.frame_image.disconnect("SelectImage", SelectImage)
 	options.disconnect("GoMain", GoMain)
 	random_music_player.stop()
-	SceneTransition.change_scene(SceneTransition.SceneName.SELECTIMAGE, duration)
+	timer.wait_time = duration
+	timer.start()
+	await timer.timeout
+	SceneTransition.change_scene(SceneTransition.SceneName.SELECTIMAGE, SceneTransition.TransType.Fade)
 	
 
 # 메인 음악 딜레이 플레이

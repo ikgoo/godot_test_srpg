@@ -1,19 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1mppip1b452u"]
+[gd_scene load_steps=4 format=3 uid="uid://c1mppip1b452u"]
 
 [ext_resource type="Script" path="res://SubScenes/ok.gd" id="1_8w8ih"]
+[ext_resource type="Texture2D" uid="uid://l2bjxqe5uwgg" path="res://Assets/MainScene/ok.png" id="2_et63o"]
+[ext_resource type="AudioStream" uid="uid://bmfxwyddorxdy" path="res://Assets/Sounds/MainSceneEffices/OK.wav" id="3_85ner"]
 
 [node name="OK" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_8w8ih")
 
 [node name="OKImage" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+texture = ExtResource("2_et63o")
+expand_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_85ner")
+autoplay = true

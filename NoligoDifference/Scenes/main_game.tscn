@@ -1,12 +1,44 @@
-[gd_scene load_steps=11 format=3 uid="uid://lfkd6sw50ypf"]
+[gd_scene load_steps=23 format=3 uid="uid://lfkd6sw50ypf"]
 
-[ext_resource type="Texture2D" uid="uid://ygs5sxu3fdw5" path="res://Assets/MainScene/page01.jpg" id="1_7tcur"]
 [ext_resource type="Script" path="res://Scenes/main_game.gd" id="1_d3w3v"]
+[ext_resource type="Texture2D" uid="uid://cv04uwa4cl6p6" path="res://Assets/MainScene/bg.jpg" id="2_ooswh"]
+[ext_resource type="AudioStream" uid="uid://dxb11hh1koom4" path="res://Assets/Sounds/MainSceneMusics/cottagecore-17463.mp3" id="2_wvga3"]
 [ext_resource type="PackedScene" uid="uid://linjqsvygnni" path="res://SubScenes/MainFrame.tscn" id="3_1t37r"]
-[ext_resource type="PackedScene" uid="uid://b76b24fm0b1uj" path="res://SubScenes/progress_bar.tscn" id="4_rsnba"]
+[ext_resource type="AudioStream" uid="uid://g0uklbcfchyq" path="res://Assets/Sounds/MainSceneMusics/drama-stringsmp3-14627.mp3" id="3_ti4w5"]
+[ext_resource type="AudioStream" uid="uid://blp8xp3iedn7s" path="res://Assets/Sounds/MainSceneMusics/funny-dancing-kids-158822.mp3" id="4_emq8m"]
 [ext_resource type="PackedScene" uid="uid://dioa8rtytujo" path="res://SubScenes/main_texture_rect.tscn" id="4_xi6lw"]
 [ext_resource type="PackedScene" uid="uid://bcuvfg5ys2hkn" path="res://SubScenes/options.tscn" id="5_2ndyx"]
+[ext_resource type="AudioStream" uid="uid://ca32fa20qgw0k" path="res://Assets/Sounds/MainSceneMusics/happy-swing-164932.mp3" id="5_t8v62"]
+[ext_resource type="PackedScene" uid="uid://dt4dbxi65cqek" path="res://SubScenes/main_progress_bar.tscn" id="5_xd8u1"]
 [ext_resource type="FontVariation" uid="uid://5m06ufhdiu2k" path="res://Assets/Fonts/small_font.tres" id="6_3hl7n"]
+[ext_resource type="AudioStream" uid="uid://0oexsvhg8mt6" path="res://Assets/Sounds/MainSceneMusics/jolly-farmer-163815.mp3" id="6_nh8qg"]
+[ext_resource type="AudioStream" uid="uid://bax2q01iv56pq" path="res://Assets/Sounds/MainSceneMusics/positive-days-157222.mp3" id="7_vg188"]
+[ext_resource type="Texture2D" uid="uid://cwaroi3mtyof3" path="res://Assets/MainScene/heart_off.png" id="8_63brg"]
+[ext_resource type="AudioStream" uid="uid://c5durv4a4qhdg" path="res://Assets/Sounds/MainSceneMusics/upbeat-fun-loop-164631.mp3" id="8_htpbr"]
+[ext_resource type="Texture2D" uid="uid://c1dyjw6ds4rb6" path="res://Assets/MainScene/heart_on.png" id="9_4e78b"]
+[ext_resource type="AudioStream" uid="uid://j22yd4ofmx20" path="res://Assets/Sounds/MainSceneMusics/upbeat-funky-retro-131297.mp3" id="9_h27xm"]
+
+[sub_resource type="Animation" id="Animation_bb7e5"]
+resource_name = "CountDown"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"GameStart"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxgd3"]
+_data = {
+"CountDown": SubResource("Animation_bb7e5")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_iw463"]
 font = ExtResource("6_3hl7n")
@@ -31,6 +63,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d3w3v")
+backMusicList = Array[AudioStream]([ExtResource("2_wvga3"), ExtResource("3_ti4w5"), ExtResource("4_emq8m"), ExtResource("5_t8v62"), ExtResource("6_nh8qg"), ExtResource("7_vg188"), ExtResource("8_htpbr"), ExtResource("9_h27xm")])
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -39,7 +72,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_7tcur")
+texture = ExtResource("2_ooswh")
 
 [node name="MainFrame" type="Control" parent="."]
 anchors_preset = 0
@@ -65,6 +98,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 75.0
+offset_right = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
@@ -102,29 +138,20 @@ offset_bottom = 137.0
 
 [node name="RandomMusicPlayer" type="AudioStreamPlayer" parent="."]
 
-[node name="ProgressBar" parent="." instance=ExtResource("4_rsnba")]
+[node name="TextureProgressBar" parent="." instance=ExtResource("5_xd8u1")]
 layout_mode = 1
-offset_left = 314.0
-offset_top = 21.0
-offset_right = -189.0
-offset_bottom = 77.0
+offset_left = 411.0
+offset_top = 131.0
+offset_right = -488.0
+offset_bottom = 177.0
+
+[node name="ProgressBar_Front" parent="TextureProgressBar" index="1"]
+offset_right = -981.0
 
 [node name="GameMainPlayer" type="AnimationPlayer" parent="."]
-
-[node name="HUD" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PlayerEmptyHeart" type="TextureRect" parent="HUD"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PlayerFullHeart" type="TextureRect" parent="HUD"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+libraries = {
+"": SubResource("AnimationLibrary_mxgd3")
+}
 
 [node name="GameEndSFXPlayer" type="AudioStreamPlayer" parent="."]
 
@@ -174,3 +201,40 @@ vertical_alignment = 1
 [node name="Options" parent="." instance=ExtResource("5_2ndyx")]
 visible = false
 layout_mode = 1
+
+[node name="HUD" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1447.0
+offset_top = 135.0
+offset_right = 1612.0
+offset_bottom = 183.0
+
+[node name="PlayerEmptyHeart" type="TextureRect" parent="HUD"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 159.0
+offset_bottom = 43.0
+texture = ExtResource("8_63brg")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="PlayerFullHeart" type="TextureRect" parent="HUD"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 159.0
+offset_bottom = 43.0
+texture = ExtResource("9_4e78b")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff00" to="." method="SelectImage"]
+[connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff01" to="." method="SelectImage"]
+[connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff02" to="." method="SelectImage"]
+[connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff03" to="." method="SelectImage"]
+[connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff04" to="." method="SelectImage"]
+[connection signal="ChangeValue" from="TextureProgressBar" to="." method="_on_progress_bar_change_value"]
+[connection signal="finished" from="GameEndSFXPlayer" to="." method="GameOver"]
+
+[editable path="TextureProgressBar"]
