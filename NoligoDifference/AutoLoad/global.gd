@@ -1,6 +1,6 @@
 extends Node
 
-var lastDate : String
+var last_mst_id : int
 
 # 게임 전체적인 데이터
 var mainJsonData : Variant
@@ -41,7 +41,7 @@ func InitMainData() -> bool:
 		
 	if b == false or mainJsonData == null:		# 데이터 불러오기 실패(최초이거나 할때)
 		# 최초 데이터
-		self.lastDate = ""
+		self.last_mst_id = 0
 		self.mainJsonData = {
 			"datas" : {}
 		}
@@ -64,7 +64,7 @@ func LoadMainData() -> bool:
 		b = false
 	else:
 		var tmpMainData : Variant = mainData.get_var()
-		self.lastDate = tmpMainData['lastDate']
+		self.last_mst_id = tmpMainData['last_mst_id']
 		self.mainJsonData = tmpMainData['mainJsonData']
 		if tmpMainData['userInfo'] != null:
 			self.userInfo = tmpMainData['userInfo']
@@ -78,7 +78,7 @@ func LoadMainData() -> bool:
 func SaveMainData():
 	var mainData : FileAccess = FileAccess.open(mainDataFilePath, FileAccess.WRITE)
 	mainData.store_var({
-		"lastDate" : self.lastDate,
+		"last_mst_id" : self.last_mst_id,
 		"mainJsonData" : self.mainJsonData,
 		"userInfo" : self.userInfo,
 	})
@@ -91,12 +91,12 @@ func GetAndSortDateList():
 
 # 다운받은 이미지 불러오기(ImageTexture 로)
 # type : main, diff
-func LoadDownloadImage(type : String, curDate : String, idx : int) -> ImageTexture:
+func LoadDownloadImage(type : String, curDate : int, idx : int) -> ImageTexture:
 	var path = ""
 	if type == "main":
-		path = "user://" + type + "_" + curDate + ".jpg"
+		path = "user://" + type + "_" + str(curDate) + ".jpg"
 	else:
-		path = "user://" + type + "_" + curDate + "_0" + str(idx) + ".jpg"
+		path = "user://" + type + "_" + str(curDate) + "_0" + str(idx) + ".jpg"
 
 	var img = Image.new()
 	var tex = ImageTexture.new()

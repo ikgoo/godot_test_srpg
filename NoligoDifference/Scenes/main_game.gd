@@ -54,7 +54,7 @@ func _ready():
 	
 	var curDate = Global.sctDate
 	# 최초에 맞춘내용 초기화 필요
-	currentGameData = Global.mainJsonData["datas"][curDate]["data"]
+	currentGameData = Global.mainJsonData["datas"][curDate]["difference_dtl"]
 	# 맞춘부분 데이터 초기화
 	for i in range(currentGameData.size()):
 		currentGameData[i]["checked"] = false
@@ -151,11 +151,11 @@ func _on_background_gui_input(event):
 func SelectImage(img_type, curDate, gPosition, lPosition):
 	print(lPosition)
 	
-	if curDate == "":
+	if curDate <= 0:
 		return
 	
 	# 충돌 체크
-	var checkData = Global.mainJsonData["datas"][curDate]["data"]
+	var checkData = Global.mainJsonData["datas"][curDate]["difference_dtl"]
 	var ok_yn = false
 	var chk_idx = -1
 	if img_type.find("Diff") >= 0:

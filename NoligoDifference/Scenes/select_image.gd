@@ -17,8 +17,8 @@ func _ready():
 		var tex : ImageTexture = Global.LoadDownloadImage("main", curDate, 1)
 
 		tmptr.texture_normal = tex
-		var tttt = Global.mainJsonData["datas"][curDate]["data"]
-		tmptr.curData = Global.mainJsonData["datas"][curDate]["data"]
+		var tttt = Global.mainJsonData["datas"][curDate]["difference_dtl"]
+		tmptr.curData = Global.mainJsonData["datas"][curDate]["difference_dtl"]
 		tmptr.curDate = curDate
 		tmptr.connect("SelectImage", SelectImage)
 

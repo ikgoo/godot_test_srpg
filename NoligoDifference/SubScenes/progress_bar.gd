@@ -8,7 +8,8 @@ signal ChangeValue(val)
 @export var value : float = 0 : set = setValue
 func setValue(val):
 	value = val
-	progress_bar_front.size.x = (max_width_size / max_value * val) + min_width_size
+	var ttt = (max_width_size / max_value * val)
+	progress_bar_front.size.x = (max_width_size / max_value * val)
 	emit_signal("ChangeValue", val)
 @export var max_value : float = 0
 

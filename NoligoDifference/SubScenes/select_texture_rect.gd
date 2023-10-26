@@ -4,7 +4,7 @@ signal SelectImage(name, sctDate, globalPosition, localPosition)
 
 
 # 현재 날짜
-var curDate : String = ""
+var curDate : int = 0
 #현재 날짜의 정보
 var curData : Variant = null
 

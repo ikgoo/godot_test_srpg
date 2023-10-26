@@ -94,11 +94,7 @@ func Get_Date_List(dateList):
 # 게임 데이터 받기 시작
 func _on_timer_main_data_timeout():
 	
-	# 오늘 기준을 30일치 날짜 가져오기
-	var tmpDate = Time.get_datetime_dict_from_system()
-	act_date_str = "%04d%02d%02d" % [tmpDate["year"], tmpDate["month"], tmpDate["day"]]
-	
-	SingletonImageDown.StartDownloadRangeDate(act_date_str, 3)
+	SingletonImageDown.StartDownloadRangeDate(3)
 	
 
 var currentPer = 70

@@ -7,11 +7,11 @@ signal Finsh_Download()
 # 다운로드 처리할 날짜 리스트
 var dateList : Array
 # 현재 처리중인 날짜의 인덱스
-var currentDateIdx : int = 0
-# 현재 처리중이 날짜
-var currentDate : String = ""
+var currentDataIdx : int = 0
+# 현재 처리중이 Mst Id
+var currentData : int = 0
 
-var baseUrl = "https://websheet.noligo.co.kr"
+var baseUrl = "https://difference.noligo.co.kr"
 
 var downloadStep : int = 0
 var maxDownloadStep : int = 0
@@ -26,24 +26,28 @@ var downloadSubStep3Idx : int = 0
 @onready var http_request_get_date = $HTTPRequest_GetDate
 
 # 날짜 가져오기
-# currentDate : 기준 일자기
+# currentData : mst id
 # dCount : 기준일자에서 몇일을 가져올건지(30일, -30일)
-func StartDownloadRangeDate(currentDate : String, dateCount : int):
-	if currentDate == null or currentDate == "":
-		var tmpDate = Time.get_datetime_dict_from_system()
-		currentDate = "%04d%02d%02d" % [tmpDate["year"], tmpDate["month"], tmpDate["day"]]
+func StartDownloadRangeDate(dataCount : int):
+	if currentData == 0:
+		currentData = 1
 		
-	if dateCount == null or dateCount == 0:
-		dateCount = 1
+	if dataCount == null or dataCount == 0:
+		dataCount = 1
 
-	#print(baseUrl + "/datelist.php?currentDate=" + currentDate + "&dateCount=" + str(dateCount))
-	http_request_get_date.request(baseUrl + "/dateList.php?currentDate=" + currentDate + "&dateCount=" + str(dateCount))
+	var base_uri = baseUrl + "/api/getMstIDs/" + str(Global.last_mst_id+1) + "/" + str(dataCount)
+	print(base_uri)
+	
+	http_request_get_date.request(base_uri, [], HTTPClient.METHOD_GET, "")
 
 # 받은 날짜 리턴하기
 func _on_http_request_get_date_request_completed(result, response_code, headers, body):
 	var strData = body.get_string_from_utf8()
 	var dataList : Array = JSON.parse_string(strData)
-	StartDownload(dataList)
+	if dataList.size() > 0:
+		StartDownload(dataList)
+	else:
+		DownloadEnd()
 	
 
 # 해당 일자 다운로드
@@ -63,7 +67,7 @@ func StartDownload(tmpDateList : Array) -> bool:
 		emit_signal("Finsh_Download")
 		return false
 		
-	self.currentDateIdx = 0
+	self.currentDataIdx = 0
 	self.maxDownloadStep = self.dateList.size()
 
 	StartFistDownload()
@@ -73,10 +77,10 @@ func StartFistDownload():
 	downloadSubStep = 1		# 하나의 날짜별 세부스탭 초기화
 	downloadSubStep3Idx = 0
 
-	self.currentDate = self.dateList[self.currentDateIdx]
+	self.currentData = int(self.dateList[self.currentDataIdx])
 	
 	http_request.download_file = ""
-	var u = baseUrl + "/today.php?today=" + self.currentDate
+	var u = baseUrl + "/api/getData/" + str(self.currentData)
 	print(u)
 	http_request.request(u)
 	
@@ -88,7 +92,8 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 		# JSON 파일 파싱
 		var strData = body.get_string_from_utf8()
 		downloadJsonData = JSON.parse_string(strData)
-		Global.mainJsonData["datas"][self.currentDate] = downloadJsonData[self.currentDate]
+		Global.mainJsonData["datas"][self.currentData] = downloadJsonData[0]
+		Global.last_mst_id = downloadJsonData[0]["id"]
 		
 		# 해당일의 메인 이미지 호출
 		downloadSubStep = 2
@@ -99,23 +104,26 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 		CallDownImage("diff", downloadSubStep3Idx)
 	else:
 		print(downloadSubStep3Idx)
-		print(downloadJsonData[currentDate]["data"].size())
-		if downloadSubStep3Idx + 1 < downloadJsonData[currentDate]["data"].size():
+		print(downloadJsonData[0]["difference_dtl"].size())
+		if downloadSubStep3Idx + 1 < downloadJsonData[0]["difference_dtl"].size():
 			downloadSubStep3Idx += 1
 			CallDownImage("diff", downloadSubStep3Idx)
 		else:
-			if currentDateIdx == maxDownloadStep-1:
-				emit_signal("Change_Prograss_Value", currentDateIdx+1, 100)
-				emit_signal("Finsh_Download")
-				# lastDate 저장
-				Global.SaveMainData()
+			if currentDataIdx == maxDownloadStep-1:
+				DownloadEnd()
 			else:
-				currentDateIdx += 1
-				#print(self.dateList[self.currentDateIdx])
-				print((currentDateIdx * 1.0)/maxDownloadStep * 100)
-				emit_signal("Change_Prograss_Value", currentDateIdx, int((currentDateIdx * 1.0)/maxDownloadStep * 100))
+				currentDataIdx += 1
+				#print(self.dateList[self.currentDataIdx])
+				print((currentDataIdx * 1.0)/maxDownloadStep * 100)
+				emit_signal("Change_Prograss_Value", currentDataIdx, int((currentDataIdx * 1.0)/maxDownloadStep * 100))
 				StartFistDownload()
 				
+
+func DownloadEnd():
+	emit_signal("Change_Prograss_Value", 100, 100)
+	emit_signal("Finsh_Download")
+	# lastDate 저장
+	Global.SaveMainData()
 
 # dlalwl ekdnsfhem
 func CallDownImage(type : String, idx : int):
@@ -123,15 +131,16 @@ func CallDownImage(type : String, idx : int):
 	var last_three : String = ""
 	var tmpFileName : String = ""
 	if type == "main":
-		tmpUrl = str(downloadJsonData[currentDate][type + "_img_url"])
+		tmpUrl = str(downloadJsonData[0]["main_img_url"])
 		last_three = tmpUrl.right(3)
-		tmpFileName = "user://" + type + "_" + currentDate + "." + last_three
+		tmpFileName = "user://" + type + "_" + str(currentData) + "." + last_three
 	else:
-		tmpUrl = str(downloadJsonData[currentDate]["data"][idx][type + "_img_url"])
+		tmpUrl = str(downloadJsonData[0]["difference_dtl"][idx]["diff_img_url"])
 		last_three = tmpUrl.right(3)
-		tmpFileName = "user://" + type + "_" + currentDate + "_0" + str(idx) + "." + last_three
+		tmpFileName = "user://" + type + "_" + str(currentData) + "_0" + str(idx) + "." + last_three
 	
 	http_request.download_file = tmpFileName
-	var u = baseUrl + tmpUrl
+	var u = baseUrl + "/" + tmpUrl
+	print(u)
 	http_request.request(u)		# 메인 이미지 호출
 	
