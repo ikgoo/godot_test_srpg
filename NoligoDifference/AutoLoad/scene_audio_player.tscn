@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://AutoLoad/scene_audio_player.gd" id="1_4b41i"]
 
 [node name="scene_audio_player" type="AudioStreamPlayer"]
+bus = &"SFX"
 script = ExtResource("1_4b41i")

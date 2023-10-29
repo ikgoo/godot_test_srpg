@@ -3,4 +3,6 @@
 [ext_resource type="Script" path="res://SubScenes/volumn_slider.gd" id="1_ow3r4"]
 
 [node name="VolumnSlider" type="HSlider"]
+max_value = 1.0
+step = 0.001
 script = ExtResource("1_ow3r4")

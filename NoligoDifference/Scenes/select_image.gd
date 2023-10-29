@@ -1,13 +1,17 @@
 extends Control
 
 @onready var grid_container = $ScrollContainer/GridContainer
-@onready var audio_delay_play = $AudioDelayPlay
 
 @onready var texture_rect = preload("res://SubScenes/select_texture_rect.tscn")
+@onready var select_scene_music_player = $SelectSceneMusicPlayer
+@onready var audio_delay_play = $AudioDelayPlay
+@onready var title_animation = $TextureRect/TitleAnimation
 
 var selectImageList = []
 
 func _ready():
+	title_animation.play("ani");
+	
 	# 정상 이미지를 가져와 화면 출력
 	for i in range(Global.dateList.size()):
 		var curDate = Global.dateList[i]
@@ -25,7 +29,7 @@ func _ready():
 		selectImageList.append(tmptr)
 		grid_container.add_child(tmptr)
 
-	MainMusicDelayPlay()
+	select_scene_music_player.MainMusicDelayPlay()
 
 func SelectImage(img_name, curDate, gPosition, lPosition):
 	var tmpData = Global.mainJsonData["datas"][curDate]
@@ -35,7 +39,7 @@ func SelectImage(img_name, curDate, gPosition, lPosition):
 
 	Global.sctDate = curDate		# 선택된 날짜 등록
 	
-	$AudioStreamPlayer.stop()
+	select_scene_music_player.stop()
 	SceneParticles.emit_signal("ParticleEvent", SceneParticles.ParticleName.CLICKHEART, gPosition, 0)
 	
 	# 연결 시그널을 모두 끊음
@@ -49,14 +53,3 @@ func SelectImage(img_name, curDate, gPosition, lPosition):
 	await audio_delay_play.timeout	
 	SceneTransition.change_scene(SceneTransition.SceneName.MAIN, SceneTransition.TransType.Fade)
 	
-
-# 메인 음악 딜레이 플레이
-func MainMusicDelayPlay():
-	audio_delay_play.start(0.5)
-	await audio_delay_play.timeout
-	$AudioStreamPlayer.play()
-	
-
-
-func _on_audio_stream_player_finished():
-	MainMusicDelayPlay()

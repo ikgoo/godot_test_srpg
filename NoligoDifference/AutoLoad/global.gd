@@ -1,6 +1,7 @@
 extends Node
 
 var last_mst_id : int
+var clear_mst_id : int = -1
 
 # 게임 전체적인 데이터
 var mainJsonData : Variant

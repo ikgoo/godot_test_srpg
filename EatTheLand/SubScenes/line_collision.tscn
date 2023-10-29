@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cottps32y6tcp"]
+
+[ext_resource type="Script" path="res://SubScenes/line_collision.gd" id="1_7h5oy"]
+
+[node name="LineCollision" type="Line2D"]
+script = ExtResource("1_7h5oy")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
