@@ -42,21 +42,23 @@ func RunSpawner(mob_name : String):
 	var camera_size = camera.get_viewport_rect().size
 
 
-	var spawnerDir = randi_range(0, spawnerDirection.size()-1)
-	match spawnerDirection[spawnerDir]:
-		"TOP":
-			spawnPoint.x = randi_range(camera_pos.x, camera_pos.x + camera_size.x)
-			spawnPoint.y = randi_range(camera_pos.y - camera_size.y / 4 - 100, camera_pos.y - 100)
-		"LEFT":
-			spawnPoint.x = randi_range(camera_pos.x - camera_size.x / 4 - 100, camera_pos.x - 100)
-			spawnPoint.y = randi_range(camera_pos.y, camera_pos.y - camera_size.y)
-		"RIGHT":
-			spawnPoint.x = randi_range(camera_pos.x + camera_size.x + 100, camera_pos.x + camera_size.x + (camera_size.x / 4) + 100)
-			spawnPoint.y = randi_range(camera_pos.y, camera_pos.y - camera_size.y)
-		"BOTTOM":
-			spawnPoint.x = randi_range(camera_pos.x, camera_pos.x + camera_size.x)
-			spawnPoint.y = randi_range(camera_pos.y + camera_size.y + 100, camera_pos.y + camera_size.y + (camera_size.y / 4) + 100)
+#	var spawnerDir = randi_range(0, spawnerDirection.size()-1)
+#	match spawnerDirection[spawnerDir]:
+#		"TOP":
+#			spawnPoint.x = randi_range(camera_pos.x, camera_pos.x + camera_size.x)
+#			spawnPoint.y = randi_range(camera_pos.y - camera_size.y / 4 - 100, camera_pos.y - 100)
+#		"LEFT":
+#			spawnPoint.x = randi_range(camera_pos.x - camera_size.x / 4 - 100, camera_pos.x - 100)
+#			spawnPoint.y = randi_range(camera_pos.y, camera_pos.y - camera_size.y)
+#		"RIGHT":
+#			spawnPoint.x = randi_range(camera_pos.x + camera_size.x + 100, camera_pos.x + camera_size.x + (camera_size.x / 4) + 100)
+#			spawnPoint.y = randi_range(camera_pos.y, camera_pos.y - camera_size.y)
+#		"BOTTOM":
+#			spawnPoint.x = randi_range(camera_pos.x, camera_pos.x + camera_size.x)
+#			spawnPoint.y = randi_range(camera_pos.y + camera_size.y + 100, camera_pos.y + camera_size.y + (camera_size.y / 4) + 100)
 		
+	spawnPoint.x = randi_range(camera_pos.x - (camera_size.x/2), camera_pos.x + (camera_size.x/2))
+	spawnPoint.y = randi_range(camera_pos.y - (camera_size.y/2), camera_pos.y + (camera_size.y/2))
 	
 	ins.global_position = spawnPoint
 	ins.spawn(player)

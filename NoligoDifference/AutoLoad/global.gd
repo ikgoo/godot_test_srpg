@@ -1,7 +1,7 @@
 extends Node
 
 var last_mst_id : int
-var clear_mst_id : int = -1
+var clear_mst_id : int = 0
 
 # 게임 전체적인 데이터
 var mainJsonData : Variant
@@ -66,6 +66,7 @@ func LoadMainData() -> bool:
 	else:
 		var tmpMainData : Variant = mainData.get_var()
 		self.last_mst_id = tmpMainData['last_mst_id']
+		self.clear_mst_id = tmpMainData['clear_mst_id']
 		self.mainJsonData = tmpMainData['mainJsonData']
 		if tmpMainData['userInfo'] != null:
 			self.userInfo = tmpMainData['userInfo']
@@ -80,6 +81,7 @@ func SaveMainData():
 	var mainData : FileAccess = FileAccess.open(mainDataFilePath, FileAccess.WRITE)
 	mainData.store_var({
 		"last_mst_id" : self.last_mst_id,
+		"clear_mst_id" : self.clear_mst_id, 
 		"mainJsonData" : self.mainJsonData,
 		"userInfo" : self.userInfo,
 	})

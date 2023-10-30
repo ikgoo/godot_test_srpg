@@ -65,6 +65,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d3w3v")
+backMusicList = Array[AudioStream]([ExtResource("2_wvga3"), ExtResource("3_ti4w5"), ExtResource("4_emq8m"), ExtResource("5_t8v62"), ExtResource("6_nh8qg"), ExtResource("7_vg188"), ExtResource("8_htpbr"), ExtResource("9_h27xm")])
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -139,7 +140,6 @@ offset_right = 144.0
 offset_bottom = 137.0
 
 [node name="RandomMusicPlayer" type="AudioStreamPlayer" parent="."]
-process_mode = 3
 bus = &"Music"
 script = ExtResource("13_e2cnl")
 backMusicList = Array[AudioStream]([ExtResource("2_wvga3"), ExtResource("3_ti4w5"), ExtResource("4_emq8m"), ExtResource("5_t8v62"), ExtResource("6_nh8qg"), ExtResource("7_vg188"), ExtResource("8_htpbr"), ExtResource("9_h27xm")])
@@ -239,9 +239,6 @@ stretch_mode = 1
 [node name="Options" parent="." instance=ExtResource("5_2ndyx")]
 visible = false
 layout_mode = 1
-
-[node name="DliayMusic" type="Timer" parent="."]
-process_mode = 3
 
 [connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff00" to="." method="SelectImage"]
 [connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff01" to="." method="SelectImage"]

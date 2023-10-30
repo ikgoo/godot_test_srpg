@@ -6,6 +6,10 @@ extends Control
 @onready var select_scene_music_player = $SelectSceneMusicPlayer
 @onready var audio_delay_play = $AudioDelayPlay
 @onready var title_animation = $TextureRect/TitleAnimation
+@onready var SceneParticles = $scene_particles
+
+@onready var wait_timer = $WaitTimer
+
 
 var selectImageList = []
 
@@ -22,10 +26,14 @@ func _ready():
 
 		tmptr.texture_normal = tex
 		var tttt = Global.mainJsonData["datas"][curDate]["difference_dtl"]
-		tmptr.curData = Global.mainJsonData["datas"][curDate]["difference_dtl"]
+		tmptr.curData = tttt
 		tmptr.curDate = curDate
 		tmptr.connect("SelectImage", SelectImage)
-
+		print(Global.mainJsonData["datas"][curDate])
+		if !Global.mainJsonData["datas"][curDate].has("Success"):
+			tmptr.SetIsClear(false)
+		else:
+			tmptr.SetIsClear(Global.mainJsonData["datas"][curDate]["Success"])
 		selectImageList.append(tmptr)
 		grid_container.add_child(tmptr)
 
@@ -49,7 +57,7 @@ func SelectImage(img_name, curDate, gPosition, lPosition):
 	selectImageList.clear()
 
 	SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.CLICK, 0)
-	audio_delay_play.start(1)
-	await audio_delay_play.timeout	
+	wait_timer.start(1)
+	await wait_timer.timeout	
 	SceneTransition.change_scene(SceneTransition.SceneName.MAIN, SceneTransition.TransType.Fade)
 	

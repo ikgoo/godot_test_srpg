@@ -1,7 +1,5 @@
 extends Control
 
-@export var backMusicList : Array[AudioStream]
-
 @onready var random_music_player = $RandomMusicPlayer
 
 @onready var left_main_frame = $Control/HBoxContainer/LeftMainFrame
@@ -33,6 +31,12 @@ extends Control
 
 @onready var timer = $Timer
 
+@onready var SceneParticles = $scene_particles
+
+
+# 게임 오버 여부
+var is_gameover = false
+
 # 맞춘수
 var score : int = 0
 
@@ -46,6 +50,9 @@ var currentGameDiffList = []
 var tween : Tween = null
 # 플레이어 생명
 var playerLife = 3
+
+# 게임 플레이 시간(초단위)
+var game_paly_time = 30
 
 func _ready():
 	options.connect("GoMain", PreGoMain)
@@ -102,14 +109,13 @@ func _ready():
 	
 func GameStart():
 #	game_main_player.play("CountDown")
-	MainMusicDelayPlay()
+	random_music_player.MainMusicDelayPlay()
 	
 	if tween != null and tween.is_running():
 		tween.kill()
 	
-	print(texture_progress_bar.value)
 	tween = create_tween()
-	tween.tween_property(texture_progress_bar, "value", 100, 10)
+	tween.tween_property(texture_progress_bar, "value", 100, game_paly_time)
 	tween.tween_callback(TimeOverGameOver)
 	return
 
@@ -128,6 +134,8 @@ func TimeOverGameOver():
 	PreGameOver(gameFail)
 
 func PreGameOver(audioData):
+	is_gameover = true
+
 	if tween != null and tween.is_running() == true:
 		tween.kill()
 	random_music_player.stop()
@@ -149,6 +157,9 @@ func _on_background_gui_input(event):
 
 # 이미지 선택 시
 func SelectImage(img_type, curDate, gPosition, lPosition):
+	if is_gameover == true: 
+		return
+	
 	print(lPosition)
 	
 	if curDate <= 0:
@@ -206,7 +217,7 @@ func SelectImage(img_type, curDate, gPosition, lPosition):
 	
 	if score == 5:
 		PreGameOver(gameSuccess)
-		
+		Global.clear_mst_id = curDate
 		Global.mainJsonData["datas"][curDate]["Success"] = true
 
 func PreGoMain():
@@ -227,14 +238,5 @@ func GoMain(duration):
 	SceneTransition.change_scene(SceneTransition.SceneName.SELECTIMAGE, SceneTransition.TransType.Fade)
 	
 
-# 메인 음악 딜레이 플레이
-func MainMusicDelayPlay():
-	random_music_player.stream = backMusicList[randi_range(0, backMusicList.size()-1)]
-	random_music_player.play()
-	
-
-
-func _on_random_music_player_finished():
-	MainMusicDelayPlay()
 
 

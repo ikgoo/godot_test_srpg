@@ -35,8 +35,18 @@ func StartDownloadRangeDate(dataCount : int):
 	if dataCount == null or dataCount == 0:
 		dataCount = 1
 
+	print(Global.last_mst_id - Global.clear_mst_id)
+	if Global.last_mst_id - Global.clear_mst_id  >= dataCount:
+		# 남아있는 틀린그림 수가 다운 받으려는 수보다 크거나 같으면 추가로 다운 받지 않음
+		DownloadEnd()
+		return
+		
+	print(dataCount - (Global.last_mst_id - Global.clear_mst_id))
+	if dataCount - (Global.last_mst_id - Global.clear_mst_id)  <= dataCount:
+		# 남아있는 수를 빼고 dataCount를 맞춰서 다운로드 하도록 수를 조정
+		dataCount = dataCount - (Global.last_mst_id - Global.clear_mst_id)
+	
 	var base_uri = baseUrl + "/api/getMstIDs/" + str(Global.last_mst_id+1) + "/" + str(dataCount)
-	print(base_uri)
 	
 	http_request_get_date.request(base_uri, [], HTTPClient.METHOD_GET, "")
 

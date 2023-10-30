@@ -2,6 +2,9 @@ extends TextureButton
 
 signal SelectImage(name, sctDate, globalPosition, localPosition)
 
+@onready var clear_img = $ClearImg
+@onready var icon = $icon
+
 
 # 현재 날짜
 var curDate : int = 0
@@ -19,14 +22,21 @@ func SetIsClear(value):
 	is_clear = value
 
 func _ready():
-	pass
+	# Global.clear_mst_id
+	if is_clear == true:
+		clear_img.visible = true
+		icon.visible = true
+	elif curDate > Global.clear_mst_id+1:
+		clear_img.visible = true
 
 func _on_pressed():
+	if is_clear == true or curDate != Global.clear_mst_id+1:
+		return
+		
 	if name.find("Diff") >= 0:
 		emit_signal("SelectImage", name + str(diff_idx), curDate, get_global_mouse_position(), get_parent().get_local_mouse_position())
 	else:
 		emit_signal("SelectImage", name, curDate, get_global_mouse_position(), get_local_mouse_position())
-	
 
 #func _on_gui_input(event):
 #	print('click01')
@@ -37,3 +47,14 @@ func _on_pressed():
 #
 #
 #		emit_signal("SelectImage", img_type, curDate, gPosition, event.position, event)
+
+
+func _on_mouse_entered():
+	if curDate == Global.clear_mst_id+1:
+		clear_img.visible = true
+		
+
+
+func _on_mouse_exited():
+	if curDate == Global.clear_mst_id+1:
+		clear_img.visible = false
