@@ -9,6 +9,7 @@ extends Control
 @onready var SceneParticles = $scene_particles
 
 @onready var wait_timer = $WaitTimer
+@onready var scroll_container = $ScrollContainer
 
 
 var selectImageList = []
@@ -38,6 +39,8 @@ func _ready():
 		grid_container.add_child(tmptr)
 
 	select_scene_music_player.MainMusicDelayPlay()
+	
+	scroll_container.set_deferred("scroll_vertical", 999999999)
 
 func SelectImage(img_name, curDate, gPosition, lPosition):
 	var tmpData = Global.mainJsonData["datas"][curDate]
