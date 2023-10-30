@@ -198,7 +198,6 @@ func SelectImage(img_type, curDate, gPosition, lPosition):
 		var t = 0
 		
 	else:			# 잘못 선택한 경우
-		print("틀렸음")
 		playerLife -= 1
 		player_full_heart.size.x -= 53
 		var ca01 = crossAct.instantiate()

@@ -94,7 +94,7 @@ func Get_Date_List(dateList):
 # 게임 데이터 받기 시작
 func _on_timer_main_data_timeout():
 	
-	SingletonImageDown.StartDownloadRangeDate(3)
+	SingletonImageDown.StartDownloadRangeDate(60)
 	
 
 var currentPer = 70

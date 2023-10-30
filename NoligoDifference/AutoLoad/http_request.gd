@@ -69,7 +69,6 @@ func StartDownload(tmpDateList : Array) -> bool:
 
 	# 다운 안받은 대상만 가져옴
 	for i in range(tmpDateList.size()):
-		#print(tmpDateList[i])
 		if ("datas" in Global.mainJsonData) == false or (tmpDateList[i] in Global.mainJsonData["datas"]) == false:
 			self.dateList.append(tmpDateList[i])
 	
@@ -91,7 +90,6 @@ func StartFistDownload():
 	
 	http_request.download_file = ""
 	var u = baseUrl + "/api/getData/" + str(self.currentData)
-	print(u)
 	http_request.request(u)
 	
 
@@ -113,8 +111,6 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 		downloadSubStep = 3
 		CallDownImage("diff", downloadSubStep3Idx)
 	else:
-		print(downloadSubStep3Idx)
-		print(downloadJsonData[0]["difference_dtl"].size())
 		if downloadSubStep3Idx + 1 < downloadJsonData[0]["difference_dtl"].size():
 			downloadSubStep3Idx += 1
 			CallDownImage("diff", downloadSubStep3Idx)
@@ -123,8 +119,6 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 				DownloadEnd()
 			else:
 				currentDataIdx += 1
-				#print(self.dateList[self.currentDataIdx])
-				print((currentDataIdx * 1.0)/maxDownloadStep * 100)
 				emit_signal("Change_Prograss_Value", currentDataIdx, int((currentDataIdx * 1.0)/maxDownloadStep * 100))
 				StartFistDownload()
 				
@@ -151,6 +145,5 @@ func CallDownImage(type : String, idx : int):
 	
 	http_request.download_file = tmpFileName
 	var u = baseUrl + "/" + tmpUrl
-	print(u)
 	http_request.request(u)		# 메인 이미지 호출
 	

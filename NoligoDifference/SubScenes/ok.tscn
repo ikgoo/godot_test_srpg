@@ -21,3 +21,4 @@ expand_mode = 1
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_85ner")
 autoplay = true
+bus = &"SFX"
