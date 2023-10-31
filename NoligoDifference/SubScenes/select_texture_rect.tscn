@@ -1,17 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://84cfo2rbo3cl"]
+[gd_scene load_steps=7 format=3 uid="uid://84cfo2rbo3cl"]
 
 [ext_resource type="Script" path="res://SubScenes/select_texture_rect.gd" id="1_ut034"]
 [ext_resource type="Texture2D" uid="uid://b2xqunrwl4u0g" path="res://Assets/SelectImageScene/list_box.png" id="2_6b4qn"]
+[ext_resource type="Shader" path="res://SubScenes/select_texture_rect.gdshader" id="2_xnogh"]
 [ext_resource type="Texture2D" uid="uid://cnjogq1glsp66" path="res://Assets/SelectImageScene/list_good.png" id="3_j6ogp"]
 [ext_resource type="Texture2D" uid="uid://6lnj6jk200u7" path="res://Assets/SelectImageScene/list_box_ok.png" id="3_onc4g"]
 
-[node name="TextureRect" type="TextureButton"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h84kr"]
+shader = ExtResource("2_xnogh")
+
+[node name="TextureRect" type="Control"]
 custom_minimum_size = Vector2(144, 137)
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 3
+anchors_preset = 0
+offset_right = 144.0
+offset_bottom = 144.0
+script = ExtResource("1_ut034")
+
+[node name="GameImage" type="TextureButton" parent="."]
+material = SubResource("ShaderMaterial_h84kr")
+clip_contents = true
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(72, 72)
+texture_normal = ExtResource("3_j6ogp")
 ignore_texture_size = true
 stretch_mode = 0
-script = ExtResource("1_ut034")
 
 [node name="ClearImg" type="TextureRect" parent="."]
 visible = false
@@ -54,4 +73,3 @@ texture = ExtResource("2_6b4qn")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -135,4 +135,6 @@ func GoMainGame():
 
 func _on_progress_bar_front_change_size_x(val):
 	var p = int((val-currentPer) / maxPer * 100)
-	persent_label.text = "LOADING " + str(p) + "%"
+	if p < 0:
+		p = 0
+	persent_label.text = "LOADING " + str(clamp(p, 0, p)) + "%"

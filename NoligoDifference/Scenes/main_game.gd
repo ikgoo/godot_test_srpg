@@ -126,7 +126,10 @@ func _on_progress_bar_change_value(value):
 		print("긴장상태 음악")
 		time_late_sfx_player.play()
 		gameState = "LAST"
-		return
+		
+
+func _on_time_late_sfx_player_finished():
+	random_music_player.pitch_scale = 1.35
 	
 # 시간이 끝나 게임 오버
 func TimeOverGameOver():
@@ -236,6 +239,8 @@ func GoMain(duration):
 	await timer.timeout
 	SceneTransition.change_scene(SceneTransition.SceneName.SELECTIMAGE, SceneTransition.TransType.Fade)
 	
+
+
 
 
 

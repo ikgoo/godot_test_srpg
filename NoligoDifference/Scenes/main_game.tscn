@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://lfkd6sw50ypf"]
+[gd_scene load_steps=26 format=3 uid="uid://lfkd6sw50ypf"]
 
 [ext_resource type="Script" path="res://Scenes/main_game.gd" id="1_d3w3v"]
 [ext_resource type="Texture2D" uid="uid://cv04uwa4cl6p6" path="res://Assets/MainScene/bg.jpg" id="2_ooswh"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c1dyjw6ds4rb6" path="res://Assets/MainScene/heart_on.png" id="9_4e78b"]
 [ext_resource type="AudioStream" uid="uid://j22yd4ofmx20" path="res://Assets/Sounds/MainSceneMusics/upbeat-funky-retro-131297.mp3" id="9_h27xm"]
 [ext_resource type="Script" path="res://Scenes/RandomMusicPlayer.gd" id="13_e2cnl"]
+[ext_resource type="AudioStream" uid="uid://b7xl677dqkjmc" path="res://Assets/Sounds/MainSceneEffices/TimeLate.wav" id="14_r1t8w"]
 [ext_resource type="PackedScene" uid="uid://bksb1u0c38wk3" path="res://AutoLoad/scene_particles.tscn" id="17_p2qai"]
 
 [sub_resource type="Animation" id="Animation_bb7e5"]
@@ -148,6 +149,7 @@ backMusicList = Array[AudioStream]([ExtResource("2_wvga3"), ExtResource("3_ti4w5
 bus = &"SFX"
 
 [node name="TimeLateSFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_r1t8w")
 bus = &"SFX"
 
 [node name="TextureProgressBar" parent="." instance=ExtResource("5_xd8u1")]
@@ -250,6 +252,7 @@ process_mode = 3
 [connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff04" to="." method="SelectImage"]
 [connection signal="finished" from="RandomMusicPlayer" to="RandomMusicPlayer" method="_on_finished"]
 [connection signal="finished" from="GameEndSFXPlayer" to="." method="GameOver"]
+[connection signal="finished" from="TimeLateSFXPlayer" to="." method="_on_time_late_sfx_player_finished"]
 [connection signal="ChangeValue" from="TextureProgressBar" to="." method="_on_progress_bar_change_value"]
 
 [editable path="TextureProgressBar"]

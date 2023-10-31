@@ -9,6 +9,6 @@ var value : float = 0 : set = setVal
 
 func setVal(val):
 	value = val
-	size.x = val
+	size.x = clamp(val, 70, val) 
 	
 	emit_signal("change_size_x",val )

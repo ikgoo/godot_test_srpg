@@ -1,10 +1,11 @@
-extends TextureButton
+extends Control
 
 signal SelectImage(name, sctDate, globalPosition, localPosition)
 
 @onready var clear_img = $ClearImg
 @onready var icon = $icon
 
+@onready var game_image = $GameImage
 
 # 현재 날짜
 var curDate : int = 0
@@ -17,17 +18,24 @@ var img_type : String = "NONE"
 # 틀린 그림의 경우 해당 번호 정보
 var diff_idx : int = -1
 
+
+# 화면에 표현될 이미지 받기
+var texture_normal : Texture2D = null
+
 var is_clear : bool = false : set = SetIsClear
 func SetIsClear(value):
 	is_clear = value
 
 func _ready():
+	
 	# Global.clear_mst_id
 	if is_clear == true:
 		clear_img.visible = true
 		icon.visible = true
 	elif curDate > Global.clear_mst_id+1:
 		clear_img.visible = true
+		
+	game_image.texture_normal = texture_normal
 
 func _on_pressed():
 	if is_clear == true or curDate != Global.clear_mst_id+1:

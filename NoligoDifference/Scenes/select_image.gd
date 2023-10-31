@@ -21,7 +21,7 @@ func _ready():
 	for i in range(Global.dateList.size()):
 		var curDate = Global.dateList[i]
 
-		var tmptr : TextureButton = texture_rect.instantiate() as TextureButton
+		var tmptr : Control = texture_rect.instantiate() as Control
 
 		var tex : ImageTexture = Global.LoadDownloadImage("main", curDate, 1)
 
