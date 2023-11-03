@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://linjqsvygnni" path="res://SubScenes/MainFrame.tscn" id="3_1t37r"]
 [ext_resource type="AudioStream" uid="uid://g0uklbcfchyq" path="res://Assets/Sounds/MainSceneMusics/drama-stringsmp3-14627.mp3" id="3_ti4w5"]
 [ext_resource type="AudioStream" uid="uid://blp8xp3iedn7s" path="res://Assets/Sounds/MainSceneMusics/funny-dancing-kids-158822.mp3" id="4_emq8m"]
-[ext_resource type="PackedScene" uid="uid://dioa8rtytujo" path="res://SubScenes/main_texture_rect.tscn" id="4_xi6lw"]
 [ext_resource type="PackedScene" uid="uid://bcuvfg5ys2hkn" path="res://SubScenes/options.tscn" id="5_2ndyx"]
+[ext_resource type="PackedScene" uid="uid://dswx1krij25r2" path="res://SubScenes/main_texture_button.tscn" id="5_2362d"]
 [ext_resource type="AudioStream" uid="uid://ca32fa20qgw0k" path="res://Assets/Sounds/MainSceneMusics/happy-swing-164932.mp3" id="5_t8v62"]
 [ext_resource type="PackedScene" uid="uid://dt4dbxi65cqek" path="res://SubScenes/main_progress_bar.tscn" id="5_xd8u1"]
 [ext_resource type="FontVariation" uid="uid://5m06ufhdiu2k" path="res://Assets/Fonts/small_font.tres" id="6_3hl7n"]
@@ -114,30 +114,47 @@ layout_mode = 2
 [node name="RightMainFrame" parent="Control/HBoxContainer" instance=ExtResource("3_1t37r")]
 layout_mode = 2
 
-[node name="Diff00" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("4_xi6lw")]
+[node name="Diff00" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("5_2362d")]
 layout_mode = 0
-offset_right = 144.0
-offset_bottom = 137.0
+offset_left = 981.5
+offset_top = 23.0
+offset_right = 1163.5
+offset_bottom = 205.0
 
-[node name="Diff01" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("4_xi6lw")]
+[node name="Diff01" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("5_2362d")]
 layout_mode = 0
-offset_right = 144.0
-offset_bottom = 137.0
+offset_left = 971.5
+offset_top = 21.0
+offset_right = 1153.5
+offset_bottom = 203.0
 
-[node name="Diff02" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("4_xi6lw")]
+[node name="Diff02" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("5_2362d")]
 layout_mode = 0
-offset_right = 144.0
-offset_bottom = 137.0
+offset_left = 951.5
+offset_top = 25.0
+offset_right = 1133.5
+offset_bottom = 207.0
 
-[node name="Diff03" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("4_xi6lw")]
+[node name="Diff03" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("5_2362d")]
 layout_mode = 0
-offset_right = 144.0
-offset_bottom = 137.0
+offset_left = 1026.5
+offset_top = 20.0
+offset_right = 1208.5
+offset_bottom = 202.0
 
-[node name="Diff04" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("4_xi6lw")]
+[node name="Diff04" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("5_2362d")]
 layout_mode = 0
-offset_right = 144.0
-offset_bottom = 137.0
+offset_left = 978.5
+offset_top = 114.0
+offset_right = 1160.5
+offset_bottom = 296.0
+
+[node name="Diff05" parent="Control/HBoxContainer/RightMainFrame" instance=ExtResource("5_2362d")]
+layout_mode = 0
+offset_left = 1045.5
+offset_top = 100.0
+offset_right = 1227.5
+offset_bottom = 282.0
 
 [node name="RandomMusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -250,6 +267,7 @@ process_mode = 3
 [connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff02" to="." method="SelectImage"]
 [connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff03" to="." method="SelectImage"]
 [connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff04" to="." method="SelectImage"]
+[connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff05" to="." method="SelectImage"]
 [connection signal="finished" from="RandomMusicPlayer" to="RandomMusicPlayer" method="_on_finished"]
 [connection signal="finished" from="GameEndSFXPlayer" to="." method="GameOver"]
 [connection signal="finished" from="TimeLateSFXPlayer" to="." method="_on_time_late_sfx_player_finished"]

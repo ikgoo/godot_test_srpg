@@ -49,9 +49,12 @@ func InitMainData() -> bool:
 		self.userInfo = {
 			"life" : 5,
 		}
+		self.music_default_volumn = 0.2
+		self.sfx_default_value = 0.1
 		
 		SaveMainData()
 		b = true
+		
 	
 	return b
 
@@ -71,6 +74,11 @@ func LoadMainData() -> bool:
 		if tmpMainData['userInfo'] != null:
 			self.userInfo = tmpMainData['userInfo']
 			
+		if tmpMainData.has('music_default_volumn'):
+			self.music_default_volumn = tmpMainData['music_default_volumn']
+		if tmpMainData.has('sfx_default_value'):
+			self.sfx_default_value = tmpMainData['sfx_default_value']
+			
 		mainData.close()
 		b = true
 	
@@ -84,6 +92,8 @@ func SaveMainData():
 		"clear_mst_id" : self.clear_mst_id, 
 		"mainJsonData" : self.mainJsonData,
 		"userInfo" : self.userInfo,
+		"music_default_volumn" : self.music_default_volumn,
+		"sfx_default_value" : self.sfx_default_value,
 	})
 	mainData.close()
 

@@ -5,7 +5,11 @@ signal SelectImage(name, sctDate, globalPosition, localPosition)
 @onready var clear_img = $ClearImg
 @onready var icon = $icon
 
-@onready var game_image = $GameImage
+@onready var game_image = $Mask/GameImage
+@onready var animation_player = $AnimationPlayer
+@onready var select_ok_image = $SelectOkImage
+@onready var select_ok_color_rect = $SelectOkColorRect
+
 
 # 현재 날짜
 var curDate : int = 0
@@ -35,16 +39,17 @@ func _ready():
 	elif curDate > Global.clear_mst_id+1:
 		clear_img.visible = true
 		
-	game_image.texture_normal = texture_normal
+	if game_image != null:
+		game_image.texture_normal = texture_normal
 
-func _on_pressed():
-	if is_clear == true or curDate != Global.clear_mst_id+1:
-		return
-		
-	if name.find("Diff") >= 0:
-		emit_signal("SelectImage", name + str(diff_idx), curDate, get_global_mouse_position(), get_parent().get_local_mouse_position())
-	else:
-		emit_signal("SelectImage", name, curDate, get_global_mouse_position(), get_local_mouse_position())
+#func _on_game_image_pressed():
+#	if is_clear == true or curDate != Global.clear_mst_id+1:
+#		return
+#
+#	if name.find("Diff") >= 0:
+#		emit_signal("SelectImage", name + str(diff_idx), curDate, get_global_mouse_position(), get_parent().get_local_mouse_position())
+#	else:
+#		emit_signal("SelectImage", name, curDate, get_global_mouse_position(), get_local_mouse_position())
 
 #func _on_gui_input(event):
 #	print('click01')
@@ -59,10 +64,24 @@ func _on_pressed():
 
 func _on_mouse_entered():
 	if curDate == Global.clear_mst_id+1:
-		clear_img.visible = true
+		select_ok_color_rect.visible = true
+		animation_player.play("zoomin")
 		
 
 
 func _on_mouse_exited():
 	if curDate == Global.clear_mst_id+1:
-		clear_img.visible = false
+		select_ok_color_rect.visible = false
+		animation_player.play("zoomout")
+
+
+
+
+func _on_select_ok_image_pressed():
+	if is_clear == true or curDate != Global.clear_mst_id+1:
+		return
+		
+	if name.find("Diff") >= 0:
+		emit_signal("SelectImage", name + str(diff_idx), curDate, get_global_mouse_position(), get_parent().get_local_mouse_position())
+	else:
+		emit_signal("SelectImage", name, curDate, get_global_mouse_position(), get_local_mouse_position())

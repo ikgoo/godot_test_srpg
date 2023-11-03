@@ -117,5 +117,7 @@ size_flags_horizontal = 3
 theme = SubResource("Theme_b0v8s")
 text = "Back"
 
+[connection signal="value_changed" from="Panel/VBoxContainer/MusicVolumnSlider" to="." method="_on_music_volumn_slider_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/SFXVolumnSlider" to="." method="_on_sfx_volumn_slider_value_changed"]
 [connection signal="pressed" from="Panel/HBoxContainer/GoMain" to="." method="_on_go_main_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/ButtonBack" to="." method="_on_button_back_pressed"]

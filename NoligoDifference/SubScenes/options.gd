@@ -31,7 +31,17 @@ func toggle():
 func _on_go_main_pressed():
 	emit_signal("GoMain")
 	toggle()
+	Global.SaveMainData()
 
 
 func _on_button_back_pressed():
 	toggle()
+	Global.SaveMainData()
+
+
+func _on_music_volumn_slider_value_changed(value):
+	Global.music_default_volumn = value
+
+
+func _on_sfx_volumn_slider_value_changed(value):
+	Global.sfx_default_value = value

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dswx1krij25r2"]
+
+[ext_resource type="Script" path="res://SubScenes/main_texture_button.gd" id="1_nsg6f"]
+
+[node name="MainTextureButton" type="TextureButton"]
+custom_minimum_size = Vector2(182, 182)
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_nsg6f")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
