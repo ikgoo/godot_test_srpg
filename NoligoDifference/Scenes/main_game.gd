@@ -33,6 +33,11 @@ extends Control
 
 @onready var SceneParticles = $scene_particles
 
+# 게임 성공시 파티클
+@onready var party = $HUD/Party
+@onready var party_2 = $HUD/Party2
+
+
 
 # 게임 오버 여부
 var is_gameover = false
@@ -218,6 +223,8 @@ func SelectImage(img_type, curDate, gPosition, lPosition):
 	SceneParticles.emit_signal("ParticleEvent", SceneParticles.ParticleName.CLICKHEART, gPosition, 0)
 	
 	if score == 5:
+		party.emitting = true
+		party_2.emitting = true
 		PreGameOver(gameSuccess)
 		Global.clear_mst_id = curDate
 		Global.mainJsonData["datas"][curDate]["Success"] = true

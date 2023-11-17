@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://lfkd6sw50ypf"]
+[gd_scene load_steps=27 format=3 uid="uid://lfkd6sw50ypf"]
 
 [ext_resource type="Script" path="res://Scenes/main_game.gd" id="1_d3w3v"]
 [ext_resource type="Texture2D" uid="uid://cv04uwa4cl6p6" path="res://Assets/MainScene/bg.jpg" id="2_ooswh"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://Scenes/RandomMusicPlayer.gd" id="13_e2cnl"]
 [ext_resource type="AudioStream" uid="uid://b7xl677dqkjmc" path="res://Assets/Sounds/MainSceneEffices/TimeLate.wav" id="14_r1t8w"]
 [ext_resource type="PackedScene" uid="uid://bksb1u0c38wk3" path="res://AutoLoad/scene_particles.tscn" id="17_p2qai"]
+[ext_resource type="PackedScene" uid="uid://bxq5pfbhuv6k8" path="res://Particles/party.tscn" id="19_4yill"]
 
 [sub_resource type="Animation" id="Animation_bb7e5"]
 resource_name = "CountDown"
@@ -250,6 +251,13 @@ offset_bottom = 43.0
 texture = ExtResource("9_4e78b")
 expand_mode = 1
 stretch_mode = 1
+
+[node name="Party" parent="HUD" instance=ExtResource("19_4yill")]
+position = Vector2(-1447, 942)
+
+[node name="Party2" parent="HUD" instance=ExtResource("19_4yill")]
+position = Vector2(473, 942)
+scale = Vector2(-1, 1)
 
 [node name="Timer" type="Timer" parent="."]
 

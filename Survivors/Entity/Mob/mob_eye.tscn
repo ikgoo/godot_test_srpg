@@ -87,7 +87,6 @@ collision_layer = 16
 collision_mask = 29
 script = ExtResource("1_duvc8")
 mob = NodePath("FlyEye")
-MAX_SPEED = 400
 
 [node name="FlyEye" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
@@ -100,10 +99,8 @@ rotation = -1.5708
 shape = SubResource("CapsuleShape2D_niojh")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_mmh7j")]
-visible = false
 collision_layer = 0
 collision_mask = 12
-monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]

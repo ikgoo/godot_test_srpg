@@ -41,7 +41,7 @@ var damege = 2;
 # =========== 케릭저 정보 : End ==========
 
 #@onready var slash = $Slash
-@onready var slash = $Attacks/Slash
+#@onready var slash = $Attacks/Slash
 
 func _ready():
 	animation_tree.active = true
