@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://p63rdbb08qgl"]
+
+[ext_resource type="Texture2D" uid="uid://bpimmwdq7u31d" path="res://Assets/Particles/paper.png" id="1_a407d"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1jjm3"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yw648"]
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_box_extents = Vector3(600, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 45.78
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 137.55
+initial_velocity_max = 345.73
+angular_velocity_min = -10.0
+angular_velocity_max = 10.0
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+linear_accel_min = 16.36
+linear_accel_max = 80.67
+damping_min = 2.602
+damping_max = 30.855
+angle_min = -85.7
+angle_max = 123.1
+scale_min = 1.2
+scale_max = 2.0
+color = Color(0, 0, 1, 1)
+hue_variation_min = -0.4
+hue_variation_max = 0.66
+anim_speed_min = 10.0
+anim_speed_max = 16.0
+
+[node name="paper_2" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_1jjm3")
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_yw648")
+texture = ExtResource("1_a407d")
+lifetime = 5.0
+speed_scale = 1.5
+explosiveness = 0.89

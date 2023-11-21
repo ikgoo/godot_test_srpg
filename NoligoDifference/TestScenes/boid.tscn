@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmc6fksa17xlk"]
+
+[ext_resource type="Script" path="res://TestScenes/boid.gd" id="1_ndw25"]
+[ext_resource type="Texture2D" uid="uid://d0b5immwl0vd6" path="res://icon.svg" id="2_8xmdy"]
+
+[node name="Boid" type="CharacterBody2D"]
+script = ExtResource("1_ndw25")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_8xmdy")

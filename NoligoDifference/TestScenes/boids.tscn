@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1sdnyosv17ym"]
+
+[ext_resource type="Script" path="res://TestScenes/boids.gd" id="1_scyo4"]
+[ext_resource type="PackedScene" uid="uid://bmc6fksa17xlk" path="res://TestScenes/boid.tscn" id="2_lfx7s"]
+
+[node name="Boids" type="Node2D"]
+script = ExtResource("1_scyo4")
+separation_weight = 3.0
+seek_weight = 10.0
+
+[node name="Boid" parent="." groups=["Boids"] instance=ExtResource("2_lfx7s")]
+position = Vector2(112, 114)
+type = "농민"
+
+[node name="Boid2" parent="." groups=["Boids"] instance=ExtResource("2_lfx7s")]
+position = Vector2(285, 116)
+type = "중기병"
+
+[node name="Boid3" parent="." groups=["Boids"] instance=ExtResource("2_lfx7s")]
+position = Vector2(449, 117)
+type = "궁병"
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1520, 814)

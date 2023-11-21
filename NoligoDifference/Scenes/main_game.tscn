@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://lfkd6sw50ypf"]
+[gd_scene load_steps=28 format=3 uid="uid://lfkd6sw50ypf"]
 
 [ext_resource type="Script" path="res://Scenes/main_game.gd" id="1_d3w3v"]
 [ext_resource type="Texture2D" uid="uid://cv04uwa4cl6p6" path="res://Assets/MainScene/bg.jpg" id="2_ooswh"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://b7xl677dqkjmc" path="res://Assets/Sounds/MainSceneEffices/TimeLate.wav" id="14_r1t8w"]
 [ext_resource type="PackedScene" uid="uid://bksb1u0c38wk3" path="res://AutoLoad/scene_particles.tscn" id="17_p2qai"]
 [ext_resource type="PackedScene" uid="uid://bxq5pfbhuv6k8" path="res://Particles/party.tscn" id="19_4yill"]
+[ext_resource type="PackedScene" uid="uid://p63rdbb08qgl" path="res://Particles/paper_2.tscn" id="22_a20pf"]
 
 [sub_resource type="Animation" id="Animation_bb7e5"]
 resource_name = "CountDown"
@@ -269,6 +270,9 @@ layout_mode = 1
 
 [node name="DliayMusic" type="Timer" parent="."]
 process_mode = 3
+
+[node name="paper_2" parent="." instance=ExtResource("22_a20pf")]
+position = Vector2(947, 0)
 
 [connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff00" to="." method="SelectImage"]
 [connection signal="SelectImage" from="Control/HBoxContainer/RightMainFrame/Diff01" to="." method="SelectImage"]
