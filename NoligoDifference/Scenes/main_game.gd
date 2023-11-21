@@ -25,7 +25,7 @@ extends Control
 @onready var time_late_sfx_player = $TimeLateSFXPlayer
 
 #맞췄을때 이미지&소리
-@onready var OKAct = preload("res://SubScenes/OK.tscn")
+@onready var OKAct = preload("res://SubScenes/ok.tscn")
 # 틀렸을때 이미지&소리
 @onready var crossAct = preload("res://SubScenes/cross.tscn")	
 
@@ -183,7 +183,6 @@ func SelectImage(img_type, curDate, gPosition, lPosition):
 	else:
 		for j in range(currentGameDiffList.size()):
 			var d = checkData[currentGameDiffList[j]]
-			var f = ("checked" in d)
 			if ("checked" in d) == true and d["checked"] == true:
 				continue
 			else:
@@ -195,7 +194,6 @@ func SelectImage(img_type, curDate, gPosition, lPosition):
 					break
 		
 	if ok_yn == true:	# 맞춘 경우
-		checkData[chk_idx]
 		score += 1
 		var ok01 = OKAct.instantiate()
 		ok01.init(checkData[chk_idx])
@@ -203,7 +201,6 @@ func SelectImage(img_type, curDate, gPosition, lPosition):
 		var ok02 = OKAct.instantiate()
 		ok02.init(checkData[chk_idx])
 		right_main_frame.add_child(ok02)
-		var t = 0
 		
 	else:			# 잘못 선택한 경우
 		playerLife -= 1

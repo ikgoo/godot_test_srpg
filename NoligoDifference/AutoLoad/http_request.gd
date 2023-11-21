@@ -51,7 +51,7 @@ func StartDownloadRangeDate(dataCount : int):
 	http_request_get_date.request(base_uri, [], HTTPClient.METHOD_GET, "")
 
 # 받은 날짜 리턴하기
-func _on_http_request_get_date_request_completed(result, response_code, headers, body):
+func _on_http_request_get_date_request_completed(_result, _response_code, _headers, body):
 	var strData = body.get_string_from_utf8()
 	var dataList : Array = JSON.parse_string(strData)
 	if dataList.size() > 0:
@@ -95,7 +95,7 @@ func StartFistDownload():
 
 # JSON데이터 및 이미지 가져오기
 # [downloadSubStep] 일별 다운로드 스탭 == 1 : JSON / 2 : 메인 이미지 / 3 : 틀린 부분 이미지(배열의 끝까지 반복다운로드)
-func _on_http_request_request_completed(result, response_code, headers, body):
+func _on_http_request_request_completed(_result, _response_code, _headers, body):
 	if downloadSubStep == 1:		# JSON 파일 다운로드 이후
 		# JSON 파일 파싱
 		var strData = body.get_string_from_utf8()

@@ -15,7 +15,7 @@ func _ready():
 	particleList.append(particleList)
 	connect("ParticleEvent", PlayParticle)
 	
-func PlayParticle(particleName, globalPosition1, delayTime):
+func PlayParticle(_particleName, globalPosition1, _delayTime):
 	var clickH = click_heart.instantiate()
 	clickH.global_position = globalPosition1
 	get_tree().current_scene.add_child(clickH)

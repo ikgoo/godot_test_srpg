@@ -77,7 +77,7 @@ func _ready():
 	
 	#SceneAudioPlayer.SceneAudioPlay(SceneAudioPlayer.SceneAudioList.GAMEBONUS, 0)
 	progress_bar.value = 0
-	var b : bool = Global.InitMainData()			# 로컬 스토리지에 메인 데이터 가져오기
+	Global.InitMainData()			# 로컬 스토리지에 메인 데이터 가져오기
 
 	SingletonImageDown.connect("Change_Prograss_Value", Change_Prograss_Value)
 	SingletonImageDown.connect("Finsh_Download", Finsh_Download)
@@ -85,8 +85,8 @@ func _ready():
 	timer_main_data.start()
 	
 # 기정 날짜 리스트 받기
-func Get_Date_List(dateList):
-	self.dateList = dateList
+func Get_Date_List(_dateList):
+	self.dateList = _dateList
 	#print(self.dateList.size())
 
 	
@@ -100,7 +100,7 @@ func _on_timer_main_data_timeout():
 var currentPer = 70
 var maxPer : float = (1066 - currentPer) * 1.0
 
-func Change_Prograss_Value(val, rate):
+func Change_Prograss_Value(_val, rate):
 	if tween != null and tween.is_running():
 		tween.kill()
 	

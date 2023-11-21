@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyfdhc1e2h4jl"]
+
+[ext_resource type="Texture2D" uid="uid://bwe7sbggne33b" path="res://assets/space_background.png" id="1_kqnqo"]
+[ext_resource type="Script" path="res://Scenes/game.gd" id="1_uoixj"]
+[ext_resource type="Texture2D" uid="uid://cx1mfh2r8awo2" path="res://icon.svg" id="3_ubhfn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7sorv"]
+size = Vector2(128, 128)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_uoixj")
+
+[node name="SpaceBackground" type="Sprite2D" parent="."]
+texture = ExtResource("1_kqnqo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(275, 206)
+texture = ExtResource("3_ubhfn")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+collision_layer = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("RectangleShape2D_7sorv")

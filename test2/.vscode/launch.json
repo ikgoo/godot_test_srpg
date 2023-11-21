@@ -1,0 +1,26 @@
+{
+    // IntelliSense를 사용하여 가능한 특성에 대해 알아보세요.
+    // 기존 특성에 대한 설명을 보려면 가리킵니다.
+    // 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Godot Run",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "E:/godot/Godot_v4.1.2-stable_mono_win64/Godot_v4.1.2-stable_mono_win64.exe",
+            "cwd": "${workspaceRoot}",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "args": ["--path", "${workspaceRoot}"]
+        },
+        {
+            "name": "Attach",
+            "type": "mono",
+            "request": "attach",
+            "address": "localhost",
+            "port": 55555
+        }
+    ]
+}

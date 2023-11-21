@@ -42,8 +42,8 @@ func _ready():
 	
 	scroll_container.set_deferred("scroll_vertical", 999999999)
 
-func SelectImage(img_name, curDate, gPosition, lPosition):
-	var tmpData = Global.mainJsonData["datas"][curDate]
+func SelectImage(_img_name, curDate, gPosition, _lPosition):
+	var _tmpData = Global.mainJsonData["datas"][curDate]
 	# 완료된 경우 어떻게 처리할지 고민 해봐야 함
 #	if ("Success" in tmpData) == true and tmpData["Success"] == true:
 #		return

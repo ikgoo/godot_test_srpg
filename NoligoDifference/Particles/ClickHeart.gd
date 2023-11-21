@@ -1,6 +1,6 @@
 extends GPUParticles2D
 
 
-func _process(delta):
+func _process(_delta):
 	if emitting == true and lifetime <= 0:
 		queue_free()
