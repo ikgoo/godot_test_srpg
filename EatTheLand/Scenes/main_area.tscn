@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://pptx6gyojpgb"]
+
+[node name="Main_Area" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(58, 39)
+polygon = PackedVector2Array(-1, 1, 175, 107, 148, 39)
