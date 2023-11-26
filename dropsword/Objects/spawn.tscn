@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://ymxq5tqpkwkg"]
+
+[sub_resource type="GDScript" id="GDScript_ohfvy"]
+script/source = "
+extends Node2D
+@onready var timer = $Timer
+@onready var orange = preload(\"res://orange.tscn\")
+@onready var pineapple = preload(\"res://pineapple.tscn\")
+@onready var apple = preload(\"res://apple.tscn\")
+var objs : Array = [
+	# 오랜지
+	preload(\"res://orange.tscn\"),
+	# 파인애플
+	preload(\"res://pineapple.tscn\"),
+	# 애플
+	preload(\"res://apple.tscn\")
+]
+var random = 0
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func getObj(idx):
+	if idx == null:
+		idx = randi_range(0, objs.size()-1)
+	return objs[idx].instantiate()
+
+#func _on_timer_timeout():
+#	random = randi_range(0,2)
+#	print(random)
+#	var random_fruit = obj[random].instantiate()
+#	random_fruit.global_position = global_position
+#	get_parent().get_parent().add_child(random_fruit)
+#	timer.start()
+#
+#func upgrade(fruit_number):
+#	return obj[fruit_number-1].instantiate()
+"
+
+[node name="Spawn" type="Node2D"]
+script = SubResource("GDScript_ohfvy")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

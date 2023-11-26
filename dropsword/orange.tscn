@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://vvcipy545m3"]
+
+[ext_resource type="Texture2D" uid="uid://e78wfsfq1bgg" path="res://Assets/Orange.png" id="1_smxjs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8r11p"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mp7jl"]
+radius = 6.0
+
+[node name="orange" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_smxjs")
+hframes = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.2, 1.2)
+shape = SubResource("CircleShape2D_8r11p")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.2, 1.2)
+shape = SubResource("CircleShape2D_mp7jl")
