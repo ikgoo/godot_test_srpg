@@ -10,7 +10,7 @@ extends Node2D
 var currentObj
 
 func _ready():
-	timer.start()
+	timer.start(0)
 
 
 func _process(delta):
@@ -38,5 +38,14 @@ func _input(event : InputEvent):
 
 func _on_timer_timeout():
 	currentObj = spawn.getObj(null)
+	
+	currentObj.connect("drop_collision", drop_collision)
+	currentObj.connect
 	currentObj.gravity_scale = 0
 	obj_start_pos.add_child(currentObj)
+
+func drop_collision(obj_name, obj_idx, pos):
+	var currentObj_new = spawn.getObj(obj_idx+1)
+	currentObj_new.gravity_scale = 1
+	currentObj_new.global_position = pos
+	add_child(currentObj_new)

@@ -11,7 +11,7 @@ size = Vector2(20, 126)
 script = ExtResource("1_qahq5")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(486, 258)
+position = Vector2(482, 352.115)
 scale = Vector2(8.925, 1)
 metadata/_edit_group_ = true
 
@@ -23,7 +23,7 @@ scale = Vector2(0.15625, 1)
 texture = ExtResource("2_0v4ey")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(321, 320)
+position = Vector2(317, 414.115)
 rotation = 1.5708
 scale = Vector2(1, 2.985)
 metadata/_edit_group_ = true
@@ -36,7 +36,7 @@ scale = Vector2(0.15625, 1)
 texture = ExtResource("2_0v4ey")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="."]
-position = Vector2(148, 254)
+position = Vector2(144, 348.115)
 scale = Vector2(8.335, 1)
 metadata/_edit_group_ = true
 
@@ -48,7 +48,7 @@ scale = Vector2(0.15625, 1)
 texture = ExtResource("2_0v4ey")
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="."]
-position = Vector2(148, 143.245)
+position = Vector2(144, 237.36)
 scale = Vector2(8.335, 1)
 metadata/_edit_group_ = true
 
@@ -60,7 +60,7 @@ scale = Vector2(0.15625, 1)
 texture = ExtResource("2_0v4ey")
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="."]
-position = Vector2(487.56, 139.885)
+position = Vector2(483.56, 234)
 scale = Vector2(8.335, 1)
 metadata/_edit_group_ = true
 
@@ -72,7 +72,7 @@ scale = Vector2(0.15625, 1)
 texture = ExtResource("2_0v4ey")
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="."]
-position = Vector2(-141, 116)
+position = Vector2(862, -343)
 scale = Vector2(14.785, 1)
 metadata/_edit_group_ = true
 

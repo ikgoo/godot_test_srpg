@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b60e021yjoyr3"]
+[gd_scene load_steps=5 format=3 uid="uid://b60e021yjoyr3"]
 
-[ext_resource type="Texture2D" uid="uid://xtcte8wvc2d3" path="res://Assets/Pineapple.png" id="1_iiyke"]
+[ext_resource type="Script" path="res://Objects/drop_object.gd" id="1_2flfr"]
+[ext_resource type="Texture2D" uid="uid://xtcte8wvc2d3" path="res://Assets/Pineapple.png" id="1_54ubw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8r11p"]
 radius = 7.0
@@ -9,10 +10,14 @@ radius = 7.0
 radius = 6.0
 
 [node name="pineapple" type="RigidBody2D"]
+gravity_scale = 8.92
+script = ExtResource("1_2flfr")
+obj_name = "pineapple"
+obj_idx = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.2, 1.2)
-texture = ExtResource("1_iiyke")
+texture = ExtResource("1_54ubw")
 hframes = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -20,7 +25,11 @@ scale = Vector2(1.2, 1.2)
 shape = SubResource("CircleShape2D_8r11p")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(1.4, 1.4)
 shape = SubResource("CircleShape2D_mp7jl")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

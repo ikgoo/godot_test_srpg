@@ -4,13 +4,16 @@
 script/source = "
 extends Node2D
 @onready var timer = $Timer
+@onready var orange = preload(\"res://Objects/orange.tscn\")
+@onready var pineapple = preload(\"res://Objects/pineapple.tscn\")
+@onready var apple = preload(\"res://apple.tscn\")
 var objs : Array = [
-	# 오랜지(0)
-	preload(\"res://Objects/orange.tscn\"),
-	# 파인애플(1)
-	preload(\"res://Objects/pineapple.tscn\"),
-	# 애플(2)
-	preload(\"res://Objects/apple.tscn\")
+	# 오랜지
+	preload(\"res://orange.tscn\"),
+	# 파인애플
+	preload(\"res://pineapple.tscn\"),
+	# 애플
+	preload(\"res://apple.tscn\")
 ]
 var random = 0
 # Called when the node enters the scene tree for the first time.
@@ -25,8 +28,6 @@ func _process(delta):
 func getObj(idx):
 	if idx == null:
 		idx = randi_range(0, objs.size()-1)
-	if idx >= objs.size() - 1:
-		idx = objs.size() - 1
 	return objs[idx].instantiate()
 
 #func _on_timer_timeout():
