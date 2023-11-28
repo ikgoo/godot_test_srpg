@@ -25,7 +25,7 @@ func _process(delta):
 func getObj(idx):
 	if idx == null:
 		idx = randi_range(0, objs.size()-1)
-	if idx >= objs.size() - 1:
+	if idx > objs.size() - 1:
 		idx = objs.size() - 1
 	return objs[idx].instantiate()
 

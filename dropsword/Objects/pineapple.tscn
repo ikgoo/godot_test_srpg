@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b60e021yjoyr3"]
+[gd_scene load_steps=6 format=3 uid="uid://b60e021yjoyr3"]
 
 [ext_resource type="Script" path="res://Objects/drop_object.gd" id="1_2flfr"]
 [ext_resource type="Texture2D" uid="uid://xtcte8wvc2d3" path="res://Assets/Pineapple.png" id="1_54ubw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5ih54"]
+bounce = 0.2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8r11p"]
 radius = 7.0
@@ -10,6 +13,7 @@ radius = 7.0
 radius = 6.0
 
 [node name="pineapple" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_5ih54")
 gravity_scale = 8.92
 script = ExtResource("1_2flfr")
 obj_name = "pineapple"

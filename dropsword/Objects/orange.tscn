@@ -1,18 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://vvcipy545m3"]
+[gd_scene load_steps=6 format=3 uid="uid://vvcipy545m3"]
 
 [ext_resource type="Texture2D" uid="uid://e78wfsfq1bgg" path="res://Assets/Orange.png" id="1_7sgg0"]
 [ext_resource type="Script" path="res://Objects/drop_object.gd" id="1_m5nd4"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qrnwh"]
+bounce = 0.2
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_8r11p"]
-radius = 7.0
+radius = 6.66667
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mp7jl"]
-radius = 6.0
+radius = 6.66667
 
 [node name="orange" type="RigidBody2D"]
 inertia = 0.19
+physics_material_override = SubResource("PhysicsMaterial_qrnwh")
 max_contacts_reported = 6
-linear_velocity = Vector2(100, 0)
 script = ExtResource("1_m5nd4")
 obj_name = "orange"
 

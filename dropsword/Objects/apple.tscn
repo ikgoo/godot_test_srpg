@@ -1,15 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8myk7t1rcspn"]
+[gd_scene load_steps=6 format=3 uid="uid://b8myk7t1rcspn"]
 
 [ext_resource type="Script" path="res://Objects/drop_object.gd" id="1_hejo0"]
 [ext_resource type="Texture2D" uid="uid://dyg3wk5p1l24g" path="res://Assets/Apple.png" id="1_xlnl1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qe423"]
+bounce = 0.2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8r11p"]
 radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mp7jl"]
-radius = 6.0
+radius = 7.0
 
 [node name="apple" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_qe423")
+gravity_scale = 0.5
 script = ExtResource("1_hejo0")
 obj_name = "apple"
 obj_idx = 2

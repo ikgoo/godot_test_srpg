@@ -26,15 +26,16 @@ func _process(delta):
 	
 func _input(event : InputEvent):
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			var pos = currentObj.global_position
-			var parent_node = currentObj.get_parent()
-			parent_node.remove_child(currentObj)
-			add_child(currentObj)
-			currentObj.global_position = pos
-			currentObj.gravity_scale = 1
-			
-			timer.start()
+		if currentObj != null:
+			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				var pos = currentObj.global_position
+				var parent_node = currentObj.get_parent()
+				parent_node.remove_child(currentObj)
+				add_child(currentObj)
+				currentObj.global_position = pos
+				currentObj.gravity_scale = 1
+				
+				timer.start()
 
 func _on_timer_timeout():
 	currentObj = spawn.getObj(null)
@@ -44,8 +45,8 @@ func _on_timer_timeout():
 	currentObj.gravity_scale = 0
 	obj_start_pos.add_child(currentObj)
 
-func drop_collision(obj_name, obj_idx, pos):
+func drop_collision(obj_name, obj_idx, pos, obj):
+	obj.queue_free()
 	var currentObj_new = spawn.getObj(obj_idx+1)
-	currentObj_new.gravity_scale = 1
 	currentObj_new.global_position = pos
 	add_child(currentObj_new)
