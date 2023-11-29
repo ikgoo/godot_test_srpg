@@ -4,6 +4,7 @@ extends Node2D
 @onready var right_wall = $RightWall
 @onready var obj_start_pos = $ObjStartPos
 @onready var spawn = $Spawn
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
 @onready var timer = $Timer
 
@@ -14,6 +15,7 @@ func _ready():
 
 
 func _process(delta):
+	audio_stream_player_2d.play()
 	if currentObj != null:
 		var mouse_position : Vector2 = get_global_mouse_position()
 		var start_pos_x : float = mouse_position.x

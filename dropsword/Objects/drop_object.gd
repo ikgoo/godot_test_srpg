@@ -29,6 +29,7 @@ func _on_area_2d_area_entered(area : Area2D):
 		# 물체간 중간위치
 		var mid = (global_position + area.global_position) / 2
 		emit_signal("drop_collision", obj_name, obj_idx, mid, self)
+		is_on = true
 #		timer.start()
 #		queue_free()
 	#	var upgrade_fruit = spawner.upgrade(int(obj_name))
