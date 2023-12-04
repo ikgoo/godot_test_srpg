@@ -5,10 +5,14 @@ extends Node2D
 @onready var obj_start_pos = $ObjStartPos
 @onready var spawn = $Spawn
 @onready var audio_stream_player_2d = $AudioStreamPlayer2D
+@onready var object_pooling = $ObjectPooling
 
 @onready var timer = $Timer
 
 var currentObj
+
+# 떨어트릴수 있는 오프젝트
+var obj_list = ['pineapple', 'pineapple', 'apple']
 
 func _ready():
 	timer.start(0)
@@ -40,15 +44,25 @@ func _input(event : InputEvent):
 				timer.start()
 
 func _on_timer_timeout():
-	currentObj = spawn.getObj(null)
+	var r = obj_list[randi_range(0, obj_list.size()-1)]
+	
+	currentObj = object_pooling.get_from_pool_name(r)
 	
 	currentObj.connect("drop_collision", drop_collision)
 	currentObj.connect
 	currentObj.gravity_scale = 0
 	obj_start_pos.add_child(currentObj)
 
-func drop_collision(obj_name, obj_idx, pos, obj):
-	obj.queue_free()
-	var currentObj_new = spawn.getObj(obj_idx+1)
+func drop_collision(obj_name, obj_idx, pos, obj, obj2):
+	obj.is_on = true
+	object_pooling.add_to_pool_name(obj_name, obj)
+	obj2.is_on = true
+	object_pooling.add_to_pool_name(obj_name, obj2)
+	
+	# 최대 이상으로 되지 않음
+	if obj_list.size()-1 > obj_idx:
+		obj_idx = obj_idx + 1
+	
+	var currentObj_new = object_pooling.get_from_pool_number(obj_idx)
 	currentObj_new.global_position = pos
 	add_child(currentObj_new)

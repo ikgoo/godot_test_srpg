@@ -13,8 +13,8 @@ radius = 6.66667
 radius = 6.66667
 
 [node name="orange" type="RigidBody2D"]
-inertia = 0.19
 physics_material_override = SubResource("PhysicsMaterial_qrnwh")
+inertia = 0.19
 max_contacts_reported = 6
 script = ExtResource("1_m5nd4")
 obj_name = "orange"
