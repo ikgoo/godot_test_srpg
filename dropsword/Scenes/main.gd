@@ -22,6 +22,7 @@ var currentObj
 var obj_list = ['pineapple', 'pineapple', 'apple']
 
 func _ready():
+	tween = create_tween()
 	timer.start(0)
 
 func _physics_process(delta):
@@ -44,6 +45,9 @@ var _obj_idx
 var _pos
 var _object1
 var _object2
+# Tweener 생성
+var tween
+
 # 두 오브젝트 머지 애니메이션
 func merge_obj(obj_name, obj_idx, pos, object1 : Node2D, object2):
 	_obj_name = obj_name
@@ -60,22 +64,22 @@ func merge_obj(obj_name, obj_idx, pos, object1 : Node2D, object2):
 	object2.angular_velocity = 0
 	object2.get_node("./CollisionShape2D").disabled = true
 	
-	# Tweener 생성
-	var tween = create_tween()
 
 	# 두 개의 오브젝트를 동시에 지정된 위치로 이동
 	var target_position = pos # 이동할 위치
-	var duration = 0.25 # 이동에 걸릴 시간 (초)
+	var duration = 0.3 # 이동에 걸릴 시간 (초)
 	
+	tween = create_tween()
 	tween.parallel().tween_property(object1, "position", target_position, duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	tween.parallel().tween_property(object2, "position", target_position, duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+
+	# 이동이 끝나면 특정 함수를 호출
+#	tween.connect("tween_callback", _on_tween_all_completed(obj_name, obj_idx, pos, object1, object2))
+
 	var o = paricle_object_pooling.get_from_pool_number(0)
 	paricle_object_pooling.add_child(o)
 	o.global_position = pos
 	o.emitting = true
-
-	# 이동이 끝나면 특정 함수를 호출
-#	tween.connect("tween_callback", _on_tween_all_completed(obj_name, obj_idx, pos, object1, object2))
 
 	# 애니메이션 시작
 	await tween.finished

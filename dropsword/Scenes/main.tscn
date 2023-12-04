@@ -122,4 +122,6 @@ pool_size = Array[int]([20])
 
 [node name="ParicalObjectGroup" type="Node2D" parent="."]
 
+[node name="firework" parent="." instance=ExtResource("8_scxvu")]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
