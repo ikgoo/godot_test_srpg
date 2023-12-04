@@ -29,7 +29,6 @@ func _physics_process(delta):
 	var childs = drop_object_group.get_children()
 	if(childs.size() >= 2):
 		for i in range(0, childs.size()):
-			print(childs[i].obj_name)
 			var colliding_bodies = childs[i].get_colliding_bodies()
 			for body in colliding_bodies:
 				if body is DropObject and body != childs[i] and body.obj_name == childs[i].obj_name and body.is_on == true and childs[i].is_on == true:
@@ -66,11 +65,12 @@ func merge_obj(obj_name, obj_idx, pos, object1 : Node2D, object2):
 
 	# 두 개의 오브젝트를 동시에 지정된 위치로 이동
 	var target_position = pos # 이동할 위치
-	var duration = 0.1 # 이동에 걸릴 시간 (초)
+	var duration = 0.25 # 이동에 걸릴 시간 (초)
 	
-	tween.parallel().tween_property(object1, "position", target_position, duration)
-	tween.parallel().tween_property(object2, "position", target_position, duration)
+	tween.parallel().tween_property(object1, "position", target_position, duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	tween.parallel().tween_property(object2, "position", target_position, duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	var o = paricle_object_pooling.get_from_pool_number(0)
+	paricle_object_pooling.add_child(o)
 	o.global_position = pos
 	o.emitting = true
 
@@ -79,8 +79,6 @@ func merge_obj(obj_name, obj_idx, pos, object1 : Node2D, object2):
 
 	# 애니메이션 시작
 	await tween.finished
-	
-	paricle_object_pooling.add_to_pool_number(0, o)
 	
 	drop_collision( obj_name, obj_idx, pos, object1, object2)
 
@@ -108,18 +106,17 @@ func _input(event : InputEvent):
 				var parent_node = currentObj.get_parent()
 				parent_node.remove_child(currentObj)
 				append_child_obj_proc(currentObj, pos)
+				currentObj = null
 				
 				timer.start()
 
 func _on_timer_timeout():
 	var r = obj_list[randi_range(0, obj_list.size()-1)]
-	
 	currentObj = object_pooling.get_from_pool_name(r)
-	
-	currentObj.connect("drop_collision", drop_collision)
-	currentObj.connect
 	currentObj.gravity_scale = 0
+	currentObj.is_on = false
 	obj_start_pos.add_child(currentObj)
+	currentObj.global_position = obj_start_pos.global_position
 
 func drop_collision(obj_name, obj_idx, pos, obj, obj2):
 	object_pooling.add_to_pool_name(obj.obj_name, obj)
