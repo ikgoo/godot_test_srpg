@@ -33,6 +33,10 @@ window/size/window_height_override=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
+[dotnet]
+
+project/assembly_name="NoligoDifference"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

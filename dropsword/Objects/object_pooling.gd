@@ -15,7 +15,7 @@ func _ready():
 	for i in range(0, objects.size()):
 		for j in range(0, pool_size[i]):
 			var o : PackedScene = objects[i]
-			var object = o.instantiate()
+			var object : Node2D = o.instantiate()
 			
 			# 하위 노드 생성
 			var node_name = object.name
@@ -35,11 +35,11 @@ func _ready():
 			#add_to_pool(i, object)
 
 # 오브젝트 되돌림(number)
-func add_to_pool_number(idx : int, object : Node2D):
+func add_to_pool_number(idx : int, object):
 	add_to_pool_name(object_names[idx], object)
 	
 # 오브젝트 되돌림(name)
-func add_to_pool_name(name : String, object : Node2D):
+func add_to_pool_name(name : String, object):
 	object.visible = false
 	object_pools[name].append(object)
 

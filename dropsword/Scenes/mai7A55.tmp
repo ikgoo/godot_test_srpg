@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://svldv0pnx7rg"]
+[gd_scene load_steps=9 format=3 uid="uid://svldv0pnx7rg"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_qahq5"]
 [ext_resource type="Texture2D" uid="uid://bxsbg6f7j22lj" path="res://icon.svg" id="2_0v4ey"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://vvcipy545m3" path="res://Objects/orange.tscn" id="5_gcjvs"]
 [ext_resource type="PackedScene" uid="uid://b60e021yjoyr3" path="res://Objects/pineapple.tscn" id="6_jvfxn"]
 [ext_resource type="PackedScene" uid="uid://b8myk7t1rcspn" path="res://Objects/apple.tscn" id="7_67d56"]
-[ext_resource type="PackedScene" uid="uid://bdr3nvavr6014" path="res://Paricles/firework.tscn" id="8_scxvu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43oyo"]
 size = Vector2(20, 126)
@@ -91,7 +90,6 @@ scale = Vector2(0.15625, 1)
 texture = ExtResource("2_0v4ey")
 
 [node name="Spawn" parent="." instance=ExtResource("3_241yb")]
-visible = false
 position = Vector2(-76, -33)
 scale = Vector2(1.00333, 0.990879)
 
@@ -110,16 +108,8 @@ one_shot = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = 1.0
 
-[node name="DropObjectGroup" type="Node2D" parent="."]
-
 [node name="ObjectPooling" parent="." instance=ExtResource("4_slxjy")]
 objects = Array[PackedScene]([ExtResource("5_gcjvs"), ExtResource("6_jvfxn"), ExtResource("7_67d56")])
 pool_size = Array[int]([15, 15, 15])
-
-[node name="ParicleObjectPooling" parent="." instance=ExtResource("4_slxjy")]
-objects = Array[PackedScene]([ExtResource("8_scxvu")])
-pool_size = Array[int]([20])
-
-[node name="ParicalObjectGroup" type="Node2D" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -15,6 +15,8 @@ radius = 7.0
 [node name="apple" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_qe423")
 gravity_scale = 0.5
+max_contacts_reported = 8
+contact_monitor = true
 script = ExtResource("1_hejo0")
 obj_name = "apple"
 obj_idx = 2
@@ -32,5 +34,3 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_mp7jl")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

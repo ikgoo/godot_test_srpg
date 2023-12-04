@@ -15,7 +15,8 @@ radius = 6.66667
 [node name="orange" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_qrnwh")
 inertia = 0.19
-max_contacts_reported = 6
+max_contacts_reported = 8
+contact_monitor = true
 script = ExtResource("1_m5nd4")
 obj_name = "orange"
 
@@ -35,5 +36,3 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(1.2, 1.2)
 shape = SubResource("CircleShape2D_mp7jl")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
