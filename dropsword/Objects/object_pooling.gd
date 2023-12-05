@@ -15,17 +15,22 @@ func _ready():
 	for i in range(0, objects.size()):
 		for j in range(0, pool_size[i]):
 			var o : PackedScene = objects[i]
-			var object : Node2D = o.instantiate()
+			var object = o.instantiate()
 			
 			# 하위 노드 생성
 			var node_name = object.name
+			if("obj_name" in object):
+				object.obj_name = node_name
+			if("obj_idx" in object):
+				object.obj_idx = i
+
+			var new_node = Node2D.new()
+			new_node.name = node_name
 			if !object_pools.has(node_name):
 				var n : Array[Node2D] = []
 				object_pools[node_name] = n
-			
-			var new_node = Node2D.new()
-			new_node.name = node_name
-			object_names.append(node_name)
+				object_names.append(node_name)
+				
 			add_to_pool_name(node_name, object)
 			
 			#if !has_node("./" + node_name):

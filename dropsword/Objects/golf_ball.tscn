@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://br7qsblpy3gut"]
+
+[ext_resource type="Texture2D" uid="uid://b0unuw5xg48fm" path="res://Assets/ball01.png" id="1_axvnx"]
+[ext_resource type="Script" path="res://Objects/drop_object.gd" id="1_u6f2g"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hoqpj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ih3mr"]
+radius = 9.05539
+
+[node name="GolfBall" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_hoqpj")
+max_contacts_reported = 8
+contact_monitor = true
+script = ExtResource("1_u6f2g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_axvnx")
+hframes = 6
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ih3mr")

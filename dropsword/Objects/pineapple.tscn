@@ -18,8 +18,6 @@ gravity_scale = 8.92
 max_contacts_reported = 8
 contact_monitor = true
 script = ExtResource("1_2flfr")
-obj_name = "pineapple"
-obj_idx = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.2, 1.2)

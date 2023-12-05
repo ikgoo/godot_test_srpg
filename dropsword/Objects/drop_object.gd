@@ -3,8 +3,8 @@ extends RigidBody2D
 class_name DropObject
 
 signal drop_collision(obj_name, obj_idx, pos, obj);
-@export var obj_name : String = ""
-@export var obj_idx : int = 0
+var obj_name : String = ""
+var obj_idx : int = 0
 var is_on : bool = true
 
 # Called when the node enters the scene tree for the first time.

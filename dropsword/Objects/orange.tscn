@@ -18,7 +18,6 @@ inertia = 0.19
 max_contacts_reported = 8
 contact_monitor = true
 script = ExtResource("1_m5nd4")
-obj_name = "orange"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.2, 1.2)

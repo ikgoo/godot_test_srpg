@@ -1,13 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://svldv0pnx7rg"]
+[gd_scene load_steps=10 format=3 uid="uid://svldv0pnx7rg"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_qahq5"]
 [ext_resource type="Texture2D" uid="uid://bxsbg6f7j22lj" path="res://icon.svg" id="2_0v4ey"]
 [ext_resource type="PackedScene" uid="uid://ymxq5tqpkwkg" path="res://Objects/spawn.tscn" id="3_241yb"]
 [ext_resource type="PackedScene" uid="uid://dyy0omyaj05wr" path="res://Objects/object_pooling.tscn" id="4_slxjy"]
-[ext_resource type="PackedScene" uid="uid://ol3yc1oivny0" path="res://Objects/ping_pong_ball.tscn" id="5_gongm"]
-[ext_resource type="PackedScene" uid="uid://br7qsblpy3gut" path="res://Objects/golf_ball.tscn" id="6_5oyj0"]
-[ext_resource type="PackedScene" uid="uid://wkm2kq0rcatw" path="res://Objects/base_ball.tscn" id="7_iaxny"]
-[ext_resource type="PackedScene" uid="uid://b5f4pmc08pjfy" path="res://Objects/tennis_ball.tscn" id="8_a16wi"]
+[ext_resource type="PackedScene" uid="uid://vvcipy545m3" path="res://Objects/orange.tscn" id="5_gcjvs"]
+[ext_resource type="PackedScene" uid="uid://b60e021yjoyr3" path="res://Objects/pineapple.tscn" id="6_jvfxn"]
+[ext_resource type="PackedScene" uid="uid://b8myk7t1rcspn" path="res://Objects/apple.tscn" id="7_67d56"]
 [ext_resource type="PackedScene" uid="uid://bdr3nvavr6014" path="res://Paricles/firework.tscn" id="8_scxvu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43oyo"]
@@ -114,13 +113,10 @@ volume_db = 1.0
 [node name="DropObjectGroup" type="Node2D" parent="."]
 
 [node name="ObjectPooling" parent="." instance=ExtResource("4_slxjy")]
-position = Vector2(-101, 34)
-scale = Vector2(-77803.3, 420.036)
-objects = Array[PackedScene]([ExtResource("5_gongm"), ExtResource("6_5oyj0"), ExtResource("7_iaxny"), ExtResource("8_a16wi")])
-pool_size = Array[int]([40, 40, 30, 20])
+objects = Array[PackedScene]([ExtResource("5_gcjvs"), ExtResource("6_jvfxn"), ExtResource("7_67d56")])
+pool_size = Array[int]([50, 50, 50])
 
 [node name="ParicleObjectPooling" parent="." instance=ExtResource("4_slxjy")]
-position = Vector2(-58, 0)
 objects = Array[PackedScene]([ExtResource("8_scxvu")])
 pool_size = Array[int]([20])
 

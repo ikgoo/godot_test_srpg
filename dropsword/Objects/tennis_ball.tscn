@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5f4pmc08pjfy"]
+
+[ext_resource type="Script" path="res://Objects/drop_object.gd" id="1_cf14u"]
+[ext_resource type="Texture2D" uid="uid://b0unuw5xg48fm" path="res://Assets/ball01.png" id="1_p56me"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g4do4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xi0cd"]
+radius = 16.1245
+
+[node name="TennisBall" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_g4do4")
+max_contacts_reported = 8
+contact_monitor = true
+script = ExtResource("1_cf14u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.125, 2.25)
+texture = ExtResource("1_p56me")
+hframes = 6
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xi0cd")

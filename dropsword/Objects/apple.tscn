@@ -18,8 +18,6 @@ gravity_scale = 0.5
 max_contacts_reported = 8
 contact_monitor = true
 script = ExtResource("1_hejo0")
-obj_name = "apple"
-obj_idx = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_xlnl1")
