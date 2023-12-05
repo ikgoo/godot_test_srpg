@@ -20,10 +20,11 @@ signal merge_go(obj_name, obj_idx, pos, object1, object2)
 @onready var timer = $Timer
 
 var currentObj
-
+var startPos : Vector2
 func _ready():
 	tween = create_tween()
 	timer.start(0)
+	startPos = obj_start_pos.global_position
 
 func _physics_process(delta):
 	# 두개 이상의 드롭 오브젝트가 생기면 충돌 체크 시작
@@ -71,7 +72,8 @@ func merge_obj(obj_name, obj_idx, pos, object1 : Node2D, object2):
 	var duration = 0.3 # 이동에 걸릴 시간 (초)
 
 	var o : GPUParticles2D = paricle_object_pooling.get_from_pool_number(0)
-	parical_object_group.add_child(o)
+	#parical_object_group.add_child(o)
+	add_child(o)
 	o.paticle_start(pos)
 
 	
@@ -90,9 +92,10 @@ func merge_obj(obj_name, obj_idx, pos, object1 : Node2D, object2):
 
 	drop_collision( obj_name, obj_idx, pos, object1, object2)
 	
-	#wait_parical_timer.start(0.1)
-	#await wait_parical_timer.timeout
-	parical_object_group.remove_child(o)
+	wait_parical_timer.start(2)
+	await wait_parical_timer.timeout
+	#parical_object_group.remove_child(o)
+	remove_child(o)
 	paricle_object_pooling.add_to_pool_number(0, o)
 	
 
@@ -101,8 +104,8 @@ func _on_tween_all_completed(obj_name, obj_idx, pos, object1, object2):
 	print("The animation has completed.")
 	
 func _process(delta):
-	audio_stream_player_2d.play()
-	if currentObj != null:
+	#audio_stream_player_2d.play()
+	if currentObj != null and button_down == true:
 		var mouse_position : Vector2 = get_global_mouse_position()
 		var start_pos_x : float = mouse_position.x
 		if start_pos_x < left_wall.global_position.x:
@@ -110,19 +113,26 @@ func _process(delta):
 		if start_pos_x > right_wall.global_position.x:
 			start_pos_x = right_wall.global_position.x
 		
-		obj_start_pos.global_position = Vector2(start_pos_x, obj_start_pos.global_position.y)
+		currentObj.global_position = Vector2(start_pos_x, startPos.y)
 	
+var button_down = false
 func _input(event : InputEvent):
 	if event is InputEventMouseButton:
 		if currentObj != null:
-			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-				var pos = currentObj.global_position
-				var parent_node = currentObj.get_parent()
-				parent_node.remove_child(currentObj)
-				append_child_obj_proc(currentObj, pos)
-				currentObj = null
-				
-				timer.start()
+			event.button_mask
+			if event.button_index == MOUSE_BUTTON_LEFT:
+				if event.pressed:
+					if currentObj != null:
+						button_down = true
+				else:
+					button_down = false
+					var pos = currentObj.global_position
+					var parent_node = currentObj.get_parent()
+					parent_node.remove_child(currentObj)
+					append_child_obj_proc(currentObj, pos)
+					currentObj = null
+					
+					timer.start()
 
 func _on_timer_timeout():
 	
@@ -130,8 +140,9 @@ func _on_timer_timeout():
 	currentObj = object_pooling.get_from_pool_name(r)
 	currentObj.gravity_scale = 0
 	currentObj.is_on = false
-	obj_start_pos.add_child(currentObj)
-	currentObj.global_position = obj_start_pos.global_position
+	add_child(currentObj)
+	#obj_start_pos.add_child(currentObj)
+	currentObj.global_position = startPos
 
 func drop_collision(obj_name, obj_idx, pos, obj, obj2):
 	object_pooling.add_to_pool_name(obj.obj_name, obj)

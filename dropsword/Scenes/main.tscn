@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://svldv0pnx7rg"]
+[gd_scene load_steps=13 format=3 uid="uid://svldv0pnx7rg"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_qahq5"]
 [ext_resource type="Texture2D" uid="uid://bxsbg6f7j22lj" path="res://icon.svg" id="2_0v4ey"]
@@ -12,6 +12,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43oyo"]
 size = Vector2(20, 126)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ahexb"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p41vd"]
+size = Vector3(2, 2, 2)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_qahq5")
@@ -99,8 +105,14 @@ scale = Vector2(1.00333, 0.990879)
 [node name="LeftWall" type="Marker2D" parent="."]
 position = Vector2(234, 189)
 
+[node name="MeshInstance2D" type="MeshInstance2D" parent="LeftWall"]
+mesh = SubResource("BoxMesh_ahexb")
+
 [node name="RightWall" type="Marker2D" parent="."]
 position = Vector2(393, 190)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="RightWall"]
+mesh = SubResource("BoxMesh_p41vd")
 
 [node name="ObjStartPos" type="Marker2D" parent="."]
 position = Vector2(322, 189)
@@ -122,7 +134,7 @@ pool_size = Array[int]([40, 40, 30, 20])
 [node name="ParicleObjectPooling" parent="." instance=ExtResource("4_slxjy")]
 position = Vector2(-58, 0)
 objects = Array[PackedScene]([ExtResource("8_scxvu")])
-pool_size = Array[int]([20])
+pool_size = Array[int]([10])
 
 [node name="ParicalObjectGroup" type="Node2D" parent="."]
 

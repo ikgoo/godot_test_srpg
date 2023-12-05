@@ -60,7 +60,7 @@ var playerLife = 3
 var game_paly_time = 30
 
 func _ready():
-	get_tree().get_first_node_in_group()
+	#get_tree().get_first_node_in_group()
 	options.connect("GoMain", PreGoMain)
 	
 	randomize()

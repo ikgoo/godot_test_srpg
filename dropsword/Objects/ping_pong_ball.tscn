@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b0unuw5xg48fm" path="res://Assets/ball01.png" id="2_v35ac"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rjcbb"]
+bounce = 0.09
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8qoci"]
 radius = 7.0
