@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://lxrfaf60b5fc"]
+
+[ext_resource type="PackedScene" uid="uid://cjofdg0pqwvhm" path="res://bloack.tscn" id="1_8p765"]
+
+[node name="World" type="Node2D"]
+
+[node name="Bloack" parent="." instance=ExtResource("1_8p765")]
+position = Vector2(9, 9)
