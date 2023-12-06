@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://svldv0pnx7rg"]
+[gd_scene load_steps=13 format=3 uid="uid://svldv0pnx7rg"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_qahq5"]
 [ext_resource type="Texture2D" uid="uid://bxsbg6f7j22lj" path="res://icon.svg" id="2_0v4ey"]
@@ -9,9 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://wkm2kq0rcatw" path="res://Objects/base_ball.tscn" id="7_iaxny"]
 [ext_resource type="PackedScene" uid="uid://b5f4pmc08pjfy" path="res://Objects/tennis_ball.tscn" id="8_a16wi"]
 [ext_resource type="PackedScene" uid="uid://bdr3nvavr6014" path="res://Paricles/firework.tscn" id="8_scxvu"]
-[ext_resource type="PackedScene" uid="uid://c0skyfxe2fkf2" path="res://Paricles/firework02.tscn" id="10_vr34y"]
-[ext_resource type="PackedScene" uid="uid://ctoxoovvgnqmu" path="res://Paricles/firework03.tscn" id="11_qhbdl"]
-[ext_resource type="PackedScene" uid="uid://dkcjplkgci2sn" path="res://Paricles/firework04.tscn" id="12_knqsq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43oyo"]
 size = Vector2(20, 126)
@@ -136,8 +133,8 @@ pool_size = Array[int]([40, 40, 30, 20])
 
 [node name="ParicleObjectPooling" parent="." instance=ExtResource("4_slxjy")]
 position = Vector2(-58, 0)
-objects = Array[PackedScene]([ExtResource("8_scxvu"), ExtResource("10_vr34y"), ExtResource("11_qhbdl"), ExtResource("12_knqsq")])
-pool_size = Array[int]([10, 10, 10, 10])
+objects = Array[PackedScene]([ExtResource("8_scxvu")])
+pool_size = Array[int]([10])
 
 [node name="ParicalObjectGroup" type="Node2D" parent="."]
 

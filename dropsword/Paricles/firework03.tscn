@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctoxoovvgnqmu"]
+
+[ext_resource type="Texture2D" uid="uid://cpt1wciapik30" path="res://Assets/mongle.png" id="1_lqagn"]
+[ext_resource type="Script" path="res://Paricles/firework.gd" id="2_r37ga"]
+[ext_resource type="Texture2D" uid="uid://c5xr0dd1o6rdq" path="res://Assets/smooscircle.png" id="3_rg1cu"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_eookd"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_02yea"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(1, 1, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 7.0
+emission_ring_inner_radius = 7.0
+spread = 0.0
+radial_velocity_min = 10.0
+radial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.6
+scale_max = 0.8
+color = Color(1, 1, 1, 0.290196)
+anim_speed_min = 0.25
+anim_speed_max = 1.0
+
+[sub_resource type="Curve" id="Curve_ot3g4"]
+_data = [Vector2(0, 0.00830817), 0.0, 0.0, 0, 0, Vector2(0.397059, 0.764351), 0.839361, 0.839361, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6plre"]
+curve = SubResource("Curve_ot3g4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5a3wc"]
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.8
+scale_max = 2.8
+scale_curve = SubResource("CurveTexture_6plre")
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 1.0
+color = Color(1, 1, 1, 0.533333)
+
+[node name="firework03" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_eookd")
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_02yea")
+texture = ExtResource("1_lqagn")
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.9
+trail_lifetime = 3.21
+script = ExtResource("2_r37ga")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_5a3wc")
+texture = ExtResource("3_rg1cu")
+lifetime = 0.3
+one_shot = true

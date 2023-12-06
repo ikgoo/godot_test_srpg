@@ -71,12 +71,6 @@ func merge_obj(obj_name, obj_idx, pos, object1 : Node2D, object2):
 	var target_position = pos # 이동할 위치
 	var duration = 0.3 # 이동에 걸릴 시간 (초)
 
-	var o : GPUParticles2D = paricle_object_pooling.get_from_pool_number(0)
-	#parical_object_group.add_child(o)
-	add_child(o)
-	o.paticle_start(pos)
-
-	
 	tween = create_tween()
 	tween.parallel().tween_property(object1, "position", target_position, duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	tween.parallel().tween_property(object2, "position", target_position, duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
@@ -88,9 +82,18 @@ func merge_obj(obj_name, obj_idx, pos, object1 : Node2D, object2):
 	await tween.finished
 	object1.visible = false
 	object2.visible = false
-	await o.finished
 
-	drop_collision( obj_name, obj_idx, pos, object1, object2)
+	var tmp_obj_idx = drop_collision( obj_name, obj_idx, pos, object1, object2)
+	
+	# 합체 후 효과
+	var o : GPUParticles2D = paricle_object_pooling.get_from_pool_number(tmp_obj_idx-1)
+	#parical_object_group.add_child(o)
+	add_child(o)
+	
+
+	o.paticle_start(pos)
+	await o.finished
+	
 	
 	wait_parical_timer.start(2)
 	await wait_parical_timer.timeout
@@ -156,6 +159,8 @@ func drop_collision(obj_name, obj_idx, pos, obj, obj2):
 		obj_idx = obj_idx + 1
 	
 	append_child_number_proc(obj_idx, pos)
+	
+	return obj_idx
 	
 func append_child_number_proc(obj_idx : int, pos):
 	var currentObj_new : DropObject = object_pooling.get_from_pool_number(obj_idx)
