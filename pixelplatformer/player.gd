@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
-# https://www.youtube.com/watch?v=-9wDi3Y08GM&list=PL9FzW-m48fn16W1Sz5bhTd1ArQQv4f-Cm&index=4
+# https://www.youtube.com/watch?v=NM8S8I5Q6y4&list=PL9FzW-m48fn16W1Sz5bhTd1ArQQv4f-Cm&index=5
 @export var  SPEED = 10.0
 @export var  MAX_SPEED = 80.0
 @export var JUMP_VELOCITY = -280.0
