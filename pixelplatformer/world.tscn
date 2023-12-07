@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://lxrfaf60b5fc"]
 
 [ext_resource type="PackedScene" uid="uid://cjofdg0pqwvhm" path="res://bloack.tscn" id="1_8p765"]
-[ext_resource type="PackedScene" uid="uid://buoqpy6sjluc4" path="res://player.tscn" id="2_5s8b0"]
+[ext_resource type="PackedScene" uid="uid://23k2otsmeqc8" path="res://playerBlueSkin.tscn" id="2_srp8m"]
 
 [node name="World" type="Node2D"]
 
@@ -35,5 +35,5 @@ position = Vector2(180, 90)
 [node name="Bloack10" parent="." instance=ExtResource("1_8p765")]
 position = Vector2(198, 90)
 
-[node name="Player" parent="." instance=ExtResource("2_5s8b0")]
-position = Vector2(92, 77)
+[node name="Player" parent="." instance=ExtResource("2_srp8m")]
+position = Vector2(93, 93)
