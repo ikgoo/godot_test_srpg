@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
@@ -27,11 +28,11 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction == 0:
+	if not is_on_floor():
+		$AnimatedSprite2D.play("Jump")
+	elif direction == 0:
 		#$AnimatedSprite2D.animation = "Idle"
 		$AnimatedSprite2D.play("Idle")
-	elif not is_on_floor():
-		$AnimatedSprite2D.play("Jump")
 	else:
 		#$AnimatedSprite2D.animation = "Run"
 		$AnimatedSprite2D.play("Run")

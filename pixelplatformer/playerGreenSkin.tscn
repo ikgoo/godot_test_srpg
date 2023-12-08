@@ -46,7 +46,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Run",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6l84"]
@@ -57,7 +57,7 @@ script = ExtResource("1_dc1bh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jrua5")
-animation = &"Jump"
+animation = &"Run"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -46,18 +46,19 @@ animations = [{
 }],
 "loop": true,
 "name": &"Run",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6l84"]
 size = Vector2(12, 17)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_swpeh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jrua5")
 animation = &"Run"
+frame_progress = 0.125271
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
