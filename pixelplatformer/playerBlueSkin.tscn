@@ -68,3 +68,13 @@ flip_h = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_n6l84")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="LadderCheck" type="RayCast2D" parent="."]
+position = Vector2(0, -6)
+rotation = -1.57079
+target_position = Vector2(-18, 3.99828e-05)
+collide_with_areas = true
+collide_with_bodies = false

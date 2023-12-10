@@ -52,7 +52,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6l84"]
 size = Vector2(12, 17)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player2" type="CharacterBody2D"]
 position = Vector2(0, -12)
 collision_layer = 2
 script = ExtResource("1_dc1bh")
