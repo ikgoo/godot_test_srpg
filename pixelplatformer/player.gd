@@ -3,10 +3,11 @@ class_name Player
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
-# https://www.youtube.com/watch?v=NM8S8I5Q6y4&list=PL9FzW-m48fn16W1Sz5bhTd1ArQQv4f-Cm&index=5
+# https://www.youtube.com/watch?v=qAtDGtlRJrI&list=PL9FzW-m48fn16W1Sz5bhTd1ArQQv4f-Cm&index=7
 @export var  SPEED = 10.0
 @export var  MAX_SPEED = 80.0
 @export var JUMP_VELOCITY = -280.0
+@export var moveData : PlayerMovementData
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") - 250

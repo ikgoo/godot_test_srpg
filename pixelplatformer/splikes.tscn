@@ -1,10 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://c21wqaxy0h34j"]
 
-[ext_resource type="Script" path="res://splikes.gd" id="1_gw4m3"]
 [ext_resource type="Texture2D" uid="uid://cyoe0e3lm46fy" path="res://tilemap_packed.png" id="1_k6lym"]
+[ext_resource type="PackedScene" uid="uid://33c1glp3u4bs" path="res://hit_box.tscn" id="2_a3e4a"]
 
-[node name="Splikes" type="Area2D"]
-script = ExtResource("1_gw4m3")
+[node name="Splikes" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_k6lym")
@@ -12,7 +11,7 @@ region_enabled = true
 region_rect = Rect2(144, 54, 18, 18)
 metadata/_edit_group_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-7, 9, -7, 6, -5, 2, -3, 2, -1, 6, 1, 6, 3, 2, 5, 2, 7, 6, 7, 9)
+[node name="HitBox" parent="." instance=ExtResource("2_a3e4a")]
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox"]
+polygon = PackedVector2Array(-7, 9, -7, 6, -5, 2, -3, 2, -1, 6, 1, 6, 3, 2, 5, 2, 7, 6, 7, 9)
