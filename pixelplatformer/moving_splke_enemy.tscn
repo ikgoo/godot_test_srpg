@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cnfyo8xmsxhnf"]
+
+[ext_resource type="Script" path="res://moving_splke_enemy.gd" id="1_oqmgf"]
+[ext_resource type="Texture2D" uid="uid://doqlssqmsm5bm" path="res://tilemap-characters_packed.png" id="2_qxgam"]
+[ext_resource type="PackedScene" uid="uid://33c1glp3u4bs" path="res://hit_box.tscn" id="3_x2is6"]
+
+[sub_resource type="Curve2D" id="Curve2D_egjgy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 161, 17, 0, 0, 0, 0, 134, 12, 0, 0, 0, 0, 94, 29, 0, 0, 0, 0, 82, 72, 0, 0, 0, 0, 155, 96, 0, 0, 0, 0, 224, 84, 0, 0, 0, 0, 243, 69, 0, 0, 0, 0, 204, 28, 0, 0, 0, 0, 161, 17)
+}
+point_count = 9
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q5lvs"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_hwuuj"]
+resource_name = "MoveAlongPath"
+length = 2.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_buysn"]
+_data = {
+"MoveAlongPath": SubResource("Animation_hwuuj")
+}
+
+[node name="MovingSplkeEnemy" type="Path2D"]
+curve = SubResource("Curve2D_egjgy")
+script = ExtResource("1_oqmgf")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(195.718, 88.9186)
+progress = 233.737
+rotates = false
+
+[node name="Enemy" type="Node2D" parent="PathFollow2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/Enemy"]
+texture = ExtResource("2_qxgam")
+region_enabled = true
+region_rect = Rect2(192, 1, 24, 23)
+
+[node name="HitBox" parent="PathFollow2D/Enemy" instance=ExtResource("3_x2is6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Enemy/HitBox"]
+shape = SubResource("CircleShape2D_q5lvs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PathFollow2D/Enemy"]
+libraries = {
+"": SubResource("AnimationLibrary_buysn")
+}

@@ -1,19 +1,22 @@
 extends CharacterBody2D
 class_name Player
 
+# https://www.youtube.com/watch?v=i3qLsszy8fQ&list=PL9FzW-m48fn16W1Sz5bhTd1ArQQv4f-Cm&index=10
 enum { MOVE, CLIMB }
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var ladder_check = $LadderCheck
-
-
-# https://www.youtube.com/watch?v=XIBrsZ3O29g&list=PL9FzW-m48fn16W1Sz5bhTd1ArQQv4f-Cm&index=9
 @export var moveData : PlayerMovementData
+@onready var jump_buffer_timer = $JumpBufferTimer
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") - 250
-var state = MOVE
+var state = CLIMB
 var direction
+var double_jump = 1
+var buffered_jump = false
+var coyote_jump = false
 
 func powerup():
 	moveData = load("res://FastPlayerMovementData.tres")
@@ -23,31 +26,42 @@ func _physics_process(delta):
 	var direction = Vector2.ZERO
 	direction.x = Input.get_axis("ui_left", "ui_right")
 	direction.y = Input.get_axis("ui_up", "ui_down")
-
-	if is_on_ladder():
-		climb_state(direction, delta)
-	else:
-		move_state(direction, delta)
 	
-	
-	
-	if state == MOVE: move_state(direction, delta)
-	elif state == CLIMB: climb_state(direction, delta)
-	
+	match state:
+		MOVE: move_state(direction, delta)
+		CLIMB: climb_state(direction, delta)
+		
+	if velocity.x > 0:
+		animated_sprite_2d.flip_h = true
+	elif velocity.x < 0:
+		animated_sprite_2d.flip_h = false
 		
 	move_and_slide()
 
 func move_state(direction, delta):
+	
+	if is_on_ladder() and Input.is_action_pressed("ui_up"):
+		state = CLIMB
+	
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
 	# Handle jump.
 	if is_on_floor():
-		if Input.is_action_just_pressed("ui_up"):
+		double_jump = moveData.DOUBLE_JUMP_COUNT
+		if Input.is_action_just_pressed("ui_up") and not buffered_jump:
 			velocity.y = moveData.JUMP_VELOCITY
 	else:
 		if Input.is_action_just_released("ui_up") and velocity.y < -63:
 			velocity.y = -63
+			
+		if Input.is_action_just_pressed("ui_up") and double_jump > 0:
+			velocity.y = moveData.JUMP_VELOCITY
+			double_jump -= 1
+			
+		if Input.is_action_just_pressed("ui_up"):
+			buffered_jump = true
+			jump_buffer_timer.start()
 	
 	if not is_on_floor():
 		$AnimatedSprite2D.play("Jump")
@@ -64,14 +78,20 @@ func move_state(direction, delta):
 	else:
 		apply_friction()
 
-	if velocity.x > 0:
-		animated_sprite_2d.flip_h = true
-	elif velocity.x < 0:
-		animated_sprite_2d.flip_h = false
 	
 func climb_state(direction, delta):
+	if not is_on_ladder():
+		state = MOVE
+	print(direction.length())
+	if direction.length() != 0:
+		animated_sprite_2d.animation = "Run"
+	else:
+		animated_sprite_2d.animation = "Idle"
+		
+	velocity = direction * moveData.CLIMB_SPEED * delta
+	#velocity.x = move_toward(velocity.x, moveData.MAX_SPEED * direction.x, moveData.SPEED)
+	#velocity.y = move_toward(velocity.y, moveData.MAX_SPEED * direction.y, moveData.SPEED)
 	#velocity.y *= direction.y * 50
-	pass
 	
 
 func is_on_ladder():
@@ -85,3 +105,7 @@ func apply_friction():
 	
 func apply_acceleration(direction):
 	velocity.x = move_toward(velocity.x, moveData.MAX_SPEED * direction.x, moveData.SPEED)
+
+
+func _on_jump_buffer_timer_timeout():
+	buffered_jump = false

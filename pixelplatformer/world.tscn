@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ypfew3xwi663" path="res://tile_map.tscn" id="2_30c3w"]
 [ext_resource type="PackedScene" uid="uid://23k2otsmeqc8" path="res://playerBlueSkin.tscn" id="2_srp8m"]
 [ext_resource type="PackedScene" uid="uid://c21wqaxy0h34j" path="res://splikes.tscn" id="3_fjeqd"]
-[ext_resource type="PackedScene" uid="uid://bptkpqw013x1b" path="res://walking_emeny.tscn" id="5_pe4yy"]
+[ext_resource type="PackedScene" uid="uid://bptkpqw013x1b" path="res://walking_enemy.tscn" id="5_pe4yy"]
 [ext_resource type="PackedScene" uid="uid://788xjvn3bwjw" path="res://ladder.tscn" id="6_sbhir"]
 
 [node name="World" type="Node2D"]

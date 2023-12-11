@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bptkpqw013x1b"]
 
 [ext_resource type="Texture2D" uid="uid://doqlssqmsm5bm" path="res://tilemap-characters_packed.png" id="1_irjsw"]
-[ext_resource type="Script" path="res://walking_emeny.gd" id="1_or48i"]
+[ext_resource type="Script" path="res://walking_enemy.gd" id="1_or48i"]
 [ext_resource type="PackedScene" uid="uid://33c1glp3u4bs" path="res://hit_box.tscn" id="3_rknhl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sr8aq"]
