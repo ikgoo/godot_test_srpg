@@ -1,13 +1,14 @@
 extends CharacterBody2D
 class_name Player
 
-# https://www.youtube.com/watch?v=i3qLsszy8fQ&list=PL9FzW-m48fn16W1Sz5bhTd1ArQQv4f-Cm&index=10
+# https://www.youtube.com/watch?v=5OElRG1YgjU&list=PL9FzW-m48fn16W1Sz5bhTd1ArQQv4f-Cm&index=11
 enum { MOVE, CLIMB }
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var ladder_check = $LadderCheck
 @export var moveData : PlayerMovementData
 @onready var jump_buffer_timer = $JumpBufferTimer
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -22,6 +23,8 @@ func powerup():
 	moveData = load("res://FastPlayerMovementData.tres")
 
 func _physics_process(delta):
+	
+	if Input.is_action_just_pressed("ui_accept"): audio_stream_player_2d.play()
 	
 	var direction = Vector2.ZERO
 	direction.x = Input.get_axis("ui_left", "ui_right")

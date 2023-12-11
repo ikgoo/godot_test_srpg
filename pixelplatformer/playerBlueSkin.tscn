@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://23k2otsmeqc8"]
+[gd_scene load_steps=11 format=3 uid="uid://23k2otsmeqc8"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_swpeh"]
 [ext_resource type="Texture2D" uid="uid://doqlssqmsm5bm" path="res://tilemap-characters_packed.png" id="2_o2y87"]
 [ext_resource type="Resource" uid="uid://dth4r3y7hordt" path="res://DefaultPlayerMovementData.tres" id="2_ue0q6"]
+[ext_resource type="AudioStream" uid="uid://dlvcdmlpol2oa" path="res://Sounds/hurt.wav" id="4_sw6dv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yi00j"]
 atlas = ExtResource("2_o2y87")
@@ -84,5 +85,8 @@ wait_time = 0.5
 one_shot = true
 
 [node name="CoyoteTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_sw6dv")
 
 [connection signal="timeout" from="JumpBufferTimer" to="." method="_on_jump_buffer_timer_timeout"]

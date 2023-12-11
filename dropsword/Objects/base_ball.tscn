@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://wkm2kq0rcatw"]
 
 [ext_resource type="Script" path="res://Objects/drop_object.gd" id="1_7ikrq"]
-[ext_resource type="Texture2D" uid="uid://b0unuw5xg48fm" path="res://Assets/ball01.png" id="1_25ayh"]
+[ext_resource type="Texture2D" uid="uid://dpal5nnp3jb5l" path="res://Assets/Balls/baseball.png" id="2_250pg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yfegq"]
 bounce = 0.05
@@ -16,10 +16,9 @@ contact_monitor = true
 script = ExtResource("1_7ikrq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.625, 1.625)
-texture = ExtResource("1_25ayh")
-hframes = 6
-frame = 2
+texture_repeat = 3
+scale = Vector2(0.115, 0.115)
+texture = ExtResource("2_250pg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6xocv")
