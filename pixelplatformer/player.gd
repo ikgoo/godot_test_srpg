@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-# https://www.youtube.com/watch?v=5OElRG1YgjU&list=PL9FzW-m48fn16W1Sz5bhTd1ArQQv4f-Cm&index=11
+# https://www.youtube.com/watch?v=SaiamHzZSxU&list=PL9FzW-m48fn16W1Sz5bhTd1ArQQv4f-Cm&index=12
 enum { MOVE, CLIMB }
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -9,6 +9,7 @@ enum { MOVE, CLIMB }
 @export var moveData : PlayerMovementData
 @onready var jump_buffer_timer = $JumpBufferTimer
 @onready var audio_stream_player_2d = $AudioStreamPlayer2D
+@onready var remote_transform_2d = $RemoteTransform2D
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -22,9 +23,11 @@ var coyote_jump = false
 func powerup():
 	moveData = load("res://FastPlayerMovementData.tres")
 
+func player_die():
+	SoundPlayer.play_sound(SoundPlayer.HURT)
+	queue_free()
+
 func _physics_process(delta):
-	
-	if Input.is_action_just_pressed("ui_accept"): audio_stream_player_2d.play()
 	
 	var direction = Vector2.ZERO
 	direction.x = Input.get_axis("ui_left", "ui_right")
@@ -53,12 +56,14 @@ func move_state(direction, delta):
 	if is_on_floor():
 		double_jump = moveData.DOUBLE_JUMP_COUNT
 		if Input.is_action_just_pressed("ui_up") and not buffered_jump:
+			SoundPlayer.play_sound(SoundPlayer.JUMP)
 			velocity.y = moveData.JUMP_VELOCITY
 	else:
 		if Input.is_action_just_released("ui_up") and velocity.y < -63:
 			velocity.y = -63
 			
 		if Input.is_action_just_pressed("ui_up") and double_jump > 0:
+			SoundPlayer.play_sound(SoundPlayer.JUMP)
 			velocity.y = moveData.JUMP_VELOCITY
 			double_jump -= 1
 			
@@ -109,6 +114,9 @@ func apply_friction():
 func apply_acceleration(direction):
 	velocity.x = move_toward(velocity.x, moveData.MAX_SPEED * direction.x, moveData.SPEED)
 
+func connect_camera(camera : Camera2D):
+	var camera_path = camera.get_path()
+	remote_transform_2d.remote_path = camera_path
 
 func _on_jump_buffer_timer_timeout():
 	buffered_jump = false

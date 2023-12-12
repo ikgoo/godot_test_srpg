@@ -66,3 +66,5 @@ position = Vector2(126, 72)
 
 [node name="Ladder5" parent="." instance=ExtResource("6_sbhir")]
 position = Vector2(126, 90)
+
+[node name="Camera2D" type="Camera2D" parent="."]
