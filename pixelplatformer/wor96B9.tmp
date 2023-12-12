@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://lxrfaf60b5fc"]
+[gd_scene load_steps=10 format=3 uid="uid://lxrfaf60b5fc"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_kklqe"]
 [ext_resource type="PackedScene" uid="uid://ypfew3xwi663" path="res://tile_map.tscn" id="2_30c3w"]
@@ -7,8 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://c21wqaxy0h34j" path="res://splikes.tscn" id="3_fjeqd"]
 [ext_resource type="PackedScene" uid="uid://bptkpqw013x1b" path="res://walking_enemy.tscn" id="5_pe4yy"]
 [ext_resource type="PackedScene" uid="uid://788xjvn3bwjw" path="res://ladder.tscn" id="6_sbhir"]
-[ext_resource type="PackedScene" uid="uid://nu7y50om5m4m" path="res://check_point.tscn" id="8_gypms"]
-[ext_resource type="PackedScene" uid="uid://cmugfdixua8i7" path="res://stomp_enemy.tscn" id="9_e66dw"]
 
 [sub_resource type="Curve2D" id="Curve2D_kygla"]
 _data = {
@@ -70,15 +68,3 @@ position = Vector2(126, 72)
 position = Vector2(126, 90)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-
-[node name="Timer" type="Timer" parent="."]
-
-[node name="CheckPoint" parent="." instance=ExtResource("8_gypms")]
-position = Vector2(81, 90)
-
-[node name="CheckPoint2" parent="." instance=ExtResource("8_gypms")]
-position = Vector2(-27, 110)
-
-[node name="StompEnemy" parent="." instance=ExtResource("9_e66dw")]
-position = Vector2(-9, 9)

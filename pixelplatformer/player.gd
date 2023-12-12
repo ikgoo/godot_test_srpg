@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-# https://www.youtube.com/watch?v=SaiamHzZSxU&list=PL9FzW-m48fn16W1Sz5bhTd1ArQQv4f-Cm&index=12
+# https://www.youtube.com/watch?v=pMjXUkX3eh0&list=PL9FzW-m48fn16W1Sz5bhTd1ArQQv4f-Cm&index=13
 enum { MOVE, CLIMB }
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -10,7 +10,6 @@ enum { MOVE, CLIMB }
 @onready var jump_buffer_timer = $JumpBufferTimer
 @onready var audio_stream_player_2d = $AudioStreamPlayer2D
 @onready var remote_transform_2d = $RemoteTransform2D
-
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") - 250
@@ -26,6 +25,7 @@ func powerup():
 func player_die():
 	SoundPlayer.play_sound(SoundPlayer.HURT)
 	queue_free()
+	Events.emit_signal('play_die')
 
 func _physics_process(delta):
 	
