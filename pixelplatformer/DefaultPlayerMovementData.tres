@@ -4,6 +4,8 @@
 
 [resource]
 script = ExtResource("1_nmvrk")
-SPEED = 10.0
+SPEED = 350.0
 MAX_SPEED = 80.0
-JUMP_VELOCITY = -280.0
+JUMP_VELOCITY = -300.0
+CLIMB_SPEED = 4000
+DOUBLE_JUMP_COUNT = 1

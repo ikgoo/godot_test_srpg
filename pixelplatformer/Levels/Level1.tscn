@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://lxrfaf60b5fc"]
+
+[ext_resource type="Script" path="res://Levels/level.gd" id="1_w3kmu"]
+[ext_resource type="PackedScene" uid="uid://cnfyo8xmsxhnf" path="res://moving_splke_enemy.tscn" id="2_1rq7v"]
+[ext_resource type="PackedScene" uid="uid://ypfew3xwi663" path="res://tile_map.tscn" id="3_yoe5g"]
+[ext_resource type="PackedScene" uid="uid://c21wqaxy0h34j" path="res://splikes.tscn" id="4_m1fpm"]
+[ext_resource type="PackedScene" uid="uid://bptkpqw013x1b" path="res://walking_enemy.tscn" id="5_4yk43"]
+[ext_resource type="PackedScene" uid="uid://788xjvn3bwjw" path="res://ladder.tscn" id="6_j8kps"]
+[ext_resource type="PackedScene" uid="uid://nu7y50om5m4m" path="res://check_point.tscn" id="7_wd53d"]
+[ext_resource type="PackedScene" uid="uid://cmugfdixua8i7" path="res://stomp_enemy.tscn" id="8_8h0re"]
+[ext_resource type="PackedScene" uid="uid://23k2otsmeqc8" path="res://playerBlueSkin.tscn" id="9_8xdwq"]
+[ext_resource type="PackedScene" uid="uid://b7sigfprcwtmp" path="res://door.tscn" id="10_mpkt7"]
+
+[sub_resource type="Curve2D" id="Curve2D_kygla"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -58, 2, 0, 0, 0, 0, -58, -70, 0, 0, 0, 0, 50, -70, 0, 0, 0, 0, 50, 2, 0, 0, 0, 0, -58, 2)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_rq2n6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -54)
+}
+point_count = 2
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_w3kmu")
+
+[node name="MovingSplkeEnemy" parent="." instance=ExtResource("2_1rq7v")]
+position = Vector2(-86, 70)
+curve = SubResource("Curve2D_kygla")
+speed = 2
+
+[node name="MovingSplkeEnemy2" parent="." instance=ExtResource("2_1rq7v")]
+position = Vector2(171, 90)
+curve = SubResource("Curve2D_rq2n6")
+speed = 5
+
+[node name="TileMap" parent="." instance=ExtResource("3_yoe5g")]
+layer_0/tile_data = PackedInt32Array(524286, 65536, 6, 458751, 131072, 1, 393216, 327680, 1, 327681, 131072, 1, 327682, 131072, 1, 327684, 196608, 1, 327683, 131072, 1, 393221, 131072, 1, 393222, 131072, 1, 393223, 196608, 1, 458759, 262144, 1, 458755, 131072, 6, 524287, 131072, 6, 393217, 131072, 6, 458753, 131072, 6, 458752, 131072, 6, 458750, 65536, 1, 458754, 131072, 6, 458756, 131072, 6, 327680, 65536, 1, 393218, 131072, 6, 393219, 131072, 6, 393220, 262144, 1, 458757, 131072, 6, 458758, 131072, 6, 458762, 131072, 1, 458761, 131072, 1, 458760, 131072, 1, 524281, 131072, 1, 524280, 65536, 1, 524282, 131072, 1, 131072, 458752, 2, 131073, 458752, 2, 131074, 458752, 2, 131075, 458752, 2, 131076, 458752, 2, 131077, 458752, 2, 131078, 458752, 2, 65542, 458752, 2, 65541, 458752, 2, 65540, 458752, 2, 65539, 458752, 2, 65538, 458752, 2, 65537, 458752, 2, 65536, 458752, 2, 589816, 65536, 7, 589817, 131072, 7, 589818, 131072, 7, 589822, 65536, 7, 589823, 131072, 7, 524288, 131072, 7, 524289, 131072, 7, 524290, 131072, 7, 524291, 131072, 7, 524292, 131072, 7, 524293, 131072, 7, 524294, 131072, 7, 524295, 131072, 7, 524296, 131072, 7, 524297, 131072, 7, 524298, 131072, 7, 458763, 327680, 1, 458764, 131072, 6, 458765, 131072, 6, 458766, 131072, 6, 458767, 131072, 6, 458768, 131072, 6, 458769, 131072, 6, 393233, 131072, 1, 393234, 131072, 1, 393235, 131072, 1, 393236, 131072, 1, 393237, 196608, 1, 458773, 262144, 1, 458772, 131072, 6, 458771, 131072, 6, 458770, 131072, 6, 524305, 131072, 7, 524304, 131072, 7, 524303, 131072, 7, 524302, 131072, 7, 524301, 131072, 7, 524300, 131072, 7, 524299, 131072, 7, 524306, 131072, 7, 524307, 131072, 7, 524308, 131072, 7, 524309, 131072, 7, 524310, 262144, 0, 524311, 131072, 7, 524312, 131072, 7, 524313, 131072, 7, 458774, 131072, 1, 458775, 131072, 1, 458776, 131072, 1, 458777, 131072, 1, 524314, 131072, 7, 524315, 131072, 7, 458778, 131072, 1, 458779, 327680, 1, 458780, 131072, 6, 458781, 131072, 6, 524318, 131072, 7, 524319, 196608, 7, 524317, 131072, 7, 524316, 131072, 7, 393243, 65536, 1, 393244, 131072, 1, 393245, 131072, 1, 458782, 131072, 6, 458783, 196608, 6, 393246, 131072, 1, 393247, 196608, 1, 393232, 131072, 1, 393231, 131072, 1, 393230, 131072, 1, 393229, 131072, 1, 393228, 131072, 1, 393227, 65536, 1, 524283, 327680, 1, 589819, 131072, 7, 524284, 196608, 6, 589820, 196608, 7, 458748, 196608, 1, 458747, 65536, 1, 196601, 65536, 7, 196602, 131072, 7, 196603, 131072, 7, 196604, 196608, 7, 131068, 196608, 1, 131067, 131072, 1, 131066, 131072, 1, 131065, 65536, 1)
+
+[node name="Splikes" parent="." instance=ExtResource("4_m1fpm")]
+position = Vector2(152, 117)
+
+[node name="Splikes2" parent="." instance=ExtResource("4_m1fpm")]
+position = Vector2(170, 117)
+
+[node name="Splikes3" parent="." instance=ExtResource("4_m1fpm")]
+position = Vector2(188, 117)
+
+[node name="WalkingEmeny" parent="." instance=ExtResource("5_4yk43")]
+position = Vector2(261, 96)
+
+[node name="Ladder" parent="." instance=ExtResource("6_j8kps")]
+position = Vector2(126, 18)
+
+[node name="Ladder2" parent="." instance=ExtResource("6_j8kps")]
+position = Vector2(126, 36)
+
+[node name="Ladder3" parent="." instance=ExtResource("6_j8kps")]
+position = Vector2(126, 54)
+
+[node name="Ladder4" parent="." instance=ExtResource("6_j8kps")]
+position = Vector2(126, 72)
+
+[node name="Ladder5" parent="." instance=ExtResource("6_j8kps")]
+position = Vector2(126, 90)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(471, 114)
+position_smoothing_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CheckPoint" parent="." instance=ExtResource("7_wd53d")]
+position = Vector2(81, 90)
+
+[node name="CheckPoint2" parent="." instance=ExtResource("7_wd53d")]
+position = Vector2(-27, 110)
+
+[node name="StompEnemy" parent="." instance=ExtResource("8_8h0re")]
+position = Vector2(409, 92)
+
+[node name="Player" parent="." instance=ExtResource("9_8xdwq")]
+position = Vector2(12, 77)
+
+[node name="Door" parent="." instance=ExtResource("10_mpkt7")]
+position = Vector2(53, 89)
+target_level_path = "res://Levels/level_2.tscn"

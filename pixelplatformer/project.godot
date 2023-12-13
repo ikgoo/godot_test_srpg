@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="pixelplatformer"
-run/main_scene="res://world.tscn"
+run/main_scene="res://Levels/Level1.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SoundPlayer="*res://sound_player.tscn"
 Events="*res://events.gd"
+Transitions="*res://transitions.tscn"
 
 [display]
 

@@ -7,6 +7,7 @@ extends Node2D
 var player_spawn_location = Vector2.ZERO
 const playerScene = preload("res://playerBlueSkin.tscn")
 
+
 func _ready():
 	RenderingServer.set_default_clear_color(Color.LIGHT_BLUE)
 	player.connect_camera(camera_2d)

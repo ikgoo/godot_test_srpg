@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmugfdixua8i7"]
+[gd_scene load_steps=15 format=3 uid="uid://cmugfdixua8i7"]
 
 [ext_resource type="Script" path="res://stomp_enemy.gd" id="1_nhguk"]
 [ext_resource type="Texture2D" uid="uid://doqlssqmsm5bm" path="res://tilemap-characters_packed.png" id="1_q6f67"]
@@ -34,6 +34,51 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_548jf"]
 size = Vector2(14, 14)
 
+[sub_resource type="Gradient" id="Gradient_3cf6l"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.682403, 1)
+colors = PackedColorArray(0.487929, 0.703161, 0.588179, 0.827451, 0.435294, 0.435294, 0.435294, 0, 0.647059, 0.694118, 0.647059, 0.121569)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xo6c4"]
+gradient = SubResource("Gradient_3cf6l")
+
+[sub_resource type="Curve" id="Curve_3svu4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.766284, 0.555644), 0.0, 0.0, 0, 0, Vector2(1, 0.214626), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_iy6wt"]
+curve = SubResource("Curve_3svu4")
+
+[sub_resource type="Curve" id="Curve_ebkvd"]
+max_value = 3.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4ewo8"]
+curve = SubResource("Curve_ebkvd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qciyf"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(8, 0.5, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 18.0
+angular_velocity_min = -500.0
+angular_velocity_max = 500.0
+gravity = Vector3(0, 20, 0)
+radial_accel_min = 3.0
+radial_accel_max = 5.0
+tangential_accel_min = -1.0
+tangential_accel_max = 1.0
+scale_min = 3.0
+scale_max = 3.5
+scale_curve = SubResource("CurveTexture_iy6wt")
+scale_over_velocity_max = 3.0
+scale_over_velocity_curve = SubResource("CurveTexture_4ewo8")
+color_ramp = SubResource("GradientTexture1D_xo6c4")
+
 [node name="StompEnemy" type="Node2D"]
 script = ExtResource("1_nhguk")
 
@@ -52,5 +97,12 @@ position = Vector2(0, -9)
 target_position = Vector2(0, 9)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.001
+wait_time = 0.1
 one_shot = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_qciyf")
+lifetime = 1.2
+explosiveness = 1.0

@@ -12,7 +12,7 @@ enum { MOVE, CLIMB }
 @onready var remote_transform_2d = $RemoteTransform2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") - 250
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var state = CLIMB
 var direction
 var double_jump = 1
@@ -50,6 +50,7 @@ func move_state(direction, delta):
 		state = CLIMB
 	
 	if not is_on_floor():
+		print(gravity)
 		velocity.y += gravity * delta
 
 	# Handle jump.
@@ -59,8 +60,8 @@ func move_state(direction, delta):
 			SoundPlayer.play_sound(SoundPlayer.JUMP)
 			velocity.y = moveData.JUMP_VELOCITY
 	else:
-		if Input.is_action_just_released("ui_up") and velocity.y < -63:
-			velocity.y = -63
+		#if Input.is_action_just_released("ui_up") and velocity.y < -63:
+			#velocity.y = -63
 			
 		if Input.is_action_just_pressed("ui_up") and double_jump > 0:
 			SoundPlayer.play_sound(SoundPlayer.JUMP)
@@ -82,9 +83,9 @@ func move_state(direction, delta):
 	
 	
 	if direction:
-		apply_acceleration(direction)
+		apply_acceleration(delta, direction)
 	else:
-		apply_friction()
+		apply_friction(delta)
 
 	
 func climb_state(direction, delta):
@@ -108,11 +109,11 @@ func is_on_ladder():
 	if not collider is Ladder: return false
 	return true
 
-func apply_friction():
-	velocity.x = move_toward(velocity.x, 0, moveData.SPEED * 1.3)
+func apply_friction(delta):
+	velocity.x = move_toward(velocity.x, 0, moveData.SPEED * delta)
 	
-func apply_acceleration(direction):
-	velocity.x = move_toward(velocity.x, moveData.MAX_SPEED * direction.x, moveData.SPEED)
+func apply_acceleration(delta, direction):
+	velocity.x = move_toward(velocity.x, moveData.MAX_SPEED * direction.x, moveData.SPEED * delta)
 
 func connect_camera(camera : Camera2D):
 	var camera_path = camera.get_path()
