@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceod4kpa86cs2"]
+
+[ext_resource type="Script" path="res://noligo_player.gd" id="1_sa5ic"]
+
+[node name="NoligoPlayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sa5ic")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FileDialog" type="FileDialog" parent="."]
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 25.0
+offset_right = 120.0
+offset_bottom = 62.0
+
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
