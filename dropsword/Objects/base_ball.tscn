@@ -16,7 +16,6 @@ contact_monitor = true
 script = ExtResource("1_7ikrq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture_repeat = 3
 scale = Vector2(0.115, 0.115)
 texture = ExtResource("2_250pg")
 
