@@ -1,18 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://yu6mf0ke3frp"]
 
 [ext_resource type="Texture2D" uid="uid://b2ug611jw4w3g" path="res://inventory/sprite/item_slot.png" id="1_u6vo0"]
-[ext_resource type="PackedScene" uid="uid://cumvmmbxe54ej" path="res://items/item.tscn" id="2_84uss"]
+[ext_resource type="Script" path="res://inventory/inventory_slot.gd" id="2_dnmsg"]
 
 [node name="inventory_slot" type="TextureRect"]
 texture = ExtResource("1_u6vo0")
+script = ExtResource("2_dnmsg")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="item_container" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Item" parent="CenterContainer" instance=ExtResource("2_84uss")]
-layout_mode = 2

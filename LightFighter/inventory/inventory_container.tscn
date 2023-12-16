@@ -89,10 +89,3 @@ theme_override_constants/separation = 1
 
 [node name="inventory" parent="inventory_container" instance=ExtResource("8_xc22g")]
 layout_mode = 2
-inventory_name = null
-slot_size = null
-
-[node name="inventory2" parent="inventory_container" instance=ExtResource("8_xc22g")]
-layout_mode = 2
-inventory_name = null
-slot_size = null

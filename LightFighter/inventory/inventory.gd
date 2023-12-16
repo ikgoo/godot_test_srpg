@@ -9,17 +9,28 @@ func set_slot_size(value):
 	custom_minimum_size.y = 40 + ( ceilf(slot_size / 5.0) - 1 ) * 22
 	
 	for s in slot_size:
-		
 		var new_slot = inventory_slot_res.instantiate()
 		slots.append(new_slot)
 
 @onready var title : Label = $TextureRect/Label
-@onready var solt_container = $solt_container
+@onready var slot_container = $slot_container
+
 
 var inventory_slot_res = preload("res://inventory/inventory_slot.tscn")
-var slots : Array  = []
+# slot 배경
+var slots : Array[InventorySlot]  = []
 
 func _ready():
 	for s in slots:
+		slot_container.add_child(s)
 		
+	title.text = " - " + inventory_name + " - "
 
+func addItem( item : Item):
+	for s : InventorySlot in slots:
+		if not s.item:
+			s.item = item
+			return
+			
+
+	
