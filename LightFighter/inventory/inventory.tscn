@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://tysnq6mq3m2o"]
+
+[ext_resource type="Texture2D" uid="uid://dg1diagg1gyh5" path="res://inventory/sprite/inner_panel.png" id="1_1eyh6"]
+[ext_resource type="Script" path="res://inventory/inventory.gd" id="2_du88y"]
+[ext_resource type="Texture2D" uid="uid://ccc5d6idkw3mi" path="res://inventory/sprite/bar.png" id="2_o7836"]
+[ext_resource type="FontFile" uid="uid://ciyy3p85tikw" path="res://font/Arcadepix Plus.ttf" id="3_usxqq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vu8r3"]
+font = ExtResource("3_usxqq")
+font_size = 11
+font_color = Color(0.341176, 0.341176, 0.341176, 1)
+
+[node name="inventory" type="NinePatchRect"]
+custom_minimum_size = Vector2(0, 40)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -66.0
+offset_right = 66.0
+offset_bottom = 40.0
+grow_horizontal = 2
+texture = ExtResource("1_1eyh6")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource("2_du88y")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = 12.0
+offset_right = 26.0
+offset_bottom = 14.0
+grow_horizontal = 2
+texture = ExtResource("2_o7836")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.0
+offset_top = -10.0
+offset_right = 62.0
+offset_bottom = 13.0
+grow_horizontal = 2
+text = "- Inventory name -"
+label_settings = SubResource("LabelSettings_vu8r3")
+horizontal_alignment = 1
+
+[node name="solt_container" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.5
+offset_top = 17.0
+offset_right = -11.5
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 5
