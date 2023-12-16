@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvh81x7rb4cra"]
+[gd_scene load_steps=5 format=3 uid="uid://cvh81x7rb4cra"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_pwewx"]
+[ext_resource type="Script" path="res://managers/inventory_manager.gd" id="2_4xhyg"]
 [ext_resource type="PackedScene" uid="uid://dcvp8lwge7ibu" path="res://inventory/inventory_container.tscn" id="2_ye0no"]
+[ext_resource type="PackedScene" uid="uid://kv57y7mg4tsj" path="res://items/item_info.tscn" id="3_nklmh"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_pwewx")
@@ -10,6 +12,28 @@ script = ExtResource("1_pwewx")
 
 [node name="managers" type="Node2D" parent="."]
 
+[node name="inventory_manager" type="Control" parent="managers"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_4xhyg")
+item_in_hand_path = NodePath("../../ui/item_in_hand")
+item_info_path = NodePath("../../ui/item_info")
+
 [node name="ui" type="CanvasLayer" parent="."]
 
 [node name="inventory_container" parent="ui" instance=ExtResource("2_ye0no")]
+
+[node name="item_in_hand" type="Control" parent="ui"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="item_info" parent="ui" instance=ExtResource("3_nklmh")]
+offset_left = 574.0
+offset_top = 384.0
+offset_right = 658.0
+offset_bottom = 419.0

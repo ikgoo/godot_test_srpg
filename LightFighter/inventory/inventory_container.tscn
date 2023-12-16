@@ -1,16 +1,17 @@
 [gd_scene load_steps=10 format=3 uid="uid://dcvp8lwge7ibu"]
 
 [ext_resource type="Texture2D" uid="uid://ct5pgu0wakcnt" path="res://inventory/sprite/main panel.png" id="1_fchb1"]
+[ext_resource type="Script" path="res://inventory/inventory_container.gd" id="2_fxc62"]
 [ext_resource type="Texture2D" uid="uid://pi5xk4j21wog" path="res://inventory/sprite/title.png" id="2_nrfs5"]
 [ext_resource type="FontFile" uid="uid://ciyy3p85tikw" path="res://font/Arcadepix Plus.ttf" id="3_vhkng"]
 [ext_resource type="Texture2D" uid="uid://cfreqop0x1bn3" path="res://inventory/sprite/x_normal.png" id="4_5stu0"]
 [ext_resource type="Texture2D" uid="uid://c0vdjuxcdpsn7" path="res://inventory/sprite/x_pressed.png" id="5_kkv1b"]
 [ext_resource type="Texture2D" uid="uid://bjmu3j8sjymrr" path="res://inventory/sprite/x_hover.png" id="6_g8p6h"]
 [ext_resource type="Texture2D" uid="uid://bni6pqttrg3r1" path="res://inventory/sprite/x_disabled.png" id="7_dn5g7"]
-[ext_resource type="PackedScene" uid="uid://tysnq6mq3m2o" path="res://inventory/inventory.tscn" id="8_xc22g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u7kdf"]
 font = ExtResource("3_vhkng")
+font_size = 14
 font_color = Color(0.45098, 0.45098, 0.45098, 1)
 
 [node name="inventory_container" type="NinePatchRect"]
@@ -32,6 +33,7 @@ patch_margin_right = 10
 patch_margin_bottom = 10
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+script = ExtResource("2_fxc62")
 
 [node name="title" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -39,7 +41,7 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -41.0
-offset_top = -12.0
+offset_top = -10.0
 offset_right = 45.0
 offset_bottom = 8.0
 grow_horizontal = 2
@@ -54,6 +56,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Inventory"
@@ -61,7 +65,7 @@ label_settings = SubResource("LabelSettings_u7kdf")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="close" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -87,5 +91,4 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 1
 
-[node name="inventory" parent="inventory_container" instance=ExtResource("8_xc22g")]
-layout_mode = 2
+[connection signal="pressed" from="close" to="." method="_on_close_pressed"]
