@@ -25,7 +25,7 @@ func _ready():
 		slot_container.add_child(s)
 		
 	title.text = " - " + inventory_name + " - "
-	SignalManager.emit_signal("inventory_ready")
+	SignalManager.emit_signal("inventory_ready", self)
 
 func addItem( item : Item):
 	for s : InventorySlot in slots:
@@ -33,5 +33,3 @@ func addItem( item : Item):
 			s.item = item
 			return
 			
-
-	

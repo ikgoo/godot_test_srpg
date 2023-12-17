@@ -13,6 +13,7 @@ func close():
 		inventory_container.remove_child(i)
 		
 	current_inventories  = []
+	hide()
 	
 
 func _on_inventory_opened(inventory : Inventory):
@@ -25,7 +26,7 @@ func _on_inventory_opened(inventory : Inventory):
 		
 	inventory_container.add_child(inventory)
 	current_inventories.append(inventory)
-	size.y += inventory.size.y + inventory_container.separation
+	size.y += inventory.size.y + inventory_container.get_theme_constant("separation")
 	show()
 
 
