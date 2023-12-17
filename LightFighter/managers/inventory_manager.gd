@@ -17,9 +17,9 @@ func _on_inventory_ready(inventory : Inventory):
 	inventories.append(inventory)
 	
 	for slot in inventory.slots:
-		slot.connect("mouse_entered", _on_mouse_entered_slot(slot))
-		slot.connect("mouse_exited", _on_mouse_exited())
-		slot.connect("gui_input", Callable(self, "_on_gui_input_slot").bind(slot))
+		slot.mouse_entered.connect(_on_mouse_entered_slot.bind(slot))
+		slot.mouse_exited.connect(_on_mouse_exited.bind())
+		slot.gui_input.connect(_on_gui_input_slot.bind(slot))
 
 func _input(event : InputEvent):
 	if event is InputEventMouseMotion and item_in_hand:

@@ -6,3 +6,5 @@
 [node name="Item" type="TextureRect"]
 texture = ExtResource("1_p52nf")
 script = ExtResource("2_1gu8j")
+id = "1"
+item_name = "Crystal"
