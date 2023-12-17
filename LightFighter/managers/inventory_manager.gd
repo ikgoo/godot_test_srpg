@@ -56,4 +56,4 @@ func _on_gui_input_slot(event : InputEvent, slot : InventorySlot):
 			item_offset = event.position - item_in_hand.global_position
 			slot.pick_item()
 			item_in_hand_node.add_child(item_in_hand)
-			item_in_hand
+			
