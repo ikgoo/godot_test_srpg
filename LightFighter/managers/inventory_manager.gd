@@ -41,7 +41,7 @@ func _on_gui_input_slot(event : InputEvent, slot : InventorySlot):
 			if slot.item:
 				var temp_item = slot.item
 				slot.pick_item()
-				temp_item.global_position = event.position - item_offset
+				temp_item.global_position = event.global_position# - item_offset
 				slot.put_item(item_in_hand)
 				item_in_hand = temp_item
 				item_in_hand_node.add_child(item_in_hand)
@@ -52,8 +52,11 @@ func _on_gui_input_slot(event : InputEvent, slot : InventorySlot):
 				
 				
 		elif slot.item:
+			item_info.hide()
 			item_in_hand = slot.item
-			item_offset = event.position - item_in_hand.global_position
+			#item_in_hand.global_position = event.position
+			item_offset = item_in_hand.size / 2
 			slot.pick_item()
 			item_in_hand_node.add_child(item_in_hand)
+			item_in_hand.global_position = event.global_position - item_offset
 			

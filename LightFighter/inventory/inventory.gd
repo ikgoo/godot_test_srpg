@@ -27,7 +27,7 @@ func _ready():
 	title.text = " - " + inventory_name + " - "
 	SignalManager.emit_signal("inventory_ready", self)
 
-func addItem( item : Item):
+func add_item( item : Item):
 	for s : InventorySlot in slots:
 		if not s.item:
 			s.item = item

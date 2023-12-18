@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c41xrsf47s5sj"]
+
+[ext_resource type="Texture2D" uid="uid://dg1diagg1gyh5" path="res://inventory/sprite/inner_panel.png" id="1_038rj"]
+
+[node name="Node2D" type="CanvasLayer"]
+
+[node name="Sprite2D" type="TextureRect" parent="."]
+texture = ExtResource("1_038rj")

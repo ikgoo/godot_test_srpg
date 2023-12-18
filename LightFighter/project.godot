@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="LightFighter"
-run/main_scene="res://main.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 
 [autoload]
 
 SignalManager="*res://managers/signal_manager.gd"
+ItemManager="*res://managers/item_manager.gd"
+SettingManager="*res://managers/setting_manager.gd"
 
 [display]
 

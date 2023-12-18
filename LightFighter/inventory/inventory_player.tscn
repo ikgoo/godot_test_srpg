@@ -1,20 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcvp8lwge7ibu"]
+[gd_scene load_steps=11 format=3 uid="uid://bpvo2jon5pc3j"]
 
-[ext_resource type="Texture2D" uid="uid://ct5pgu0wakcnt" path="res://inventory/sprite/main panel.png" id="1_fchb1"]
-[ext_resource type="Script" path="res://inventory/inventory_container.gd" id="2_fxc62"]
-[ext_resource type="Texture2D" uid="uid://pi5xk4j21wog" path="res://inventory/sprite/title.png" id="2_nrfs5"]
-[ext_resource type="FontFile" uid="uid://ciyy3p85tikw" path="res://font/Arcadepix Plus.ttf" id="3_vhkng"]
-[ext_resource type="Texture2D" uid="uid://cfreqop0x1bn3" path="res://inventory/sprite/x_normal.png" id="4_5stu0"]
-[ext_resource type="Texture2D" uid="uid://c0vdjuxcdpsn7" path="res://inventory/sprite/x_pressed.png" id="5_kkv1b"]
-[ext_resource type="Texture2D" uid="uid://bjmu3j8sjymrr" path="res://inventory/sprite/x_hover.png" id="6_g8p6h"]
-[ext_resource type="Texture2D" uid="uid://bni6pqttrg3r1" path="res://inventory/sprite/x_disabled.png" id="7_dn5g7"]
+[ext_resource type="Texture2D" uid="uid://ct5pgu0wakcnt" path="res://inventory/sprite/main panel.png" id="1_42tre"]
+[ext_resource type="Script" path="res://inventory/inventory_player.gd" id="2_cbg2t"]
+[ext_resource type="Texture2D" uid="uid://pi5xk4j21wog" path="res://inventory/sprite/title.png" id="3_i6k84"]
+[ext_resource type="FontFile" uid="uid://ciyy3p85tikw" path="res://font/Arcadepix Plus.ttf" id="4_jm87o"]
+[ext_resource type="Texture2D" uid="uid://cfreqop0x1bn3" path="res://inventory/sprite/x_normal.png" id="5_pgnlt"]
+[ext_resource type="Texture2D" uid="uid://c0vdjuxcdpsn7" path="res://inventory/sprite/x_pressed.png" id="6_04n6a"]
+[ext_resource type="Texture2D" uid="uid://bjmu3j8sjymrr" path="res://inventory/sprite/x_hover.png" id="7_o3bc3"]
+[ext_resource type="Texture2D" uid="uid://bni6pqttrg3r1" path="res://inventory/sprite/x_disabled.png" id="8_3lqil"]
+[ext_resource type="PackedScene" uid="uid://tysnq6mq3m2o" path="res://inventory/inventory.tscn" id="9_umcu4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u7kdf"]
-font = ExtResource("3_vhkng")
+font = ExtResource("4_jm87o")
 font_size = 14
 font_color = Color(0.45098, 0.45098, 0.45098, 1)
 
-[node name="inventory_container" type="NinePatchRect"]
+[node name="inventory_container" type="NinePatchRect" node_paths=PackedStringArray("inventory")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -23,17 +24,18 @@ anchor_bottom = 0.5
 offset_left = -76.0
 offset_top = -86.0
 offset_right = 76.0
-offset_bottom = -46.0
+offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_fchb1")
+texture = ExtResource("1_42tre")
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
-script = ExtResource("2_fxc62")
+script = ExtResource("2_cbg2t")
+inventory = NodePath("inventory_container/inventory")
 
 [node name="title" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -45,7 +47,7 @@ offset_top = -10.0
 offset_right = 45.0
 offset_bottom = 8.0
 grow_horizontal = 2
-texture = ExtResource("2_nrfs5")
+texture = ExtResource("3_i6k84")
 patch_margin_left = 8
 patch_margin_top = 6
 patch_margin_right = 8
@@ -73,10 +75,10 @@ anchor_right = 1.0
 offset_left = -9.0
 offset_bottom = 10.0
 grow_horizontal = 0
-texture_normal = ExtResource("4_5stu0")
-texture_pressed = ExtResource("5_kkv1b")
-texture_hover = ExtResource("6_g8p6h")
-texture_disabled = ExtResource("7_dn5g7")
+texture_normal = ExtResource("5_pgnlt")
+texture_pressed = ExtResource("6_04n6a")
+texture_hover = ExtResource("7_o3bc3")
+texture_disabled = ExtResource("8_3lqil")
 
 [node name="inventory_container" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -90,5 +92,10 @@ offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 1
+
+[node name="inventory" parent="inventory_container" instance=ExtResource("9_umcu4")]
+layout_mode = 2
+inventory_name = "Left Pocket"
+slot_size = 20
 
 [connection signal="pressed" from="close" to="." method="_on_close_pressed"]

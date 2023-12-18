@@ -1,0 +1,157 @@
+[gd_scene load_steps=12 format=3 uid="uid://cf0kd23uthfo7"]
+
+[ext_resource type="Texture2D" uid="uid://ct5pgu0wakcnt" path="res://inventory/sprite/main panel.png" id="1_pos0p"]
+[ext_resource type="Texture2D" uid="uid://pi5xk4j21wog" path="res://inventory/sprite/title.png" id="2_r6u8v"]
+[ext_resource type="FontFile" uid="uid://ciyy3p85tikw" path="res://font/Arcadepix Plus.ttf" id="3_v5ast"]
+[ext_resource type="Texture2D" uid="uid://cfreqop0x1bn3" path="res://inventory/sprite/x_normal.png" id="4_5rqgh"]
+[ext_resource type="Texture2D" uid="uid://c0vdjuxcdpsn7" path="res://inventory/sprite/x_pressed.png" id="5_4pkn7"]
+[ext_resource type="Texture2D" uid="uid://bjmu3j8sjymrr" path="res://inventory/sprite/x_hover.png" id="6_lhd2o"]
+[ext_resource type="Texture2D" uid="uid://bni6pqttrg3r1" path="res://inventory/sprite/x_disabled.png" id="7_16u1m"]
+[ext_resource type="Texture2D" uid="uid://dg1diagg1gyh5" path="res://inventory/sprite/inner_panel.png" id="8_h4m5i"]
+[ext_resource type="Script" path="res://inventory/inventory.gd" id="9_nk1pf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u7kdf"]
+font = ExtResource("3_v5ast")
+font_size = 14
+font_color = Color(0.45098, 0.45098, 0.45098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vu8r3"]
+font = ExtResource("3_v5ast")
+font_size = 11
+font_color = Color(0.341176, 0.341176, 0.341176, 1)
+
+[node name="inventory_container" type="NinePatchRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -86.0
+offset_right = 76.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pos0p")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="title" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = -10.0
+offset_right = 45.0
+offset_bottom = 8.0
+grow_horizontal = 2
+texture = ExtResource("2_r6u8v")
+patch_margin_left = 8
+patch_margin_top = 6
+patch_margin_right = 8
+patch_margin_bottom = 2
+
+[node name="Label" type="Label" parent="title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Setting"
+label_settings = SubResource("LabelSettings_u7kdf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="close" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -9.0
+offset_bottom = 10.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_5rqgh")
+texture_pressed = ExtResource("5_4pkn7")
+texture_hover = ExtResource("6_lhd2o")
+texture_disabled = ExtResource("7_16u1m")
+
+[node name="setting_list" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -66.0
+offset_top = 10.0
+offset_right = 66.0
+offset_bottom = 91.0
+grow_horizontal = 2
+theme_override_constants/separation = 1
+
+[node name="scale" type="NinePatchRect" parent="setting_list"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+texture = ExtResource("8_h4m5i")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource("9_nk1pf")
+
+[node name="Label" type="Label" parent="setting_list/scale"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -61.5
+offset_top = 2.0
+offset_right = 62.5
+offset_bottom = 25.0
+grow_horizontal = 2
+text = "- scale -"
+label_settings = SubResource("LabelSettings_vu8r3")
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="setting_list/scale"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fullscreen" type="NinePatchRect" parent="setting_list"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+texture = ExtResource("8_h4m5i")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource("9_nk1pf")
+
+[node name="Label" type="Label" parent="setting_list/fullscreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -61.5
+offset_top = 2.0
+offset_right = 62.5
+offset_bottom = 25.0
+grow_horizontal = 2
+text = "- fullscreen -"
+label_settings = SubResource("LabelSettings_vu8r3")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="close" to="." method="_on_close_pressed"]
