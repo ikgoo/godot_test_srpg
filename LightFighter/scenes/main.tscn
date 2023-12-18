@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvh81x7rb4cra"]
+[gd_scene load_steps=11 format=3 uid="uid://cvh81x7rb4cra"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_pwewx"]
 [ext_resource type="Script" path="res://managers/inventory_manager.gd" id="2_4xhyg"]
 [ext_resource type="PackedScene" uid="uid://dcvp8lwge7ibu" path="res://inventory/inventory_container.tscn" id="2_ye0no"]
+[ext_resource type="Script" path="res://ui/ui_container.gd" id="3_0c3qi"]
 [ext_resource type="PackedScene" uid="uid://kv57y7mg4tsj" path="res://items/item_info.tscn" id="3_nklmh"]
+[ext_resource type="PackedScene" uid="uid://cf0kd23uthfo7" path="res://ui/settings.tscn" id="5_662sh"]
 [ext_resource type="Script" path="res://chest.gd" id="5_ksp7g"]
 [ext_resource type="Script" path="res://chest_rng.gd" id="6_ry5fy"]
 [ext_resource type="PackedScene" uid="uid://bpvo2jon5pc3j" path="res://inventory/inventory_player.tscn" id="7_gym1v"]
@@ -22,37 +24,57 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_4xhyg")
-item_in_hand_path = NodePath("../../ui/item_in_hand")
-item_info_path = NodePath("../../ui/item_info")
+item_in_hand_path = NodePath("../../ui/ui_container/item_in_hand")
+item_info_path = NodePath("../../ui/ui_container/item_info")
 
 [node name="ui" type="CanvasLayer" parent="."]
 
-[node name="inventory_container" parent="ui" instance=ExtResource("2_ye0no")]
-visible = false
-offset_left = 57.0
-offset_top = -89.0
-offset_right = 209.0
-offset_bottom = -49.0
+[node name="ui_container" type="Control" parent="ui"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("3_0c3qi")
 
-[node name="inventory_player" parent="ui" instance=ExtResource("7_gym1v")]
-offset_left = -235.0
-offset_top = -99.0
-offset_right = -83.0
-offset_bottom = -39.0
+[node name="settings" parent="ui/ui_container" instance=ExtResource("5_662sh")]
+layout_mode = 1
+offset_left = 373.0
+offset_top = 56.0
+offset_right = 525.0
+offset_bottom = 157.0
 
-[node name="item_in_hand" type="Control" parent="ui"]
+[node name="inventory_container" parent="ui/ui_container" instance=ExtResource("2_ye0no")]
+layout_mode = 1
+offset_left = 195.0
+offset_top = 49.0
+offset_right = 347.0
+offset_bottom = 89.0
+
+[node name="inventory_player" parent="ui/ui_container" instance=ExtResource("7_gym1v")]
+layout_mode = 1
+offset_left = 25.0
+offset_top = 49.0
+offset_right = 177.0
+offset_bottom = 109.0
+
+[node name="item_in_hand" type="Control" parent="ui/ui_container"]
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 
-[node name="item_info" parent="ui" instance=ExtResource("3_nklmh")]
+[node name="item_info" parent="ui/ui_container" instance=ExtResource("3_nklmh")]
 visible = false
+layout_mode = 0
 offset_left = 574.0
 offset_top = 384.0
 offset_right = 658.0
 offset_bottom = 419.0
 
-[node name="Chest" type="Button" parent="ui"]
+[node name="Buttons" type="Control" parent="ui/ui_container"]
+layout_mode = 1
+anchors_preset = 0
+metadata/_edit_lock_ = true
+
+[node name="Chest" type="Button" parent="ui/ui_container/Buttons"]
+layout_mode = 0
 offset_left = 225.0
 offset_top = 249.0
 offset_right = 277.0
@@ -63,10 +85,11 @@ slot_size = 5
 inventory_name = "Cool Chest"
 items = Array[String](["gold", "gold"])
 
-[node name="Chest2" type="Button" parent="ui"]
+[node name="Chest2" type="Button" parent="ui/ui_container/Buttons"]
+layout_mode = 0
 offset_left = 371.0
 offset_top = 242.0
-offset_right = 423.0
+offset_right = 492.0
 offset_bottom = 273.0
 text = "Random Chest"
 script = ExtResource("6_ry5fy")
@@ -75,7 +98,8 @@ slot_size = 15
 inventory_name = "Random Chest"
 items = Array[String](["gold", "crystal", "stone_brick", "tree"])
 
-[node name="scale_0_5" type="Button" parent="ui"]
+[node name="scale_0_5" type="Button" parent="ui/ui_container/Buttons"]
+layout_mode = 0
 offset_left = 59.0
 offset_top = 193.0
 offset_right = 133.0
@@ -84,7 +108,8 @@ text = "scale 0.5"
 script = ExtResource("8_ipx0u")
 scale_val = 0.5
 
-[node name="scale_1" type="Button" parent="ui"]
+[node name="scale_1" type="Button" parent="ui/ui_container/Buttons"]
+layout_mode = 0
 offset_left = 63.0
 offset_top = 228.0
 offset_right = 123.0
@@ -93,7 +118,8 @@ text = "scale 1"
 script = ExtResource("8_ipx0u")
 scale_val = 1.0
 
-[node name="scale_1_5" type="Button" parent="ui"]
+[node name="scale_1_5" type="Button" parent="ui/ui_container/Buttons"]
+layout_mode = 0
 offset_left = 58.0
 offset_top = 265.0
 offset_right = 132.0
@@ -102,8 +128,20 @@ text = "scale 1.5"
 script = ExtResource("8_ipx0u")
 scale_val = 1.5
 
-[connection signal="pressed" from="ui/Chest" to="ui/Chest" method="_on_pressed"]
-[connection signal="pressed" from="ui/Chest2" to="ui/Chest2" method="_on_pressed"]
-[connection signal="pressed" from="ui/scale_0_5" to="ui/scale_0_5" method="_on_pressed"]
-[connection signal="pressed" from="ui/scale_1" to="ui/scale_1" method="_on_pressed"]
-[connection signal="pressed" from="ui/scale_1_5" to="ui/scale_1_5" method="_on_pressed"]
+[node name="settings" type="Button" parent="ui/ui_container/Buttons"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 507.0
+offset_right = 576.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "settings"
+
+[connection signal="pressed" from="ui/ui_container/Buttons/Chest" to="ui/ui_container/Buttons/Chest" method="_on_pressed"]
+[connection signal="pressed" from="ui/ui_container/Buttons/Chest2" to="ui/ui_container/Buttons/Chest2" method="_on_pressed"]
+[connection signal="pressed" from="ui/ui_container/Buttons/scale_0_5" to="ui/ui_container/Buttons/scale_0_5" method="_on_pressed"]
+[connection signal="pressed" from="ui/ui_container/Buttons/scale_1" to="ui/ui_container/Buttons/scale_1" method="_on_pressed"]
+[connection signal="pressed" from="ui/ui_container/Buttons/scale_1_5" to="ui/ui_container/Buttons/scale_1_5" method="_on_pressed"]
+[connection signal="pressed" from="ui/ui_container/Buttons/settings" to="ui/ui_container" method="_on_settings_pressed"]

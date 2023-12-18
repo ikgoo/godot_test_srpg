@@ -1,4 +1,4 @@
-extends NinePatchRect
+extends DragableControl
 
 @onready var inventory_container : BoxContainer = $inventory_container
 
@@ -6,6 +6,7 @@ var current_inventories : Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	SignalManager.connect("inventory_opened", _on_inventory_opened)
 
 func close():

@@ -3,7 +3,6 @@ extends TextureRect
 class_name InventorySlot
 
 @onready var item_container = $item_container
-@onready var title : Control = get_node("title")
 
 var item : Item : set = set_item
 func set_item(new_item):

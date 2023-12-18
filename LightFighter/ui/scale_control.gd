@@ -12,3 +12,5 @@ func set_scale_val(value):
 
 func _ui_scale_change(value):
 	set_scale_val(value)
+	
+	
