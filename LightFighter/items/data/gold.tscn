@@ -8,3 +8,4 @@ texture = ExtResource("1_8tx6s")
 script = ExtResource("2_qg2ej")
 id = "2"
 item_name = "Gold"
+equipment = 4

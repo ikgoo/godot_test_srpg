@@ -8,3 +8,4 @@ texture = ExtResource("1_j2ibq")
 script = ExtResource("2_k5vpb")
 id = "3"
 item_name = "Stone Brick"
+equipment = 2

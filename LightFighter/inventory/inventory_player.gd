@@ -1,8 +1,11 @@
-extends ScaleControl
+extends DragableControl
 
-@export var inventory : Inventory
+@onready var inventory_container = $inventory_container
+@onready var equipment = $inventory_container/equipment
+@onready var inventory_left = $inventory_container/inventory_left
+@onready var inventory_right = $inventory_container/inventory_right
 
 func _ready():
 	super._ready()
-	size.y = 20 + inventory.size.y
+	pass
 	

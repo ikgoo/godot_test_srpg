@@ -7,7 +7,7 @@ extends Node
 @onready var item_info : ItemInfo = get_node(item_info_path)
 
 var inventories : Array = []
-var item_in_hand = null
+var item_in_hand : Item = null
 var item_offset = Vector2.ZERO
 
 func _ready():
@@ -25,6 +25,11 @@ func _input(event : InputEvent):
 	if event is InputEventMouseMotion and item_in_hand:
 		item_in_hand.global_position = event.position - item_offset
 
+func _process(delta):
+	pass
+	#if item_in_hand:
+		#item_in_hand.global_position = get_viewport().get_mouse_position() - item_offset
+
 func _on_mouse_entered_slot(slot : InventorySlot):
 	if slot.item:
 		item_info.dispaly(slot)
@@ -36,6 +41,9 @@ func _on_mouse_exited():
 func _on_gui_input_slot(event : InputEvent, slot : InventorySlot):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if item_in_hand:
+			if slot is EquipmentSlot and item_in_hand.equipment != slot.type:
+				return			
+			
 			item_in_hand_node.remove_child(item_in_hand)
 			
 			if slot.item:
@@ -52,11 +60,12 @@ func _on_gui_input_slot(event : InputEvent, slot : InventorySlot):
 				
 				
 		elif slot.item:
-			item_info.hide()
 			item_in_hand = slot.item
-			#item_in_hand.global_position = event.position
 			item_offset = item_in_hand.size / 2
+			#item_in_hand.global_position = event.position - item_offset
+			#item_in_hand.global_position = event.position
 			slot.pick_item()
+			item_info.hide()
 			item_in_hand_node.add_child(item_in_hand)
-			item_in_hand.global_position = event.global_position - item_offset
+			item_in_hand.global_position = get_viewport().get_mouse_position() - item_offset
 			

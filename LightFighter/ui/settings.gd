@@ -1,9 +1,10 @@
-extends ScaleControl
+extends DragableControl
 
 @onready var scale_slider = $setting_list/scale/HSlider
 @onready var check_box : CheckBox = $setting_list/fullscreen/CheckBox
 
 func _ready():
+	super._ready()
 	#check_box.set_pressed_no_signal()
 	check_box.button_pressed = true
 	check_box.emit_signal("toggled", true)

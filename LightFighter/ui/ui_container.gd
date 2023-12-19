@@ -1,6 +1,6 @@
 extends Control
 
-@onready var settings : Control = $settings
+@onready var settings = $Windows/settings
 
 
 func _on_settings_pressed():

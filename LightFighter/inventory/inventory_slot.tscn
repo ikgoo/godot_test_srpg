@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://inventory/inventory_slot.gd" id="2_dnmsg"]
 
 [node name="inventory_slot" type="TextureRect"]
+mouse_filter = 0
 texture = ExtResource("1_u6vo0")
 script = ExtResource("2_dnmsg")
 

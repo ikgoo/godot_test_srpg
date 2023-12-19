@@ -5,6 +5,7 @@ var scale_val : float
 
 func _ready():
 	SignalManager.connect("ui_scale_change", _ui_scale_change)
+	#set_scale_val(1)
 	
 func set_scale_val(value):
 	scale_val = value

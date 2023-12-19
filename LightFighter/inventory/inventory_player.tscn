@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bpvo2jon5pc3j"]
+[gd_scene load_steps=16 format=3 uid="uid://cbjf4mpj2w2ta"]
 
 [ext_resource type="Texture2D" uid="uid://ct5pgu0wakcnt" path="res://inventory/sprite/main panel.png" id="1_42tre"]
 [ext_resource type="Script" path="res://inventory/inventory_player.gd" id="2_cbg2t"]
@@ -8,25 +8,35 @@
 [ext_resource type="Texture2D" uid="uid://c0vdjuxcdpsn7" path="res://inventory/sprite/x_pressed.png" id="6_04n6a"]
 [ext_resource type="Texture2D" uid="uid://bjmu3j8sjymrr" path="res://inventory/sprite/x_hover.png" id="7_o3bc3"]
 [ext_resource type="Texture2D" uid="uid://bni6pqttrg3r1" path="res://inventory/sprite/x_disabled.png" id="8_3lqil"]
+[ext_resource type="Texture2D" uid="uid://dg1diagg1gyh5" path="res://inventory/sprite/inner_panel.png" id="9_aaydf"]
 [ext_resource type="PackedScene" uid="uid://tysnq6mq3m2o" path="res://inventory/inventory.tscn" id="9_umcu4"]
+[ext_resource type="Script" path="res://equipment.gd" id="10_73mmd"]
+[ext_resource type="Texture2D" uid="uid://ccc5d6idkw3mi" path="res://inventory/sprite/bar.png" id="11_8d31o"]
+[ext_resource type="PackedScene" uid="uid://dmwvxd81gy7mp" path="res://inventory/equipment_slot.tscn" id="12_8bnq3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u7kdf"]
 font = ExtResource("4_jm87o")
 font_size = 14
 font_color = Color(0.45098, 0.45098, 0.45098, 1)
 
-[node name="inventory_container" type="NinePatchRect" node_paths=PackedStringArray("inventory")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -76.0
-offset_top = -86.0
-offset_right = 76.0
-offset_bottom = -26.0
+[sub_resource type="LabelSettings" id="LabelSettings_vu8r3"]
+font = ExtResource("4_jm87o")
+font_size = 11
+font_color = Color(0.341176, 0.341176, 0.341176, 1)
+
+[node name="inventory_player" type="NinePatchRect"]
+anchors_preset = -1
+anchor_left = 0.368
+anchor_top = 0.235
+anchor_right = 0.368
+anchor_bottom = 0.235
+offset_left = 0.0319977
+offset_top = -0.139999
+offset_right = 152.032
+offset_bottom = 171.86
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 texture = ExtResource("1_42tre")
 patch_margin_left = 10
 patch_margin_top = 10
@@ -35,18 +45,18 @@ patch_margin_bottom = 10
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 script = ExtResource("2_cbg2t")
-inventory = NodePath("inventory_container/inventory")
 
 [node name="title" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -41.0
+offset_left = -66.0
 offset_top = -10.0
-offset_right = 45.0
+offset_right = 66.0
 offset_bottom = 8.0
 grow_horizontal = 2
+mouse_filter = 1
 texture = ExtResource("3_i6k84")
 patch_margin_left = 8
 patch_margin_top = 6
@@ -62,7 +72,8 @@ offset_top = 2.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Inventory"
+mouse_filter = 1
+text = "Player's Inventory"
 label_settings = SubResource("LabelSettings_u7kdf")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -85,17 +96,123 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 9.0
+offset_left = 10.0
 offset_top = 10.0
-offset_right = -9.0
-offset_bottom = -9.0
+offset_right = -10.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 1
 
-[node name="inventory" parent="inventory_container" instance=ExtResource("9_umcu4")]
+[node name="equipment" type="NinePatchRect" parent="inventory_container"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+texture = ExtResource("9_aaydf")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource("10_73mmd")
+inventory_name = "Equipment"
+
+[node name="TextureRect" type="TextureRect" parent="inventory_container/equipment"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = 12.0
+offset_right = 26.0
+offset_bottom = 14.0
+grow_horizontal = 2
+texture = ExtResource("11_8d31o")
+
+[node name="Label" type="Label" parent="inventory_container/equipment/TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.0
+offset_top = -10.0
+offset_right = 62.0
+offset_bottom = 13.0
+grow_horizontal = 2
+text = "- Inventory name -"
+label_settings = SubResource("LabelSettings_vu8r3")
+horizontal_alignment = 1
+
+[node name="slot_container" type="Control" parent="inventory_container/equipment"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_top = 18.0
+offset_right = 10.0
+offset_bottom = 38.0
+grow_horizontal = 2
+
+[node name="equipment_head" parent="inventory_container/equipment/slot_container" instance=ExtResource("12_8bnq3")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_right = 10.0
+grow_horizontal = 2
+size_flags_vertical = 2
+mouse_filter = 1
+
+[node name="equipment_chest" parent="inventory_container/equipment/slot_container" instance=ExtResource("12_8bnq3")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = 24.0
+offset_right = -21.0
+offset_bottom = 44.0
+grow_horizontal = 2
+size_flags_vertical = 2
+mouse_filter = 1
+type = 2
+
+[node name="equipment_main_head" parent="inventory_container/equipment/slot_container" instance=ExtResource("12_8bnq3")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_top = 24.0
+offset_right = 10.0
+offset_bottom = 44.0
+grow_horizontal = 2
+size_flags_vertical = 2
+mouse_filter = 1
+type = 3
+
+[node name="equipment_offhead" parent="inventory_container/equipment/slot_container" instance=ExtResource("12_8bnq3")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 20.0
+offset_top = 24.0
+offset_right = 40.0
+offset_bottom = 44.0
+grow_horizontal = 2
+size_flags_vertical = 2
+mouse_filter = 1
+type = 4
+
+[node name="inventory_left" parent="inventory_container" instance=ExtResource("9_umcu4")]
 layout_mode = 2
 inventory_name = "Left Pocket"
-slot_size = 20
+slot_size = 5
+
+[node name="inventory_right" parent="inventory_container" instance=ExtResource("9_umcu4")]
+layout_mode = 2
+inventory_name = "Left Pocket"
+slot_size = 5
 
 [connection signal="pressed" from="close" to="." method="_on_close_pressed"]

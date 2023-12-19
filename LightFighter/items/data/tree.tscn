@@ -8,3 +8,4 @@ texture = ExtResource("1_2jg2s")
 script = ExtResource("2_3lxtv")
 id = "4"
 item_name = "Tree"
+equipment = 1
