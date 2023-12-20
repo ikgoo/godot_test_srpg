@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy88ogmlsgyyc"]
+
+[ext_resource type="FontFile" uid="uid://ciyy3p85tikw" path="res://font/Arcadepix Plus.ttf" id="1_a3i7d"]
+[ext_resource type="Script" path="res://ui/item_stat_line.gd" id="2_u6bt1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_in341"]
+font = ExtResource("1_a3i7d")
+font_size = 8
+font_color = Color(0.666667, 0.384314, 0.176471, 1)
+
+[node name="item_stat_line" type="Label"]
+text = "Armor"
+label_settings = SubResource("LabelSettings_in341")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_u6bt1")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1

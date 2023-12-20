@@ -1,8 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cumvmmbxe54ej"]
+[gd_scene load_steps=4 format=3 uid="uid://cumvmmbxe54ej"]
 
-[ext_resource type="Texture2D" uid="uid://td5b20774q6j" path="res://items/sprites/tree_icon.png" id="1_bb55d"]
+[ext_resource type="Texture2D" uid="uid://cwjyisqar27x6" path="res://items/sprites/wood.png" id="1_g2e04"]
 [ext_resource type="Script" path="res://items/item.gd" id="2_6p8ey"]
+[ext_resource type="LabelSettings" uid="uid://dapx1b4xmkxg2" path="res://font/font_8.tres" id="3_m8v8j"]
 
 [node name="Item" type="TextureRect"]
-texture = ExtResource("1_bb55d")
+texture = ExtResource("1_g2e04")
 script = ExtResource("2_6p8ey")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "42"
+label_settings = ExtResource("3_m8v8j")

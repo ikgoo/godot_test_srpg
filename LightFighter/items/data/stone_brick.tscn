@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://wc3rjlcwg72p"]
 
-[ext_resource type="Texture2D" uid="uid://bmk6tdwtfowxf" path="res://items/sprites/stone.png" id="1_j2ibq"]
 [ext_resource type="Script" path="res://items/item.gd" id="2_k5vpb"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ku6ja"]
+load_path = "res://.godot/imported/stone.png-59d3d93df446c70af7cfdc609fb5ec1a.ctex"
+
 [node name="Item" type="TextureRect"]
-texture = ExtResource("1_j2ibq")
+texture = SubResource("CompressedTexture2D_ku6ja")
 script = ExtResource("2_k5vpb")
-id = "3"
-item_name = "Stone Brick"
-equipment = 2

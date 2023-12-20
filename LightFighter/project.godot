@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.2", "GL Compatibility")
 
 [autoload]
 
+ResourceManager="*res://managers/resource_manager.gd"
 SignalManager="*res://managers/signal_manager.gd"
 ItemManager="*res://managers/item_manager.gd"
 SettingManager="*res://managers/setting_manager.gd"

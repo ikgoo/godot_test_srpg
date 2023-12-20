@@ -1,0 +1,193 @@
+[gd_scene load_steps=15 format=3 uid="uid://k2s71ytc5kuc"]
+
+[ext_resource type="Script" path="res://ui/split_stack.gd" id="1_d4cmr"]
+[ext_resource type="Texture2D" uid="uid://ct5pgu0wakcnt" path="res://inventory/sprite/main panel.png" id="1_sd368"]
+[ext_resource type="Script" path="res://ui/settings.gd" id="2_kilb3"]
+[ext_resource type="Texture2D" uid="uid://pi5xk4j21wog" path="res://inventory/sprite/title.png" id="3_fey0h"]
+[ext_resource type="FontFile" uid="uid://ciyy3p85tikw" path="res://font/Arcadepix Plus.ttf" id="4_8fql2"]
+[ext_resource type="Texture2D" uid="uid://cfreqop0x1bn3" path="res://inventory/sprite/x_normal.png" id="5_3avc6"]
+[ext_resource type="Texture2D" uid="uid://c0vdjuxcdpsn7" path="res://inventory/sprite/x_pressed.png" id="6_qldkb"]
+[ext_resource type="Texture2D" uid="uid://bjmu3j8sjymrr" path="res://inventory/sprite/x_hover.png" id="7_p4xxg"]
+[ext_resource type="Texture2D" uid="uid://bni6pqttrg3r1" path="res://inventory/sprite/x_disabled.png" id="8_ladr4"]
+[ext_resource type="Texture2D" uid="uid://dg1diagg1gyh5" path="res://inventory/sprite/inner_panel.png" id="9_rmjny"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u7kdf"]
+font = ExtResource("4_8fql2")
+font_size = 14
+font_color = Color(0.45098, 0.45098, 0.45098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vu8r3"]
+font = ExtResource("4_8fql2")
+font_size = 11
+font_color = Color(0.341176, 0.341176, 0.341176, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_64f88"]
+
+[sub_resource type="FontVariation" id="FontVariation_tnx1y"]
+base_font = ExtResource("4_8fql2")
+
+[node name="split_stack" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+script = ExtResource("1_d4cmr")
+
+[node name="main panel" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -86.0
+offset_right = 76.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+texture = ExtResource("1_sd368")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+script = ExtResource("2_kilb3")
+
+[node name="title" type="NinePatchRect" parent="main panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = -10.0
+offset_right = 45.0
+offset_bottom = 8.0
+grow_horizontal = 2
+mouse_filter = 1
+texture = ExtResource("3_fey0h")
+patch_margin_left = 8
+patch_margin_top = 6
+patch_margin_right = 8
+patch_margin_bottom = 2
+
+[node name="Label" type="Label" parent="main panel/title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Split"
+label_settings = SubResource("LabelSettings_u7kdf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="close" type="TextureButton" parent="main panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -9.0
+offset_bottom = 10.0
+grow_horizontal = 0
+texture_normal = ExtResource("5_3avc6")
+texture_pressed = ExtResource("6_qldkb")
+texture_hover = ExtResource("7_p4xxg")
+texture_disabled = ExtResource("8_ladr4")
+
+[node name="scale" type="NinePatchRect" parent="main panel"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 142.0
+offset_bottom = 50.0
+texture = ExtResource("9_rmjny")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="main panel/scale"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 5.0
+offset_right = 60.0
+offset_bottom = 15.0
+grow_horizontal = 2
+text = "- scale -"
+label_settings = SubResource("LabelSettings_vu8r3")
+horizontal_alignment = 1
+
+[node name="orignal_qty" type="Label" parent="main panel/scale"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -61.0
+offset_top = 5.0
+offset_right = -22.0
+offset_bottom = 15.0
+grow_horizontal = 2
+text = "10"
+label_settings = SubResource("LabelSettings_vu8r3")
+
+[node name="new_qty2" type="Label" parent="main panel/scale"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 22.0
+offset_top = 5.0
+offset_right = 61.0
+offset_bottom = 15.0
+grow_horizontal = 2
+text = "10"
+label_settings = SubResource("LabelSettings_vu8r3")
+horizontal_alignment = 2
+
+[node name="quantity_slider" type="HSlider" parent="main panel/scale"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -4.0
+offset_right = -5.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_64f88")
+min_value = 0.5
+max_value = 1.5
+step = 0.1
+value = 1.0
+
+[node name="Button" type="Button" parent="main panel/scale"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = -20.0
+offset_right = 23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_tnx1y")
+text = "Split!"
+
+[connection signal="pressed" from="main panel/close" to="main panel" method="_on_close_pressed"]
+[connection signal="gui_input" from="main panel/scale/quantity_slider" to="main panel" method="_on_h_slider_gui_input"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1nw7hofqkx3e"]
+
+[ext_resource type="Texture2D" uid="uid://ccc5d6idkw3mi" path="res://inventory/sprite/bar.png" id="1_7gltb"]
+
+[node name="splitter" type="TextureRect"]
+texture = ExtResource("1_7gltb")
+stretch_mode = 3

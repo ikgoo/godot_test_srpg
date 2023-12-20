@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmk6tdwtfowxf"
-path="res://.godot/imported/stone.png-59d3d93df446c70af7cfdc609fb5ec1a.ctex"
+uid="uid://cvcku8mfaxwm2"
+path="res://.godot/imported/magic_orb.png-17e40d74c573b8591a56ce4919bfd3b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/sprites/stone.png"
-dest_files=["res://.godot/imported/stone.png-59d3d93df446c70af7cfdc609fb5ec1a.ctex"]
+source_file="res://items/sprites/magic_orb.png"
+dest_files=["res://.godot/imported/magic_orb.png-17e40d74c573b8591a56ce4919bfd3b9.ctex"]
 
 [params]
 

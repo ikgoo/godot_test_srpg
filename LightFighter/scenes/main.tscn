@@ -87,9 +87,9 @@ offset_right = 277.0
 offset_bottom = 280.0
 text = "Chest"
 script = ExtResource("5_ksp7g")
-slot_size = 5
+slot_size = 9
 inventory_name = "Cool Chest"
-items = Array[String](["gold", "gold"])
+items = Array[String](["gold_coin", "crystal", "magic_orb", "iron_sword", "chestplate", "helmet"])
 
 [node name="Chest2" type="Button" parent="ui/ui_container/Buttons"]
 layout_mode = 0
@@ -102,7 +102,7 @@ script = ExtResource("6_ry5fy")
 number_of_items = 10
 slot_size = 15
 inventory_name = "Random Chest"
-items = Array[String](["gold", "crystal", "stone_brick", "tree"])
+items = Array[String](["gold_coin", "crystal", "stone_brick", "wood"])
 
 [node name="settings" type="Button" parent="ui/ui_container/Buttons"]
 layout_mode = 1
