@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://i12qmo4b77i6"]
+
+[ext_resource type="Texture2D" uid="uid://b2ug611jw4w3g" path="res://inventory/sprite/item_slot.png" id="1_esh8j"]
+[ext_resource type="Script" path="res://inventory/hotbar_slot.gd" id="2_8c81k"]
+[ext_resource type="FontFile" uid="uid://ciyy3p85tikw" path="res://font/Arcadepix Plus.ttf" id="3_bkqy8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l0w5n"]
+font = ExtResource("3_bkqy8")
+
+[node name="hotbar_slot" type="TextureRect"]
+mouse_filter = 0
+texture = ExtResource("1_esh8j")
+script = ExtResource("2_8c81k")
+
+[node name="item_container" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="lbl_key" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -9.0
+offset_top = -7.0
+offset_right = 11.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "1"
+label_settings = SubResource("LabelSettings_l0w5n")
+horizontal_alignment = 1
+vertical_alignment = 1

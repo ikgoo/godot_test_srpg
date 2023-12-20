@@ -5,6 +5,8 @@ extends Node
 @onready var item_in_hand_node : Control = get_node(item_in_hand_path)
 @export var item_info_path : NodePath
 @onready var item_info : ItemInfo = get_node(item_info_path)
+@onready var split_stack : SplitStack = $"../../ui/ui_container/split_stack"
+
 
 var inventories : Array = []
 var item_in_hand : Item = null
@@ -12,8 +14,10 @@ var item_offset = Vector2.ZERO
 
 func _ready():
 	SignalManager.connect("inventory_ready", _on_inventory_ready)
+	split_stack.connect("stack_splitted", _on_stack_splitted)
 	
-func _on_inventory_ready(inventory : Inventory):
+	
+func _on_inventory_ready(inventory):
 	inventories.append(inventory)
 	
 	for slot in inventory.slots:
@@ -39,7 +43,10 @@ func _on_mouse_exited():
 	item_info.hide()
 
 func _on_gui_input_slot(event : InputEvent, slot : InventorySlot):
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+	if slot.item and slot.item.quantity > 1 and item_in_hand == null and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and Input.is_key_pressed( KEY_SHIFT):
+		split_stack.display(slot)
+	
+	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if item_in_hand:
 			if slot is EquipmentSlot and item_in_hand.equipment_type != slot.type:
 				return			
@@ -77,3 +84,11 @@ func _on_gui_input_slot(event : InputEvent, slot : InventorySlot):
 			item_info.hide()
 			item_in_hand_node.add_child(item_in_hand)
 			item_in_hand.global_position = get_viewport().get_mouse_position() - item_offset
+
+func _on_stack_splitted(slot : InventorySlot, new_quantity : int):
+	slot.item.quantity -= new_quantity
+	var new_item : Item = ItemManager.get_item(slot.item.id)
+	new_item.quantity = new_quantity
+	item_in_hand = new_item
+	item_in_hand.global_position = get_viewport().get_mouse_position()
+	item_in_hand_node.add_child(item_in_hand)

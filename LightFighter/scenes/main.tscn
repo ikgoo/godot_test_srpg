@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvh81x7rb4cra"]
+[gd_scene load_steps=12 format=3 uid="uid://cvh81x7rb4cra"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_pwewx"]
 [ext_resource type="Script" path="res://managers/inventory_manager.gd" id="2_4xhyg"]
@@ -8,7 +8,9 @@
 [ext_resource type="Script" path="res://chest.gd" id="5_ksp7g"]
 [ext_resource type="PackedScene" uid="uid://cbjf4mpj2w2ta" path="res://inventory/inventory_player.tscn" id="6_ce4yv"]
 [ext_resource type="Script" path="res://chest_rng.gd" id="6_ry5fy"]
+[ext_resource type="PackedScene" uid="uid://dfu06yquxuqi7" path="res://inventory/hotbar.tscn" id="7_dmjxt"]
 [ext_resource type="PackedScene" uid="uid://dcvp8lwge7ibu" path="res://inventory/inventory_container.tscn" id="7_gym1v"]
+[ext_resource type="PackedScene" uid="uid://k2s71ytc5kuc" path="res://ui/split_stack.tscn" id="10_e02rb"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_pwewx")
@@ -30,36 +32,53 @@ item_info_path = NodePath("../../ui/ui_container/item_info")
 
 [node name="ui_container" type="Control" parent="ui"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("3_0c3qi")
 
 [node name="Windows" type="Control" parent="ui/ui_container"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="settings" parent="ui/ui_container/Windows" instance=ExtResource("5_662sh")]
 layout_mode = 1
-offset_left = 353.0
-offset_top = 36.0
-offset_right = 505.0
-offset_bottom = 137.0
+offset_left = 121.0
+offset_top = -101.0
+offset_right = 273.0
+offset_bottom = 0.0
 
 [node name="inventory_container" parent="ui/ui_container/Windows" instance=ExtResource("7_gym1v")]
 layout_mode = 1
-offset_left = 196.28
-offset_top = 51.6
-offset_right = 348.28
-offset_bottom = 91.6
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -97.0
+offset_right = 97.0
+offset_bottom = -57.0
 
 [node name="inventory_player" parent="ui/ui_container/Windows" instance=ExtResource("6_ce4yv")]
 layout_mode = 1
-offset_left = 18.28
-offset_top = 44.6
-offset_right = 170.28
-offset_bottom = 216.6
-grow_horizontal = 1
-grow_vertical = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -226.0
+offset_top = -95.0
+offset_right = -74.0
+offset_bottom = 77.0
 
 [node name="item_in_hand" type="Control" parent="ui/ui_container"]
 layout_mode = 3
@@ -76,15 +95,23 @@ offset_bottom = 419.0
 
 [node name="Buttons" type="Control" parent="ui/ui_container"]
 layout_mode = 1
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="Chest" type="Button" parent="ui/ui_container/Buttons"]
-layout_mode = 0
-offset_left = 225.0
-offset_top = 249.0
-offset_right = 277.0
-offset_bottom = 280.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 52.0
+offset_bottom = -33.0
+grow_vertical = 0
 text = "Chest"
 script = ExtResource("5_ksp7g")
 slot_size = 9
@@ -92,11 +119,13 @@ inventory_name = "Cool Chest"
 items = Array[String](["gold_coin", "crystal", "magic_orb", "iron_sword", "chestplate", "helmet"])
 
 [node name="Chest2" type="Button" parent="ui/ui_container/Buttons"]
-layout_mode = 0
-offset_left = 371.0
-offset_top = 242.0
-offset_right = 492.0
-offset_bottom = 273.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 121.0
+grow_vertical = 0
 text = "Random Chest"
 script = ExtResource("6_ry5fy")
 number_of_items = 10
@@ -109,11 +138,20 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 507.0
-offset_right = 576.0
-offset_bottom = 31.0
+offset_left = -74.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 36.0
 grow_horizontal = 0
 text = "settings"
+
+[node name="hotbar" parent="ui/ui_container" instance=ExtResource("7_dmjxt")]
+layout_mode = 1
+slot_size = 5
+
+[node name="split_stack" parent="ui/ui_container" instance=ExtResource("10_e02rb")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="ui/ui_container/Buttons/Chest" to="ui/ui_container/Buttons/Chest" method="_on_pressed"]
 [connection signal="pressed" from="ui/ui_container/Buttons/Chest2" to="ui/ui_container/Buttons/Chest2" method="_on_pressed"]

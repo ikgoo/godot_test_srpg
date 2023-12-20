@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://k2s71ytc5kuc"]
+[gd_scene load_steps=14 format=3 uid="uid://k2s71ytc5kuc"]
 
 [ext_resource type="Script" path="res://ui/split_stack.gd" id="1_d4cmr"]
 [ext_resource type="Texture2D" uid="uid://ct5pgu0wakcnt" path="res://inventory/sprite/main panel.png" id="1_sd368"]
-[ext_resource type="Script" path="res://ui/settings.gd" id="2_kilb3"]
 [ext_resource type="Texture2D" uid="uid://pi5xk4j21wog" path="res://inventory/sprite/title.png" id="3_fey0h"]
 [ext_resource type="FontFile" uid="uid://ciyy3p85tikw" path="res://font/Arcadepix Plus.ttf" id="4_8fql2"]
 [ext_resource type="Texture2D" uid="uid://cfreqop0x1bn3" path="res://inventory/sprite/x_normal.png" id="5_3avc6"]
@@ -32,7 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+color = Color(0.0980392, 0.0980392, 0.0980392, 0.447059)
 script = ExtResource("1_d4cmr")
 
 [node name="main panel" type="NinePatchRect" parent="."]
@@ -43,9 +42,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -76.0
-offset_top = -86.0
+offset_top = -30.0
 offset_right = 76.0
-offset_bottom = -26.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -56,7 +55,6 @@ patch_margin_right = 10
 patch_margin_bottom = 10
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
-script = ExtResource("2_kilb3")
 
 [node name="title" type="NinePatchRect" parent="main panel"]
 layout_mode = 1
@@ -125,7 +123,7 @@ offset_top = 5.0
 offset_right = 60.0
 offset_bottom = 15.0
 grow_horizontal = 2
-text = "- scale -"
+text = "- Quantity -"
 label_settings = SubResource("LabelSettings_vu8r3")
 horizontal_alignment = 1
 
@@ -174,7 +172,7 @@ max_value = 1.5
 step = 0.1
 value = 1.0
 
-[node name="Button" type="Button" parent="main panel/scale"]
+[node name="btn_split" type="Button" parent="main panel/scale"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -182,12 +180,14 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -23.0
-offset_top = -20.0
+offset_top = 3.0
 offset_right = 23.0
+offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = SubResource("FontVariation_tnx1y")
 text = "Split!"
 
-[connection signal="pressed" from="main panel/close" to="main panel" method="_on_close_pressed"]
-[connection signal="gui_input" from="main panel/scale/quantity_slider" to="main panel" method="_on_h_slider_gui_input"]
+[connection signal="pressed" from="main panel/close" to="." method="_on_close_pressed"]
+[connection signal="value_changed" from="main panel/scale/quantity_slider" to="." method="_on_quantity_slider_value_changed"]
+[connection signal="pressed" from="main panel/scale/btn_split" to="." method="_on_btn_split_pressed"]

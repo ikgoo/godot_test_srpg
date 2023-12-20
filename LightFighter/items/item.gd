@@ -1,5 +1,4 @@
 extends TextureRect
-
 class_name Item
 
 var id : String
