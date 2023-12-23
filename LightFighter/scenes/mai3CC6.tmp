@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvh81x7rb4cra"]
+[gd_scene load_steps=12 format=3 uid="uid://cvh81x7rb4cra"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_pwewx"]
 [ext_resource type="Script" path="res://managers/inventory_manager.gd" id="2_4xhyg"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://chest.gd" id="5_ksp7g"]
 [ext_resource type="PackedScene" uid="uid://cbjf4mpj2w2ta" path="res://inventory/inventory_player.tscn" id="6_ce4yv"]
 [ext_resource type="Script" path="res://chest_rng.gd" id="6_ry5fy"]
-[ext_resource type="Script" path="res://ui/scale_control.gd" id="7_6njqa"]
 [ext_resource type="PackedScene" uid="uid://dfu06yquxuqi7" path="res://inventory/hotbar.tscn" id="7_dmjxt"]
 [ext_resource type="PackedScene" uid="uid://dcvp8lwge7ibu" path="res://inventory/inventory_container.tscn" id="7_gym1v"]
 [ext_resource type="PackedScene" uid="uid://k2s71ytc5kuc" path="res://ui/split_stack.tscn" id="10_e02rb"]
@@ -85,7 +84,6 @@ offset_bottom = 77.0
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
-script = ExtResource("7_6njqa")
 
 [node name="item_info" parent="ui/ui_container" instance=ExtResource("3_nklmh")]
 visible = false

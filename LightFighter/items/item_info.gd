@@ -1,4 +1,4 @@
-extends NinePatchRect
+extends ScaleControl
 class_name ItemInfo
 
 @onready var item_name = $title/Label

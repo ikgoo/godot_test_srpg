@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmwvxd81gy7mp"]
 
 [ext_resource type="PackedScene" uid="uid://yu6mf0ke3frp" path="res://inventory/inventory_slot.tscn" id="1_1c037"]
-[ext_resource type="Script" path="res://equipment_slot.gd" id="2_5gwoh"]
+[ext_resource type="Script" path="res://inventory/equipment_slot.gd" id="2_5gwoh"]
 
 [node name="equipment_slot" instance=ExtResource("1_1c037")]
 offset_right = 20.0

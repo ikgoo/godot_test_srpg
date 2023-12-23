@@ -27,7 +27,7 @@ func _on_inventory_ready(inventory):
 
 func _input(event : InputEvent):
 	if event is InputEventMouseMotion and item_in_hand:
-		item_in_hand.global_position = event.position - item_offset
+		item_in_hand.global_position = (event.position - (item_offset * SettingManager.scale))
 
 func _process(delta):
 	pass
@@ -83,7 +83,7 @@ func _on_gui_input_slot(event : InputEvent, slot : InventorySlot):
 			slot.pick_item()
 			item_info.hide()
 			item_in_hand_node.add_child(item_in_hand)
-			item_in_hand.global_position = get_viewport().get_mouse_position() - item_offset
+			item_in_hand.global_position = get_viewport().get_mouse_position() - (item_offset * SettingManager.scale)
 
 func _on_stack_splitted(slot : InventorySlot, new_quantity : int):
 	slot.item.quantity -= new_quantity

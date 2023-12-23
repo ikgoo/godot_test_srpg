@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bni6pqttrg3r1" path="res://inventory/sprite/x_disabled.png" id="8_3lqil"]
 [ext_resource type="Texture2D" uid="uid://dg1diagg1gyh5" path="res://inventory/sprite/inner_panel.png" id="9_aaydf"]
 [ext_resource type="PackedScene" uid="uid://tysnq6mq3m2o" path="res://inventory/inventory.tscn" id="9_umcu4"]
-[ext_resource type="Script" path="res://equipment.gd" id="10_73mmd"]
+[ext_resource type="Script" path="res://inventory/equipment.gd" id="10_73mmd"]
 [ext_resource type="Texture2D" uid="uid://ccc5d6idkw3mi" path="res://inventory/sprite/bar.png" id="11_8d31o"]
 [ext_resource type="PackedScene" uid="uid://dmwvxd81gy7mp" path="res://inventory/equipment_slot.tscn" id="12_8bnq3"]
 
