@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://exjs0cpa1xa"]
+
+[ext_resource type="Texture2D" uid="uid://demafs7vmasoj" path="res://arts/0x72_DungeonTilesetII_v1.6.png" id="1_25jci"]
+[ext_resource type="Script" path="res://Player/player.gd" id="1_rfyle"]
+[ext_resource type="Script" path="res://Player/interactable_labels.gd" id="3_3spdj"]
+[ext_resource type="LabelSettings" uid="uid://cekrthemlug0f" path="res://font/font_12.tres" id="3_67lai"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_37i24"]
+radius = 3.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tysaq"]
+radius = 7.0
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_rfyle")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("1_25jci")
+region_enabled = true
+region_rect = Rect2(129, 109, 13, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_37i24")
+
+[node name="interactable_zone" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_tysaq")
+
+[node name="interactable_labels" type="VBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -52.5
+offset_top = -39.0
+offset_right = 53.5
+offset_bottom = -18.0
+grow_horizontal = 2
+theme_override_constants/separation = 1
+script = ExtResource("3_3spdj")
+
+[node name="action" type="Label" parent="interactable_labels"]
+layout_mode = 2
+text = "Press \"e\" to * action*"
+label_settings = ExtResource("3_67lai")
+horizontal_alignment = 1
+
+[node name="object_name" type="Label" parent="interactable_labels"]
+layout_mode = 2
+text = "Object Name!"
+label_settings = ExtResource("3_67lai")
+horizontal_alignment = 1

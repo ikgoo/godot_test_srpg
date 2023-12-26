@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cekrthemlug0f"]
+
+[ext_resource type="FontFile" uid="uid://ciyy3p85tikw" path="res://font/Arcadepix Plus.ttf" id="1_yetff"]
+
+[resource]
+font = ExtResource("1_yetff")
+font_size = 12

@@ -8,22 +8,26 @@ extends Node
 @onready var split_stack : SplitStack = $"../../ui/ui_container/split_stack"
 
 
+var player_inventories : Array = []
 var inventories : Array = []
 var item_in_hand : Item = null
 var item_offset = Vector2.ZERO
 
 func _ready():
+	SignalManager.connect("item_picked", _on_item_picked)
 	SignalManager.connect("inventory_ready", _on_inventory_ready)
+	SignalManager.connect("player_inventory_ready", _on_player_inventory_ready)
 	split_stack.connect("stack_splitted", _on_stack_splitted)
 	
 	
-func _on_inventory_ready(inventory):
+func _on_inventory_ready(inventory : Inventory):
 	inventories.append(inventory)
 	
 	for slot in inventory.slots:
 		slot.mouse_entered.connect(_on_mouse_entered_slot.bind(slot))
 		slot.mouse_exited.connect(_on_mouse_exited.bind())
 		slot.gui_input.connect(_on_gui_input_slot.bind(slot))
+
 
 func _input(event : InputEvent):
 	if event is InputEventMouseMotion and item_in_hand:
@@ -92,3 +96,13 @@ func _on_stack_splitted(slot : InventorySlot, new_quantity : int):
 	item_in_hand = new_item
 	item_in_hand.global_position = get_viewport().get_mouse_position()
 	item_in_hand_node.add_child(item_in_hand)
+
+func _on_item_picked(item : Item, sender):
+	for i : Inventory in player_inventories:
+		i.add_item(item)
+		sender.item_picked()
+		return
+
+func _on_player_inventory_ready(inv : Array[Inventory]):
+	player_inventories = inv
+

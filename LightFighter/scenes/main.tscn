@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvh81x7rb4cra"]
+[gd_scene load_steps=14 format=3 uid="uid://cvh81x7rb4cra"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_pwewx"]
 [ext_resource type="Script" path="res://managers/inventory_manager.gd" id="2_4xhyg"]
+[ext_resource type="PackedScene" uid="uid://exjs0cpa1xa" path="res://Player/player.tscn" id="2_7wyrj"]
 [ext_resource type="Script" path="res://ui/ui_container.gd" id="3_0c3qi"]
 [ext_resource type="PackedScene" uid="uid://kv57y7mg4tsj" path="res://items/item_info.tscn" id="3_nklmh"]
 [ext_resource type="PackedScene" uid="uid://cf0kd23uthfo7" path="res://ui/settings.tscn" id="5_662sh"]
@@ -17,6 +18,9 @@
 script = ExtResource("1_pwewx")
 
 [node name="game" type="Node2D" parent="."]
+
+[node name="Sprite2D" parent="game" instance=ExtResource("2_7wyrj")]
+position = Vector2(138, 133)
 
 [node name="managers" type="Node2D" parent="."]
 
