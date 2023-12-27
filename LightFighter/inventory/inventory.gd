@@ -20,6 +20,8 @@ var inventory_slot_res = preload("res://inventory/inventory_slot.tscn")
 # slot 배경
 var slots : Array[InventorySlot]  = []
 
+var is_open = false
+
 func _ready():
 	for s in slots:
 		slot_container.add_child(s)
@@ -32,7 +34,11 @@ func set_title():
 
 func add_item( item : Item):
 	for s : InventorySlot in slots:
-		if not s.item:
-			s.item = item
-			return
+		if s.try_put_item(item):
+			item = s.put_item(item)
+			
+			if not item:
+				return null
+				
+	return item
 

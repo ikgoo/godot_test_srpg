@@ -7,13 +7,13 @@
 radius = 6.0
 
 [node name="floor_item" type="Area2D"]
-collision_layer = 0
-collision_mask = 8
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("1_b8gky")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_m1gv8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -6)
 texture = ExtResource("2_vxdm0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m1gv8")

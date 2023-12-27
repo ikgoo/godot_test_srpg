@@ -29,8 +29,8 @@ shape = SubResource("CapsuleShape2D_37i24")
 
 [node name="interactable_zone" type="Area2D" parent="."]
 position = Vector2(0, -2)
-collision_layer = 0
-collision_mask = 8
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_zone"]
 rotation = -1.57079
@@ -62,4 +62,4 @@ text = "Object Name!"
 label_settings = ExtResource("3_67lai")
 horizontal_alignment = 1
 
-[connection signal="area_exited" from="interactable_zone" to="." method="_on_interactable_zone_area_exited"]
+[connection signal="area_entered" from="interactable_zone" to="." method="_on_interactable_zone_area_entered"]

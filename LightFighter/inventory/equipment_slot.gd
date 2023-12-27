@@ -5,23 +5,20 @@ class_name EquipmentSlot
 
 @onready var placeholder = $placeholder
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	placeholder.texture = ItemManager.get_placeholder(type)
 
+func try_put_item(new_item : Item) -> bool:
+	return new_item.equipment_type == type and super.try_put_item(new_item)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func set_item(new_item):
-	super.set_item(new_item)
-	placeholder.hide()
-
-func pick_item():
-	super.pick_item()
-	placeholder.show()
-	
-func put_item(new_item : Item):
-	super.put_item(new_item)
-	placeholder.hide()
+func put_item(new_item : Item) -> Item:
+	if new_item:
+		if new_item.equipment_type != type:
+			return new_item
+		
+		placeholder.hide()
+	else:
+		placeholder.show()
+		
+	return super.put_item(new_item)

@@ -6,6 +6,7 @@ extends Node
 @export var item_info_path : NodePath
 @onready var item_info : ItemInfo = get_node(item_info_path)
 @onready var split_stack : SplitStack = $"../../ui/ui_container/split_stack"
+@onready var item_void = $"../../ui/item_void"
 
 
 var player_inventories : Array = []
@@ -18,7 +19,7 @@ func _ready():
 	SignalManager.connect("inventory_ready", _on_inventory_ready)
 	SignalManager.connect("player_inventory_ready", _on_player_inventory_ready)
 	split_stack.connect("stack_splitted", _on_stack_splitted)
-	
+	item_void.connect("gui_input", _on_void_gui_input)
 	
 func _on_inventory_ready(inventory : Inventory):
 	inventories.append(inventory)
@@ -31,7 +32,19 @@ func _on_inventory_ready(inventory : Inventory):
 
 func _input(event : InputEvent):
 	if event is InputEventMouseMotion and item_in_hand:
-		item_in_hand.global_position = (event.position - (item_offset * SettingManager.scale))
+		set_hand_position(get_viewport().get_mouse_position())
+		#item_in_hand.global_position = (get_viewport().get_mouse_position() - (item_offset * SettingManager.scale))
+
+func _on_void_gui_input(event : InputEvent):
+	if event is InputEventMouseButton:
+		event = event as InputEventMouseButton
+		if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+			SignalManager.emit_signal("item_dropped", item_in_hand)
+			item_in_hand_node.remove_child(item_in_hand)
+			item_in_hand = null
+			set_item_void_filter()
+		
+	 	
 
 func _process(delta):
 	pass
@@ -47,47 +60,41 @@ func _on_mouse_exited():
 	item_info.hide()
 
 func _on_gui_input_slot(event : InputEvent, slot : InventorySlot):
-	if slot.item and slot.item.quantity > 1 and item_in_hand == null and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and Input.is_key_pressed( KEY_SHIFT):
-		split_stack.display(slot)
+	if slot.item and slot.item.quantity > 1 and item_in_hand == null and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and Input.is_key_pressed(KEY_SHIFT):
+		if slot.item.quantity == 2:
+			_on_stack_splitted(slot, 1)
+		else:
+			split_stack.display(slot)
 	
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		var had_empty_hand = item_in_hand == null
+		
 		if item_in_hand:
-			if slot is EquipmentSlot and item_in_hand.equipment_type != slot.type:
-				return			
-			
 			item_in_hand_node.remove_child(item_in_hand)
-			
-			if slot.item:
-				if slot.item.id == item_in_hand.id and slot.item.quantity < slot.item.stack_size:
-					var remainder = slot.item.add_item_quantity(item_in_hand.quantity)
-					
-					if remainder < 1:
-						item_in_hand = null
-					else:
-						item_in_hand_node.add_child(item_in_hand)
-						item_in_hand.quantity = remainder
-				else:
-					var temp_item = slot.item
-					slot.pick_item()
-					temp_item.global_position = event.global_position# - item_offset
-					slot.put_item(item_in_hand)
-					item_in_hand = temp_item
-					item_in_hand_node.add_child(item_in_hand)
+
+		item_in_hand = slot.put_item(item_in_hand)
+		
+		if item_in_hand:
+			if had_empty_hand:
+				var t1 = get_viewport().get_mouse_position()
+				var t2 = slot.global_position
 				
-			else:
-				slot.put_item(item_in_hand)
-				item_in_hand = null
+				item_offset = get_viewport().get_mouse_position() - slot.global_position
+				print(item_offset)
 				
-				
-		elif slot.item:
-			item_in_hand = slot.item
-			item_offset = item_in_hand.size / 2
-			#item_in_hand.global_position = event.position - item_offset
-			#item_in_hand.global_position = event.position
-			slot.pick_item()
-			item_info.hide()
 			item_in_hand_node.add_child(item_in_hand)
-			item_in_hand.global_position = get_viewport().get_mouse_position() - (item_offset * SettingManager.scale)
+			
+		set_hand_position(get_viewport().get_mouse_position())
+
+func set_hand_position(pos):
+	set_item_void_filter()
+	
+	if item_in_hand:
+		item_in_hand.global_position = (pos - item_offset) / SettingManager.scale
+		#item_in_hand.global_position = (pos-item_offset) / SettingManager.scale
+
+func set_item_void_filter():
+	item_void.mouse_filter = Control.MOUSE_FILTER_STOP if item_in_hand else Control.MOUSE_FILTER_IGNORE
 
 func _on_stack_splitted(slot : InventorySlot, new_quantity : int):
 	slot.item.quantity -= new_quantity
@@ -96,12 +103,14 @@ func _on_stack_splitted(slot : InventorySlot, new_quantity : int):
 	item_in_hand = new_item
 	item_in_hand.global_position = get_viewport().get_mouse_position()
 	item_in_hand_node.add_child(item_in_hand)
+	set_hand_position(slot.global_position)
 
 func _on_item_picked(item : Item, sender):
 	for i : Inventory in player_inventories:
-		i.add_item(item)
-		sender.item_picked()
-		return
+		item = i.add_item(item)
+		if not item:
+			sender.item_picked()
+			return
 
 func _on_player_inventory_ready(inv : Array[Inventory]):
 	player_inventories = inv

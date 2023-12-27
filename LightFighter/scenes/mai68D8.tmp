@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=3 uid="uid://cvh81x7rb4cra"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_pwewx"]
-[ext_resource type="PackedScene" uid="uid://bwd8kt50nryiw" path="res://interectables/interactable_chest.tscn" id="2_0xtd6"]
 [ext_resource type="Script" path="res://managers/inventory_manager.gd" id="2_4xhyg"]
 [ext_resource type="PackedScene" uid="uid://exjs0cpa1xa" path="res://Player/player.tscn" id="2_7wyrj"]
-[ext_resource type="PackedScene" uid="uid://vyo3irql3spl" path="res://interectables/random_chest.tscn" id="2_thwfc"]
 [ext_resource type="Script" path="res://ui/ui_container.gd" id="3_0c3qi"]
 [ext_resource type="PackedScene" uid="uid://kv57y7mg4tsj" path="res://items/item_info.tscn" id="3_nklmh"]
 [ext_resource type="PackedScene" uid="uid://cf0kd23uthfo7" path="res://ui/settings.tscn" id="5_662sh"]
+[ext_resource type="Script" path="res://chest.gd" id="5_ksp7g"]
 [ext_resource type="PackedScene" uid="uid://cbjf4mpj2w2ta" path="res://inventory/inventory_player.tscn" id="6_ce4yv"]
+[ext_resource type="Script" path="res://chest_rng.gd" id="6_ry5fy"]
 [ext_resource type="Script" path="res://ui/scale_control.gd" id="7_6njqa"]
 [ext_resource type="PackedScene" uid="uid://dfu06yquxuqi7" path="res://inventory/hotbar.tscn" id="7_dmjxt"]
 [ext_resource type="PackedScene" uid="uid://dcvp8lwge7ibu" path="res://inventory/inventory_container.tscn" id="7_gym1v"]
@@ -17,25 +17,6 @@
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_pwewx")
-
-[node name="chest3" parent="." instance=ExtResource("2_0xtd6")]
-position = Vector2(212, 438)
-slot_size = 6
-items = Array[String](["gold_coin", "helmet", "stone_brick", "tshirt", "crystal"])
-
-[node name="chest" parent="." instance=ExtResource("2_thwfc")]
-position = Vector2(261, 324)
-number_of_items = 3
-slot_size = 5
-inventory_name = "Normal Chest"
-items = Array[String](["magic_orb", "wood", "crystal"])
-
-[node name="chest2" parent="." instance=ExtResource("2_thwfc")]
-position = Vector2(130, 325)
-number_of_items = 3
-slot_size = 5
-inventory_name = "RandomChest"
-items = Array[String](["chestplate", "crystal", "gold_coin", "helmet", "iron_sword", "magic_orb", "shield", "stone_brick", "tshirt", "wood"])
 
 [node name="floor_item" parent="." instance=ExtResource("14_u0klc")]
 position = Vector2(267, 128)
@@ -63,15 +44,6 @@ item_info_path = NodePath("../../ui/ui_container/item_info")
 
 [node name="ui" type="CanvasLayer" parent="."]
 
-[node name="item_void" type="Control" parent="ui"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
 [node name="ui_container" type="Control" parent="ui"]
 layout_mode = 3
 anchors_preset = 15
@@ -90,7 +62,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-metadata/_edit_lock_ = true
 
 [node name="settings" parent="ui/ui_container/Windows" instance=ExtResource("5_662sh")]
 layout_mode = 1
@@ -145,6 +116,36 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
+[node name="Chest" type="Button" parent="ui/ui_container/Buttons"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 52.0
+offset_bottom = -33.0
+grow_vertical = 0
+text = "Chest"
+script = ExtResource("5_ksp7g")
+slot_size = 9
+inventory_name = "Cool Chest"
+items = Array[String](["gold_coin", "crystal", "magic_orb", "iron_sword", "chestplate", "helmet"])
+
+[node name="Chest2" type="Button" parent="ui/ui_container/Buttons"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 121.0
+grow_vertical = 0
+text = "Random Chest"
+script = ExtResource("6_ry5fy")
+number_of_items = 10
+slot_size = 15
+inventory_name = "Random Chest"
+items = Array[String](["gold_coin", "crystal", "stone_brick", "wood"])
+
 [node name="settings" type="Button" parent="ui/ui_container/Buttons"]
 layout_mode = 1
 anchors_preset = 1
@@ -165,4 +166,6 @@ slot_size = 5
 visible = false
 layout_mode = 1
 
+[connection signal="pressed" from="ui/ui_container/Buttons/Chest" to="ui/ui_container/Buttons/Chest" method="_on_pressed"]
+[connection signal="pressed" from="ui/ui_container/Buttons/Chest2" to="ui/ui_container/Buttons/Chest2" method="_on_pressed"]
 [connection signal="pressed" from="ui/ui_container/Buttons/settings" to="ui/ui_container" method="_on_settings_pressed"]

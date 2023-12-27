@@ -15,7 +15,7 @@ func _ready():
 
 
 func interact():
-	SignalManager.emit_signal("item_pick", item, self)
+	SignalManager.emit_signal("item_picked", item, self)
 	
 func item_picked():
 	queue_free()

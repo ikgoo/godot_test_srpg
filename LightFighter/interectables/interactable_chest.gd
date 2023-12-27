@@ -1,4 +1,4 @@
-extends Button
+extends Area2D
 class_name Chest
 
 @export var slot_size : int = 1
@@ -6,6 +6,8 @@ class_name Chest
 @export var items : Array[String]
 
 var inventory : Inventory
+var action = "open"
+var object_name = "Chest"
 
 func _init():
 	inventory = preload("res://inventory/inventory.tscn").instantiate()
@@ -20,5 +22,9 @@ func set_items():
 		inventory.add_item(ItemManager.get_item(i))
 
 
-func _on_pressed():
+func interact():
 	SignalManager.emit_signal("inventory_opened", inventory)
+
+func out_of_range():
+	if inventory.is_open:
+		SignalManager.emit_signal("inventory_closed", inventory)
