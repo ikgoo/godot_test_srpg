@@ -80,7 +80,7 @@ func _on_gui_input_slot(event : InputEvent, slot : InventorySlot):
 				var t2 = slot.global_position
 				
 				item_offset = get_viewport().get_mouse_position() - slot.global_position
-				print(item_offset)
+				#print(item_offset)
 				
 			item_in_hand_node.add_child(item_in_hand)
 			
