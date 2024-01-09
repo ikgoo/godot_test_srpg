@@ -1,6 +1,163 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvuruo1lufr11"]
+[gd_scene load_steps=11 format=3 uid="uid://bvuruo1lufr11"]
 
-[ext_resource type="Script" path="res://game_main.gd" id="1_fcdd8"]
+[ext_resource type="Script" path="res://scenes/game_main.gd" id="1_fcdd8"]
+[ext_resource type="Texture2D" uid="uid://c3y0vihjkod10" path="res://assets/GUI.png" id="2_il6w2"]
+[ext_resource type="Texture2D" uid="uid://cr7csrukvscxm" path="res://assets/Spritesheet_UI_Flat_Select_01.png" id="3_qrfqs"]
+[ext_resource type="PackedScene" uid="uid://8gv2jv1aiwkp" path="res://board/board_piece.tscn" id="4_otujs"]
+[ext_resource type="Texture2D" uid="uid://jnkec0iwk3h8" path="res://assets/omok_board.png" id="5_y0uq2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0piil"]
+atlas = ExtResource("3_qrfqs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbijf"]
+atlas = ExtResource("3_qrfqs")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1hea"]
+atlas = ExtResource("3_qrfqs")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqbib"]
+atlas = ExtResource("3_qrfqs")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_45sse"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0piil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbijf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1hea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqbib")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
 
 [node name="GameMain" type="Node2D"]
 script = ExtResource("1_fcdd8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -816.0
+offset_top = -722.0
+offset_right = 804.0
+offset_bottom = 718.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+modulate = Color(0.0745098, 0.0235294, 0.00392157, 1)
+self_modulate = Color(0.67451, 0.188235, 0.278431, 1)
+metadata/_edit_lock_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -136.0
+offset_right = 110.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_il6w2")
+region_rect = Rect2(49, 97, 30, 30)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-214, -18)
+scale = Vector2(0.375, 0.375)
+sprite_frames = SubResource("SpriteFrames_45sse")
+frame_progress = 0.588321
+metadata/_edit_lock_ = true
+
+[node name="board" type="Node2D" parent="."]
+
+[node name="center" parent="board" instance=ExtResource("4_otujs")]
+
+[node name="top" type="NinePatchRect" parent="board"]
+visible = false
+offset_left = -14.0
+offset_top = -6.0
+offset_right = -2.0
+offset_bottom = 6.0
+texture = ExtResource("5_y0uq2")
+region_rect = Rect2(5, 0, 5, 5)
+
+[node name="buttom" type="NinePatchRect" parent="board"]
+visible = false
+offset_left = -27.0
+offset_top = -6.0
+offset_right = -15.0
+offset_bottom = 6.0
+texture = ExtResource("5_y0uq2")
+region_rect = Rect2(10, 0, 5, 5)
+
+[node name="left" type="NinePatchRect" parent="board"]
+visible = false
+offset_left = -40.0
+offset_top = -6.0
+offset_right = -28.0
+offset_bottom = 6.0
+texture = ExtResource("5_y0uq2")
+region_rect = Rect2(15, 0, 5, 5)
+
+[node name="right" type="NinePatchRect" parent="board"]
+visible = false
+offset_left = -40.0
+offset_top = 7.0
+offset_right = -28.0
+offset_bottom = 19.0
+texture = ExtResource("5_y0uq2")
+region_rect = Rect2(20, 0, 5, 5)
+
+[node name="lefttop" type="NinePatchRect" parent="board"]
+visible = false
+offset_left = -27.0
+offset_top = 7.0
+offset_right = -15.0
+offset_bottom = 19.0
+texture = ExtResource("5_y0uq2")
+region_rect = Rect2(25, 0, 5, 5)
+
+[node name="righttop" type="NinePatchRect" parent="board"]
+visible = false
+offset_left = 91.0
+offset_top = -119.0
+offset_right = 103.0
+offset_bottom = -107.0
+texture = ExtResource("5_y0uq2")
+region_rect = Rect2(30, 0, 5, 5)
+
+[node name="rightbuttom" type="NinePatchRect" parent="board"]
+visible = false
+offset_left = -1.0
+offset_top = 7.0
+offset_right = 11.0
+offset_bottom = 19.0
+texture = ExtResource("5_y0uq2")
+region_rect = Rect2(35, 0, 5, 5)
+
+[node name="leftbuttom" type="NinePatchRect" parent="board"]
+visible = false
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 24.0
+offset_bottom = 19.0
+texture = ExtResource("5_y0uq2")
+region_rect = Rect2(40, 0, 5, 5)
