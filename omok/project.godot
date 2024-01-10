@@ -14,6 +14,11 @@ config/name="omok"
 run/main_scene="res://game_main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 
+[autoload]
+
+Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
+NakamaInstance="*res://autoload/nakama_instance.gd"
+
 [display]
 
 window/size/viewport_width=360

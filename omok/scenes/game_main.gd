@@ -9,6 +9,15 @@ var offset = 10
 var loc = []
 
 
+
+func _ready():
+	 #http://125.141.139.219:7351/
+
+
+@rpc("authority", "call_remote", "reliable", 0)
+func rpc_function():
+	pass
+
 #func _draw():
 	#for i in range(rows):
 		#var y = i * cell_size

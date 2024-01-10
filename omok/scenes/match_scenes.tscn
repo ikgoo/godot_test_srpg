@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh5t1olw54cuu"]
+
+[ext_resource type="Script" path="res://scenes/match_scenes.gd" id="1_imnca"]
+
+[node name="MatchScenes" type="Node2D"]
+script = ExtResource("1_imnca")
