@@ -17,7 +17,11 @@ func _ready():
 
 func Init(userName : String = ''):
 	if not client:
-		client = Nakama.create_client("defaultkey", "125.141.139.219", 7350, "http")
+		#client = Nakama.create_client("defaultkey", "125.141.139.219", 7350, "http")
+		client = Nakama.create_client(
+			"defaultkey", "125.141.139.219", 7350, "http",
+			Nakama.DEFAULT_TIMEOUT,
+			NakamaLogger.LOG_LEVEL.ERROR)		
 		if not client:
 			return false
 	client.timeout = 10

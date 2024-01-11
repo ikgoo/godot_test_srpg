@@ -1,17 +1,18 @@
 extends Node
+# client = Nakama.create_client("defaultkey", "125.141.139.219", 7350, "http")
 
 # For developers to set from the outside, for example:
 #   Online.nakama_host = 'nakama.example.com'
 #   Online.nakama_scheme = 'https'
 var nakama_server_key: String = 'defaultkey'
-var nakama_host: String = 'localhost'
+var nakama_host: String = '125.141.139.219'
 var nakama_port: int = 7350
 var nakama_scheme: String = 'http'
 
 # For other scripts to access:
-var nakama_client: NakamaClient: set = _set_readonly_variable, get = get_nakama_client
+var nakama_client: NakamaClient: get = get_nakama_client
 var nakama_session: NakamaSession: set = set_nakama_session
-var nakama_socket: NakamaSocket: set = _set_readonly_variable
+var nakama_socket: NakamaSocket
 
 # Internal variable for initializing the socket.
 var _nakama_socket_connecting := false
@@ -25,7 +26,8 @@ func _set_readonly_variable(_value) -> void:
 
 func _ready() -> void:
 	# Don't stop processing messages from Nakama when the game is paused.
-	Nakama.pause_mode = Node.PAUSE_MODE_PROCESS
+	Nakama.process_mode = Node.PROCESS_MODE_PAUSABLE
+	pass
 
 func get_nakama_client() -> NakamaClient:
 	if nakama_client == null:
