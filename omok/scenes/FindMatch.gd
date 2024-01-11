@@ -1,12 +1,17 @@
 extends Control
 
+@onready var ready_screen = $"../ReadyScreen"
+
+
 func _ready():
 	OnlineMatch.connect("matchmaker_matched", OnMatchFound)
 	
 	
 func OnMatchFound(players):
 	print(players)
-	pass
+	hide()
+	ready_screen.show()
+	
 
 
 func _on_find_match_pressed():

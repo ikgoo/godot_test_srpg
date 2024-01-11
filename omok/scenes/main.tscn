@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds6epvdxmspty"]
+[gd_scene load_steps=6 format=3 uid="uid://ds6epvdxmspty"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_6bmlu"]
 [ext_resource type="Script" path="res://Login.gd" id="1_vtjgy"]
 [ext_resource type="Script" path="res://scenes/FindMatch.gd" id="2_eam61"]
+[ext_resource type="Script" path="res://scenes/ReadyScreen.gd" id="2_ioh3o"]
+[ext_resource type="Script" path="res://scenes/GameManager.gd" id="5_ly2pi"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" groups=["GameWorld"]]
 script = ExtResource("1_6bmlu")
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 79.0
@@ -24,6 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ReadyScreen" type="Control" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,6 +36,7 @@ offset_left = 4.0
 offset_right = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_ioh3o")
 
 [node name="Panel" type="Panel" parent="Control/ReadyScreen"]
 layout_mode = 1
@@ -47,6 +52,15 @@ offset_left = 4.0
 offset_top = 12.0
 offset_right = 209.0
 offset_bottom = 114.0
+
+[node name="Button" type="Button" parent="Control/ReadyScreen"]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 146.0
+offset_right = 142.0
+offset_bottom = 168.0
+theme_override_font_sizes/font_size = 10
+text = "Im Ready"
 
 [node name="FindMatch" type="Control" parent="Control"]
 visible = false
@@ -97,7 +111,6 @@ offset_right = 121.0
 offset_bottom = 146.0
 
 [node name="Login" type="Control" parent="Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -181,6 +194,31 @@ offset_right = 190.0
 offset_bottom = 136.0
 text = "Login"
 
+[node name="Players" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_ly2pi")
+
+[node name="Player Spawn Points" type="Control" parent="Players"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Player1" type="Marker2D" parent="Players/Player Spawn Points"]
+position = Vector2(67, 61)
+
+[node name="Player2" type="Marker2D" parent="Players/Player Spawn Points"]
+position = Vector2(63, 336)
+
+[node name="Player3" type="Marker2D" parent="Players/Player Spawn Points"]
+position = Vector2(283, 339)
+
+[node name="Player4" type="Marker2D" parent="Players/Player Spawn Points"]
+position = Vector2(281, 69)
+
+[connection signal="pressed" from="Control/ReadyScreen/Button" to="Control/ReadyScreen" method="_on_button_pressed"]
 [connection signal="pressed" from="Control/FindMatch/Find Match" to="Control/FindMatch" method="_on_find_match_pressed"]
 [connection signal="pressed" from="Control/Login/Register" to="Control/Login" method="_on_register_pressed"]
 [connection signal="pressed" from="Control/Login/Login" to="Control/Login" method="_on_login_pressed"]

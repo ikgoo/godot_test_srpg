@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfyvm6bockp1l"]
+
+[ext_resource type="Script" path="res://user_ready.gd" id="1_l1hlp"]
+
+[node name="UserReady" type="Control"]
+custom_minimum_size = Vector2(216, 14)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 216.0
+offset_bottom = 14.0
+script = ExtResource("1_l1hlp")
+
+[node name="Username" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 99.0
+offset_bottom = 16.0
+theme_override_font_sizes/normal_font_size = 8
+text = "Test Username"
+
+[node name="Ready" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 107.0
+offset_right = 204.0
+offset_bottom = 16.0
+theme_override_font_sizes/normal_font_size = 8
+text = "Not Ready"

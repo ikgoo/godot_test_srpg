@@ -390,10 +390,10 @@ func _on_nakama_matchmaker_matched(data: NakamaRTAPI.MatchmakerMatched) -> void:
 
 func _on_nakama_match_state(data: NakamaRTAPI.MatchData):
 	var json_result = JSON.parse_string(data.data)
-	if json_result.error != OK:
+	if json_result.has('error') and json_result.error != OK:
 		return
 		
-	var content = json_result.result
+	var content = json_result
 	if data.op_code == MatchOpCode.CUSTOM_RPC:
 		if content['peer_id'] == 0 or content['peer_id'] == my_peer_id:
 			var node = get_node(content['node_path'])
