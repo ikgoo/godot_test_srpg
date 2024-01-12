@@ -1,11 +1,16 @@
 extends CharacterBody2D
-
+# 1:46:26
 @export var playerControlled : bool = false
 
-@export var bullet: PackedScene
+@export var Bullet: PackedScene
 
 var lookAtVector = 0
 var speed: int = 3000
+
+func _get_custom_rpc_methods():
+	return [
+		"UpdateRemotePlayers",
+	]
 
 func _ready():
 	pass
@@ -18,10 +23,22 @@ func _physics_process(delta):
 		move_and_slide()
 		look_at(get_global_mouse_position())
 		
+		var shooting = false
 		if Input.is_action_just_pressed("shoot"):
-			shoot($Marker2D.global_position, name)
+			shoot($Marker2D.global_transform, name)
+			shooting = true
+			
+		OnlineMatch.custom_rpc(self, "UpdateRemotePlayers", [global_position, rotation, shooting, $Marker2D.transform, name])
 
 
 func shoot(shootpos, playerWhoShot):
-	var bullet = bullet.instantiate()
-	get_tree().get_nodes_in_group("GameWorld")[0]
+	var bullet = Bullet.instantiate()
+	var gameWorld = get_tree().get_nodes_in_group("GameWorld")
+	gameWorld[0].add_child(bullet)
+	bullet.global_transform = shootpos
+	
+func UpdateRemotePlayers(currentPosition, currentRotation, shooting, shootPos, playerWhoShot):
+	global_position = currentPosition
+	rotation = currentRotation
+	if shooting:
+		shoot(shootPos, playerWhoShot)

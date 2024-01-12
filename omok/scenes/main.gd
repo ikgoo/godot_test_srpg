@@ -8,7 +8,7 @@ var readyPlayers = {}
 
 func _get_custom_rpc_methods():
 	return [
-		"playerIsReady"
+		"PlayerIsReady",
 	]
 
 func _ready():
@@ -21,18 +21,18 @@ func _ready():
 
 
 func PlayerReady():
-	OnlineMatch.custom_rpc_sync(self, "playerIsReady", [OnlineMatch.get_my_session_id()])
+	OnlineMatch.custom_rpc_sync(self, "PlayerIsReady", [OnlineMatch.get_my_session_id()])
 
-func playerIsReady(id):
-	print(id)
+func PlayerIsReady(id):
 	ready_screen.setReadyStatus(id, "Ready")
 	
 	if OnlineMatch.is_network_server():
 		readyPlayers[id] = true
 		if readyPlayers.size() == OnlineMatch.players.size():
 			OnlineMatch.start_playing()
-			startGame()
+			$Players.StartGame(OnlineMatch.get_player_names_by_peer_id())
+			#StartGame()
 
-func startGame():
+func StartGame():
 	print("All Players Are Ready Lets Start the Game!")
 	$Control.hide()
