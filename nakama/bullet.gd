@@ -16,4 +16,6 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	print("hit player: " + str(body))
-	
+	if body.name != playerWhoShot:
+		if OnlineMatch.is_network_master_for_node(self):
+			OnlineMatch.custom_rpc_sync(body, "Die")

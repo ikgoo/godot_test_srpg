@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://8gv2jv1aiwkp"]
+
+[ext_resource type="Texture2D" uid="uid://jnkec0iwk3h8" path="res://assets/omok_board.png" id="1_fkc5w"]
+[ext_resource type="Script" path="res://board/board_piece.gd" id="1_m8kgn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_opl6r"]
+size = Vector2(8, 8)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_m8kgn")
+
+[node name="piece" type="NinePatchRect" parent="."]
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+texture = ExtResource("1_fkc5w")
+region_rect = Rect2(0, 0, 5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_opl6r")

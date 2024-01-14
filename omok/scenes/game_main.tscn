@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmyhplf3jsokm"]
+
+[ext_resource type="Script" path="res://scenes/game_main.gd" id="1_3aori"]
+[ext_resource type="PackedScene" uid="uid://bye553xtn1cos" path="res://board/game_board.tscn" id="2_r4auc"]
+[ext_resource type="PackedScene" uid="uid://dka28gb7yodkv" path="res://sub_scenes/player_info.tscn" id="3_sesid"]
+
+[node name="GameMain" type="Node2D"]
+script = ExtResource("1_3aori")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(320, 400)
+metadata/_edit_lock_ = true
+
+[node name="GameBoard" parent="." instance=ExtResource("2_r4auc")]
+position = Vector2(-2, 77)
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(640, 800)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 800.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="PlayerInfo01" parent="." instance=ExtResource("3_sesid")]
+
+[node name="PlayerInfo02" parent="." instance=ExtResource("3_sesid")]
+position = Vector2(0, 708)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="PlayerNextTurn" from="GameBoard" to="." method="_on_game_board_player_next_turn"]
+[connection signal="PlayerWin" from="GameBoard" to="." method="_on_game_board_player_win"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bye553xtn1cos"]
+
+[ext_resource type="Script" path="res://board/game_board.gd" id="1_iadqu"]
+[ext_resource type="PackedScene" uid="uid://br7vxdmt5m6wk" path="res://board/board_inspacter.tscn" id="3_bew0s"]
+
+[node name="GameBoard" type="Node2D"]
+script = ExtResource("1_iadqu")
+
+[node name="BoardStartPos" type="Node2D" parent="."]
+
+[node name="RallPos" type="Node2D" parent="."]
+
+[node name="Inspacter" parent="." instance=ExtResource("3_bew0s")]
+visible = false
+position = Vector2(-64, 22)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

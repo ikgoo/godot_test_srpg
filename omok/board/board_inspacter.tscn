@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://br7vxdmt5m6wk"]
+
+[ext_resource type="Texture2D" uid="uid://cr7csrukvscxm" path="res://assets/Spritesheet_UI_Flat_Select_01.png" id="1_od847"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5d8r"]
+atlas = ExtResource("1_od847")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m15w2"]
+atlas = ExtResource("1_od847")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lkej"]
+atlas = ExtResource("1_od847")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvn7i"]
+atlas = ExtResource("1_od847")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q7q7f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5d8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m15w2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lkej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvn7i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BoardInspacter" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_q7q7f")
+frame_progress = 0.434964

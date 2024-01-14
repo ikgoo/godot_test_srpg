@@ -1,8 +1,10 @@
 extends CharacterBody2D
-# 1:46:26
+
 @export var playerControlled : bool = false
 
 @export var Bullet: PackedScene
+
+signal PlayerHasDied
 
 var lookAtVector = 0
 var speed: int = 3000
@@ -10,6 +12,7 @@ var speed: int = 3000
 func _get_custom_rpc_methods():
 	return [
 		"UpdateRemotePlayers",
+		"Die",
 	]
 
 func _ready():
@@ -28,7 +31,7 @@ func _physics_process(delta):
 			shoot($Marker2D.global_transform, name)
 			shooting = true
 			
-		OnlineMatch.custom_rpc(self, "UpdateRemotePlayers", [global_position, rotation, shooting, $Marker2D.transform, name])
+		OnlineMatch.custom_rpc(self, "UpdateRemotePlayers", [global_position, rotation, shooting, $Marker2D.global_transform, name])
 
 
 func shoot(shootpos, playerWhoShot):
@@ -42,3 +45,7 @@ func UpdateRemotePlayers(currentPosition, currentRotation, shooting, shootPos, p
 	rotation = currentRotation
 	if shooting:
 		shoot(shootPos, playerWhoShot)
+
+func Die():
+	queue_free()
+	emit_signal("PlayerHasDied")

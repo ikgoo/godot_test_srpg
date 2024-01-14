@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://3fi8g8wmlas6"]
+
+[ext_resource type="Texture2D" uid="uid://dsaskhku12b4q" path="res://assets/rall.png" id="1_lke8i"]
+
+[node name="Rall" type="Sprite2D"]
+texture = ExtResource("1_lke8i")
+hframes = 2

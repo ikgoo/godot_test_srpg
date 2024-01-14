@@ -4,6 +4,8 @@ var player: PackedScene = preload("res://player.tscn")
 var players = {}
 var alivePlayers = {}
 var readyPlayers = {}
+signal GameOver
+
 func _get_custom_rpc_methods():
 	return [
 		"SetupGame",
@@ -28,13 +30,22 @@ func SetupGame(_players):
 		currentPlayer.set_multiplayer_authority(id)
 		currentPlayer.position = get_node("Player Spawn Points/Player" + str(id)).position
 		
+		currentPlayer.PlayerHasDied.connect(onPlayerDeath.bind(id))
+		
+		
 	var myID = OnlineMatch.get_network_unique_id()
 	var player = $PlayersSpawnUnder.get_node(str(myID))
 	player.playerControlled = true
 	
 	OnlineMatch.custom_rpc_id_sync(self, 1, "FinishedSetup", [myID])
+	get_tree().get_nodes_in_group("GameWorld")[0].HideMatchMakeInterface()
 
 func FinishedSetup(id):
 	readyPlayers[id] = players[id]
 	if readyPlayers.size() == players.size():
 		get_tree().get_nodes_in_group("GameWorld")[0].StartGame()
+
+func onPlayerDeath(id):
+	alivePlayers.erase(id)
+	if alivePlayers.size() <= 1:
+		emit_signal("GameOver", alivePlayers)
