@@ -6,6 +6,8 @@ signal Timeout
 @onready var player_name = $PlayerName
 @onready var progress_bar = $ProgressBar
 @onready var profile_front = $Profile_Front
+@onready var rall = $Rall
+
 
 var maxValue = 20	# 20초
 
@@ -41,6 +43,9 @@ func SetPlayerInfo(_playerInfo):
 	playerInfo = _playerInfo
 	print(playerInfo['name'])
 	player_name.text = playerInfo['name']
+	rall.frame = playerInfo['id']
 	
 func timeOverATurnEnd():
 	emit_signal("Timeout")
+
+
