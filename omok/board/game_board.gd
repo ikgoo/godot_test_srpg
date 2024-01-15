@@ -200,11 +200,11 @@ func traverse(board_clone, opponent, x, y, a, b):
 # 열린 N 검사
 func check_open_n(board_clone, criterion, opponent, x, y, n, a, b, c, d):
 	var p = traverse(board_clone, opponent, x, y, a, b)
-	var q = traverse(board_clone, opponent,x , y, c, d)
+	var q = traverse(board_clone, opponent, x , y, c, d)
 	var lsum = p.length + q.length
 	var csum = p.spaces.size() + q.spaces.size() - 2
 
-	if at(board_clone, x + a * p.length, y + b * p.length) == 0 and at(board_clone, x + c * q.length, y + d * q.length) == 0:
+	if at(board_clone, x + a * p.length, y + b * p.length) == -1 and at(board_clone, x + c * q.length, y + d * q.length) == -1:
 		if lsum == n + 1 and csum == 0:
 			return (check_validity(p.spaces[0].x, p.spaces[0].y, criterion, board) or
 					check_validity(q.spaces[0].x, q.spaces[0].y, criterion, board))
