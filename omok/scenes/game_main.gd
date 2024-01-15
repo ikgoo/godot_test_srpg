@@ -53,6 +53,8 @@ func SendPlayerTurn():
 		else:
 			player.is_myturn = false
 	
+	game_board.find_forbidden_positions(MainData.currentTrue)
+	
 
 func _process(delta):
 	pass

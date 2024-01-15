@@ -44,27 +44,7 @@ var board : Array = [
 var currentYX = []
 
 #알위치
-var rallMap: Array = [
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-]
+
 
 func _ready():
 	inspacter.play()
@@ -100,9 +80,8 @@ func onPieceClick(boardPosition):
 		if rallMap[boardPosition[0]][boardPosition[1]] != -1:
 			return
 		
-		# 규칙 위반 체크(쌍삼, 쌍사)
-		var is_validity = check_validity(boardPosition[1], boardPosition[0], MainData.currentTrue, rallMap)
-		print("체크 : " + str(is_validity))
+		## 규칙 위반 체크(쌍삼, 쌍사)
+		#var is_validity = check_validity(boardPosition[1], boardPosition[0], MainData.currentTrue, rallMap)
 		
 		# 승리 체크
 		var is_victory = check_victory(boardPosition[1], boardPosition[0], MainData.currentTrue, rallMap)
@@ -130,6 +109,98 @@ func onPieceClick(boardPosition):
 		else:				# 다음턴
 			emit_signal("PlayerNextTurn")
 
+
+
+# ==============================================
+var BOARD_SIZE = 19
+var rallMap: Array = [
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+]
+
+func check_three_three(x, y, player):
+	return count_open_sequences(x, y, player, 3) >= 2
+
+func check_four_four(x, y, player):
+	return count_open_sequences(x, y, player, 4) >= 2
+
+func count_open_sequences(x, y, player, sequence_length):
+	var count = 0
+	for dir in [Vector2(1, 0), Vector2(0, 1), Vector2(1, 1), Vector2(1, -1)]:
+		if is_open_sequence(x+dir.x, y+dir.y, dir, player, sequence_length):
+			count += 1
+	return count
+
+func is_open_sequence(x, y, dir, player, sequence_length):
+	var open_start = is_empty_or_border(x - dir.x, y - dir.y)
+
+	var empty_count = 0
+	var ral_count = 0
+	var check_x = x
+	var check_y = y
+	for i in range(sequence_length):
+		check_x = x + dir.x * i
+		check_y = y + dir.y * i
+		if not is_in_bounds(check_x, check_y) or (rallMap[check_x][check_y] != player and rallMap[check_x][check_y] != -1):
+			return false
+			
+		if rallMap[check_x][check_y] == player:
+			ral_count = ral_count + 1
+		if ral_count == sequence_length-1:
+			break
+			
+		if rallMap[check_x][check_y] == -1:
+			empty_count = empty_count + 1
+		if empty_count > 1:
+			return false
+
+	var open_end = is_empty_or_border(check_x + dir.x, check_y + dir.y)
+
+	return open_start and open_end
+
+func is_in_bounds(x, y):
+	return x >= 0 and y >= 0 and x < BOARD_SIZE and y < BOARD_SIZE
+
+func is_empty_or_border(x, y):
+	return not is_in_bounds(x, y) or rallMap[x][y] == -1
+
+func find_forbidden_positions(player):
+	var forbidden_positions = []
+	for x in range(BOARD_SIZE):
+		for y in range(BOARD_SIZE):
+			if rallMap[x][y] == -1 and (check_three_three(x, y, player) or check_four_four(x, y, player)):
+				forbidden_positions.append(Vector2(x, y))
+	if forbidden_positions.size() > 0:
+		print(forbidden_positions)
+	return forbidden_positions
+
+
+
+
+
+
+
+
+
+
+# ============================================
 
 # 위치 확인 함수
 func at(board_clone, sx, sy):
@@ -226,4 +297,6 @@ func check_double_n(board_clone, x, y, stone_color_value, board, n):
 	count += 1 if check_open_n(board_clone, criterion, opponent, x, y, n, -1, -1, 1, 1) else 0
 	count += 1 if check_open_n(board_clone, criterion, opponent, x, y, n, 1, -1, -1, 1) else 0
 
-	return count > 1		
+	return count > 1
+
+
