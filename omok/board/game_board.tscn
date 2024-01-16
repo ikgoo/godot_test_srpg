@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bye553xtn1cos"]
+[gd_scene load_steps=4 format=3 uid="uid://bye553xtn1cos"]
 
 [ext_resource type="Script" path="res://board/game_board.gd" id="1_iadqu"]
+[ext_resource type="Script" path="res://board/omok_rule.gd" id="2_m2b4o"]
 [ext_resource type="PackedScene" uid="uid://br7vxdmt5m6wk" path="res://board/board_inspacter.tscn" id="3_bew0s"]
 
 [node name="GameBoard" type="Node2D"]
 script = ExtResource("1_iadqu")
+
+[node name="OmokRule" type="Node2D" parent="."]
+script = ExtResource("2_m2b4o")
 
 [node name="BoardStartPos" type="Node2D" parent="."]
 

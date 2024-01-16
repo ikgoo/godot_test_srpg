@@ -38,7 +38,7 @@ func _ready():
 		else:
 			pass
 	
-	timer.wait_time = 2
+	timer.wait_time = 1
 	timer.start()
 	await timer.timeout
 	
@@ -53,7 +53,7 @@ func SendPlayerTurn():
 		else:
 			player.is_myturn = false
 	
-	game_board.find_forbidden_positions(MainData.currentTrue)
+	game_board.CheckRule()
 	
 
 func _process(delta):
