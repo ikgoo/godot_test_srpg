@@ -50,7 +50,13 @@ func SetPlayerInfo(_playerInfo):
 func timeOverATurnEnd():
 	emit_signal("Timeout")
 
-
+func GameOver():
+	if tween:
+		tween.kill()
+		
+	progress_bar.value = 0
+	button.hide()
+	
 
 
 func _on_button_pressed():

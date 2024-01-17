@@ -5,6 +5,7 @@ class_name BoardPiece
 signal PieceOver
 signal PieceClick
 
+#@onready var piece = $Piece
 @onready var piece = $Piece
 
 enum PieceType {
@@ -33,7 +34,7 @@ var area2DPosition = [
 func SetPieceType(value):
 	pieceType = value
 	if piece:
-		piece.region_rect = Rect2(pieceType * 34, 0, 34, 34)
+		piece.frame = value
 
 
 var boardPosition = [0, 0]

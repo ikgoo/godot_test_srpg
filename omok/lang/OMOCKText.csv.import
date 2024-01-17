@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dkwvhfxp6m004"
+
+[deps]
+
+files=["res://lang/OMOCKText.en.translation", "res://lang/OMOCKText.kr.translation"]
+
+source_file="res://lang/OMOCKText.csv"
+dest_files=["res://lang/OMOCKText.en.translation", "res://lang/OMOCKText.kr.translation"]
+
+[params]
+
+compress=true
+delimiter=0

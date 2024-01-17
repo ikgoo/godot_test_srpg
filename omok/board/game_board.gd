@@ -23,7 +23,7 @@ var impossibleRall: Array = []		# 금수 위치 값
 @onready var impossible_rall = $ImpossibleRall
 
 
-var base_size = 34
+var base_size = 37
 
 # 646 * 646
 # 보드 모양

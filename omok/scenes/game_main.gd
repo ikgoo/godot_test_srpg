@@ -4,6 +4,10 @@ extends Node2D
 @onready var player_info_01: PlayerInfo = $PlayerInfo01
 @onready var player_info_02: PlayerInfo = $PlayerInfo02
 @onready var timer: Timer = $Timer
+@onready var game_over = $Control/GameOver/GameOver
+
+var languageName = ["English", "Korea"]
+var languageCode = ["en", "kr"]
 
 var player01
 var player02
@@ -18,6 +22,8 @@ enum GameState {
 var players: Array = []
 
 func _ready():
+	TranslationServer.set_locale("kr")
+	game_over.play("RESET")
 	game_board.BoardRender()
 	
 	if MainData.is_local_game:
@@ -64,7 +70,11 @@ func _process(delta):
 
 # 플레이어 승리시
 func _on_game_board_player_win():
+	for player in players:
+		player.GameOver()
+	
 	print(str(MainData.currentTrue) + '님 승리' )
+	game_over.play("open")
 
 # 다음 턴 처리
 func _on_game_board_player_next_turn():

@@ -15,8 +15,8 @@ script = ExtResource("2_m2b4o")
 [node name="RallPos" type="Node2D" parent="."]
 
 [node name="Inspacter" parent="." instance=ExtResource("3_bew0s")]
-visible = false
 position = Vector2(-64, 22)
+scale = Vector2(1.5, 1.5)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
