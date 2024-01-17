@@ -19,3 +19,5 @@ visible = false
 position = Vector2(-64, 22)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="ImpossibleRall" type="Node2D" parent="."]

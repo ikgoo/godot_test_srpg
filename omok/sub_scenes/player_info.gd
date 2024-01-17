@@ -2,11 +2,13 @@ extends Node2D
 class_name PlayerInfo
 
 signal Timeout
+signal SetRall
 
 @onready var player_name = $PlayerName
 @onready var progress_bar = $ProgressBar
 @onready var profile_front = $Profile_Front
 @onready var rall = $Rall
+@onready var button = $Button
 
 
 var maxValue = 20	# 20초
@@ -49,3 +51,7 @@ func timeOverATurnEnd():
 	emit_signal("Timeout")
 
 
+
+
+func _on_button_pressed():
+	emit_signal("SetRall")

@@ -44,14 +44,16 @@ func _ready():
 	
 	SendPlayerTurn()
 	MainData.currentGameState = MainData.GameState.PLAY
-	game_board.inspacter.show()
 
 func SendPlayerTurn():
 	for player in players:
 		if player.playerInfo.id == MainData.currentTrue:
 			player.is_myturn = true
+			player.button.disabled = true
+			player.button.show()
 		else:
 			player.is_myturn = false
+			player.button.hide()
 	
 	game_board.CheckRule()
 	
@@ -60,12 +62,24 @@ func _process(delta):
 	pass
 
 
-
+# 플레이어 승리시
 func _on_game_board_player_win():
-	pass # Replace with function body.
+	print(str(MainData.currentTrue) + '님 승리' )
 
-
+# 다음 턴 처리
 func _on_game_board_player_next_turn():
 	MainData.currentTrue = (MainData.currentTrue + 1) % players.size()
 	SendPlayerTurn()
 	
+
+# 보드 클릭시
+func _on_game_board_board_piece_click():
+	for player in players:
+		if player.playerInfo.id == MainData.currentTrue:
+			player.button.disabled = false
+
+
+func _on_player_info_set_rall():
+	game_board.onCommitclick()
+
+

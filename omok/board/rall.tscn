@@ -4,4 +4,4 @@
 
 [node name="Rall" type="Sprite2D"]
 texture = ExtResource("1_lke8i")
-hframes = 2
+hframes = 3

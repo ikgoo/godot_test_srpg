@@ -3,6 +3,7 @@ class_name GameBoard
 
 signal PlayerWin
 signal PlayerNextTurn
+signal BoardPieceClick
 
 @onready var omok_rule: OmokRule = $OmokRule
 
@@ -14,9 +15,13 @@ var ralldrop02 = preload("res://assets/Sounds/ralldrop02.mp3")
 var ralldrop03 = preload("res://assets/Sounds/ralldrop03.mp3")
 var ralldrops = [ralldrop01, ralldrop02, ralldrop03]
 
+var currentInspacterPos
+var impossibleRall: Array = []		# 금수 위치 값
 
 @onready var board_start_pos = $BoardStartPos
 @onready var inspacter = $Inspacter
+@onready var impossible_rall = $ImpossibleRall
+
 
 var base_size = 34
 
@@ -100,16 +105,25 @@ func ChanchInspacter(b):
 # 좌표 클릭시
 func onPieceClick(boardPosition):
 	if MainData.currentGameState == MainData.GameState.PLAY:
+		# 금수 위치를 선택했는지 확인
+		for p in impossibleRall:
+			if p.x == boardPosition[0] and p.y == boardPosition[1]:
+				return false
+		
+		
 		var xpos = board_start_pos.position.x + (boardPosition[1] * base_size) + (base_size/2)
 		var ypos = board_start_pos.position.y + (boardPosition[0] * base_size) + (base_size/2)
 		ChanchInspacter(true)
 		inspacter.position = Vector2(xpos, ypos)
+		currentInspacterPos = boardPosition
 		
-# 착구 버튼 클릭시
-func onCommitclick(boardPosition):
+		emit_signal("BoardPieceClick")
+		
+# 착수 버튼 클릭시
+func onCommitclick():
 	ChanchInspacter(false)
 	if MainData.currentGameState == MainData.GameState.PLAY:
-		
+		var boardPosition = currentInspacterPos
 		# 이미 돌이 있는 경우
 		if rallMap[boardPosition[0]][boardPosition[1]] != -1:
 			return
@@ -132,7 +146,7 @@ func onCommitclick(boardPosition):
 		tmpRall.position = Vector2(xpos, ypos)
 		tmpRall.frame = MainData.currentTrue
 		
-		if omok_rule.check_victory(boardPosition[1], boardPosition[0], MainData.currentTrue):		# 승리 체크
+		if omok_rule.check_victory(boardPosition[0], boardPosition[1], MainData.currentTrue):		# 승리 체크
 			emit_signal("PlayerWin")
 		else:				# 다음턴
 			emit_signal("PlayerNextTurn")
@@ -140,13 +154,26 @@ func onCommitclick(boardPosition):
 
 # 금수 체크하여 화면에 표시
 func CheckRule():
+	for child in impossible_rall.get_children():
+		impossible_rall.remove_child(child)
+		child.queue_free() # 메모리에서 해제	
+		
 	omok_rule.rallMap = rallMap
 	
 	# 기존에 금수 표현한 노트 제거
 	
 	# 금수 체크해서 노트에 표시
-	var tt = omok_rule.find_forbidden_positions(MainData.currentTrue)
-	print(tt)
+	impossibleRall = omok_rule.find_forbidden_positions(MainData.currentTrue)
+	if impossibleRall.size() > 0:
+		print(impossibleRall)
+		for tmpBoardPos in impossibleRall:
+			var tmpRall = TscnRall.instantiate()
+			impossible_rall.add_child(tmpRall)
+			var xpos = board_start_pos.position.x + (tmpBoardPos[1] * base_size) + (base_size/2)
+			var ypos = board_start_pos.position.y + (tmpBoardPos[0] * base_size) + (base_size/2)
+			tmpRall.position = Vector2(xpos, ypos)
+			tmpRall.frame = 2
+	
 
 
 # ==============================================

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmyhplf3jsokm"]
+[gd_scene load_steps=5 format=3 uid="uid://dmyhplf3jsokm"]
 
 [ext_resource type="Script" path="res://scenes/game_main.gd" id="1_3aori"]
 [ext_resource type="PackedScene" uid="uid://bye553xtn1cos" path="res://board/game_board.tscn" id="2_r4auc"]
 [ext_resource type="PackedScene" uid="uid://dka28gb7yodkv" path="res://sub_scenes/player_info.tscn" id="3_sesid"]
+[ext_resource type="Texture2D" uid="uid://c3y0vihjkod10" path="res://assets/GUI.png" id="4_ydhjg"]
 
 [node name="GameMain" type="Node2D"]
 script = ExtResource("1_3aori")
@@ -15,6 +16,13 @@ metadata/_edit_lock_ = true
 position = Vector2(-2, 77)
 metadata/_edit_lock_ = true
 
+[node name="PlayerInfo01" parent="." instance=ExtResource("3_sesid")]
+
+[node name="PlayerInfo02" parent="." instance=ExtResource("3_sesid")]
+position = Vector2(0, 708)
+
+[node name="Timer" type="Timer" parent="."]
+
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(640, 800)
 layout_mode = 3
@@ -26,14 +34,24 @@ offset_bottom = 800.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-metadata/_edit_lock_ = true
 
-[node name="PlayerInfo01" parent="." instance=ExtResource("3_sesid")]
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -348.0
+offset_right = 220.0
+offset_bottom = 349.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ydhjg")
 
-[node name="PlayerInfo02" parent="." instance=ExtResource("3_sesid")]
-position = Vector2(0, 708)
-
-[node name="Timer" type="Timer" parent="."]
-
+[connection signal="BoardPieceClick" from="GameBoard" to="." method="_on_game_board_board_piece_click"]
 [connection signal="PlayerNextTurn" from="GameBoard" to="." method="_on_game_board_player_next_turn"]
 [connection signal="PlayerWin" from="GameBoard" to="." method="_on_game_board_player_win"]
+[connection signal="SetRall" from="PlayerInfo01" to="." method="_on_player_info_set_rall"]
+[connection signal="SetRall" from="PlayerInfo02" to="." method="_on_player_info_set_rall"]

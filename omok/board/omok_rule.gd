@@ -7,11 +7,14 @@ var rallMap: Array
 # 승리체크
 func check_victory(x, y, player):
 	for dir in [Vector2(1, 0), Vector2(0, 1), Vector2(1, 1), Vector2(1, -1)]:
-		if count_stones_in_line(x, y, dir, player) >= 5:
+		var cnt1 = count_stones(x, y, dir, player)
+		var cnt2 = count_stones(x, y, -dir, player)
+		if cnt1 + cnt2 - 1 == 5:
 			return true
+	
 	return false
 
-func count_stones_in_line(x, y, dir, player):
+func count_stones(x, y, dir, player):
 	var count = 0
 	var check_x = x
 	var check_y = y
@@ -92,8 +95,8 @@ func is_overline(x, y, dir, player):
 			empty_xy.append(check_x)
 			empty_xy.append(check_y)
 			empty_count = empty_count + 1
-	if empty_count > 0 and ral_count > 0:
-		print('empty_count:' + str(empty_count) + " / ral_count:" + str(ral_count))
+	#if empty_count > 0 and ral_count > 0:
+		#print('empty_count:' + str(empty_count) + " / ral_count:" + str(ral_count))
 	
 	if empty_count == 1 and ral_count >= 5:
 		return empty_xy
@@ -101,7 +104,7 @@ func is_overline(x, y, dir, player):
 		return []
 
 # 금수 체크
-func find_forbidden_positions(player):
+func find_forbidden_positions(player) -> Array:
 	var forbidden_positions = []
 	for x in range(BOARD_SIZE):
 		for y in range(BOARD_SIZE):
@@ -111,8 +114,7 @@ func find_forbidden_positions(player):
 				var xy : Array = check_overline(x, y, player)
 				if xy.size() != 0:
 					forbidden_positions.append(Vector2(xy[0], xy[1]))
-	if forbidden_positions.size() > 0:
-		print(forbidden_positions)
+
 	return forbidden_positions
 
 

@@ -20,7 +20,7 @@ region_rect = Rect2(28, 14, 0, 0)
 position = Vector2(63, 45)
 scale = Vector2(1.3125, 1.3125)
 texture = ExtResource("3_72g4p")
-hframes = 2
+hframes = 3
 
 [node name="Profile_Front" type="Sprite2D" parent="."]
 position = Vector2(65, 47)
@@ -48,3 +48,15 @@ offset_bottom = 57.0
 text = "Player2"
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = 273.0
+offset_top = 19.0
+offset_right = 382.0
+offset_bottom = 51.0
+theme = ExtResource("2_6cclq")
+theme_override_font_sizes/font_size = 14
+text = "착수"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
