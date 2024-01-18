@@ -1,10 +1,11 @@
 extends Node2D
-
+# size : 720 * 1280
 @onready var game_board : GameBoard = $GameBoard
 @onready var player_info_01: PlayerInfo = $PlayerInfo01
 @onready var player_info_02: PlayerInfo = $PlayerInfo02
 @onready var timer: Timer = $Timer
 @onready var game_over = $Control/GameOver/GameOver
+@onready var main_menu = $Control/MainMenu
 
 var languageName = ["English", "Korea"]
 var languageCode = ["en", "kr"]
@@ -22,35 +23,11 @@ enum GameState {
 var players: Array = []
 
 func _ready():
+	
 	TranslationServer.set_locale("kr")
-	game_over.play("RESET")
-	game_board.BoardRender()
+	main_menu.PlayMainMenu("show")
+	main_menu.show()
 	
-	if MainData.is_local_game:
-		if MainData.is_pvp:
-			MainData.players[0] = {
-				"id" : 0,
-				"name": 'Player01',
-			}
-			MainData.players[1] = {
-				"id" : 1,
-				"name": 'Player02'
-			}
-			
-			player_info_01.SetPlayerInfo(MainData.players[0])
-			players.append(player_info_01)
-			player_info_02.SetPlayerInfo(MainData.players[1])
-			players.append(player_info_02)
-		else:
-			pass
-	
-	timer.wait_time = 1
-	timer.start()
-	await timer.timeout
-	
-	SendPlayerTurn()
-	MainData.currentGameState = MainData.GameState.PLAY
-
 func SendPlayerTurn():
 	for player in players:
 		if player.playerInfo.id == MainData.currentTrue:
@@ -93,3 +70,35 @@ func _on_player_info_set_rall():
 	game_board.onCommitclick()
 
 
+
+
+func _on_withfriend_pressed():
+	main_menu.hide()
+	
+	game_over.play("RESET")
+	game_board.BoardRender()
+	
+	if MainData.is_local_game:
+		if MainData.is_pvp:
+			MainData.players[0] = {
+				"id" : 0,
+				"name": 'Player01',
+			}
+			MainData.players[1] = {
+				"id" : 1,
+				"name": 'Player02'
+			}
+			
+			player_info_01.SetPlayerInfo(MainData.players[0])
+			players.append(player_info_01)
+			player_info_02.SetPlayerInfo(MainData.players[1])
+			players.append(player_info_02)
+		else:
+			pass
+	
+	timer.wait_time = 1
+	timer.start()
+	await timer.timeout
+	
+	SendPlayerTurn()
+	MainData.currentGameState = MainData.GameState.PLAY
