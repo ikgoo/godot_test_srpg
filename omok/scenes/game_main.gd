@@ -1,8 +1,8 @@
 extends Node2D
 # size : 720 * 1280
-@onready var game_board : GameBoard = $GameBoard
-@onready var player_info_01: PlayerInfo = $PlayerInfo01
-@onready var player_info_02: PlayerInfo = $PlayerInfo02
+@onready var game_board : GameBoard = $GamePlay/GameBoard
+@onready var player_info_01: PlayerInfo = $GamePlay/PlayerInfo01
+@onready var player_info_02: PlayerInfo = $GamePlay/PlayerInfo02
 @onready var timer: Timer = $Timer
 @onready var game_over = $Control/GameOver/GameOver
 @onready var main_menu = $Control/MainMenu
@@ -23,7 +23,7 @@ enum GameState {
 var players: Array = []
 
 func _ready():
-	
+	$GamePlay.hide()
 	TranslationServer.set_locale("kr")
 	main_menu.PlayMainMenu("show")
 	main_menu.show()
@@ -73,6 +73,7 @@ func _on_player_info_set_rall():
 
 
 func _on_withfriend_pressed():
+	$GamePlay.show()
 	main_menu.hide()
 	
 	game_over.play("RESET")

@@ -6,8 +6,8 @@ signal SetRall
 
 @onready var player_name = $PlayerName
 @onready var progress_bar = $ProgressBar
-@onready var profile_front = $Profile_Front
-@onready var rall = $Rall
+@onready var profile_front = $Profile/Profile_Front
+@onready var rall = $Profile/Rall
 @onready var button = $Button
 
 

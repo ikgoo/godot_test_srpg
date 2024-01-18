@@ -145,6 +145,7 @@ func onCommitclick():
 		var ypos = board_start_pos.position.y + (boardPosition[0] * base_size) + (base_size/2)
 		tmpRall.position = Vector2(xpos, ypos)
 		tmpRall.frame = MainData.currentTrue
+		tmpRall.animation_player.play("SET")
 		
 		if omok_rule.check_victory(boardPosition[0], boardPosition[1], MainData.currentTrue):		# 승리 체크
 			emit_signal("PlayerWin")
