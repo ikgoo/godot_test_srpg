@@ -12,11 +12,14 @@ config_version=5
 
 config/name="omok"
 run/main_scene="res://scenes/game_main.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Omok"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 
 [autoload]
 
 MainData="*res://autoload/main_data.gd"
+OptionData="*res://autoload/OptionData.gd"
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 Online="*res://addons/NakamaOnline/Online.gd"
 OnlineMatch="*res://addons/NakamaOnline/OnlineMatch.gd"
@@ -45,8 +48,9 @@ locale/translations=PackedStringArray("res://lang/OMOCKText.en.translation", "re
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="gl_compatibility"
+renderer/rendering_method="mobile"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 textures/default_filters/use_nearest_mipmap_filter=true
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true

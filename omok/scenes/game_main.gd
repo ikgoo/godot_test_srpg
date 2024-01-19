@@ -7,8 +7,10 @@ extends Node2D
 @onready var game_over = $Control/GameOver/GameOver
 @onready var main_menu = $Control/MainMenu
 
-var languageName = ["English", "Korea"]
-var languageCode = ["en", "kr"]
+@onready var animation_menu_move = $Control/MainMenu/NinePatchRect/MidArea/MenuArea/AnimationMenuMove
+
+
+
 
 var player01
 var player02
@@ -24,7 +26,6 @@ var players: Array = []
 
 func _ready():
 	$GamePlay.hide()
-	TranslationServer.set_locale("kr")
 	main_menu.PlayMainMenu("show")
 	main_menu.show()
 	

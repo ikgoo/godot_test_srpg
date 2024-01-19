@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmyhplf3jsokm"]
+[gd_scene load_steps=19 format=3 uid="uid://dmyhplf3jsokm"]
 
 [ext_resource type="Script" path="res://scenes/game_main.gd" id="1_3aori"]
 [ext_resource type="PackedScene" uid="uid://bye553xtn1cos" path="res://board/game_board.tscn" id="2_r4auc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://qfdcqsau4pfe" path="res://new_theme.tres" id="5_snakl"]
 [ext_resource type="Script" path="res://scenes/MainMenu.gd" id="6_bnotb"]
 [ext_resource type="Texture2D" uid="uid://dsaskhku12b4q" path="res://assets/rall.png" id="6_g8i6a"]
+[ext_resource type="Texture2D" uid="uid://cr7csrukvscxm" path="res://assets/Spritesheet_UI_Flat_Select_01.png" id="8_2kcwa"]
 
 [sub_resource type="Animation" id="Animation_ugmb1"]
 length = 0.001
@@ -189,6 +190,60 @@ tracks/1/keys = {
 _data = {
 "RESET": SubResource("Animation_duaqq"),
 "show": SubResource("Animation_r1j3g")
+}
+
+[sub_resource type="Animation" id="Animation_u6qu7"]
+resource_name = "ToOption"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoveArea:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-99.2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qfhhj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoveArea:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_f1r0r"]
+resource_name = "ToMain"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoveArea:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-99.2, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5tc5k"]
+_data = {
+"RESET": SubResource("Animation_qfhhj"),
+"ToMain": SubResource("Animation_f1r0r"),
+"ToOption": SubResource("Animation_u6qu7")
 }
 
 [node name="GameMain" type="Node2D"]
@@ -376,20 +431,8 @@ offset_bottom = 63.0413
 texture = ExtResource("6_g8i6a")
 region_rect = Rect2(32, 0, 32, 32)
 
-[node name="TopArea" type="NinePatchRect" parent="Control/MainMenu/NinePatchRect"]
-layout_mode = 0
-offset_left = 160.4
-offset_top = 28.8
-offset_right = 220.4
-offset_bottom = 88.8
-texture = ExtResource("4_ydhjg")
-region_rect = Rect2(82, 98, 29, 29)
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-
 [node name="MidArea" type="NinePatchRect" parent="Control/MainMenu/NinePatchRect"]
+clip_contents = true
 layout_mode = 0
 offset_left = 17.0
 offset_top = 71.6
@@ -402,19 +445,24 @@ patch_margin_top = 16
 patch_margin_right = 14
 patch_margin_bottom = 15
 
-[node name="ShowArea" type="NinePatchRect" parent="Control/MainMenu/NinePatchRect/MidArea"]
+[node name="MenuArea" type="NinePatchRect" parent="Control/MainMenu/NinePatchRect/MidArea"]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 105.0
 offset_bottom = 92.0
 
-[node name="MoveArea" type="Control" parent="Control/MainMenu/NinePatchRect/MidArea/ShowArea"]
+[node name="AnimationMenuMove" type="AnimationPlayer" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea"]
+libraries = {
+"": SubResource("AnimationLibrary_5tc5k")
+}
+
+[node name="MoveArea" type="Control" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Menu" type="VBoxContainer" parent="Control/MainMenu/NinePatchRect/MidArea/ShowArea/MoveArea"]
+[node name="Menu" type="VBoxContainer" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -427,28 +475,28 @@ grow_horizontal = 2
 scale = Vector2(0.5, 0.5)
 theme_override_constants/separation = 17
 
-[node name="WITHFRIEND" type="Button" parent="Control/MainMenu/NinePatchRect/MidArea/ShowArea/MoveArea/Menu"]
+[node name="WITHFRIEND" type="Button" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme = ExtResource("5_snakl")
 theme_override_font_sizes/font_size = 15
 text = "WITHFRIEND"
 
-[node name="AIBATTLE" type="Button" parent="Control/MainMenu/NinePatchRect/MidArea/ShowArea/MoveArea/Menu"]
+[node name="AIBATTLE" type="Button" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme = ExtResource("5_snakl")
 theme_override_font_sizes/font_size = 15
 text = "AIBATTLE"
 
-[node name="OPTION" type="Button" parent="Control/MainMenu/NinePatchRect/MidArea/ShowArea/MoveArea/Menu"]
+[node name="OPTION" type="Button" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme = ExtResource("5_snakl")
 theme_override_font_sizes/font_size = 15
 text = "OPTION"
 
-[node name="Option" type="VBoxContainer" parent="Control/MainMenu/NinePatchRect/MidArea/ShowArea/MoveArea"]
+[node name="Option" type="VBoxContainer" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -461,27 +509,52 @@ grow_horizontal = 2
 scale = Vector2(0.5, 0.5)
 theme_override_constants/separation = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MainMenu/NinePatchRect/MidArea/ShowArea/MoveArea/Option"]
+[node name="Music" type="HBoxContainer" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/Music"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "MUSIC"
+
+[node name="MusicHSlider" type="HSlider" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/Music"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme = ExtResource("5_snakl")
+max_value = 1.0
+step = 0.001
+
+[node name="SFX" type="HBoxContainer" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option"]
+layout_mode = 2
+theme_override_constants/separation = 36
+
+[node name="Label" type="Label" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/SFX"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXHSlider" type="HSlider" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/SFX"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme = ExtResource("5_snakl")
+max_value = 1.0
+step = 0.001
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option"]
 layout_mode = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Control/MainMenu/NinePatchRect/MidArea/ShowArea/MoveArea/Option/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_ydhjg")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MainMenu/NinePatchRect/MidArea/ShowArea/MoveArea/Option"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/MainMenu/NinePatchRect/MidArea/ShowArea/MoveArea/Option/HBoxContainer2"]
-custom_minimum_size = Vector2(70, 0)
+[node name="Label" type="Label" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/HBoxContainer2"]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "LANG"
 
-[node name="OptionButton" type="OptionButton" parent="Control/MainMenu/NinePatchRect/MidArea/ShowArea/MoveArea/Option/HBoxContainer2"]
-custom_minimum_size = Vector2(80, 0)
+[node name="OptionButton" type="OptionButton" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/HBoxContainer2"]
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 theme = ExtResource("5_snakl")
 
-[node name="BACK" type="Button" parent="Control/MainMenu/NinePatchRect/MidArea/ShowArea/MoveArea/Option"]
+[node name="BACK" type="Button" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option"]
 custom_minimum_size = Vector2(0, 20.36)
 layout_mode = 2
 theme = ExtResource("5_snakl")
@@ -489,6 +562,7 @@ theme_override_font_sizes/font_size = 15
 text = "BACK"
 
 [node name="BottomArea" type="NinePatchRect" parent="Control/MainMenu/NinePatchRect"]
+visible = false
 layout_mode = 0
 offset_left = 16.0
 offset_top = 174.0
@@ -528,7 +602,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/MainMenu/NinePatchRect/BottomArea/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-text = "LOST"
+text = "LOSE"
 
 [node name="Label2" type="Label" parent="Control/MainMenu/NinePatchRect/BottomArea/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(45, 0)
@@ -550,9 +624,21 @@ text = "PLAYOMOK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-804.5, 1043.13)
+scale = Vector2(5.79688, 5.79688)
+texture = ExtResource("8_2kcwa")
+
 [connection signal="BoardPieceClick" from="GamePlay/GameBoard" to="." method="_on_game_board_board_piece_click"]
 [connection signal="PlayerNextTurn" from="GamePlay/GameBoard" to="." method="_on_game_board_player_next_turn"]
 [connection signal="PlayerWin" from="GamePlay/GameBoard" to="." method="_on_game_board_player_win"]
 [connection signal="SetRall" from="GamePlay/PlayerInfo01" to="." method="_on_player_info_set_rall"]
 [connection signal="SetRall" from="GamePlay/PlayerInfo02" to="." method="_on_player_info_set_rall"]
-[connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/ShowArea/MoveArea/Menu/WITHFRIEND" to="." method="_on_withfriend_pressed"]
+[connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu/WITHFRIEND" to="." method="_on_withfriend_pressed"]
+[connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu/OPTION" to="Control/MainMenu" method="_on_option_pressed"]
+[connection signal="drag_ended" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/Music/MusicHSlider" to="Control/MainMenu" method="_on_music_h_slider_drag_ended"]
+[connection signal="value_changed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/Music/MusicHSlider" to="Control/MainMenu" method="_on_music_h_slider_value_changed"]
+[connection signal="drag_ended" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/SFX/SFXHSlider" to="Control/MainMenu" method="_on_sfxh_slider_drag_ended"]
+[connection signal="value_changed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/SFX/SFXHSlider" to="Control/MainMenu" method="_on_sfxh_slider_value_changed"]
+[connection signal="item_selected" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/HBoxContainer2/OptionButton" to="Control/MainMenu" method="_on_option_button_item_selected"]
+[connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/BACK" to="Control/MainMenu" method="_on_back_pressed"]

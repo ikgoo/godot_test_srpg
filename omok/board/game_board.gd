@@ -121,18 +121,17 @@ func onPieceClick(boardPosition):
 		
 # 착수 버튼 클릭시
 func onCommitclick():
-	ChanchInspacter(false)
 	if MainData.currentGameState == MainData.GameState.PLAY:
 		var boardPosition = currentInspacterPos
+
 		# 이미 돌이 있는 경우
 		if rallMap[boardPosition[0]][boardPosition[1]] != -1:
 			return
 		
-		## 규칙 위반 체크(쌍삼, 쌍사)
-		#var is_validity = check_validity(boardPosition[1], boardPosition[0], MainData.currentTrue, rallMap)
-		
+		ChanchInspacter(false)
+
+		# 바둑알 놓는 소리
 		var r = randi_range(0, ralldrops.size()-1)
-		
 		$AudioStreamPlayer.stream = ralldrops[r]
 		$AudioStreamPlayer.play()
 		
