@@ -1,8 +1,13 @@
 extends Node
 
 
-var is_local_game: bool = true
-var is_pvp: bool = true
+enum PLAYTYPE {
+	OFFLINE,
+	AI,
+	ONLINE,
+}
+var play_type = PLAYTYPE.OFFLINE
+
 var players = {}
 
 enum GameState {
@@ -15,3 +20,6 @@ enum GameState {
 var currentGameState: GameState = GameState.NONE
 
 var currentTrue = 0
+
+# 플레이어의 순번(온라인 게임의 경우)
+var online_my_id = 0

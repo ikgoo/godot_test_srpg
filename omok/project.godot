@@ -24,12 +24,18 @@ Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 Online="*res://addons/NakamaOnline/Online.gd"
 OnlineMatch="*res://addons/NakamaOnline/OnlineMatch.gd"
 
+[debug]
+
+multirun/number_of_windows=2
+multirun/add_custom_args=true
+multirun/window_args=["listen", "join"]
+
 [display]
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
-window/size/window_width_override=720
-window/size/window_height_override=1280
+window/size/window_width_override=360
+window/size/window_height_override=640
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 

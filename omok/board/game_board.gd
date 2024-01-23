@@ -73,6 +73,12 @@ var rallMap: Array = [
 	[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
 ]
 
+func _get_custom_rpc_methods():
+	return [
+		"NKM_Commitclick",
+		"PlayerTimeout",
+		"PlayerWin"
+	]
 func _ready():
 	ChanchInspacter(false)
 	inspacter.play()
@@ -104,7 +110,12 @@ func ChanchInspacter(b):
 
 # 좌표 클릭시
 func onPieceClick(boardPosition):
+	print('onPieceClick:' + str(MainData.currentTrue))
 	if MainData.currentGameState == MainData.GameState.PLAY:
+		if MainData.play_type == MainData.PLAYTYPE.ONLINE:
+			if MainData.currentTrue != MainData.online_my_id:
+				return
+			
 		# 금수 위치를 선택했는지 확인
 		for p in impossibleRall:
 			if p.x == boardPosition[0] and p.y == boardPosition[1]:
@@ -118,7 +129,10 @@ func onPieceClick(boardPosition):
 		currentInspacterPos = boardPosition
 		
 		emit_signal("BoardPieceClick")
-		
+
+func NKM_Commitclick(boardPosition, currentTrue):
+	Commitclick(boardPosition, currentTrue)
+	
 # 착수 버튼 클릭시
 func onCommitclick():
 	if MainData.currentGameState == MainData.GameState.PLAY:
@@ -127,7 +141,14 @@ func onCommitclick():
 		# 이미 돌이 있는 경우
 		if rallMap[boardPosition[0]][boardPosition[1]] != -1:
 			return
+			
+		if MainData.play_type == MainData.PLAYTYPE.ONLINE:
+			print("NKM_Commitclick : " + str(MainData.currentTrue))
+			OnlineMatch.custom_rpc_sync(self, "NKM_Commitclick", [boardPosition, MainData.currentTrue])
+		else:
+			Commitclick(boardPosition, MainData.currentTrue)
 		
+func Commitclick(boardPosition, currentTrue):
 		ChanchInspacter(false)
 
 		# 바둑알 놓는 소리
@@ -135,18 +156,18 @@ func onCommitclick():
 		$AudioStreamPlayer.stream = ralldrops[r]
 		$AudioStreamPlayer.play()
 		
-		
-		rallMap[boardPosition[0]][boardPosition[1]] = MainData.currentTrue
+		print('commitclick:' + str(currentTrue))
+		rallMap[boardPosition[0]][boardPosition[1]] = currentTrue
 
 		var tmpRall = TscnRall.instantiate()
 		$RallPos.add_child(tmpRall)
 		var xpos = board_start_pos.position.x + (boardPosition[1] * base_size) + (base_size/2)
 		var ypos = board_start_pos.position.y + (boardPosition[0] * base_size) + (base_size/2)
 		tmpRall.position = Vector2(xpos, ypos)
-		tmpRall.frame = MainData.currentTrue
+		tmpRall.frame = currentTrue
 		tmpRall.animation_player.play("SET")
 		
-		if omok_rule.check_victory(boardPosition[0], boardPosition[1], MainData.currentTrue):		# 승리 체크
+		if omok_rule.check_victory(boardPosition[0], boardPosition[1], currentTrue):		# 승리 체크
 			emit_signal("PlayerWin")
 		else:				# 다음턴
 			emit_signal("PlayerNextTurn")
@@ -165,7 +186,6 @@ func CheckRule():
 	# 금수 체크해서 노트에 표시
 	impossibleRall = omok_rule.find_forbidden_positions(MainData.currentTrue)
 	if impossibleRall.size() > 0:
-		print(impossibleRall)
 		for tmpBoardPos in impossibleRall:
 			var tmpRall = TscnRall.instantiate()
 			impossible_rall.add_child(tmpRall)

@@ -38,13 +38,24 @@ var tween : Tween
 var playerInfo
 
 func _ready():
+	if tween:
+		tween.kill()
+		
 	progress_bar.value = 0
 	progress_bar.max_value = maxValue
 
 func SetPlayerInfo(_playerInfo):
+	if tween:
+		tween.kill()
+	
 	playerInfo = _playerInfo
 	print(playerInfo['name'])
 	player_name.text = playerInfo['name']
+	
+	if MainData.play_type == MainData.PLAYTYPE.ONLINE and playerInfo['id'] == MainData.online_my_id:
+		var me = tr("ME")
+		player_name.text = player_name.text + "(" + me + ")"
+
 	rall.frame = playerInfo['id']
 	
 func timeOverATurnEnd():

@@ -14,3 +14,7 @@ MUSIC,Music,배경음
 WIN,Win,승리
 LOSE,Lost,패배
 BACK,Back,뒤로가기
+ME,Me,자신
+ONLINE,Online,온라인
+MATCHING,Matching,매칭중
+xxWIN,%s has won.,%s님의 승리입니다.

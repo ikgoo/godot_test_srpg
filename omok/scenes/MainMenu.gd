@@ -1,5 +1,7 @@
 extends Control
 
+var is_dev = true
+
 @onready var black_rall = $NinePatchRect/BlackRall
 @onready var white_rall = $NinePatchRect/WhiteRall
 @onready var animation_player = $AnimationPlayer
@@ -9,8 +11,18 @@ extends Control
 @onready var sfxh_slider = $NinePatchRect/MidArea/MenuArea/MoveArea/Option/SFX/SFXHSlider
 @onready var option_button = $NinePatchRect/MidArea/MenuArea/MoveArea/Option/HBoxContainer2/OptionButton
 
+@onready var text_edit = $NinePatchRect/TextEdit
 
+var session : NakamaSession
 func _ready():
+	if is_dev:
+		text_edit.show()
+	else:
+		text_edit.hide()
+		
+	text_edit.text = 'omoks_' + str(OS.get_process_id())
+
+	
 	for i in len(OptionData.languageName):
 		option_button.add_item(OptionData.languageName[i])
 		
@@ -21,6 +33,11 @@ func _ready():
 
 	OptionData.connect("change_audio_music", change_audio_music)
 	OptionData.connect("change_audio_sfx", change_audio_sfx)
+	
+
+
+func _process(delta):
+	pass
 
 func change_audio_music(audio_music):
 	music_h_slider.value = audio_music
@@ -65,3 +82,30 @@ func _on_option_button_item_selected(index):
 	TranslationServer.set_locale(OptionData.languageCode[index])
 	OptionData.SaveData()
 	
+
+func _on_login_pressed():
+	print(text_edit.text)
+	session = await Online.nakama_client.authenticate_device_async(text_edit.text, text_edit.text, true, { "test": "test" } )
+	if session.is_exception():
+		print(session.get_exception().message)
+		return
+	print(session)
+	Online.nakama_session = session
+	text_edit.hide()
+	$NinePatchRect/Login.hide()
+
+
+func _on_online_pressed():
+	$NinePatchRect/Matching.show()
+	if not Online.is_nakama_socket_connected():
+		Online.connect_nakama_socket()
+		await Online.socket_connected
+
+	print("looking for a Match....")
+	
+	var data = {
+		min_count = 2,
+		max_count = 2,
+	}
+	OnlineMatch.start_matchmaking(Online.nakama_socket, data)
+
