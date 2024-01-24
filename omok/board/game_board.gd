@@ -195,6 +195,14 @@ func CheckRule():
 			tmpRall.frame = 2
 	
 
+func ClearBoard():
+	for child in $RallPos.get_children():
+		$RallPos.remove_child(child)
+		child.queue_free()
+	
+	for x in range(len(rallMap)):
+		for y in range(len(rallMap[x])):
+			rallMap[x][y] = -1
 
 # ==============================================
 

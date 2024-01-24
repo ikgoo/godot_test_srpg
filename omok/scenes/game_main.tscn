@@ -440,7 +440,7 @@ layout_mode = 0
 offset_left = 17.0
 offset_top = 72.0
 offset_right = 127.0
-offset_bottom = 197.0
+offset_bottom = 224.0
 texture = ExtResource("4_ydhjg")
 region_rect = Rect2(2, 34, 44, 44)
 patch_margin_left = 15
@@ -454,7 +454,7 @@ layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 105.0
-offset_bottom = 118.0
+offset_bottom = 145.0
 
 [node name="AnimationMenuMove" type="AnimationPlayer" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea"]
 libraries = {
@@ -506,6 +506,13 @@ layout_mode = 2
 theme = ExtResource("5_snakl")
 theme_override_font_sizes/font_size = 15
 text = "OPTION"
+
+[node name="HELP" type="Button" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("5_snakl")
+theme_override_font_sizes/font_size = 15
+text = "HELP"
 
 [node name="Option" type="VBoxContainer" parent="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea"]
 layout_mode = 1
@@ -638,17 +645,17 @@ vertical_alignment = 1
 [node name="TextEdit" type="TextEdit" parent="Control/MainMenu/NinePatchRect"]
 layout_mode = 0
 offset_left = 3.4
-offset_top = 197.0
+offset_top = 219.2
 offset_right = 137.4
-offset_bottom = 216.0
+offset_bottom = 238.2
 theme_override_font_sizes/font_size = 9
 
 [node name="Login" type="Button" parent="Control/MainMenu/NinePatchRect"]
 layout_mode = 0
 offset_left = 34.0
-offset_top = 221.6
+offset_top = 232.6
 offset_right = 104.0
-offset_bottom = 242.6
+offset_bottom = 253.6
 theme_override_font_sizes/font_size = 9
 text = "login"
 
@@ -692,6 +699,7 @@ texture = ExtResource("8_2kcwa")
 [connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu/WITHFRIEND" to="." method="_on_withfriend_pressed"]
 [connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu/ONLINE" to="Control/MainMenu" method="_on_online_pressed"]
 [connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu/OPTION" to="Control/MainMenu" method="_on_option_pressed"]
+[connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu/HELP" to="Control/MainMenu" method="_on_option_pressed"]
 [connection signal="drag_ended" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/Music/MusicHSlider" to="Control/MainMenu" method="_on_music_h_slider_drag_ended"]
 [connection signal="value_changed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/Music/MusicHSlider" to="Control/MainMenu" method="_on_music_h_slider_value_changed"]
 [connection signal="drag_ended" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/SFX/SFXHSlider" to="Control/MainMenu" method="_on_sfxh_slider_drag_ended"]

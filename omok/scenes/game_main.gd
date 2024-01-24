@@ -1,4 +1,6 @@
 extends Node2D
+# https://www.youtube.com/watch?v=xigPAOl3v7I
+# https://www.youtube.com/watch?v=k60oT_8lyFw
 # size : 720 * 1280
 @onready var game_board : GameBoard = $GamePlay/GameBoard
 @onready var player_info_01: PlayerInfo = $GamePlay/PlayerInfo01
@@ -77,10 +79,13 @@ func _on_game_board_player_win():
 	for player in players:
 		player.GameOver()
 	
+	MainData.currentGameState = MainData.GameState.GAMEOVER
+	
 	print(str(MainData.currentTrue) + '님 승리' )
 	var tmpName = tr("xxWIN") % MainData.players[MainData.currentTrue].name
 	$Control/GameOver/NinePatchRect/Label.text = tmpName
 	game_over.play("open")
+
 
 # 다음 턴 처리
 func _on_game_board_player_next_turn():
@@ -210,7 +215,9 @@ func _on_go_main_pressed():
 	if MainData.play_type == MainData.PLAYTYPE.ONLINE:
 		OnlineMatch.leave()
 	
-	MainData.currentGameState = MainData.GameState.GAMEOVER
+	game_board.ChanchInspacter(false)
 	$GamePlay.hide()
 	main_menu.PlayMainMenu("show")
 	main_menu.show()
+	
+	game_board.ClearBoard()	
