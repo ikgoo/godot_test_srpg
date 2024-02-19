@@ -19,7 +19,7 @@ enum GameState {
 }
 var currentGameState: GameState = GameState.NONE
 
-var currentTrue = 0
+var currentTrue = 1
 
 # 플레이어의 순번(온라인 게임의 경우)
 var online_my_id = 0

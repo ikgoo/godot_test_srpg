@@ -308,10 +308,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -206.0
-offset_top = -30.0
-offset_right = -65.0
-offset_bottom = -8.0
+offset_left = 27.0
+offset_top = 3.0
+offset_right = 168.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
@@ -688,6 +688,8 @@ position = Vector2(-804.5, 1043.13)
 scale = Vector2(5.79688, 5.79688)
 texture = ExtResource("8_2kcwa")
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="BoardPieceClick" from="GamePlay/GameBoard" to="." method="_on_game_board_board_piece_click"]
 [connection signal="PlayerNextTurn" from="GamePlay/GameBoard" to="." method="_on_game_board_player_next_turn"]
 [connection signal="PlayerWin" from="GamePlay/GameBoard" to="." method="_on_game_board_player_win"]
@@ -697,6 +699,7 @@ texture = ExtResource("8_2kcwa")
 [connection signal="Timeout" from="GamePlay/PlayerInfo02" to="." method="_on_player_info_timeout"]
 [connection signal="pressed" from="Control/GameOver/NinePatchRect2/VBoxContainer/GoMain" to="." method="_on_go_main_pressed"]
 [connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu/WITHFRIEND" to="." method="_on_withfriend_pressed"]
+[connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu/AIBATTLE" to="." method="_on_aibattle_pressed"]
 [connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu/ONLINE" to="Control/MainMenu" method="_on_online_pressed"]
 [connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu/OPTION" to="Control/MainMenu" method="_on_option_pressed"]
 [connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Menu/HELP" to="Control/MainMenu" method="_on_option_pressed"]
