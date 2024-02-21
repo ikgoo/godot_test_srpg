@@ -308,10 +308,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -206.0
-offset_top = -30.0
-offset_right = -65.0
-offset_bottom = -8.0
+offset_left = 27.0
+offset_top = 3.0
+offset_right = 168.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
@@ -363,21 +363,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 21.38
-offset_top = 7.6
-offset_right = 21.38
-offset_bottom = 17.6
+offset_left = 20.0
+offset_top = 14.3333
+offset_right = 20.0
+offset_bottom = 0.333328
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
-
-[node name="Button" type="Button" parent="Control/GameOver/NinePatchRect2/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-theme = ExtResource("5_snakl")
-theme_override_font_sizes/font_size = 11
-text = "다시하기"
 
 [node name="GoMain" type="Button" parent="Control/GameOver/NinePatchRect2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
@@ -580,6 +572,7 @@ theme_override_font_sizes/font_size = 15
 text = "BACK"
 
 [node name="PopupGameRule" type="NinePatchRect" parent="Control/MainMenu/NinePatchRect"]
+visible = false
 layout_mode = 0
 offset_left = 31.0
 offset_top = 81.0
@@ -622,26 +615,24 @@ theme_override_constants/separation = 17
 layout_mode = 2
 text = "GAMERULE"
 
-[node name="OptionButton" type="OptionButton" parent="Control/MainMenu/NinePatchRect/PopupGameRule/MenuArea/MoveArea/Menu"]
+[node name="OptionGameRule" type="OptionButton" parent="Control/MainMenu/NinePatchRect/PopupGameRule/MenuArea/MoveArea/Menu"]
 layout_mode = 2
-item_count = 2
+item_count = 1
 selected = 0
 popup/item_0/text = "FREESTYLE"
 popup/item_0/id = 0
-popup/item_1/text = "RENJUSTYLE"
-popup/item_1/id = 1
 
 [node name="SctDoll" type="Label" parent="Control/MainMenu/NinePatchRect/PopupGameRule/MenuArea/MoveArea/Menu"]
 layout_mode = 2
 text = "SELECTDOLL"
 
-[node name="OptionButton2" type="OptionButton" parent="Control/MainMenu/NinePatchRect/PopupGameRule/MenuArea/MoveArea/Menu"]
+[node name="OptionDoll" type="OptionButton" parent="Control/MainMenu/NinePatchRect/PopupGameRule/MenuArea/MoveArea/Menu"]
 layout_mode = 2
 item_count = 2
 selected = 0
-popup/item_0/text = "WHILE"
+popup/item_0/text = "BLOCK"
 popup/item_0/id = 0
-popup/item_1/text = "BLOCK"
+popup/item_1/text = "WHILE"
 popup/item_1/id = 1
 
 [node name="BtnStart" type="Button" parent="Control/MainMenu/NinePatchRect/PopupGameRule/MenuArea/MoveArea/Menu"]
@@ -716,18 +707,18 @@ vertical_alignment = 1
 
 [node name="TextEdit" type="TextEdit" parent="Control/MainMenu/NinePatchRect"]
 layout_mode = 0
-offset_left = 3.4
-offset_top = 219.2
-offset_right = 137.4
-offset_bottom = 238.2
+offset_left = 229.4
+offset_top = 232.0
+offset_right = 363.4
+offset_bottom = 251.0
 theme_override_font_sizes/font_size = 9
 
 [node name="Login" type="Button" parent="Control/MainMenu/NinePatchRect"]
 layout_mode = 0
-offset_left = 34.0
-offset_top = 232.6
-offset_right = 104.0
-offset_bottom = 253.6
+offset_left = 260.0
+offset_top = 245.4
+offset_right = 330.0
+offset_bottom = 266.4
 theme_override_font_sizes/font_size = 9
 text = "login"
 
@@ -781,5 +772,6 @@ texture = ExtResource("8_2kcwa")
 [connection signal="value_changed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/SFX/SFXHSlider" to="Control/MainMenu" method="_on_sfxh_slider_value_changed"]
 [connection signal="item_selected" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/HBoxContainer2/OptionButton" to="Control/MainMenu" method="_on_option_button_item_selected"]
 [connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/BACK" to="Control/MainMenu" method="_on_back_pressed"]
-[connection signal="pressed" from="Control/MainMenu/NinePatchRect/PopupGameRule/MenuArea/MoveArea/Menu/BtnStart" to="." method="_on_withfriend_pressed"]
+[connection signal="pressed" from="Control/MainMenu/NinePatchRect/PopupGameRule/MenuArea/MoveArea/Menu/BtnStart" to="." method="OnAISelect"]
 [connection signal="pressed" from="Control/MainMenu/NinePatchRect/Login" to="Control/MainMenu" method="_on_login_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="OnHttpRequestCompleted"]

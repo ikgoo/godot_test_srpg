@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="omok"
-run/main_scene="res://scenes/game_main.tscn"
+run/main_scene="res://scenes/game_main_pc.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Omok"
 config/features=PackedStringArray("4.2", "GL Compatibility")
@@ -32,12 +32,13 @@ multirun/window_args=["listen", "join"]
 
 [display]
 
-window/size/viewport_width=720
-window/size/viewport_height=1280
-window/size/window_width_override=720
-window/size/window_height_override=1280
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
+window/handheld/orientation=1
 
 [input]
 

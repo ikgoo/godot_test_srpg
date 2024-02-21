@@ -150,6 +150,8 @@ func onCommitclick():
 		
 func Commitclick(boardPosition, currentTrue):
 		ChanchInspacter(false)
+		
+		omok_rule.rallMap = rallMap
 
 		# 바둑알 놓는 소리
 		var r = randi_range(0, ralldrops.size()-1)
@@ -164,7 +166,7 @@ func Commitclick(boardPosition, currentTrue):
 		var xpos = board_start_pos.position.x + (boardPosition[1] * base_size) + (base_size/2)
 		var ypos = board_start_pos.position.y + (boardPosition[0] * base_size) + (base_size/2)
 		tmpRall.position = Vector2(xpos, ypos)
-		tmpRall.frame = currentTrue
+		tmpRall.frame = 0 if currentTrue == 1 else 1
 		tmpRall.animation_player.play("SET")
 		
 		if omok_rule.check_victory(boardPosition[0], boardPosition[1], currentTrue):		# 승리 체크

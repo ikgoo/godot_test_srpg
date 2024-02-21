@@ -85,17 +85,26 @@ func _on_option_button_item_selected(index):
 
 func _on_login_pressed():
 	print(text_edit.text)
-	session = await Online.nakama_client.authenticate_device_async(text_edit.text, text_edit.text, true, { "test": "test" } )
-	if session.is_exception():
-		print(session.get_exception().message)
-		return
-	print(session)
-	Online.nakama_session = session
-	text_edit.hide()
-	$NinePatchRect/Login.hide()
+	if session == null:
+		session = await Online.nakama_client.authenticate_device_async(text_edit.text, text_edit.text, true, { "test": "test" } )
+		if session.is_exception():
+			print(session.get_exception().message)
+			return false
+		print(session)
+		Online.nakama_session = session
+		text_edit.hide()
+		$NinePatchRect/Login.hide()
+	
+	return true
 
 
 func _on_online_pressed():
+	var tt = await _on_login_pressed()
+	
+	if tt == false:
+		print('오류')
+		return 
+		
 	$NinePatchRect/Matching.show()
 	if not Online.is_nakama_socket_connected():
 		Online.connect_nakama_socket()

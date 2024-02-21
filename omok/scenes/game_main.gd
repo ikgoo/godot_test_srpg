@@ -12,6 +12,9 @@ extends Node2D
 @onready var animation_menu_move = $Control/MainMenu/NinePatchRect/MidArea/MenuArea/AnimationMenuMove
 @onready var http_request = $HTTPRequest
 
+@onready var popup_game_rule = $Control/MainMenu/NinePatchRect/PopupGameRule
+@onready var option_doll = $Control/MainMenu/NinePatchRect/PopupGameRule/MenuArea/MoveArea/Menu/OptionDoll
+
 
 var player01
 var player02
@@ -27,6 +30,8 @@ func _get_custom_rpc_methods():
 	
 func _ready():
 	$GamePlay.hide()
+	popup_game_rule.hide()
+	
 	main_menu.PlayMainMenu("show")
 	main_menu.show()
 	
@@ -36,6 +41,8 @@ func _ready():
 	OnlineMatch.connect("match_ready", MatchReady)
 	OnlineMatch.connect("match_not_rady", MatchNotReady)	
 	OnlineMatch.connect("matchmaker_matched", OnMatchFound)
+	
+	http_request.connect("request_completed", OnHttpRequestCompleted)
 	
 	game_board.BoardRender()
 	
@@ -62,6 +69,11 @@ func _on_withfriend_pressed():
 
 # ai 메뉴선택
 func _on_aibattle_pressed():
+	popup_game_rule.show()
+
+func OnAISelect():
+	popup_game_rule.hide()
+	
 	$GamePlay.show()
 	main_menu.hide()
 	
@@ -69,17 +81,29 @@ func _on_aibattle_pressed():
 	game_board.BoardRender()
 	
 	MainData.play_type = MainData.PLAYTYPE.AI
-	MainData.players[0] = {
-		"id" : 1,
-		"name": 'Player01',
-	}
-	MainData.players[1] = {
-		"id" : -1,
-		"name": 'Player02'
-	}
+	MainData.online_my_id = 1 if option_doll.selected == 0 else -1
+	if MainData.online_my_id == 1:
+		MainData.players[0] = {
+			"id" : -1,
+			"name": 'Player02',
+		}
+		MainData.players[1] = {
+			"id" : 1,
+			"name": 'Player01'
+		}
+	else:
+		MainData.players[0] = {
+			"id" : 1,
+			"name": 'Player01',
+		}
+		MainData.players[1] = {
+			"id" : -1,
+			"name": 'Player02'
+		}
+	
 	
 	StartGame()
-
+	
 # 온라인 게임 메치(접속 순서에 따른 랜덤 처리)
 func OnMatchFound(players):
 	if MainData.currentGameState != MainData.GameState.PLAY:
@@ -94,21 +118,64 @@ func OnMatchFound(players):
 		MainData.players = {}
 		
 		for player in players:
-			MainData.players[idx] = {
-				"id" : idx,
-				"name": players[player].username,
-			}
-
+			
+			#var player_num = 1 if idx == 0 else -1
+			var player_num = 1
 			if OnlineMatch.get_my_session_id() == player:
-				MainData.online_my_id = idx
-
+				MainData.online_my_id =  1 if idx == 0 else -1
+				
 			idx = idx + 1
 			
+		if MainData.online_my_id == 1:
+			MainData.players[0] = {
+				"id" : -1,
+				"name": 'Player02',
+			}
+			MainData.players[1] = {
+				"id" : 1,
+				"name": 'Player01'
+			}
+		else:
+			MainData.players[0] = {
+				"id" : 1,
+				"name": 'Player01',
+			}
+			MainData.players[1] = {
+				"id" : -1,
+				"name": 'Player02'
+			}
+		
+		#MainData.players[idx] = {
+			#"id" : player_num,
+			#"name": players[player].username,
+		#}
+
 		
 		StartGame()
 
 # 메뉴 선택 =================================================================
+
+func StartGame():
+	player_info_01.SetPlayerInfo(MainData.players[0])
+	player_info_02.SetPlayerInfo(MainData.players[1])
+	if players.size() == 0:
+		players.append(player_info_01)
+		players.append(player_info_02)
 	
+	timer.wait_time = 0.5
+	timer.start()
+	await timer.timeout
+	
+	MainData.currentGameState = MainData.GameState.PLAY
+	MainData.currentTrue = 1
+	
+	if MainData.play_type == MainData.PLAYTYPE.ONLINE:
+		if MainData.online_my_id == 1:
+			OnlineMatch.custom_rpc_sync(self, "NKM_PlayerTurn", [1])
+	else:
+		SendPlayerTurn()
+
+
 	
 func NKM_PlayerTurn(userTrun):
 	print('my_id:' + str(MainData.online_my_id) + ' / userTrun:' + str(userTrun))
@@ -116,6 +183,7 @@ func NKM_PlayerTurn(userTrun):
 	SendPlayerTurn()
 	
 func SendPlayerTurn():
+	var aiCall = false
 	for player in players:
 		if player.playerInfo.id == MainData.currentTrue:
 			player.is_myturn = true
@@ -124,9 +192,13 @@ func SendPlayerTurn():
 					player.button.disabled = true
 					player.button.show()
 			elif MainData.play_type == MainData.PLAYTYPE.AI:
-				if MainData.currentTrue == 1:
+				if MainData.currentTrue == MainData.online_my_id:
 					player.button.disabled = true
 					player.button.show()
+				else:
+					#game_board
+					aiCall = true
+				
 			else:
 				player.button.disabled = true
 				player.button.show()
@@ -137,6 +209,27 @@ func SendPlayerTurn():
 	
 	game_board.CheckRule()
 	print('MainData.currentTrue:' + str(MainData.currentTrue))
+	
+	if aiCall == true:
+		var data = { "data": game_board.rallMap }  # 예시 데이터
+		var json_data = JSON.stringify(data)
+		
+		var url = "http://gomoc.noligo.co.kr/gomocapi/"
+		#var url = "http://127.0.0.1:8000/gomocapi/"
+		var headers = ["Content-Type: application/json"]
+		http_request.request(url, headers, HTTPClient.METHOD_POST, json_data)
+		var response_data = await http_request.request_completed
+
+func OnHttpRequestCompleted(result, response_code, headers, body):
+	if(response_code == 200):
+		var response_text = body.get_string_from_utf8()
+		var result_data = JSON.parse_string(response_text).prediction
+		for r in range(19):
+			for c in range(19):
+				if(result_data[r][c] == 1 and game_board.rallMap[r][c] == 0):
+					print(r, c)
+					game_board.Commitclick([r, c], MainData.currentTrue)
+					return
 	
 
 func _process(delta):
@@ -151,10 +244,14 @@ func _on_game_board_player_win():
 	MainData.currentGameState = MainData.GameState.GAMEOVER
 	
 	var p_no = 0
-	if MainData.currentTrue == -1:
-		p_no = 1
-	else:
-		p_no = 0
+	for idx in range(len(MainData.players)):
+		if MainData.players[idx].id == MainData.currentTrue:
+			p_no = idx
+			
+	#if MainData.currentTrue == -1:
+		#p_no = 1
+	#else:
+		#p_no = 0
 	print(str(MainData.currentTrue) + '님 승리' )
 	var tmpName = tr("xxWIN") % MainData.players[p_no].name
 	$Control/GameOver/NinePatchRect/Label.text = tmpName
@@ -170,34 +267,13 @@ func GetNextTrue():
 # 다음 턴 처리
 func _on_game_board_player_next_turn():
 	if MainData.play_type == MainData.PLAYTYPE.ONLINE:
-		if MainData.online_my_id == 0:
+		if MainData.online_my_id == 1:
 			MainData.currentTrue = GetNextTrue()
 			OnlineMatch.custom_rpc_sync(self, "NKM_PlayerTurn", [MainData.currentTrue])
 	elif MainData.play_type == MainData.PLAYTYPE.AI:
 		MainData.currentTrue = GetNextTrue()
 		SendPlayerTurn()
 		
-		if MainData.currentTrue == 1:
-			pass
-		else:
-			#game_board
-			var data = { "data": game_board.rallMap }  # 예시 데이터
-			var json_data = JSON.stringify(data)
-			
-			var url = "http://gomoc.noligo.co.kr/gomocapi/"
-			#var url = "http://127.0.0.1:8000/gomocapi/"
-			var headers = ["Content-Type: application/json"]
-			http_request.request(url, headers, HTTPClient.METHOD_POST, json_data)
-			var response_data = await http_request.request_completed
-			if(response_data[1] == 200):
-				var response_text = response_data[3].get_string_from_utf8()
-				var result_data = JSON.parse_string(response_text).prediction
-				for r in range(19):
-					for c in range(19):
-						if(result_data[r][c] == 1 and game_board.rallMap[r][c] == 0):
-							print(r, c)
-							game_board.Commitclick([r, c], MainData.currentTrue)
-							return
 	else:
 		MainData.currentTrue = GetNextTrue()
 		SendPlayerTurn()
@@ -237,26 +313,6 @@ func MatchNotReady(player):
 	pass
 	
 
-func StartGame():
-	player_info_01.SetPlayerInfo(MainData.players[0])
-	player_info_02.SetPlayerInfo(MainData.players[1])
-	if players.size() == 0:
-		players.append(player_info_01)
-		players.append(player_info_02)
-	
-	timer.wait_time = 1
-	timer.start()
-	await timer.timeout
-	
-	MainData.currentGameState = MainData.GameState.PLAY
-	MainData.currentTrue = 1
-	
-	if MainData.play_type == MainData.PLAYTYPE.ONLINE:
-		if MainData.online_my_id == 0:
-			OnlineMatch.custom_rpc_sync(self, "NKM_PlayerTurn", [-1])
-	else:
-		SendPlayerTurn()
-
 
 func _on_player_info_timeout():
 	if MainData.play_type == MainData.PLAYTYPE.ONLINE:
@@ -282,6 +338,7 @@ func _on_go_main_pressed():
 	main_menu.show()
 	
 	game_board.ClearBoard()	
+
 
 
 

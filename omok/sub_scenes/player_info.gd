@@ -52,11 +52,11 @@ func SetPlayerInfo(_playerInfo):
 	print(playerInfo['name'])
 	player_name.text = playerInfo['name']
 	
-	if MainData.play_type == MainData.PLAYTYPE.ONLINE and playerInfo['id'] == MainData.online_my_id:
+	if (MainData.play_type == MainData.PLAYTYPE.ONLINE or MainData.play_type == MainData.PLAYTYPE.AI) and playerInfo['id'] == MainData.online_my_id:
 		var me = tr("ME")
 		player_name.text = player_name.text + "(" + me + ")"
 
-	rall.frame = playerInfo['id']
+	rall.frame = 0 if playerInfo['id'] == 1 else 1
 	
 func timeOverATurnEnd():
 	emit_signal("Timeout")
