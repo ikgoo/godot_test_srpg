@@ -341,4 +341,44 @@ func _on_go_main_pressed():
 
 
 
+# 끝내기
+func _on_exit_pressed():
+	get_tree().quit()	
+	pass # Replace with function body.
 
+# 메인으로 돌아가기
+func _on_btn_back_pressed():
+	$GamePlay.get_tree().paused = false
+	$Control/PopupGameExit.hide()
+
+	for player in players:
+		player.GameOver()
+
+	MainData.currentGameState = MainData.GameState.NONE
+	
+	_on_go_main_pressed()
+
+
+func _input(event):
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		if $Control/MainMenu/NinePatchRect/PopupGameRule.is_visible_in_tree() == true:
+			_on_btn_back_pressed()
+		elif MainData.currentGameState == MainData.GameState.PLAY:
+			if MainData.play_type != MainData.PLAYTYPE.ONLINE:
+				# 일지 정지
+				$Control/PopupGameExit.show()
+				$GamePlay.get_tree().paused = true
+			#
+
+
+# 안드로이드 뒤로가기 버튼 이벤트
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		if $Control/MainMenu/NinePatchRect/PopupGameRule.is_visible_in_tree() == true:
+			_on_btn_back_pressed()
+
+
+
+func _on_btn_gameplay_back_pressed():
+	$Control/PopupGameExit.hide()
+	$GamePlay.get_tree().paused = false

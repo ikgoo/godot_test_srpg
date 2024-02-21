@@ -99,9 +99,9 @@ func _on_login_pressed():
 
 
 func _on_online_pressed():
-	var tt = await _on_login_pressed()
+	var rtn = await _on_login_pressed()
 	
-	if tt == false:
+	if rtn == false:
 		print('오류')
 		return 
 		
@@ -117,4 +117,10 @@ func _on_online_pressed():
 		max_count = 2,
 	}
 	OnlineMatch.start_matchmaking(Online.nakama_socket, data)
+	
 
+
+# 매칭 취소
+func _on_button_pressed():
+	OnlineMatch.leave()
+	$NinePatchRect/Matching.hide()

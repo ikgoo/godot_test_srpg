@@ -18,3 +18,12 @@ ME,Me,자신
 ONLINE,Online,온라인
 MATCHING,Matching,매칭중
 xxWIN,%s has won.,%s님의 승리입니다.
+EXIT,Exit,끝내기
+GOMAIN,Go Main,메인으로
+RESUME,Resume,다시 시작
+GAMERULE,Game Rule,게임 방식
+FREESTYLE,Free Style,자유방식
+SELECTDOLL,Choose Color,돌 선택
+BLOCK,Block,흑돌
+WHILE,While,백돌
+BACK,Back,돌아가기

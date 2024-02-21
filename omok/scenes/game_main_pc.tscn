@@ -572,11 +572,12 @@ theme_override_font_sizes/font_size = 15
 text = "BACK"
 
 [node name="PopupGameRule" type="NinePatchRect" parent="Control/MainMenu/NinePatchRect"]
+visible = false
 layout_mode = 0
 offset_left = 85.0
-offset_top = 31.2
+offset_top = 27.2
 offset_right = 167.0
-offset_bottom = 138.2
+offset_bottom = 139.2
 texture = ExtResource("4_eymh2")
 region_rect = Rect2(2, 34, 44, 44)
 patch_margin_left = 15
@@ -587,10 +588,10 @@ patch_margin_bottom = 15
 [node name="MenuArea" type="NinePatchRect" parent="Control/MainMenu/NinePatchRect/PopupGameRule"]
 clip_contents = true
 layout_mode = 0
-offset_left = 5.0
-offset_top = 9.0
-offset_right = 75.0
-offset_bottom = 125.0
+offset_left = 5.6
+offset_top = 2.40002
+offset_right = 75.6
+offset_bottom = 118.4
 
 [node name="MoveArea" type="Control" parent="Control/MainMenu/NinePatchRect/PopupGameRule/MenuArea"]
 anchors_preset = 0
@@ -640,6 +641,13 @@ layout_mode = 2
 theme = ExtResource("5_rhjft")
 theme_override_font_sizes/font_size = 15
 text = "START"
+
+[node name="BtnBack" type="Button" parent="Control/MainMenu/NinePatchRect/PopupGameRule/MenuArea/MoveArea/Menu"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("5_rhjft")
+theme_override_font_sizes/font_size = 15
+text = "BACK"
 
 [node name="BottomArea" type="NinePatchRect" parent="Control/MainMenu/NinePatchRect"]
 visible = false
@@ -772,4 +780,5 @@ texture = ExtResource("8_xbwaq")
 [connection signal="item_selected" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/HBoxContainer2/OptionButton" to="Control/MainMenu" method="_on_option_button_item_selected"]
 [connection signal="pressed" from="Control/MainMenu/NinePatchRect/MidArea/MenuArea/MoveArea/Option/BACK" to="Control/MainMenu" method="_on_back_pressed"]
 [connection signal="pressed" from="Control/MainMenu/NinePatchRect/PopupGameRule/MenuArea/MoveArea/Menu/BtnStart" to="." method="OnAISelect"]
+[connection signal="pressed" from="Control/MainMenu/NinePatchRect/PopupGameRule/MenuArea/MoveArea/Menu/BtnBack" to="." method="_on_btn_back_pressed"]
 [connection signal="pressed" from="Control/MainMenu/NinePatchRect/Login" to="Control/MainMenu" method="_on_login_pressed"]
