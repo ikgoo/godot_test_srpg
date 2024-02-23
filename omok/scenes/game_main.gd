@@ -223,7 +223,8 @@ func SendPlayerTurn():
 func OnHttpRequestCompleted(result, response_code, headers, body):
 	if(response_code == 200):
 		var response_text = body.get_string_from_utf8()
-		var result_data = JSON.parse_string(response_text).prediction
+		var result_json = JSON.parse_string(response_text)
+		var result_data = result_json.prediction
 		for r in range(19):
 			for c in range(19):
 				if(result_data[r][c] == 1 and game_board.rallMap[r][c] == 0):
