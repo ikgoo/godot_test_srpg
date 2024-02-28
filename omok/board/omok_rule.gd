@@ -54,9 +54,12 @@ func count_open_sequences(x, y, player, sequence_length):
 var dirs = [Vector2(1,0), Vector2(0,1), Vector2(1, 1), Vector2(1, -1)]
 
 # 진행 방향과 역방향 합 계산 함수
-# count_dol(돌수), count_space(공백수), count_colse(끝에 다른 플레이어나 보드 끝의 수)
+# count_dol(돌수), count_space(공백수), count_colse(끝에 다른 플레이어나 보드 끝의 수), x, y
 func count_stones_with_one_space(x, y, player):
-	var counts = []
+	var counts_2 = []
+	var counts_3 = []
+	var counts_5 = []
+	
 	var count_dol
 	var count_space
 	var count_colse
@@ -79,7 +82,7 @@ func count_stones_with_one_space(x, y, player):
 				if is_in_bounds(dx, dy):		# 보드에서 벗어낫는지 체크
 					if is_empty_or_border(dx, dy):		# 공백의 경우 처리
 						# 한칸 진행을 더해서 같은 player돌인경우 space++, 한개만 인정
-						if rallMap[dx+i][dy+i] == player and count_space == 0:	
+						if is_in_bounds(dx+mdx, dy+mdy) and rallMap[dx+mdx][dy+mdy] == player and count_space == 0:	
 							count_space = count_space + 1
 							
 						# 한칸 진행을 했어도 공백이면 pass
@@ -99,13 +102,35 @@ func count_stones_with_one_space(x, y, player):
 					count_colse = count_colse + 1
 					break
 		
-		counts.append({
-			'count_dol': count_dol,
-			'count_space': count_space,
-			'count_colse': count_colse,
-		})	
+		if count_dol > 1:
+			counts_2
+			if count_dol == 2 and count_colse == 0:	#3.3용
+				counts_2.append({
+					'count_dol': count_dol,
+					'count_space': count_space,
+					'count_colse': count_colse,
+				})
+			elif count_dol == 3 and count_colse < 2:	# 4.4용
+				counts_3.append({
+					'count_dol': count_dol,
+					'count_space': count_space,
+					'count_colse': count_colse,
+				})
+			elif count_dol >= 5: # 6이상
+				counts_5.append({
+					'count_dol': count_dol,
+					'count_space': count_space,
+					'count_colse': count_colse,
+				})
 		
-	return counts
+	if len(counts_5) > 0:
+		return 2
+	elif len(counts_3) > 1:
+		return 1
+	elif len(counts_2) > 1:
+		return 0
+	else:
+		return null
 
 func is_open_sequence(x, y, dir, player, sequence_length):
 	var open_start = is_empty_or_border(x - dir.x, y - dir.y)
@@ -170,14 +195,17 @@ func find_forbidden_positions(player) -> Array:
 	var forbidden_positions = []
 	for x in range(BOARD_SIZE):
 		for y in range(BOARD_SIZE):
-			var test = count_stones_with_one_space(x, y, player)
-			print(test)
-			if rallMap[x][y] == -1 and (check_three_three(x, y, player) or check_four_four(x, y, player)):
-				forbidden_positions.append(Vector2(x, y))
-			if rallMap[x][y] == player:
-				var xy : Array = check_overline(x, y, player)
-				if xy.size() != 0:
-					forbidden_positions.append(Vector2(xy[0], xy[1]))
+			var test_datas = count_stones_with_one_space(x, y, player)
+			if test_datas != null:
+				var tmp = Vector3(x, y, test_datas)
+				forbidden_positions.append(tmp)
+				
+			#if rallMap[x][y] == -1 and (check_three_three(x, y, player) or check_four_four(x, y, player)):
+				#forbidden_positions.append(Vector2(x, y))
+			#if rallMap[x][y] == player:
+				#var xy : Array = check_overline(x, y, player)
+				#if xy.size() != 0:
+					#forbidden_positions.append(Vector2(xy[0], xy[1]))
 
 	return forbidden_positions
 

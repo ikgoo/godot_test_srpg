@@ -186,15 +186,18 @@ func CheckRule():
 	# 기존에 금수 표현한 노트 제거
 	
 	# 금수 체크해서 노트에 표시
-	impossibleRall = omok_rule.find_forbidden_positions(MainData.currentTrue)
-	if impossibleRall.size() > 0:
-		for tmpBoardPos in impossibleRall:
-			var tmpRall = TscnRall.instantiate()
-			impossible_rall.add_child(tmpRall)
-			var xpos = board_start_pos.position.x + (tmpBoardPos[1] * base_size) + (base_size/2)
-			var ypos = board_start_pos.position.y + (tmpBoardPos[0] * base_size) + (base_size/2)
-			tmpRall.position = Vector2(xpos, ypos)
-			tmpRall.frame = 2
+	if MainData.currentTrue == 1:
+		impossibleRall = omok_rule.find_forbidden_positions(MainData.currentTrue)
+		if impossibleRall.size() > 0:
+			for tmpBoardPos in impossibleRall:
+				var tmpRall = TscnRall.instantiate()
+				impossible_rall.add_child(tmpRall)
+				var xpos = board_start_pos.position.x + (tmpBoardPos[1] * base_size) + (base_size/2)
+				var ypos = board_start_pos.position.y + (tmpBoardPos[0] * base_size) + (base_size/2)
+				tmpRall.animation_player.play("IM")
+				tmpRall.position = Vector2(xpos, ypos)
+				
+				tmpRall.frame = tmpBoardPos[2]+2
 	
 
 func ClearBoard():

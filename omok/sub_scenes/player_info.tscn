@@ -38,7 +38,7 @@ region_rect = Rect2(28, 14, 0, 0)
 position = Vector2(76, 61)
 scale = Vector2(1.875, 1.875)
 texture = ExtResource("3_72g4p")
-hframes = 3
+hframes = 6
 
 [node name="Profile_Front" type="Sprite2D" parent="Profile"]
 position = Vector2(78, 64)
