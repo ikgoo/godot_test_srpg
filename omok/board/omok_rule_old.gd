@@ -53,8 +53,8 @@ func count_open_sequences(x, y, player, sequence_length):
 # 방향
 var dirs = [Vector2(1,0), Vector2(0,1), Vector2(1, 1), Vector2(1, -1)]
 
-# 진행 방향과 역방향 합 계산 함수
-# count_dol(돌수), count_space(공백수), count_colse(끝에 다른 플레이어나 보드 끝의 수)
+# 진행 방향과 역방향 합하여 돌수, 스페이스수, close[끝에 다른 플레이 돌]수
+# count_dol, count_space, count_colse
 func count_stones_with_one_space(x, y, player):
 	var counts = []
 	var count_dol
@@ -62,19 +62,17 @@ func count_stones_with_one_space(x, y, player):
 	var count_colse
 	var dx
 	var dy
-	for dir in dirs:
+	for d in dirs:
 		count_dol = 0
 		count_space = 0
 		count_colse = 0
 		for i in range(2):
-			var d = 1 if i == 0 else -1		# 0인 경우는 무시됨(역방향을 위함)
-			var mdx = (dir.x * d)
-			var mdy = (dir.y * d)
+			i = i * -1		# 0인 경우는 무시됨(역방향을 위함)
 			dx = x
 			dy = y
 			while true:
-				dx = dx + mdx
-				dy = dy + mdy
+				dx = dx + i
+				dy = dy + i
 				
 				if is_in_bounds(dx, dy):		# 보드에서 벗어낫는지 체크
 					if is_empty_or_border(dx, dy):		# 공백의 경우 처리
@@ -83,7 +81,7 @@ func count_stones_with_one_space(x, y, player):
 							count_space = count_space + 1
 							
 						# 한칸 진행을 했어도 공백이면 pass
-						elif is_empty_or_border(dx+mdx, dy+mdy):
+						elif is_empty_or_border(dx+1, dy+1):
 							break
 					
 					# 같은 플레이어면 진행
@@ -98,14 +96,16 @@ func count_stones_with_one_space(x, y, player):
 				else:	# 보드를 벗어나면 close 카운팅 후 pass
 					count_colse = count_colse + 1
 					break
+						
+				pass
 		
 		counts.append({
-			'count_dol': count_dol,
-			'count_space': count_space,
-			'count_colse': count_colse,
+			count_dol: count_dol,
+			count_space: count_space,
+			count_colse: count_colse,
 		})	
-		
-	return counts
+		pass
+	pass
 
 func is_open_sequence(x, y, dir, player, sequence_length):
 	var open_start = is_empty_or_border(x - dir.x, y - dir.y)
@@ -170,8 +170,6 @@ func find_forbidden_positions(player) -> Array:
 	var forbidden_positions = []
 	for x in range(BOARD_SIZE):
 		for y in range(BOARD_SIZE):
-			var test = count_stones_with_one_space(x, y, player)
-			print(test)
 			if rallMap[x][y] == -1 and (check_three_three(x, y, player) or check_four_four(x, y, player)):
 				forbidden_positions.append(Vector2(x, y))
 			if rallMap[x][y] == player:
