@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://buki7w5qduyex"]
+
+[ext_resource type="PackedScene" uid="uid://bq2vd845v6gys" path="res://character_body_2d.tscn" id="1_rpq3d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3yv61"]
+size = Vector2(1139, 52)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nv1hv"]
+
+[node name="mainscene" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_rpq3d")]
+position = Vector2(146, 96)
+collision_mask = 4
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(565.5, 218)
+shape = SubResource("RectangleShape2D_3yv61")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+position = Vector2(570.5, 218.125)
+scale = Vector2(1145, 51.75)
+mesh = SubResource("BoxMesh_nv1hv")

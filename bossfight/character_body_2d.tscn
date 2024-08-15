@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq2vd845v6gys"]
+
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_6i62b"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_qo5f7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8w2g2"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_6i62b")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(-2.38419e-07, 1.13249e-06)
+scale = Vector2(20.0227, 20)
+mesh = SubResource("SphereMesh_qo5f7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8w2g2")
+
+[node name="dashtimer" type="Timer" parent="."]
+wait_time = 0.15
+autostart = true
+
+[connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]
