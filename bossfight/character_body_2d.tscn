@@ -1,24 +1,144 @@
-[gd_scene load_steps=4 format=3 uid="uid://bq2vd845v6gys"]
+[gd_scene load_steps=11 format=3 uid="uid://bq2vd845v6gys"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_6i62b"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_qo5f7"]
+[ext_resource type="Texture2D" uid="uid://cdnmaai4a5f8p" path="res://ase24.png" id="2_jukim"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8w2g2"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvedi"]
+size = Vector2(5, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwxdr"]
+size = Vector2(5, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uc76e"]
+size = Vector2(17, 12)
+
+[sub_resource type="Animation" id="Animation_livk0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D4:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sjwr6"]
+resource_name = "l_attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_4x2xm"]
+resource_name = "r_attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D4:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ry672"]
+_data = {
+"RESET": SubResource("Animation_livk0"),
+"l_attack": SubResource("Animation_sjwr6"),
+"r_attack": SubResource("Animation_4x2xm")
+}
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_6i62b")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(-2.38419e-07, 1.13249e-06)
-scale = Vector2(20.0227, 20)
-mesh = SubResource("SphereMesh_qo5f7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8w2g2")
 
 [node name="dashtimer" type="Timer" parent="."]
-wait_time = 0.15
-autostart = true
+wait_time = 0.01
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-8.5, 0)
+shape = SubResource("RectangleShape2D_kvedi")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(8.5, 0)
+shape = SubResource("RectangleShape2D_wwxdr")
+
+[node name="Area2D3" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(14.5, 0)
+shape = SubResource("RectangleShape2D_uc76e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ry672")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -3.8147e-06)
+scale = Vector2(1.625, 0.7)
+texture = ExtResource("2_jukim")
+
+[node name="Area2D4" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D4"]
+position = Vector2(-14.5, 0)
+shape = SubResource("RectangleShape2D_uc76e")
 
 [connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
+[connection signal="area_exited" from="Area2D2" to="." method="_on_area_2d_2_area_exited"]
+[connection signal="area_entered" from="Area2D3" to="." method="_on_area_2d_3_area_entered"]
+[connection signal="area_entered" from="Area2D4" to="." method="_on_area_2d_3_area_entered"]

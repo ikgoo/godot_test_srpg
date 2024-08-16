@@ -1,14 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://crpla416icroo"]
 
 [ext_resource type="Script" path="res://dashghost.gd" id="1_bfrao"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_gwsr7"]
+[ext_resource type="Texture2D" uid="uid://cdnmaai4a5f8p" path="res://ase24.png" id="2_ocxoh"]
 
 [node name="dashghost" type="Node2D"]
+show_behind_parent = true
 script = ExtResource("1_bfrao")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-modulate = Color(0.585062, 0.585062, 0.585062, 1)
-position = Vector2(-2.38419e-07, 1.13249e-06)
-scale = Vector2(20.0227, 20)
-mesh = SubResource("SphereMesh_gwsr7")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_ocxoh")
