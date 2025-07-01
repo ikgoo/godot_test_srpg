@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1v7dbngqypmj"]
+
+[ext_resource type="Script" path="res://potal.gd" id="1_ruvnj"]
+[ext_resource type="PackedScene" uid="uid://bomby8yl22yle" path="res://screen_change.tscn" id="2_xxs4l"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_m6wwq"]
+radius = 1.0
+height = 4.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_s3jrv"]
+radius = 0.8
+height = 3.2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lu580"]
+height = 40.0
+
+[node name="potal" type="Node2D"]
+scale = Vector2(120, 120)
+script = ExtResource("1_ruvnj")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0, 0.437082, 0.645343, 1)
+mesh = SubResource("CapsuleMesh_m6wwq")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
+modulate = Color(0.708347, 0.87774, 1, 1)
+mesh = SubResource("CapsuleMesh_s3jrv")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.1, 0.1)
+shape = SubResource("CapsuleShape2D_lu580")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="screen_change" parent="CanvasLayer" instance=ExtResource("2_xxs4l")]
+scale = Vector2(120, 120)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="callscreen" from="CanvasLayer/screen_change" to="." method="change"]
+
+[editable path="CanvasLayer/screen_change"]

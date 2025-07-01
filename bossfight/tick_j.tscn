@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://djegm3iluwwm7"]
+
+[ext_resource type="AudioStream" uid="uid://uv4ghudccyxx" path="res://drum.wav" id="1_2tj3o"]
+[ext_resource type="Script" path="res://tick_j.gd" id="2_5xlrb"]
+
+[node name="tick_j" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_2tj3o")
+volume_db = 10.0
+script = ExtResource("2_5xlrb")

@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://pogf1f678dru"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p5toq"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(0, 0, 0)
+velocity_pivot = Vector3(1, 0, 0)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 164.88
+scale_over_velocity_min = 484.5
+scale_over_velocity_max = 484.5
+hue_variation_min = -0.37
+hue_variation_max = 0.12
+anim_speed_min = 12.0
+anim_speed_max = 12.0
+anim_offset_min = 0.5958
+anim_offset_max = 0.5958
+
+[node name="hurt" type="GPUParticles2D"]
+modulate = Color(0, 0.666667, 0, 0.643137)
+self_modulate = Color(0.196078, 0.607843, 0.113725, 0.701961)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_p5toq")
+preprocess = 2.0
+fixed_fps = 0
+interpolate = false
+interp_to_end = 1.0

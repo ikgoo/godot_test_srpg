@@ -1,0 +1,121 @@
+[gd_scene load_steps=11 format=3 uid="uid://pmut6505i1i0"]
+
+[ext_resource type="Script" path="res://sniper.gd" id="1_pcvxt"]
+[ext_resource type="Texture2D" uid="uid://cpnwkr78068ea" path="res://icon.svg" id="2_ycy7t"]
+[ext_resource type="Texture2D" uid="uid://ds8pd02eennp8" path="res://화면 캡처 2024-09-18 145204.png" id="3_fkck3"]
+[ext_resource type="AudioStream" uid="uid://drwx0rlk8re5f" path="res://MP_Gun Loaded Cocked And Shot_[cut_1sec].mp3" id="4_mbikd"]
+[ext_resource type="Texture2D" uid="uid://vbhsfcb4bo71" path="res://select.png" id="5_3tru6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5yp8x"]
+radius = 280.0
+
+[sub_resource type="Animation" id="Animation_24s2o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pt2y6"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 15.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nlhnc"]
+_data = {
+"RESET": SubResource("Animation_24s2o"),
+"attack": SubResource("Animation_pt2y6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fps3j"]
+size = Vector2(180, 180)
+
+[node name="cutty_sniper" type="Node2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_pcvxt")
+m_name = "mob"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ycy7t")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5yp8x")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(1000, 0)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = 1
+points = PackedVector2Array(0, 0, 1000, 1000)
+width = 0.0
+default_color = Color(1, 0, 0, 1)
+texture_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Line2D"]
+libraries = {
+"": SubResource("AnimationLibrary_nlhnc")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 0.5
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1.5, -3.33786e-06)
+scale = Vector2(4.75, 4.7)
+
+[node name="Line2D2" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 1000, 1000)
+width = 15.0
+default_color = Color(0.976471, 1, 1, 1)
+texture = ExtResource("3_fkck3")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mbikd")
+
+[node name="c_attack_m" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="c_attack_m"]
+light_mask = 2048
+visibility_layer = 32
+position = Vector2(-6.09159e-06, -2.75969e-06)
+shape = SubResource("RectangleShape2D_fps3j")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+z_index = 2
+texture_filter = 1
+scale = Vector2(9, 9)
+texture = ExtResource("5_3tru6")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="c_attack_m" to="." method="_on_c_attack_m_area_entered"]
+[connection signal="area_exited" from="c_attack_m" to="." method="_on_c_attack_m_area_exited"]

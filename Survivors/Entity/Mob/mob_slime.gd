@@ -1,3 +1,1 @@
 extends Class_Mob
-
-

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://drmj5rjiwkat8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ukmfi"]
+font_size = 200
+
+[node name="Label" type="Label"]
+anchors_preset = -1
+anchor_bottom = 0.171
+offset_left = -42.0
+offset_top = 149.0
+offset_right = 8920.0
+offset_bottom = 1400.19
+text = "game overrrrrrrrrr"
+label_settings = SubResource("LabelSettings_ukmfi")

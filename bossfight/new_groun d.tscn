@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://cg8oegqcvfoyn"]
+
+[ext_resource type="PackedScene" uid="uid://b1v7dbngqypmj" path="res://potal.tscn" id="1_2l36b"]
+[ext_resource type="PackedScene" uid="uid://bq2vd845v6gys" path="res://player.tscn" id="2_ds2xe"]
+[ext_resource type="PackedScene" uid="uid://b6juvwiv3c0ao" path="res://control.tscn" id="3_gyp1i"]
+[ext_resource type="PackedScene" uid="uid://bk48hqk00uxlu" path="res://tile_map.tscn" id="4_w226r"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="5_ys0e3"]
+[ext_resource type="Texture2D" uid="uid://hthyqoulhyyh" path="res://mystical-forest-background (1).png" id="6_eetwr"]
+
+[sub_resource type="Animation" id="Animation_ltfdg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+
+[sub_resource type="Animation" id="Animation_0kmyh"]
+resource_name = "shake"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(0.297, 0.297), Vector2(0.305, 0.305), Vector2(0.3, 0.3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_apomp"]
+_data = {
+"RESET": SubResource("Animation_ltfdg"),
+"shake": SubResource("Animation_0kmyh")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="potal" parent="." instance=ExtResource("1_2l36b")]
+z_index = 1
+position = Vector2(6904, -1276)
+
+[node name="player" parent="." instance=ExtResource("2_ds2xe")]
+position = Vector2(-1282, -33)
+scale = Vector2(10, 10)
+collision_mask = 256
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control2" parent="CanvasLayer" instance=ExtResource("3_gyp1i")]
+metadata/_edit_use_anchors_ = true
+
+[node name="TileMap" parent="." instance=ExtResource("4_w226r")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-167, -400)
+scale = Vector2(40, 40)
+zoom = Vector2(0.3, 0.3)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+rotation_smoothing_enabled = true
+script = ExtResource("5_ys0e3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+libraries = {
+"": SubResource("AnimationLibrary_apomp")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+self_modulate = Color(0.47788, 0.47788, 0.47788, 1)
+z_index = -5
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_eetwr")

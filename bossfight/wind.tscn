@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://owngde14u6i8"]
+
+[ext_resource type="Script" path="res://wind.gd" id="1_ci8qy"]
+
+[sub_resource type="Curve" id="Curve_cbm6w"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.497449, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_oqtfd"]
+curve = SubResource("Curve_cbm6w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0hiuv"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(80, 40, 1)
+gravity = Vector3(-3500, 0, 0)
+linear_accel_min = 12.43
+linear_accel_max = 36.73
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+scale_min = 25.0
+scale_max = 25.0
+scale_curve = SubResource("CurveTexture_oqtfd")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dobti"]
+size = Vector2(253.6, 149.16)
+
+[node name="wind" type="Node2D"]
+scale = Vector2(10, 10)
+script = ExtResource("1_ci8qy")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+scale = Vector2(5, 5)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_0hiuv")
+lifetime = 1.5
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.599988, -19.3)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_dobti")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

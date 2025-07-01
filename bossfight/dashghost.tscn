@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://crpla416icroo"]
 
 [ext_resource type="Script" path="res://dashghost.gd" id="1_bfrao"]
-[ext_resource type="Texture2D" uid="uid://cdnmaai4a5f8p" path="res://ase24.png" id="2_ocxoh"]
+[ext_resource type="Texture2D" uid="uid://bxohj5gfmxtnr" path="res://KakaoTalk_20240903_193253945.png" id="2_uchns"]
 
 [node name="dashghost" type="Node2D"]
 show_behind_parent = true
@@ -9,4 +9,7 @@ script = ExtResource("1_bfrao")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_ocxoh")
+texture = ExtResource("2_uchns")
+hframes = 7
+vframes = 11
+frame = 11

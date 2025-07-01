@@ -1,0 +1,118 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8gmoj2b6v703"]
+
+[ext_resource type="Script" path="res://fire.gd" id="1_2rq6h"]
+[ext_resource type="Texture2D" uid="uid://htfu75kwp1hm" path="res://Red Effect Bullet Impact Explosion 32x32.png" id="2_ugsnh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45lv5"]
+size = Vector2(300, 200)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bi7ce"]
+radius = 8.74228e-08
+height = 3.49691e-07
+
+[sub_resource type="Animation" id="Animation_ltcs8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [131]
+}
+
+[sub_resource type="Animation" id="Animation_c7wk2"]
+resource_name = "attack"
+length = 0.5
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [156, 157, 158, 159]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qsrnj"]
+_data = {
+"RESET": SubResource("Animation_ltcs8"),
+"attack": SubResource("Animation_c7wk2")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(161, 180)
+rotation = -0.689187
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_2rq6h")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(0.1, 0.1)
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.35854, -14.0767)
+shape = SubResource("RectangleShape2D_45lv5")
+
+[node name="Area2D2" type="Area2D" parent="."]
+scale = Vector2(0.1, 0.1)
+collision_layer = 32
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-1.35854, -14.0767)
+shape = SubResource("RectangleShape2D_45lv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.135854, -1.40767)
+shape = SubResource("CapsuleShape2D_bi7ce")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qsrnj")
+}
+
+[node name="Area2D3" type="Area2D" parent="."]
+scale = Vector2(0.1, 0.1)
+collision_layer = 32
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(-1.35854, -14.0767)
+shape = SubResource("RectangleShape2D_45lv5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1.54353, -1.27182)
+rotation = -1.5708
+texture = ExtResource("2_ugsnh")
+hframes = 20
+vframes = 16
+frame = 131
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
+[connection signal="area_entered" from="Area2D3" to="." method="_on_area_2d_3_area_entered"]

@@ -1,0 +1,137 @@
+[gd_scene load_steps=13 format=3 uid="uid://cqqxw686782ns"]
+
+[ext_resource type="PackedScene" uid="uid://dom7jfryb2w21" path="res://boss_tile.tscn" id="1_q1ebn"]
+[ext_resource type="PackedScene" uid="uid://bq2vd845v6gys" path="res://player.tscn" id="2_rk5a6"]
+[ext_resource type="PackedScene" uid="uid://b6juvwiv3c0ao" path="res://control.tscn" id="3_0tlet"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="4_sy5b0"]
+[ext_resource type="PackedScene" uid="uid://bvbo2gv8qnray" path="res://boss.tscn" id="5_era02"]
+[ext_resource type="PackedScene" uid="uid://cvrgkoxixm8py" path="res://boss_attack.tscn" id="6_1yrfs"]
+[ext_resource type="Script" path="res://node_2d.gd" id="7_c06r7"]
+
+[sub_resource type="Animation" id="Animation_ltfdg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.3, 1.3)]
+}
+
+[sub_resource type="Animation" id="Animation_0kmyh"]
+resource_name = "shake"
+length = 0.05
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.02, 0.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(1.47, 1.47), Vector2(1.52, 1.52), Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_apomp"]
+_data = {
+"RESET": SubResource("Animation_ltfdg"),
+"shake": SubResource("Animation_0kmyh")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lso4b"]
+size = Vector2(252.5, 634)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v83v2"]
+size = Vector2(1174, 165)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="boss_tile" parent="." instance=ExtResource("1_q1ebn")]
+position = Vector2(0, 1)
+
+[node name="player" parent="." instance=ExtResource("2_rk5a6")]
+position = Vector2(607, 452)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.3, 1.3)
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0
+script = ExtResource("4_sy5b0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+libraries = {
+"": SubResource("AnimationLibrary_apomp")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("3_0tlet")]
+offset_left = 87.0
+offset_top = -5.0
+offset_right = 87.0
+offset_bottom = -5.0
+
+[node name="boss" parent="." instance=ExtResource("5_era02")]
+position = Vector2(569, 329)
+
+[node name="boss_attack" parent="." instance=ExtResource("6_1yrfs")]
+position = Vector2(155, 463)
+
+[node name="boss_attack3" parent="." instance=ExtResource("6_1yrfs")]
+position = Vector2(680, 399)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(197.97, 330)
+gizmo_extents = 215.0
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(940, 327)
+gizmo_extents = 215.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(14, 346)
+shape = SubResource("RectangleShape2D_lso4b")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(1137, 334)
+shape = SubResource("RectangleShape2D_lso4b")
+
+[node name="Area2D3" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(534, 76)
+shape = SubResource("RectangleShape2D_v83v2")
+
+[node name="Area2D4" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D4"]
+position = Vector2(539, 564)
+shape = SubResource("RectangleShape2D_v83v2")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("7_c06r7")
+
+[connection signal="area_entered" from="Area2D" to="player" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D2" to="player" method="_on_area_2d_2_area_entered"]
+[connection signal="area_entered" from="Area2D3" to="player" method="_on_area_2d_3_area_entered"]
+[connection signal="area_entered" from="Area2D4" to="player" method="_on_area_2d_4_area_entered"]

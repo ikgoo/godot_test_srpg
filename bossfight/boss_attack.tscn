@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvrgkoxixm8py"]
+
+[ext_resource type="Script" path="res://boss_attack.gd" id="1_fyrpx"]
+[ext_resource type="Texture2D" uid="uid://ctontr3vdgrtd" path="res://arm_projectile_glowing.png" id="2_tclmp"]
+[ext_resource type="Texture2D" uid="uid://dpc0j2jeghtec" path="res://New Piskel (2).png" id="3_ynxcn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5yrcq"]
+size = Vector2(20, 65)
+
+[sub_resource type="Animation" id="Animation_ok7ky"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_uxgh6"]
+resource_name = "ending"
+length = 0.4
+step = 0.0666
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666, 0.1332, 0.1998, 0.2664, 0.333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ocdeb"]
+_data = {
+"RESET": SubResource("Animation_ok7ky"),
+"ending": SubResource("Animation_uxgh6")
+}
+
+[sub_resource type="Gradient" id="Gradient_fqm4q"]
+offsets = PackedFloat32Array(0, 0.398714)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_8xhlb"]
+offsets = PackedFloat32Array(0, 0.414791, 1)
+colors = PackedColorArray(0.945098, 0, 0, 1, 0.997705, 0.958199, 0.958199, 1, 1, 1, 1, 1)
+
+[node name="boss_attack" type="Node2D"]
+self_modulate = Color(1, 1, 1, 0.270588)
+script = ExtResource("1_fyrpx")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0, -17.5)
+shape = SubResource("RectangleShape2D_5yrcq")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture_filter = 1
+position = Vector2(26, 37)
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("2_tclmp")
+hframes = 3
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ocdeb")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -17)
+emitting = false
+amount = 25
+lifetime = 0.5
+one_shot = true
+texture = ExtResource("3_ynxcn")
+emission_shape = 3
+emission_rect_extents = Vector2(20, 40)
+direction = Vector2(0, 0)
+gravity = Vector2(25, 25)
+color = Color(0.886275, 1, 1, 1)
+color_ramp = SubResource("Gradient_fqm4q")
+color_initial_ramp = SubResource("Gradient_8xhlb")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -17.5)
+shape = SubResource("RectangleShape2D_5yrcq")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

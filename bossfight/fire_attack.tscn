@@ -1,0 +1,111 @@
+[gd_scene load_steps=6 format=3 uid="uid://cr685b14otism"]
+
+[ext_resource type="Script" path="res://fire_attack.gd" id="1_7dppg"]
+[ext_resource type="Texture2D" uid="uid://htfu75kwp1hm" path="res://Red Effect Bullet Impact Explosion 32x32.png" id="2_jaoro"]
+
+[sub_resource type="Animation" id="Animation_nkyos"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [66]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [306]
+}
+
+[sub_resource type="Animation" id="Animation_5tnra"]
+resource_name = "attack"
+length = 0.5
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [66, 67, 68, 69]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [306, 307, 308, 309]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"fire_in"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ibnbt"]
+_data = {
+"RESET": SubResource("Animation_nkyos"),
+"attack": SubResource("Animation_5tnra")
+}
+
+[node name="fire_attack" type="Node2D"]
+z_index = 1
+texture_filter = 1
+rotation = 1.5708
+scale = Vector2(10, 10)
+script = ExtResource("1_7dppg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ibnbt")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(10, 10)
+texture = ExtResource("2_jaoro")
+hframes = 20
+vframes = 16
+frame = 66
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(10, 10)
+texture = ExtResource("2_jaoro")
+hframes = 20
+vframes = 16
+frame = 306

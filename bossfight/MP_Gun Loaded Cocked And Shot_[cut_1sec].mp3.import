@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://drwx0rlk8re5f"
+path="res://.godot/imported/MP_Gun Loaded Cocked And Shot_[cut_1sec].mp3-1021149e3beecc086d2ae72fecefb159.mp3str"
+
+[deps]
+
+source_file="res://MP_Gun Loaded Cocked And Shot_[cut_1sec].mp3"
+dest_files=["res://.godot/imported/MP_Gun Loaded Cocked And Shot_[cut_1sec].mp3-1021149e3beecc086d2ae72fecefb159.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

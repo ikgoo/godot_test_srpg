@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvbo2gv8qnray"]
+
+[ext_resource type="Script" path="res://boss.gd" id="1_8icg0"]
+[ext_resource type="Texture2D" uid="uid://cpnwkr78068ea" path="res://icon.svg" id="2_hs6wq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_quhel"]
+size = Vector2(64, 64)
+
+[node name="Node2D" type="Node2D" groups=["boss"]]
+script = ExtResource("1_8icg0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_hs6wq")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="player_follow" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="player_fly" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-1000, 0, 1000, 0)
+width = 1.0
+default_color = Color(1, 0, 0, 1)
+
+[node name="doljintimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_quhel")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("RectangleShape2D_quhel")
+
+[node name="Area2D3" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+shape = SubResource("RectangleShape2D_quhel")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="player_follow" to="." method="_on_player_follow_timeout"]
+[connection signal="timeout" from="player_fly" to="." method="_on_player_fly_timeout"]
+[connection signal="timeout" from="doljintimer" to="." method="_on_doljintimer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
+[connection signal="area_entered" from="Area2D3" to="." method="_on_area_2d_3_area_entered"]
