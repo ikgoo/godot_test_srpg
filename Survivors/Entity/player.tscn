@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://box3vcvo6gmta"]
+[gd_scene load_steps=32 format=3 uid="uid://box3vcvo6gmta"]
 
 [ext_resource type="Script" path="res://Entity/player.gd" id="1_gq2ra"]
 [ext_resource type="Texture2D" uid="uid://cgmmslldpye21" path="res://Assets/Player/knight_idle_spritesheet.png" id="1_rw5w3"]
 [ext_resource type="Texture2D" uid="uid://b0wjvn01wtl21" path="res://Assets/Player/knight_run_spritesheet.png" id="2_hk38i"]
 [ext_resource type="PackedScene" uid="uid://4sffraeffxu4" path="res://Area/hurt_box.tscn" id="4_kvyeb"]
 [ext_resource type="PackedScene" uid="uid://blg6luxgj8uw8" path="res://Effict/blood_effect.tscn" id="5_0g5lg"]
+[ext_resource type="PackedScene" uid="uid://dg2o7p7bovamj" path="res://Spawner/weapon_manager.tscn" id="6_xa4nb"]
 
 [sub_resource type="Animation" id="Animation_ls17n"]
 resource_name = "Idle"
@@ -344,10 +345,11 @@ step = 0.001
 value = 100.0
 show_percentage = false
 
-[node name="Node2D2" type="Node2D" parent="."]
-
 [node name="BloodEffect" parent="." instance=ExtResource("5_0g5lg")]
 position = Vector2(0, -12)
+
+[node name="WeaponManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_xa4nb")]
+player = NodePath("..")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
