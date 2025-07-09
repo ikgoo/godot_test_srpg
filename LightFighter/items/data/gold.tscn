@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxwq7gmxy1if8"]
 
 [ext_resource type="Texture2D" uid="uid://bdhwygwe10we2" path="res://items/sprites/gold_coin.png" id="1_13qhl"]
-[ext_resource type="Script" path="res://items/item.gd" id="2_qg2ej"]
+[ext_resource type="Script" uid="uid://bghktej4hhcwt" path="res://items/item.gd" id="2_qg2ej"]
 
 [node name="Item" type="TextureRect"]
 texture = ExtResource("1_13qhl")

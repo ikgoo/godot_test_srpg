@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bq2vd845v6gys" path="res://player.tscn" id="2_ds2xe"]
 [ext_resource type="PackedScene" uid="uid://b6juvwiv3c0ao" path="res://control.tscn" id="3_gyp1i"]
 [ext_resource type="PackedScene" uid="uid://bk48hqk00uxlu" path="res://tile_map.tscn" id="4_w226r"]
-[ext_resource type="Script" path="res://Camera2D.gd" id="5_ys0e3"]
+[ext_resource type="Script" uid="uid://qvthf500gqqj" path="res://Camera2D.gd" id="5_ys0e3"]
 [ext_resource type="Texture2D" uid="uid://hthyqoulhyyh" path="res://mystical-forest-background (1).png" id="6_eetwr"]
 
 [sub_resource type="Animation" id="Animation_ltfdg"]
@@ -41,8 +41,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_apomp"]
 _data = {
-"RESET": SubResource("Animation_ltfdg"),
-"shake": SubResource("Animation_0kmyh")
+&"RESET": SubResource("Animation_ltfdg"),
+&"shake": SubResource("Animation_0kmyh")
 }
 
 [node name="Node2D" type="Node2D"]

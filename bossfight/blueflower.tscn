@@ -1,6 +1,6 @@
 [gd_scene load_steps=63 format=3 uid="uid://co8d63jen73rb"]
 
-[ext_resource type="Script" path="res://blueflower.gd" id="1_ad6k5"]
+[ext_resource type="Script" uid="uid://dawer887m8b2u" path="res://blueflower.gd" id="1_ad6k5"]
 [ext_resource type="Texture2D" uid="uid://k78gbomj1huh" path="res://Plant Animations/BlueFlower1/BlueFlower_00000.png" id="1_cek61"]
 [ext_resource type="Texture2D" uid="uid://cvce2ho84txkx" path="res://Plant Animations/BlueFlower1/BlueFlower_00001.png" id="2_esujc"]
 [ext_resource type="Texture2D" uid="uid://b4yqvks564hs7" path="res://Plant Animations/BlueFlower1/BlueFlower_00002.png" id="3_e7unx"]

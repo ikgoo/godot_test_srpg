@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b6juvwiv3c0ao"]
 
-[ext_resource type="Script" path="res://Control.gd" id="1_ol6lb"]
+[ext_resource type="Script" uid="uid://blluy80r8lc1d" path="res://Control.gd" id="1_ol6lb"]
 [ext_resource type="Texture2D" uid="uid://bxstwt12s03rf" path="res://New Piskel (8).png" id="2_jbl5i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_usmli"]

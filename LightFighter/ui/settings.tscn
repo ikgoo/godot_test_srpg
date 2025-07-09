@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ct5pgu0wakcnt" path="res://inventory/sprite/main panel.png" id="1_adtwh"]
 [ext_resource type="Texture2D" uid="uid://pi5xk4j21wog" path="res://inventory/sprite/title.png" id="2_ddnac"]
-[ext_resource type="Script" path="res://ui/settings.gd" id="2_itgu4"]
+[ext_resource type="Script" uid="uid://dn3yotkyo0yfq" path="res://ui/settings.gd" id="2_itgu4"]
 [ext_resource type="FontFile" uid="uid://ciyy3p85tikw" path="res://font/Arcadepix Plus.ttf" id="3_4wqo2"]
 [ext_resource type="Texture2D" uid="uid://cfreqop0x1bn3" path="res://inventory/sprite/x_normal.png" id="4_lgabv"]
 [ext_resource type="Texture2D" uid="uid://c0vdjuxcdpsn7" path="res://inventory/sprite/x_pressed.png" id="5_446ok"]

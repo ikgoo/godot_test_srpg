@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cnfyo8xmsxhnf"]
 
-[ext_resource type="Script" path="res://moving_splke_enemy.gd" id="1_oqmgf"]
+[ext_resource type="Script" uid="uid://dycgseekok5f4" path="res://moving_splke_enemy.gd" id="1_oqmgf"]
 [ext_resource type="Texture2D" uid="uid://doqlssqmsm5bm" path="res://tilemap-characters_packed.png" id="2_qxgam"]
 [ext_resource type="PackedScene" uid="uid://33c1glp3u4bs" path="res://hit_box.tscn" id="3_x2is6"]
 
@@ -58,9 +58,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_buysn"]
 _data = {
-"MoveAlongPathBounce": SubResource("Animation_tf6cj"),
-"MoveAlongPathLoop": SubResource("Animation_hwuuj"),
-"RESET": SubResource("Animation_i7jie")
+&"MoveAlongPathBounce": SubResource("Animation_tf6cj"),
+&"MoveAlongPathLoop": SubResource("Animation_hwuuj"),
+&"RESET": SubResource("Animation_i7jie")
 }
 
 [node name="MovingSplkeEnemy" type="Path2D"]

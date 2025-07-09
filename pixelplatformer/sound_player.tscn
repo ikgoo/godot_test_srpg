@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvuasdufbymc7"]
 
-[ext_resource type="Script" path="res://sound_player.gd" id="1_6xyn1"]
+[ext_resource type="Script" uid="uid://cwp0wgrhukoin" path="res://sound_player.gd" id="1_6xyn1"]
 [ext_resource type="AudioStream" uid="uid://dlvcdmlpol2oa" path="res://Sounds/hurt.wav" id="2_2nwf3"]
 
 [node name="SoundPlayer" type="Node2D"]

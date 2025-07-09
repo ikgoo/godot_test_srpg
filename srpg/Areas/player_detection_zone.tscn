@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cp14jyw818tk0"]
 
-[ext_resource type="Script" path="res://Areas/PlayerDetectionZone.gd" id="1_rqg6v"]
+[ext_resource type="Script" uid="uid://bm3a3nuk45ryb" path="res://Areas/PlayerDetectionZone.gd" id="1_rqg6v"]
 
 [node name="PlayerDetectionZone" type="Area2D"]
 collision_layer = 0

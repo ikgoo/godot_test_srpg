@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bqbli2yih32ka"]
 
-[ext_resource type="Script" path="res://fly_attack.gd" id="1_ws2lt"]
+[ext_resource type="Script" uid="uid://cen5whtplr23p" path="res://fly_attack.gd" id="1_ws2lt"]
 [ext_resource type="Texture2D" uid="uid://b8fyemviwg5e2" path="res://Laser_sheet.png" id="2_8aoig"]
 [ext_resource type="Texture2D" uid="uid://dpc0j2jeghtec" path="res://New Piskel (2).png" id="3_ikkp6"]
 [ext_resource type="Texture2D" uid="uid://djg1l2qpeis3l" path="res://화면_캡처_2024-09-08_182344-removebg-preview.png" id="3_s6wy3"]

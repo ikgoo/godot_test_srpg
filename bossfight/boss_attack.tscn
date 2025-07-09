@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cvrgkoxixm8py"]
 
-[ext_resource type="Script" path="res://boss_attack.gd" id="1_fyrpx"]
+[ext_resource type="Script" uid="uid://mboyr7a76dru" path="res://boss_attack.gd" id="1_fyrpx"]
 [ext_resource type="Texture2D" uid="uid://ctontr3vdgrtd" path="res://arm_projectile_glowing.png" id="2_tclmp"]
 [ext_resource type="Texture2D" uid="uid://dpc0j2jeghtec" path="res://New Piskel (2).png" id="3_ynxcn"]
 
@@ -41,8 +41,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ocdeb"]
 _data = {
-"RESET": SubResource("Animation_ok7ky"),
-"ending": SubResource("Animation_uxgh6")
+&"RESET": SubResource("Animation_ok7ky"),
+&"ending": SubResource("Animation_uxgh6")
 }
 
 [sub_resource type="Gradient" id="Gradient_fqm4q"]

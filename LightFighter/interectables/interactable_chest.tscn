@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwd8kt50nryiw"]
 
-[ext_resource type="Script" path="res://interectables/interactable_chest.gd" id="1_nn6dn"]
+[ext_resource type="Script" uid="uid://bxw0ik8spm12n" path="res://interectables/interactable_chest.gd" id="1_nn6dn"]
 [ext_resource type="Texture2D" uid="uid://coluvrw5q8mak" path="res://interectables/chest.png" id="1_qnw51"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b6ubu"]

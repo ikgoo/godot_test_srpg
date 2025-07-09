@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://mmwm6quvjy0x"]
 
 [ext_resource type="Texture2D" uid="uid://buejy6icmvqn" path="res://Art/Effects/HitEffect.png" id="1_34ovh"]
-[ext_resource type="Script" path="res://World/Effect.gd" id="2_43evt"]
+[ext_resource type="Script" uid="uid://6yiiifdo4x8s" path="res://World/Effect.gd" id="2_43evt"]
 [ext_resource type="AudioStream" uid="uid://chbr1bwkjfqps" path="res://Art/Music and Sounds/Hit.wav" id="3_dvcnt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gowln"]

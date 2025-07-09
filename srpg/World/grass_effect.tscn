@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cff4qrwrd2itw"]
 
 [ext_resource type="Texture2D" uid="uid://b2omoq8pf8ben" path="res://Art/Effects/GrassEffect.png" id="1_as0sh"]
-[ext_resource type="Script" path="res://World/Effect.gd" id="2_1lr2d"]
+[ext_resource type="Script" uid="uid://6yiiifdo4x8s" path="res://World/Effect.gd" id="2_1lr2d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2fst"]
 atlas = ExtResource("1_as0sh")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfu06yquxuqi7"]
 
 [ext_resource type="Texture2D" uid="uid://dg1diagg1gyh5" path="res://inventory/sprite/inner_panel.png" id="1_t64da"]
-[ext_resource type="Script" path="res://inventory/hotbar.gd" id="2_lx57w"]
+[ext_resource type="Script" uid="uid://domux0clo4eo7" path="res://inventory/hotbar.gd" id="2_lx57w"]
 
 [node name="hotbar" type="NinePatchRect"]
 custom_minimum_size = Vector2(0, 40)

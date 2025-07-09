@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://choa283008n6f"]
 
-[ext_resource type="Script" path="res://attack_warn.gd" id="1_qwwlm"]
+[ext_resource type="Script" uid="uid://dcbeaqmjmuhlv" path="res://attack_warn.gd" id="1_qwwlm"]
 [ext_resource type="AudioStream" uid="uid://kvosaas4cx7q" path="res://l_l_up_[cut_1sec].mp3" id="2_7v7la"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0ygqy"]

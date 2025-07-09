@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://be235ud4p3wg8"]
 
-[ext_resource type="Script" path="res://Enemles/Bat.gd" id="1_6me0j"]
+[ext_resource type="Script" uid="uid://b0fl5mvh0nnpn" path="res://Enemles/Bat.gd" id="1_6me0j"]
 [ext_resource type="Texture2D" uid="uid://vgshxta31onu" path="res://Art/Enemies/Bat.png" id="1_6pygy"]
 [ext_resource type="Texture2D" uid="uid://c41i18edlxir7" path="res://Art/Shadows/SmallShadow.png" id="2_uqq1h"]
 [ext_resource type="PackedScene" uid="uid://gnd1wq8lr7cm" path="res://Areas/hurt_box.tscn" id="3_r5ly0"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://exjs0cpa1xa"]
 
 [ext_resource type="Texture2D" uid="uid://demafs7vmasoj" path="res://arts/0x72_DungeonTilesetII_v1.6.png" id="1_25jci"]
-[ext_resource type="Script" path="res://Player/player.gd" id="1_rfyle"]
-[ext_resource type="Script" path="res://Player/interactable_labels.gd" id="3_3spdj"]
+[ext_resource type="Script" uid="uid://b0tlf1sy28tvw" path="res://Player/player.gd" id="1_rfyle"]
+[ext_resource type="Script" uid="uid://dud1nqfno3fka" path="res://Player/interactable_labels.gd" id="3_3spdj"]
 [ext_resource type="LabelSettings" uid="uid://cekrthemlug0f" path="res://font/font_12.tres" id="3_67lai"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_37i24"]

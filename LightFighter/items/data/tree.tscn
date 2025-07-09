@@ -1,9 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://bs2aw0gm8mapp"]
 
-[ext_resource type="Script" path="res://items/item.gd" id="2_3lxtv"]
+[ext_resource type="Script" uid="uid://bghktej4hhcwt" path="res://items/item.gd" id="2_3lxtv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n5a20"]
-load_path = "res://.godot/imported/tree_icon.png-cbd9692784fd7d58d048d4d616dddae4.ctex"
 
 [node name="Item" type="TextureRect"]
 texture = SubResource("CompressedTexture2D_n5a20")

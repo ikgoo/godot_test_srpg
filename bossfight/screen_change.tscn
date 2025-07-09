@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bomby8yl22yle"]
 
-[ext_resource type="Script" path="res://screen_change.gd" id="1_1dq35"]
+[ext_resource type="Script" uid="uid://ck8ytic6jshyt" path="res://screen_change.gd" id="1_1dq35"]
 
 [sub_resource type="Animation" id="Animation_fq8q2"]
 length = 0.001
@@ -67,9 +67,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tj57x"]
 _data = {
-"RESET": SubResource("Animation_fq8q2"),
-"change": SubResource("Animation_8qgss"),
-"start": SubResource("Animation_5bdra")
+&"RESET": SubResource("Animation_fq8q2"),
+&"change": SubResource("Animation_8qgss"),
+&"start": SubResource("Animation_5bdra")
 }
 
 [node name="screen_change" type="Node2D"]

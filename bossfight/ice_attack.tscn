@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://du2pghddrt0h2"]
 
 [ext_resource type="Texture2D" uid="uid://0dt2282m7ygj" path="res://ice_shard/I5050-1.png" id="1_420nu"]
-[ext_resource type="Script" path="res://ice_attack.gd" id="1_mtmwn"]
+[ext_resource type="Script" uid="uid://bxc0go6nds6ys" path="res://ice_attack.gd" id="1_mtmwn"]
 [ext_resource type="Texture2D" uid="uid://eiumqhg8kxnq" path="res://ice_shard/I5050-2.png" id="2_mr2ad"]
 [ext_resource type="Texture2D" uid="uid://c65dlolrbi6ln" path="res://ice_shard/I5050-3.png" id="3_5r252"]
 [ext_resource type="Texture2D" uid="uid://d3jqx5c3ixikl" path="res://ice_shard/I5050-4.png" id="4_pqdgo"]
@@ -110,8 +110,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3drak"]
 _data = {
-"RESET": SubResource("Animation_brc37"),
-"attack": SubResource("Animation_akus2")
+&"RESET": SubResource("Animation_brc37"),
+&"attack": SubResource("Animation_akus2")
 }
 
 [node name="ice_attack" type="Node2D"]

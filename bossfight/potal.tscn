@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b1v7dbngqypmj"]
 
-[ext_resource type="Script" path="res://potal.gd" id="1_ruvnj"]
+[ext_resource type="Script" uid="uid://bnbpjsmusqb6f" path="res://potal.gd" id="1_ruvnj"]
 [ext_resource type="PackedScene" uid="uid://bomby8yl22yle" path="res://screen_change.tscn" id="2_xxs4l"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_m6wwq"]

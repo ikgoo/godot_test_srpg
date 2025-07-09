@@ -1,6 +1,6 @@
 [gd_scene load_steps=88 format=3 uid="uid://bq2vd845v6gys"]
 
-[ext_resource type="Script" path="res://character_body_2d.gd" id="1_6i62b"]
+[ext_resource type="Script" uid="uid://b2sdljcqanbyo" path="res://character_body_2d.gd" id="1_6i62b"]
 [ext_resource type="Texture2D" uid="uid://migd0nlt0gul" path="res://2BlueWizardIdle/Chara - BlueIdle00000.png" id="2_32fm2"]
 [ext_resource type="Texture2D" uid="uid://b0h7isld0mrh3" path="res://2BlueWizardIdle/Dash2/DashBlue_00000.png" id="3_55dvn"]
 [ext_resource type="AudioStream" uid="uid://kvosaas4cx7q" path="res://l_l_up_[cut_1sec].mp3" id="3_sqjs6"]
@@ -190,15 +190,15 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ry672"]
 _data = {
-"RESET": SubResource("Animation_livk0"),
-"dashing": SubResource("Animation_ep8uh"),
-"idle": SubResource("Animation_uyf5h"),
-"jump": SubResource("Animation_dcrfh"),
-"l_attack": SubResource("Animation_sjwr6"),
-"paring": SubResource("Animation_7dgte"),
-"paring_go": SubResource("Animation_up5gq"),
-"r_attack": SubResource("Animation_4x2xm"),
-"walk": SubResource("Animation_7b5ld")
+&"RESET": SubResource("Animation_livk0"),
+&"dashing": SubResource("Animation_ep8uh"),
+&"idle": SubResource("Animation_uyf5h"),
+&"jump": SubResource("Animation_dcrfh"),
+&"l_attack": SubResource("Animation_sjwr6"),
+&"paring": SubResource("Animation_7dgte"),
+&"paring_go": SubResource("Animation_up5gq"),
+&"r_attack": SubResource("Animation_4x2xm"),
+&"walk": SubResource("Animation_7b5ld")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gbdiy"]
@@ -280,9 +280,9 @@ step = 0.2
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4vhf6"]
 _data = {
-"RESET": SubResource("Animation_8jjwu"),
-"gun": SubResource("Animation_085ew"),
-"gun2": SubResource("Animation_2cjes")
+&"RESET": SubResource("Animation_8jjwu"),
+&"gun": SubResource("Animation_085ew"),
+&"gun2": SubResource("Animation_2cjes")
 }
 
 [node name="player" type="CharacterBody2D"]

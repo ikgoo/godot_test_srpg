@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://bvuruo1lufr11"]
 
-[ext_resource type="Script" path="res://scenes/game_main.gd" id="1_fcdd8"]
+[ext_resource type="Script" uid="uid://r881568dndwb" path="res://scenes/game_main.gd" id="1_fcdd8"]
 [ext_resource type="Texture2D" uid="uid://c3y0vihjkod10" path="res://assets/GUI.png" id="2_il6w2"]
 [ext_resource type="Texture2D" uid="uid://cr7csrukvscxm" path="res://assets/Spritesheet_UI_Flat_Select_01.png" id="3_qrfqs"]
 [ext_resource type="PackedScene" uid="uid://8gv2jv1aiwkp" path="res://board/board_piece.tscn" id="4_otujs"]
 [ext_resource type="Texture2D" uid="uid://jnkec0iwk3h8" path="res://assets/omok_board.png" id="5_y0uq2"]
-[ext_resource type="Script" path="res://player.gd" id="6_ta2ua"]
+[ext_resource type="Script" uid="uid://cj746uge35o5u" path="res://player.gd" id="6_ta2ua"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0piil"]
 atlas = ExtResource("3_qrfqs")

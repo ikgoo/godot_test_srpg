@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://leufumiykki5"]
 
 [ext_resource type="Texture2D" uid="uid://c8qqymt8ua5b8" path="res://New Piskel (6).png" id="1_bipmf"]
-[ext_resource type="Script" path="res://tick_round'.gd" id="2_t3al1"]
+[ext_resource type="Script" uid="uid://dtbwp7vkh4e8u" path="res://tick_round'.gd" id="2_t3al1"]
 
 [sub_resource type="Animation" id="Animation_68v3m"]
 length = 0.001
@@ -63,8 +63,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dxfpr"]
 _data = {
-"RESET": SubResource("Animation_68v3m"),
-"new_animation": SubResource("Animation_tfm1w")
+&"RESET": SubResource("Animation_68v3m"),
+&"new_animation": SubResource("Animation_tfm1w")
 }
 
 [node name="Sprite2D2" type="Sprite2D"]

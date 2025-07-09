@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b6sv5xaq458em"]
 
 [ext_resource type="Texture2D" uid="uid://cy6kxnyovojc8" path="res://ice_shard/I5050-7.png" id="1_i66qd"]
-[ext_resource type="Script" path="res://ice_bullet.gd" id="1_lcr81"]
+[ext_resource type="Script" uid="uid://dwr7wat2asjsy" path="res://ice_bullet.gd" id="1_lcr81"]
 [ext_resource type="Texture2D" uid="uid://ccmk4nbkpldck" path="res://ice_shard/I5050-8.png" id="2_m3ubh"]
 [ext_resource type="Texture2D" uid="uid://c68x5ihr3fqw3" path="res://ice_shard/I5050-9.png" id="3_mbdvg"]
 [ext_resource type="Texture2D" uid="uid://djlsevkpli8c8" path="res://ice_shard/I5050-10.png" id="4_23bj0"]
@@ -85,8 +85,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_23w77"]
 _data = {
-"RESET": SubResource("Animation_iyi7a"),
-"attack": SubResource("Animation_agy5r")
+&"RESET": SubResource("Animation_iyi7a"),
+&"attack": SubResource("Animation_agy5r")
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D"]

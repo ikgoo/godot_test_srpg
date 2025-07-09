@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://buki7w5qduyex"]
 
-[ext_resource type="Script" path="res://mainscene.gd" id="1_82015"]
+[ext_resource type="Script" uid="uid://c3m53d3q0h1wo" path="res://mainscene.gd" id="1_82015"]
 [ext_resource type="PackedScene" uid="uid://b1v7dbngqypmj" path="res://potal.tscn" id="1_ol3mb"]
 [ext_resource type="PackedScene" uid="uid://bq2vd845v6gys" path="res://player.tscn" id="1_rpq3d"]
-[ext_resource type="Script" path="res://Camera2D.gd" id="2_cw3qe"]
+[ext_resource type="Script" uid="uid://qvthf500gqqj" path="res://Camera2D.gd" id="2_cw3qe"]
 [ext_resource type="PackedScene" uid="uid://pmut6505i1i0" path="res://cutty_sniper.tscn" id="3_3wcf5"]
 [ext_resource type="PackedScene" uid="uid://c2tlf5u260122" path="res://background.tscn" id="6_kf6tu"]
 [ext_resource type="Texture2D" uid="uid://hthyqoulhyyh" path="res://mystical-forest-background (1).png" id="6_momxw"]

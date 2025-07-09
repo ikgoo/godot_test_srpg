@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b8gmoj2b6v703"]
 
-[ext_resource type="Script" path="res://fire.gd" id="1_2rq6h"]
+[ext_resource type="Script" uid="uid://6ifh35j2qhh7" path="res://fire.gd" id="1_2rq6h"]
 [ext_resource type="Texture2D" uid="uid://htfu75kwp1hm" path="res://Red Effect Bullet Impact Explosion 32x32.png" id="2_ugsnh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45lv5"]
@@ -58,8 +58,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qsrnj"]
 _data = {
-"RESET": SubResource("Animation_ltcs8"),
-"attack": SubResource("Animation_c7wk2")
+&"RESET": SubResource("Animation_ltcs8"),
+&"attack": SubResource("Animation_c7wk2")
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D"]

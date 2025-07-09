@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://pmut6505i1i0"]
 
-[ext_resource type="Script" path="res://sniper.gd" id="1_pcvxt"]
+[ext_resource type="Script" uid="uid://crkvg0ntdw1kr" path="res://sniper.gd" id="1_pcvxt"]
 [ext_resource type="Texture2D" uid="uid://cpnwkr78068ea" path="res://icon.svg" id="2_ycy7t"]
 [ext_resource type="Texture2D" uid="uid://ds8pd02eennp8" path="res://화면 캡처 2024-09-18 145204.png" id="3_fkck3"]
 [ext_resource type="AudioStream" uid="uid://drwx0rlk8re5f" path="res://MP_Gun Loaded Cocked And Shot_[cut_1sec].mp3" id="4_mbikd"]
@@ -41,8 +41,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nlhnc"]
 _data = {
-"RESET": SubResource("Animation_24s2o"),
-"attack": SubResource("Animation_pt2y6")
+&"RESET": SubResource("Animation_24s2o"),
+&"attack": SubResource("Animation_pt2y6")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fps3j"]

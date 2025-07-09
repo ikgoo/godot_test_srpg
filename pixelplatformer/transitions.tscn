@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://emwu2galcr75"]
 
-[ext_resource type="Script" path="res://transitions.gd" id="1_semu1"]
+[ext_resource type="Script" uid="uid://d08005immehyx" path="res://transitions.gd" id="1_semu1"]
 
 [sub_resource type="Animation" id="Animation_638k3"]
 resource_name = "EnterLevel"
@@ -87,9 +87,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_crgx5"]
 _data = {
-"EnterLevel": SubResource("Animation_638k3"),
-"ExitLevel": SubResource("Animation_jvor0"),
-"RESET": SubResource("Animation_iwwb8")
+&"EnterLevel": SubResource("Animation_638k3"),
+&"ExitLevel": SubResource("Animation_jvor0"),
+&"RESET": SubResource("Animation_iwwb8")
 }
 
 [node name="Transitions" type="CanvasLayer"]

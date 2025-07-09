@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cr685b14otism"]
 
-[ext_resource type="Script" path="res://fire_attack.gd" id="1_7dppg"]
+[ext_resource type="Script" uid="uid://jc21xbhrltyl" path="res://fire_attack.gd" id="1_7dppg"]
 [ext_resource type="Texture2D" uid="uid://htfu75kwp1hm" path="res://Red Effect Bullet Impact Explosion 32x32.png" id="2_jaoro"]
 
 [sub_resource type="Animation" id="Animation_nkyos"]
@@ -78,8 +78,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ibnbt"]
 _data = {
-"RESET": SubResource("Animation_nkyos"),
-"attack": SubResource("Animation_5tnra")
+&"RESET": SubResource("Animation_nkyos"),
+&"attack": SubResource("Animation_5tnra")
 }
 
 [node name="fire_attack" type="Node2D"]

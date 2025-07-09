@@ -1,6 +1,6 @@
 [gd_scene load_steps=41 format=3 uid="uid://c4i4qu1mlurey"]
 
-[ext_resource type="Script" path="res://n_cutty_dealer.gd" id="1_h6cne"]
+[ext_resource type="Script" uid="uid://ti60cwh4qy8i" path="res://n_cutty_dealer.gd" id="1_h6cne"]
 [ext_resource type="Texture2D" uid="uid://clvrdo1iimn2k" path="res://SlimeOrange/SlimeOrange_00000.png" id="2_fha4p"]
 [ext_resource type="Texture2D" uid="uid://f2b62rtfmu8a" path="res://SlimeOrange/SlimeOrange_00001.png" id="3_uexxy"]
 [ext_resource type="Texture2D" uid="uid://dc73esnlmpgc5" path="res://SlimeOrange/SlimeOrange_00002.png" id="4_rore1"]
@@ -170,8 +170,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jrjqy"]
 _data = {
-"RESET": SubResource("Animation_1a0dd"),
-"attck": SubResource("Animation_d1jo6")
+&"RESET": SubResource("Animation_1a0dd"),
+&"attck": SubResource("Animation_d1jo6")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aeq21"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=66 format=3 uid="uid://cgouq7avfwgxt"]
 
-[ext_resource type="Script" path="res://Player/Player.gd" id="1_1313u"]
+[ext_resource type="Script" uid="uid://q0edw5u04n3u" path="res://Player/Player.gd" id="1_1313u"]
 [ext_resource type="Texture2D" uid="uid://dsl4si1mulfxm" path="res://Art/Player/Player.png" id="2_lh556"]
 [ext_resource type="Texture2D" uid="uid://chuwaffi81nh4" path="res://Art/Shadows/MediumShadow.png" id="2_qu5wo"]
-[ext_resource type="Shader" path="res://Player/WhiteColor.gdshader" id="3_rm6la"]
+[ext_resource type="Shader" uid="uid://daibmydqqw8nx" path="res://Player/WhiteColor.gdshader" id="3_rm6la"]
 [ext_resource type="AudioStream" uid="uid://bmhoxpgf8fown" path="res://Art/Music and Sounds/Swipe.wav" id="4_4sede"]
-[ext_resource type="Script" path="res://Player/SwordHitBox.gd" id="4_nb3l1"]
+[ext_resource type="Script" uid="uid://dp831gbu06n4" path="res://Player/SwordHitBox.gd" id="4_nb3l1"]
 [ext_resource type="PackedScene" uid="uid://c8j3kggnlk3qg" path="res://Areas/hit_box.tscn" id="4_wjlrx"]
 [ext_resource type="AudioStream" uid="uid://buoa3tecm1y7h" path="res://Art/Music and Sounds/Evade.wav" id="5_c1b23"]
 [ext_resource type="PackedScene" uid="uid://gnd1wq8lr7cm" path="res://Areas/hurt_box.tscn" id="5_uknum"]
@@ -639,23 +639,23 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2psgd"]
 _data = {
-"AttackDown": SubResource("Animation_mebv6"),
-"AttackLeft": SubResource("Animation_ceswt"),
-"AttackRight": SubResource("Animation_cd70a"),
-"AttackUp": SubResource("Animation_1oav7"),
-"IdleDown": SubResource("Animation_gfwom"),
-"IdleLeft": SubResource("Animation_j4xq8"),
-"IdleRight": SubResource("Animation_hpqhw"),
-"IdleUp": SubResource("Animation_u0s55"),
-"RESET": SubResource("Animation_k7qm5"),
-"RollDown": SubResource("Animation_hxad7"),
-"RollLeft": SubResource("Animation_0m3p5"),
-"RollRight": SubResource("Animation_pym4r"),
-"RollUp": SubResource("Animation_f5cmi"),
-"RunDown": SubResource("Animation_fym18"),
-"RunLeft": SubResource("Animation_bxn3g"),
-"RunRight": SubResource("Animation_pk6bh"),
-"RunUp": SubResource("Animation_4nruy")
+&"AttackDown": SubResource("Animation_mebv6"),
+&"AttackLeft": SubResource("Animation_ceswt"),
+&"AttackRight": SubResource("Animation_cd70a"),
+&"AttackUp": SubResource("Animation_1oav7"),
+&"IdleDown": SubResource("Animation_gfwom"),
+&"IdleLeft": SubResource("Animation_j4xq8"),
+&"IdleRight": SubResource("Animation_hpqhw"),
+&"IdleUp": SubResource("Animation_u0s55"),
+&"RESET": SubResource("Animation_k7qm5"),
+&"RollDown": SubResource("Animation_hxad7"),
+&"RollLeft": SubResource("Animation_0m3p5"),
+&"RollRight": SubResource("Animation_pym4r"),
+&"RollUp": SubResource("Animation_f5cmi"),
+&"RunDown": SubResource("Animation_fym18"),
+&"RunLeft": SubResource("Animation_bxn3g"),
+&"RunRight": SubResource("Animation_pk6bh"),
+&"RunUp": SubResource("Animation_4nruy")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pdpma"]
@@ -810,6 +810,21 @@ graph_offset = Vector2(-126, -53)
 radius = 6.0
 height = 16.0
 
+[sub_resource type="Animation" id="Animation_3h76e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_f7tto"]
 resource_name = "Start"
 length = 0.2
@@ -844,26 +859,11 @@ tracks/0/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_3h76e"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v8klk"]
 _data = {
-"RESET": SubResource("Animation_3h76e"),
-"Start": SubResource("Animation_f7tto"),
-"Stop": SubResource("Animation_mf4yt")
+&"RESET": SubResource("Animation_3h76e"),
+&"Start": SubResource("Animation_f7tto"),
+&"Stop": SubResource("Animation_mf4yt")
 }
 
 [node name="Player" type="CharacterBody2D"]

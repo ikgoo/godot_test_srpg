@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://ds6epvdxmspty"]
 
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_6bmlu"]
-[ext_resource type="Script" path="res://Login.gd" id="1_vtjgy"]
-[ext_resource type="Script" path="res://scenes/FindMatch.gd" id="2_eam61"]
-[ext_resource type="Script" path="res://scenes/ReadyScreen.gd" id="2_ioh3o"]
-[ext_resource type="Script" path="res://scenes/GameManager.gd" id="5_ly2pi"]
+[ext_resource type="Script" uid="uid://tav4x7fx1q7g" path="res://scenes/main.gd" id="1_6bmlu"]
+[ext_resource type="Script" uid="uid://dj8agpa2rr151" path="res://Login.gd" id="1_vtjgy"]
+[ext_resource type="Script" uid="uid://c4sawv2auuu58" path="res://scenes/FindMatch.gd" id="2_eam61"]
+[ext_resource type="Script" uid="uid://cu61s6iy4f801" path="res://scenes/ReadyScreen.gd" id="2_ioh3o"]
+[ext_resource type="Script" uid="uid://bq87wwfka6a6e" path="res://scenes/GameManager.gd" id="5_ly2pi"]
 
 [node name="Main" type="Node2D" groups=["GameWorld"]]
 script = ExtResource("1_6bmlu")

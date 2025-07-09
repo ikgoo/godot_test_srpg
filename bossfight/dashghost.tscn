@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://crpla416icroo"]
 
-[ext_resource type="Script" path="res://dashghost.gd" id="1_bfrao"]
+[ext_resource type="Script" uid="uid://3kd0krmj0y5b" path="res://dashghost.gd" id="1_bfrao"]
 [ext_resource type="Texture2D" uid="uid://bxohj5gfmxtnr" path="res://KakaoTalk_20240903_193253945.png" id="2_uchns"]
 
 [node name="dashghost" type="Node2D"]

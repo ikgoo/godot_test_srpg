@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://owngde14u6i8"]
 
-[ext_resource type="Script" path="res://wind.gd" id="1_ci8qy"]
+[ext_resource type="Script" uid="uid://ccikitfpx3nd4" path="res://wind.gd" id="1_ci8qy"]
 
 [sub_resource type="Curve" id="Curve_cbm6w"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.497449, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

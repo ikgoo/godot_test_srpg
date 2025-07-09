@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://cbjf4mpj2w2ta"]
 
 [ext_resource type="Texture2D" uid="uid://ct5pgu0wakcnt" path="res://inventory/sprite/main panel.png" id="1_42tre"]
-[ext_resource type="Script" path="res://inventory/inventory_player.gd" id="2_cbg2t"]
+[ext_resource type="Script" uid="uid://blr3aanfvutm2" path="res://inventory/inventory_player.gd" id="2_cbg2t"]
 [ext_resource type="Texture2D" uid="uid://pi5xk4j21wog" path="res://inventory/sprite/title.png" id="3_i6k84"]
 [ext_resource type="FontFile" uid="uid://ciyy3p85tikw" path="res://font/Arcadepix Plus.ttf" id="4_jm87o"]
 [ext_resource type="Texture2D" uid="uid://cfreqop0x1bn3" path="res://inventory/sprite/x_normal.png" id="5_pgnlt"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bni6pqttrg3r1" path="res://inventory/sprite/x_disabled.png" id="8_3lqil"]
 [ext_resource type="Texture2D" uid="uid://dg1diagg1gyh5" path="res://inventory/sprite/inner_panel.png" id="9_aaydf"]
 [ext_resource type="PackedScene" uid="uid://tysnq6mq3m2o" path="res://inventory/inventory.tscn" id="9_umcu4"]
-[ext_resource type="Script" path="res://inventory/equipment.gd" id="10_73mmd"]
+[ext_resource type="Script" uid="uid://g7rm4bqsddh5" path="res://inventory/equipment.gd" id="10_73mmd"]
 [ext_resource type="Texture2D" uid="uid://ccc5d6idkw3mi" path="res://inventory/sprite/bar.png" id="11_8d31o"]
 [ext_resource type="PackedScene" uid="uid://dmwvxd81gy7mp" path="res://inventory/equipment_slot.tscn" id="12_8bnq3"]
 

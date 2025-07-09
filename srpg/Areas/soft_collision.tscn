@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bbjna1esfionc"]
 
-[ext_resource type="Script" path="res://Areas/soft_collision.gd" id="1_ftnfw"]
+[ext_resource type="Script" uid="uid://w1ux11swr5qh" path="res://Areas/soft_collision.gd" id="1_ftnfw"]
 
 [node name="SoftCollision" type="Area2D"]
 collision_layer = 256

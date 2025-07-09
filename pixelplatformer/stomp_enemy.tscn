@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://cmugfdixua8i7"]
 
-[ext_resource type="Script" path="res://stomp_enemy.gd" id="1_nhguk"]
+[ext_resource type="Script" uid="uid://c34dvan8xkvec" path="res://stomp_enemy.gd" id="1_nhguk"]
 [ext_resource type="Texture2D" uid="uid://doqlssqmsm5bm" path="res://tilemap-characters_packed.png" id="1_q6f67"]
 [ext_resource type="PackedScene" uid="uid://33c1glp3u4bs" path="res://hit_box.tscn" id="2_imdmp"]
 
@@ -50,7 +50,7 @@ point_count = 3
 curve = SubResource("Curve_3svu4")
 
 [sub_resource type="Curve" id="Curve_ebkvd"]
-max_value = 3.0
+_limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
